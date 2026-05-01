@@ -1,5 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { theme, typography } from '../constants/theme';
 import { articles } from '../data/mockData';
 import { ArticleCard } from './ArticleCard';

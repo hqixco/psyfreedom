@@ -10,16 +10,27 @@ import {
   UserTabIcon,
 } from './TabIcons';
 
+export type TabKey = 'home' | 'like' | 'catalog' | 'message' | 'user';
+
 type BottomTabsProps = {
   bottomInset: number;
   isModalOpen?: boolean;
+  activeTab?: TabKey;
+  onTabPress?: (tab: TabKey) => void;
 };
 
-type TabKey = 'home' | 'like' | 'catalog' | 'message' | 'user';
-
-export function BottomTabs({ bottomInset, isModalOpen = false }: BottomTabsProps) {
-  const [activeTab, setActiveTab] = useState<TabKey>('home');
+export function BottomTabs({ bottomInset, isModalOpen = false, activeTab, onTabPress }: BottomTabsProps) {
+  const [internalActiveTab, setInternalActiveTab] = useState<TabKey>('home');
   const bottomTabsHeight = getBottomTabsHeight(bottomInset);
+  const currentActiveTab = activeTab ?? internalActiveTab;
+
+  const handleTabPress = (tab: TabKey) => {
+    if (activeTab === undefined) {
+      setInternalActiveTab(tab);
+    }
+
+    onTabPress?.(tab);
+  };
 
   return (
     <View
@@ -29,33 +40,33 @@ export function BottomTabs({ bottomInset, isModalOpen = false }: BottomTabsProps
         { height: bottomTabsHeight, paddingBottom: Math.max(bottomInset, 10) },
       ]}
     >
-      <Pressable style={styles.tabButton} onPress={() => setActiveTab('home')}>
-        <View style={activeTab === 'home' ? styles.activeIconWrap : undefined}>
-          <HomeTabIcon active={activeTab === 'home'} />
+      <Pressable style={styles.tabButton} onPress={() => handleTabPress('home')}>
+        <View style={currentActiveTab === 'home' ? styles.activeIconWrap : undefined}>
+          <HomeTabIcon active={currentActiveTab === 'home'} />
         </View>
       </Pressable>
 
-      <Pressable style={styles.tabButton} onPress={() => setActiveTab('like')}>
-        <View style={activeTab === 'like' ? styles.activeIconWrap : undefined}>
-          <LikeTabIcon active={activeTab === 'like'} />
+      <Pressable style={styles.tabButton} onPress={() => handleTabPress('like')}>
+        <View style={currentActiveTab === 'like' ? styles.activeIconWrap : undefined}>
+          <LikeTabIcon active={currentActiveTab === 'like'} />
         </View>
       </Pressable>
 
-      <Pressable style={styles.tabButton} onPress={() => setActiveTab('catalog')}>
-        <View style={activeTab === 'catalog' ? styles.activeIconWrap : undefined}>
-          <CatalogTabIcon active={activeTab === 'catalog'} />
+      <Pressable style={styles.tabButton} onPress={() => handleTabPress('catalog')}>
+        <View style={currentActiveTab === 'catalog' ? styles.activeIconWrap : undefined}>
+          <CatalogTabIcon active={currentActiveTab === 'catalog'} />
         </View>
       </Pressable>
 
-      <Pressable style={styles.tabButton} onPress={() => setActiveTab('message')}>
-        <View style={activeTab === 'message' ? styles.activeIconWrap : undefined}>
-          <MessageTabIcon active={activeTab === 'message'} />
+      <Pressable style={styles.tabButton} onPress={() => handleTabPress('message')}>
+        <View style={currentActiveTab === 'message' ? styles.activeIconWrap : undefined}>
+          <MessageTabIcon active={currentActiveTab === 'message'} />
         </View>
       </Pressable>
 
-      <Pressable style={styles.tabButton} onPress={() => setActiveTab('user')}>
-        <View style={activeTab === 'user' ? styles.activeIconWrap : undefined}>
-          <UserTabIcon active={activeTab === 'user'} />
+      <Pressable style={styles.tabButton} onPress={() => handleTabPress('user')}>
+        <View style={currentActiveTab === 'user' ? styles.activeIconWrap : undefined}>
+          <UserTabIcon active={currentActiveTab === 'user'} />
         </View>
       </Pressable>
     </View>

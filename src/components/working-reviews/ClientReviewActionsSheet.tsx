@@ -1,0 +1,81 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { colors } from '../../constants/theme';
+
+export function ClientReviewActionsSheet({
+  visible,
+  onClose,
+  onReport,
+  onReply,
+}: {
+  visible: boolean;
+  onClose: () => void;
+  onReport: () => void;
+  onReply: () => void;
+}) {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+      <View style={styles.overlay}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+        <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
+          <Pressable style={styles.closeButton} onPress={onClose}>
+            <Ionicons name="close" size={24} color={colors.primaryDark} />
+          </Pressable>
+
+          <View style={styles.buttonsRow}>
+            <Pressable style={styles.outlineButton} onPress={onReport}>
+              <Text style={styles.outlineButtonText}>Пожаловаться</Text>
+            </Pressable>
+            <Pressable style={styles.outlineButton} onPress={onReply}>
+              <Text style={styles.outlineButtonText}>Ответить</Text>
+            </Pressable>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
+const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.35)',
+  },
+  sheet: {
+    backgroundColor: colors.white,
+    borderTopLeftRadius: 22,
+    borderTopRightRadius: 22,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    zIndex: 1,
+  },
+  buttonsRow: {
+    marginTop: 52,
+    flexDirection: 'row',
+    gap: 10,
+  },
+  outlineButton: {
+    flex: 1,
+    height: 48,
+    borderRadius: 24,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  outlineButtonText: {
+    color: colors.primary,
+    fontSize: 15,
+    fontWeight: '700',
+  },
+});

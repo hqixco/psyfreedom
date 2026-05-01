@@ -1,23 +1,25 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import { theme, typography } from '../constants/theme';
 
 const backgroundAsset = require('../../assets/dating-bg.png');
 
-export function DatingBanner() {
+export function DatingBanner({ onPress }: { onPress?: () => void }) {
   return (
-    <ImageBackground
-      source={backgroundAsset}
-      style={styles.container}
-      imageStyle={styles.backgroundImage}
-      resizeMode="cover"
-    >
-      <View style={styles.content}>
-        <Text style={styles.title}>{'\u0417\u043d\u0430\u043a\u043e\u043c\u0441\u0442\u0432\u0430'}</Text>
-        <Text style={styles.subtitle}>
-          {'\u041a\u043b\u0443\u0431 \u0434\u043b\u044f \u043e\u0442\u043d\u043e\u0448\u0435\u043d\u0438\u0439'}
-        </Text>
-      </View>
-    </ImageBackground>
+    <Pressable onPress={onPress}>
+      <ImageBackground
+        source={backgroundAsset}
+        style={styles.container}
+        imageStyle={styles.backgroundImage}
+        resizeMode="cover"
+      >
+        <View style={styles.content}>
+          <Text style={styles.title}>{'\u0417\u043d\u0430\u043a\u043e\u043c\u0441\u0442\u0432\u0430'}</Text>
+          <Text style={styles.subtitle}>
+            {'\u041a\u043b\u0443\u0431 \u0434\u043b\u044f \u043e\u0442\u043d\u043e\u0448\u0435\u043d\u0438\u0439'}
+          </Text>
+        </View>
+      </ImageBackground>
+    </Pressable>
   );
 }
 

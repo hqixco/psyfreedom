@@ -1,12 +1,19 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { theme, typography } from '../constants/theme';
-import { products } from '../data/mockData';
+import { products } from '../data/catalogData';
 import { ProductCard } from './ProductCard';
 
 const productSnapInterval = 190;
 
-export function ProductsSection() {
+type ProductsSectionProps = {
+  onOpenProductDetails?: (productId: string) => void;
+};
+
+const homeProducts = products.filter((product) =>
+  ['product-1', 'product-2', 'product-6', 'product-9'].includes(product.id)
+);
+
+export function ProductsSection({ onOpenProductDetails }: ProductsSectionProps) {
   return (
     <View>
       <View style={styles.header}>
@@ -23,9 +30,9 @@ export function ProductsSection() {
         snapToInterval={productSnapInterval}
         snapToAlignment="start"
       >
-        {products.map((product, index) => (
-          <View key={product.id} style={index === products.length - 1 ? styles.lastCard : undefined}>
-            <ProductCard item={product} />
+        {homeProducts.map((product, index) => (
+          <View key={product.id} style={index === homeProducts.length - 1 ? styles.lastCard : undefined}>
+            <ProductCard item={product} onPress={() => onOpenProductDetails?.(product.id)} />
           </View>
         ))}
       </ScrollView>
@@ -42,9 +49,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 24,
+    fontSize: 18,
     color: theme.text,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
   },
   button: {
     height: 32,

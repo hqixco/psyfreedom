@@ -2,14 +2,15 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import {
   Dimensions,
+  FlatList,
   ImageBackground,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
 import { AllTopicsModal } from './AllTopicsModal';
@@ -22,9 +23,11 @@ import { PlatformGuideBanner } from './PlatformGuideBanner';
 import { ProductsSection } from './ProductsSection';
 import { SpecialistPromoBanner } from './SpecialistPromoBanner';
 import { SpecialistCard } from './SpecialistCard';
+import { SearchOverlay } from './search/SearchOverlay';
 import { TopicCard } from './TopicCard';
 import { theme, typography } from '../constants/theme';
-import { banners, specialists, topics } from '../data/mockData';
+import { banners, topics } from '../data/mockData';
+import { specialists } from '../data/catalogData';
 
 const { width: screenWidth } = Dimensions.get('window');
 const horizontalPadding = 14;
@@ -45,10 +48,29 @@ const homeSections = [
 ] as const;
 type HomeSection = (typeof homeSections)[number];
 
-export function HomeScreen() {
+type HomeScreenProps = {
+  showBottomTabs?: boolean;
+  bottomTabsHeight?: number;
+  onOpenDating?: () => void;
+  onOpenArticleFromSearch?: (articleId: string) => void;
+  onOpenServicesFromSearch?: (topicId: string) => void;
+  onOpenSpecialistDetails?: (specialistId: string) => void;
+  onOpenProductDetails?: (productId: string) => void;
+};
+
+export function HomeScreen({
+  showBottomTabs = true,
+  bottomTabsHeight: bottomTabsHeightProp,
+  onOpenDating,
+  onOpenArticleFromSearch,
+  onOpenServicesFromSearch,
+  onOpenSpecialistDetails,
+  onOpenProductDetails,
+}: HomeScreenProps) {
   const [isTopicsVisible, setTopicsVisible] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
   const { bottom: bottomInset } = useSafeAreaInsets();
-  const bottomTabsHeight = getBottomTabsHeight(bottomInset);
+  const bottomTabsHeight = bottomTabsHeightProp ?? getBottomTabsHeight(bottomInset);
 
   const renderSection = ({ item }: { item: HomeSection }) => {
     if (item === 'search-topics') {
@@ -59,6 +81,7 @@ export function HomeScreen() {
               placeholder={'\u041f\u043e\u0438\u0441\u043a \u0443\u0441\u043b\u0443\u0433 \u0438 \u0442\u043e\u0432\u0430\u0440\u043e\u0432'}
               placeholderTextColor={theme.searchPlaceholder}
               style={styles.searchInput}
+              onFocus={() => setSearchVisible(true)}
             />
             <View style={styles.searchIcon}>
               <SearchIcon />
@@ -101,7 +124,7 @@ export function HomeScreen() {
         >
           {specialists.map((specialist, index) => (
             <View key={specialist.id} style={index === specialists.length - 1 ? styles.lastSpecialist : undefined}>
-              <SpecialistCard item={specialist} />
+              <SpecialistCard item={specialist} onPress={() => onOpenSpecialistDetails?.(specialist.id)} />
             </View>
           ))}
         </ScrollView>
@@ -109,11 +132,11 @@ export function HomeScreen() {
     }
 
     if (item === 'dating') {
-      return <DatingBanner />;
+      return <DatingBanner onPress={onOpenDating} />;
     }
 
     if (item === 'products') {
-      return <ProductsSection />;
+      return <ProductsSection onOpenProductDetails={onOpenProductDetails} />;
     }
 
     if (item === 'guide') {
@@ -190,7 +213,13 @@ export function HomeScreen() {
           keyboardShouldPersistTaps="handled"
         />
 
-        <BottomTabs bottomInset={bottomInset} isModalOpen={isTopicsVisible} />
+        {showBottomTabs ? <BottomTabs bottomInset={bottomInset} isModalOpen={isTopicsVisible} /> : null}
+        <SearchOverlay
+          visible={searchVisible}
+          onClose={() => setSearchVisible(false)}
+          onOpenArticle={onOpenArticleFromSearch}
+          onOpenSpecialists={onOpenServicesFromSearch}
+        />
         {isTopicsVisible ? (
           <AllTopicsModal visible={isTopicsVisible} onClose={() => setTopicsVisible(false)} />
         ) : null}

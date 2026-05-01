@@ -1,16 +1,23 @@
-export const theme = {
+export const colors = {
   primary: '#07849A',
   primaryDark: '#043F4A',
-  mint: '#D8FFF0',
-  mintAlt: '#CFFBEA',
-  mintLight: '#DFFFF3',
-  blueLight: '#D9F7FF',
-  cardLight: '#F3F7FB',
+  white: '#FFFFFF',
   text: '#2C2C2C',
   muted: '#8A8A8A',
   border: '#E6E6E6',
-  white: '#FFFFFF',
-  pink: '#FF7F9D',
+  cardLight: '#F3F7FB',
+  mintLight: '#DFFFF3',
+  blueLight: '#D9F7FF',
+  pink: '#FF6F93',
+  orange: '#FFC76B',
+  grayBanner: '#8F9697',
+  background: '#FFFFFF',
+};
+
+export const theme = {
+  ...colors,
+  mint: '#D8FFF0',
+  mintAlt: '#CFFBEA',
   overlay: 'rgba(0,0,0,0.35)',
   searchPlaceholder: '#A7A7A7',
   tabBorder: '#F1F1F1',
