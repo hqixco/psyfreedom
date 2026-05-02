@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { datingClubData } from './datingData';
 import { datingColors, datingCommonStyles } from './datingStyles';
+import { typography } from '../../constants/theme';
 
 type DatingClubScreenProps = {
   onBack: () => void;
@@ -37,7 +39,7 @@ export function DatingClubScreen({
         >
           <View style={datingCommonStyles.header}>
             <Pressable onPress={onBack}>
-              <Ionicons name="chevron-back" size={24} color={datingColors.dark} />
+              <BackChevronIcon color={datingColors.dark} />
             </Pressable>
             <Text style={datingCommonStyles.headerTitle}>{datingClubData.title}</Text>
           </View>
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
   heroTitle: {
     fontSize: 22,
     lineHeight: 27,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.white,
   },
   heroText: {
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 19,
     lineHeight: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   accordionContent: {
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
   contentSubtitle: {
     fontSize: 18,
     lineHeight: 23,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
     marginTop: 8,
   },
@@ -172,3 +174,4 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 });
+

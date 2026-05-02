@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { workingProfileStats } from '../../data/workingProfileData';
 import { WorkingProfileMenuItem } from './WorkingProfileMenuItem';
 
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     lineHeight: 34,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     marginBottom: 16,
   },

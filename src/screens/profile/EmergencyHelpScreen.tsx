@@ -3,7 +3,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { EmergencyCategoryCard } from '../../components/emergency/EmergencyCategoryCard';
 import { EmergencyContactCard } from '../../components/emergency/EmergencyContactCard';
 import { EmergencyHelpHeader } from '../../components/emergency/EmergencyHelpHeader';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import {
   emergencyCategories,
   emergencyContacts,
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     fontSize: 25,
     lineHeight: 31,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   description: {
@@ -132,6 +132,6 @@ const styles = StyleSheet.create({
   emergencyButtonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

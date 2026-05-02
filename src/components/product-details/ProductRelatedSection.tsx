@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import { ProductCard } from '../products/ProductCard';
 import { ProductSummary } from '../../data/productDetailsData';
 import { Product } from '../../data/productsData';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProductRelatedSectionProps = {
   items?: ProductSummary[];
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     marginHorizontal: 16,
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   list: {

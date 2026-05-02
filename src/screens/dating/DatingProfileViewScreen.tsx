@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { datingColors } from './datingStyles';
 import { datingProfileDetailsMock, DatingInfoRow, DatingProfileSection } from './datingData';
+import { typography } from '../../constants/theme';
 
 function InfoRow({ row, isLast = false }: { row: DatingInfoRow; isLast?: boolean }) {
   return (
@@ -27,7 +29,7 @@ export function DatingProfileViewScreen({ onBack }: { onBack: () => void }) {
       >
         <View style={styles.header}>
           <Pressable onPress={onBack}>
-            <Ionicons name="chevron-back" size={24} color={datingColors.dark} />
+            <BackChevronIcon color={datingColors.dark} />
           </Pressable>
           <Pressable onPress={() => setIsFavorite((prev) => !prev)}>
             <Ionicons
@@ -202,7 +204,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 22,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   profileZodiac: {
@@ -212,7 +214,7 @@ const styles = StyleSheet.create({
   },
   profileCity: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   section: {
@@ -221,7 +223,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     lineHeight: 27,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   sectionText: {
@@ -252,7 +254,7 @@ const styles = StyleSheet.create({
   infoValue: {
     flex: 1,
     fontSize: 15,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: datingColors.dark,
     textAlign: 'right',
   },
@@ -272,7 +274,7 @@ const styles = StyleSheet.create({
   },
   tagText: {
     fontSize: 12,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: datingColors.dark,
   },
   accordionSection: {
@@ -297,7 +299,7 @@ const styles = StyleSheet.create({
   accordionTitle: {
     fontSize: 17,
     lineHeight: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   accordionContent: {
@@ -305,3 +307,4 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
 });
+

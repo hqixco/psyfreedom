@@ -6,9 +6,11 @@ type ProductsGridProps = {
   products: Product[];
   cardWidth: number;
   onPressProduct: (id: string) => void;
+  favoriteMap: Record<string, boolean>;
+  onToggleFavorite: (id: string) => void;
 };
 
-export function ProductsGrid({ products, cardWidth, onPressProduct }: ProductsGridProps) {
+export function ProductsGrid({ products, cardWidth, onPressProduct, favoriteMap, onToggleFavorite }: ProductsGridProps) {
   return (
     <View style={styles.grid}>
       {products.map((item) => (
@@ -17,6 +19,8 @@ export function ProductsGrid({ products, cardWidth, onPressProduct }: ProductsGr
           item={item}
           width={cardWidth}
           imageHeight={180}
+          isFavorite={favoriteMap[item.id] ?? false}
+          onToggleFavorite={() => onToggleFavorite(item.id)}
           onPress={() => onPressProduct(item.id)}
         />
       ))}

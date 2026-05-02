@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function PurchaseActionsSheet({
   visible,
@@ -74,6 +74,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.primary,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

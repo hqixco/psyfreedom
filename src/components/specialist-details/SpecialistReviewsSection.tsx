@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SpecialistReview } from '../../data/specialistDetailsData';
 
 type SpecialistReviewsSectionProps = {
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   ratingRow: {
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   author: {
     marginTop: 2,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   starsRow: {
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

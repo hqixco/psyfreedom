@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { FilterConfig, SelectedFilters } from '../../data/filterData';
 import { FilterSection } from './FilterSection';
 
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   sheetTitle: {
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   closeButton: {
@@ -109,26 +109,30 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   applyButton: {
-    height: 48,
-    borderRadius: 24,
+    height: 43,
+    borderRadius: 360,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary,
   },
   applyButtonText: {
-    fontSize: 15,
-    fontWeight: '700',
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.white,
   },
   resetButton: {
-    height: 42,
+    height: 43,
     marginTop: 8,
+    borderRadius: 360,
+    borderWidth: 1,
+    borderColor: '#05728F',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.white,
   },
   resetButtonText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: colors.primary,
+    fontSize: 16,
+    ...typography.Inter[600],
+    color: '#033542',
   },
 });

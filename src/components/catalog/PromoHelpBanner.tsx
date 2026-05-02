@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type PromoHelpBannerProps = {
   title?: string;
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     maxWidth: '68%',
     fontSize: 22,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   description: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   image: {

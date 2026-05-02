@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SessionItem } from '../../data/mySessionsData';
 
 export function SessionDetailsSheet({
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   card: {
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   role: {
@@ -156,13 +156,13 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   status: {
     fontSize: 14,
     color: '#70BFA0',
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   buttonsRow: {
     marginTop: 22,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   cancelButtonText: {
     color: colors.primary,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   chatButton: {
     flex: 1,
@@ -195,6 +195,6 @@ const styles = StyleSheet.create({
   chatButtonText: {
     color: colors.white,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

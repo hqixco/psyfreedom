@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type JournalHeaderProps = {
   title: string;
@@ -13,7 +14,7 @@ export function JournalHeader({ title, onBack, onSearch }: JournalHeaderProps) {
     <View style={styles.header}>
       <View style={styles.left}>
         <Pressable style={styles.iconButton} onPress={onBack}>
-          <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+          <BackChevronIcon color={colors.primaryDark} />
         </Pressable>
         <Text style={styles.title}>{title}</Text>
       </View>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     fontSize: 18,
     lineHeight: 22,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: '#033542',
   },
 });

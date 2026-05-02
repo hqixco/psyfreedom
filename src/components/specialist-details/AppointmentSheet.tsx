@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type AppointmentSheetProps = {
   visible: boolean;
@@ -187,13 +187,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   sectionTitle: {
     marginBottom: 12,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   meetingTitle: {
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
   },
   optionTextActive: {
     color: colors.primary,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   divider: {
     height: 1,
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
   },
   costValue: {
     fontSize: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   submitButton: {
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
 });

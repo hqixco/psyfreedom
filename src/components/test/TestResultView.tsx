@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { ProductDetails, Review } from '../../data/productDetailsData';
 
 type Metric = {
@@ -133,13 +133,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   resultTitle: {
     marginTop: 28,
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   metricBlock: {
@@ -151,12 +151,12 @@ const styles = StyleSheet.create({
   },
   metricLabel: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   metricValue: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   progressTrack: {
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   },
   descriptionTitle: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   descriptionText: {
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   },
   retryButtonText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   authorSection: {
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   authorCard: {
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   },
   authorName: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   authorRole: {
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
   reviewAuthor: {
     marginTop: 2,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   reviewStars: {
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
   },
   reviewButtonText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

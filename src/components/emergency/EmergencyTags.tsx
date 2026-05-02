@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function EmergencyTags({ tags }: { tags: string[] }) {
   return (
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
   tagText: {
     fontSize: 13,
     color: colors.primaryDark,
-    fontWeight: '500',
+    ...typography.Inter[500],
   },
 });

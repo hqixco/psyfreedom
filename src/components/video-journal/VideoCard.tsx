@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { VideoJournalItem } from '../../data/videoJournalData';
 
 type VideoCardProps = {
@@ -74,14 +74,14 @@ const styles = StyleSheet.create({
   viewsText: {
     marginLeft: 4,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
   title: {
     marginTop: 8,
     fontSize: 15,
     lineHeight: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   topic: {

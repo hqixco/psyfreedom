@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 const calendarDays = [
@@ -107,11 +107,11 @@ const styles = StyleSheet.create({
   chevron: {
     fontSize: 22,
     color: colors.primaryDark,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   month: {
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   year: {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProductAboutSectionProps = {
   title: string;
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   title: {
     marginHorizontal: 16,
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   text: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginHorizontal: 16,
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { datingCatalogHero, datingProfiles, DatingProfileItem } from './datingData';
 import { datingColors } from './datingStyles';
+import { typography } from '../../constants/theme';
 
 function DatingProfileCard({
   item,
@@ -48,7 +50,7 @@ export function DatingProfilesCatalogScreen({
       >
         <View style={styles.header}>
           <Pressable onPress={onBack}>
-            <Ionicons name="chevron-back" size={24} color={datingColors.dark} />
+            <BackChevronIcon color={datingColors.dark} />
           </Pressable>
         </View>
 
@@ -127,7 +129,7 @@ const styles = StyleSheet.create({
   },
   heroTitle: {
     fontSize: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.white,
   },
   heroText: {
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   controlsRow: {
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
   },
   filtersText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
     marginRight: 8,
   },
@@ -209,6 +211,7 @@ const styles = StyleSheet.create({
   profileNameText: {
     color: datingColors.white,
     fontSize: 13,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });
+

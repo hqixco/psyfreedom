@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { typography } from '../../constants/theme';
 import {
   Image,
   Pressable,
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 30,
     lineHeight: 36,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   searchContainer: {
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
   supportAvatarText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   avatarImage: {
     width: '100%',
@@ -226,7 +227,7 @@ const styles = StyleSheet.create({
   chatName: {
     fontSize: 17,
     lineHeight: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   supportRole: {
@@ -263,7 +264,7 @@ const styles = StyleSheet.create({
   },
   unreadText: {
     fontSize: 12,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
   chatRow: {
@@ -295,3 +296,4 @@ const styles = StyleSheet.create({
     color: '#8A8A8A',
   },
 });
+

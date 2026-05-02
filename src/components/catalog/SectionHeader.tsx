@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SectionHeaderProps = {
   title: string;
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.text,
   },
   actionButton: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   actionText: {
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
 });

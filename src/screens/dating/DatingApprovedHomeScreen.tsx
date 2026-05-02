@@ -1,4 +1,5 @@
 import { ComponentProps, useMemo, useState } from 'react';
+import { typography } from '../../constants/theme';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
   heroTitle: {
     fontSize: 22,
     lineHeight: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.white,
   },
   heroText: {
@@ -212,7 +213,7 @@ const styles = StyleSheet.create({
   heroButtonText: {
     color: datingColors.pink,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   heroImage: {
     position: 'absolute',
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
   categoryTitle: {
     marginTop: 4,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   profilesHeaderPressable: {
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
   profileNameText: {
     color: datingColors.white,
     fontSize: 13,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   eventsHeader: {
     marginTop: 18,
@@ -315,7 +316,7 @@ const styles = StyleSheet.create({
   moreButtonText: {
     fontSize: 14,
     color: datingColors.dark,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   eventsList: {
     marginTop: 10,
@@ -348,7 +349,7 @@ const styles = StyleSheet.create({
   eventDateDay: {
     fontSize: 16,
     lineHeight: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   eventDateMonth: {
@@ -372,12 +373,12 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     fontSize: 12,
     color: datingColors.white,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   eventTitle: {
     marginTop: 8,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   eventCity: {
@@ -386,3 +387,4 @@ const styles = StyleSheet.create({
     color: datingColors.muted,
   },
 });
+

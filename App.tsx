@@ -14,7 +14,7 @@ import { BottomTabs, TabKey } from './src/components/BottomTabs';
 import { getBottomTabsHeight } from './src/components/bottomTabsLayout';
 import { HomeScreen } from './src/components/HomeScreen';
 import { SplashScreen } from './src/components/SplashScreen';
-import { colors } from './src/constants/theme';
+import { colors, typography } from './src/constants/theme';
 import { authInitialValues } from './src/data/authData';
 import { userProfileMock } from './src/data/authorizedProfileData';
 import { articles, products, specialists, videos } from './src/data/catalogData';
@@ -253,11 +253,11 @@ function AppShell() {
       case 'catalog':
       case 'products':
       case 'services':
+      case 'journal':
       case 'product-details':
       case 'specialist-details':
-        return 'catalog';
-      case 'journal':
       case 'article-details':
+        return 'catalog';
       case 'messenger':
       case 'chat':
         return 'message';
@@ -454,6 +454,9 @@ function AppShell() {
         setArticleReturnRoute({ name: 'home' });
         setRoute({ name: 'article-details', articleId });
       }}
+      onOpenJournal={() => setRoute({ name: 'journal' })}
+      onOpenProducts={() => setRoute({ name: 'products' })}
+      onOpenSpecialists={() => setRoute({ name: 'services' })}
       onOpenServicesFromSearch={(topicId) => setRoute({ name: 'services', topicId })}
       onOpenSpecialistDetails={openSpecialistDetails}
       onOpenProductDetails={openProductDetails}
@@ -961,7 +964,7 @@ const styles = StyleSheet.create({
   },
   placeholderTitle: {
     fontSize: 28,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.text,
   },
   placeholderCard: {

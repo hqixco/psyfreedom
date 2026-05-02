@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
+import { typography } from '../../constants/theme';
 import {
   Alert,
   Dimensions,
@@ -862,7 +864,7 @@ export function DatingQuestionnaireScreen({
           >
             <View style={styles.header}>
               <Pressable onPress={handleBack}>
-                <Ionicons name="chevron-back" size={24} color={datingColors.dark} />
+                <BackChevronIcon color={datingColors.dark} />
               </Pressable>
               <Text style={styles.counter}>{currentStep}/7</Text>
             </View>
@@ -897,13 +899,13 @@ const styles = StyleSheet.create({
   },
   counter: {
     fontSize: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   stepTitle: {
     fontSize: 22,
     lineHeight: 28,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
     marginTop: 10,
     marginBottom: 16,
@@ -1001,7 +1003,7 @@ const styles = StyleSheet.create({
   labelWithCounter: {
     fontSize: 13,
     lineHeight: 17,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: datingColors.dark,
     marginBottom: 6,
   },
@@ -1033,7 +1035,7 @@ const styles = StyleSheet.create({
   uploadTitle: {
     fontSize: 13,
     lineHeight: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   uploadDescription: {
@@ -1045,7 +1047,7 @@ const styles = StyleSheet.create({
   uploadFileName: {
     marginTop: 8,
     fontSize: 12,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: datingColors.pink,
   },
   photoGrid: {
@@ -1079,7 +1081,7 @@ const styles = StyleSheet.create({
   mainPhotoBadgeText: {
     fontSize: 10,
     color: datingColors.white,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   removePhotoButton: {
     position: 'absolute',
@@ -1108,7 +1110,7 @@ const styles = StyleSheet.create({
     lineHeight: 12,
     color: datingColors.pink,
     textAlign: 'center',
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   childCard: {
     borderWidth: 1,
@@ -1119,14 +1121,15 @@ const styles = StyleSheet.create({
   },
   childTitle: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
     marginBottom: 10,
   },
   addMoreText: {
     marginBottom: 12,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.pink,
   },
 });
+

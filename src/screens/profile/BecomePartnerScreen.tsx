@@ -6,7 +6,7 @@ import { BecomePartnerSheet } from '../../components/partner/BecomePartnerSheet'
 import { PartnerAdvantagesList } from '../../components/partner/PartnerAdvantagesList';
 import { PartnerHeroBanner } from '../../components/partner/PartnerHeroBanner';
 import { PartnerRequestToast } from '../../components/partner/PartnerRequestToast';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { partnerFormInitialValues, partnerPageData } from '../../data/partnerData';
 
 export function BecomePartnerScreen({ onBack }: { onBack: () => void }) {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 27,
     color: colors.primaryDark,
-    fontWeight: '400',
+    ...typography.Inter[400],
   },
   bottomBar: {
     position: 'absolute',
@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { ProductDetails } from '../../data/productDetailsData';
 
 type ProductAuthorSectionProps = {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   title: {
     marginHorizontal: 16,
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   card: {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   role: {

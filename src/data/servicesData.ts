@@ -21,9 +21,10 @@ export type ServiceCategory = {
 export type CoachCategory = {
   id: string;
   title: string;
+  image?: ImageSourcePropType;
 };
 
-const specialistImage = require('../../assets/image (1).png');
+const specialistImage = require('../../assets/image (4).jpg');
 
 export const serviceCategories: ServiceCategory[] = [
   { id: 'psychologists', title: 'Психологи /\nПсихотерапевты', icon: 'people' },
@@ -62,9 +63,9 @@ export const specialists: Specialist[] = [
 ];
 
 export const coachCategories: CoachCategory[] = [
-  { id: 'parents', title: 'Коучинг для\nродителей' },
-  { id: 'career', title: 'Карьерный\nкоучинг' },
-  { id: 'parents-2', title: 'Коучинг для\nродителей' },
+  { id: 'parents', title: 'Коучинг для\nродителей', image: require('../../assets/kouching-dlya-roditelej.jpg') },
+  { id: 'career', title: 'Карьерный\nкоучинг', image: require('../../assets/karjernyj-kouching.jpg') },
+  { id: 'personal', title: 'Личностный\nкоучинг' },
 ];
 
 export const coaches: Specialist[] = [

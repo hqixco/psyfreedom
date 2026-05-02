@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { EmergencyContact } from '../../data/emergencyHelpData';
 import { EmergencyTags } from './EmergencyTags';
 
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     fontSize: 17,
     lineHeight: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   logo: {
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
     marginTop: 14,
     fontSize: 21,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F02F6B',
   },
   website: {
     marginTop: 8,
     fontSize: 17,
     lineHeight: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

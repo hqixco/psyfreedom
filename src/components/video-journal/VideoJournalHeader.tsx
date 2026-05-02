@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type VideoJournalHeaderProps = {
   onBack: () => void;
@@ -12,7 +13,7 @@ export function VideoJournalHeader({ onBack, onSearch }: VideoJournalHeaderProps
     <View style={styles.container}>
       <View style={styles.left}>
         <Pressable style={styles.iconButton} onPress={onBack}>
-          <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+          <BackChevronIcon color={colors.primaryDark} />
         </Pressable>
         <Text style={styles.title}>Видеожурнал</Text>
       </View>
@@ -25,7 +26,7 @@ export function VideoJournalHeader({ onBack, onSearch }: VideoJournalHeaderProps
 
 const styles = StyleSheet.create({
   container: {
-    height: 56,
+    height: 52,
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -44,11 +45,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    marginLeft: 12,
-    fontSize: 26,
-    lineHeight: 32,
-    fontWeight: '700',
-    color: colors.primaryDark,
+    marginLeft: 6,
+    fontSize: 18,
+    lineHeight: 22,
+    ...typography.Inter[600],
+    color: '#033542',
     flexShrink: 1,
   },
 });

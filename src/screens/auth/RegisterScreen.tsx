@@ -4,7 +4,7 @@ import { AuthButton } from '../../components/auth/AuthButton';
 import { AuthHeader } from '../../components/auth/AuthHeader';
 import { AuthInput } from '../../components/auth/AuthInput';
 import { ConsentCheckbox } from '../../components/auth/ConsentCheckbox';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type RegisterScreenProps = {
   name: string;
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     lineHeight: 36,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     marginBottom: 34,
     marginTop: 20,

@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function PartnerRequestToast({
   visible,
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
   text: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

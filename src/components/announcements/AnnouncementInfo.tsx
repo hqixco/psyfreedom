@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { Announcement } from '../../data/announcementsData';
 
 type AnnouncementInfoProps = {
@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
   date: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   title: {
     marginTop: 8,
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   badge: {

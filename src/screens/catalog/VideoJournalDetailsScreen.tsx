@@ -5,7 +5,7 @@ import { FavoriteButton } from '../../components/video-journal/FavoriteButton';
 import { VideoAuthorSection } from '../../components/video-journal/VideoAuthorSection';
 import { VideoDetailsHeader } from '../../components/video-journal/VideoDetailsHeader';
 import { VideoHero } from '../../components/video-journal/VideoHero';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { VideoJournalItem } from '../../data/videoJournalData';
 
 type VideoJournalDetailsScreenProps = {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   topicChip: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   topicText: {
     fontSize: 13,
-    fontWeight: '500',
+    ...typography.Inter[500],
     color: colors.primaryDark,
   },
   description: {

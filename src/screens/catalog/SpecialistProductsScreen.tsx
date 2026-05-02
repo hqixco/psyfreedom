@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ProductCard } from '../../components/products/ProductCard';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SpecialistProduct } from '../../data/specialistDetailsData';
 import { Product } from '../../data/productsData';
 
@@ -62,7 +63,7 @@ export function SpecialistProductsScreen({
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Pressable style={styles.iconButton} onPress={onBack}>
-              <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+              <BackChevronIcon color={colors.primaryDark} />
             </Pressable>
             <Text style={styles.title}>Товары специалиста</Text>
           </View>
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
   title: {
     marginLeft: 6,
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     flexShrink: 1,
   },
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   activeChipText: {
     color: colors.white,

@@ -1,5 +1,5 @@
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type FilterSection = {
   title: string;
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   scrollContent: {
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     marginBottom: 12,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   chipsRow: {
@@ -111,32 +111,37 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   activeChipText: {
     color: colors.white,
   },
   applyButton: {
-    height: 48,
-    borderRadius: 24,
+    height: 43,
+    borderRadius: 360,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary,
   },
   applyButtonText: {
-    fontSize: 15,
-    fontWeight: '700',
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.white,
   },
   resetButton: {
     marginTop: 12,
+    height: 43,
+    borderRadius: 360,
+    borderWidth: 1,
+    borderColor: '#05728F',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.white,
   },
   resetButtonText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.primaryDark,
+    fontSize: 16,
+    ...typography.Inter[600],
+    color: '#033542',
   },
 });

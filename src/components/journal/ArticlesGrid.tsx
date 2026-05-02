@@ -16,7 +16,7 @@ export function ArticlesGrid({ articles, cardWidth, onPressArticle }: ArticlesGr
           <ArticleCard
             item={item}
             width={cardWidth}
-            imageHeight={cardWidth * 0.72}
+            imageHeight={180}
             onPress={() => onPressArticle(item.id)}
           />
         </View>
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   cardWrap: {
-    marginBottom: 18,
+    marginBottom: 10,
   },
 });

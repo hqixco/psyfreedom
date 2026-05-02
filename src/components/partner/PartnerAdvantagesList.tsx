@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function PartnerAdvantagesList({ advantages }: { advantages: string[] }) {
   return (
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   list: {
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 21,
     color: colors.primaryDark,
-    fontWeight: '500',
+    ...typography.Inter[500],
   },
 });

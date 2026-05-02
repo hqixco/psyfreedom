@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ShareIcon } from '../../components/icons/ShareIcon';
 import { datingEventDetailsMock } from './datingData';
+import { typography } from '../../constants/theme';
 
 type DatingEventDetailsScreenProps = {
   eventId: string;
@@ -97,7 +99,7 @@ export function DatingEventDetailsScreen({
         >
           <View style={styles.header}>
             <Pressable onPress={onBack}>
-              <Ionicons name="chevron-back" size={24} color="#3A0718" />
+              <BackChevronIcon color="#3A0718" />
             </Pressable>
 
             <View style={styles.headerRight}>
@@ -190,14 +192,14 @@ const styles = StyleSheet.create({
     marginTop: 14,
     fontSize: 30,
     lineHeight: 36,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
   },
   title: {
     marginTop: 2,
     fontSize: 24,
     lineHeight: 29,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   infoBlock: {
@@ -227,7 +229,7 @@ const styles = StyleSheet.create({
   mapLink: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
     textDecorationLine: 'underline',
   },
@@ -237,7 +239,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 21,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   sectionText: {
@@ -249,7 +251,7 @@ const styles = StyleSheet.create({
   readMoreText: {
     marginTop: 8,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
   },
   organizerCard: {
@@ -271,7 +273,7 @@ const styles = StyleSheet.create({
   organizerName: {
     fontSize: 17,
     lineHeight: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   organizerRole: {
@@ -299,7 +301,7 @@ const styles = StyleSheet.create({
   },
   inviteButtonText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
   bookButton: {
@@ -313,7 +315,8 @@ const styles = StyleSheet.create({
   },
   bookButtonText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
   },
 });
+

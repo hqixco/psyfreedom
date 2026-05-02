@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProfileTypeSwitcherProps = {
   selectedProfileType: 'main' | 'work';
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 15,
     lineHeight: 18,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
     textAlign: 'center',
   },

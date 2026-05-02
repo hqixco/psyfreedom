@@ -11,8 +11,8 @@ type ProductCategoryGridProps = {
 export function ProductCategoryGrid({ categories, categoryWidth, onPressCategory }: ProductCategoryGridProps) {
   return (
     <View style={styles.grid}>
-      {categories.map((item) => (
-        <View key={item.id} style={styles.itemWrap}>
+      {categories.map((item, index) => (
+        <View key={item.id} style={[styles.itemWrap, index % 3 !== 2 && styles.itemGap]}>
           <ProductCategoryTile item={item} width={categoryWidth} onPress={onPressCategory} />
         </View>
       ))}
@@ -26,9 +26,11 @@ const styles = StyleSheet.create({
     marginTop: 14,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    columnGap: 8,
-    rowGap: 8,
   },
-  itemWrap: {},
+  itemWrap: {
+    marginBottom: 8,
+  },
+  itemGap: {
+    marginRight: 8,
+  },
 });

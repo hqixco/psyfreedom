@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, ImageSourcePropType, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProfileBannerProps = {
   title: string;
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.primaryDark,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   titleMint: {
     fontSize: 20,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   buttonIcon: {

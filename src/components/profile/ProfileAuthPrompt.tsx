@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProfileAuthPromptProps = {
   onLogin: () => void;
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 28,
     lineHeight: 34,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   description: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   loginButtonText: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
   secondaryText: {
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     textAlign: 'center',
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

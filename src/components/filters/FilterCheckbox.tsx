@@ -1,5 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 import { colors } from '../../constants/theme';
 
 type FilterCheckboxProps = {
@@ -10,6 +10,9 @@ type FilterCheckboxProps = {
 };
 
 export function FilterCheckbox({ label, checked, onPress, variant = 'square' }: FilterCheckboxProps) {
+  const checkIconXml = `<svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.75 0.75L3.25 6.25L0.75 3.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
   const isRadio = variant === 'radio';
 
   return (
@@ -18,14 +21,14 @@ export function FilterCheckbox({ label, checked, onPress, variant = 'square' }: 
         style={[
           styles.checkbox,
           isRadio ? styles.radio : styles.square,
-          checked ? styles.checkboxActive : null,
+          checked ? (isRadio ? styles.radioActive : styles.checkboxActive) : null,
         ]}
       >
         {checked ? (
           isRadio ? (
             <View style={styles.radioInner} />
           ) : (
-            <Ionicons name="checkmark" size={10} color={colors.white} />
+            <SvgXml xml={checkIconXml} width={8} height={5.5} />
           )
         ) : null}
       </View>
@@ -50,22 +53,28 @@ const styles = StyleSheet.create({
   square: {
     width: 12,
     height: 12,
-    borderRadius: 3,
+    borderRadius: 2,
   },
   radio: {
     width: 18,
     height: 18,
     borderRadius: 9,
+    backgroundColor: '#fff',
+    borderColor: 'rgba(193, 212, 217, 1)',
   },
   checkboxActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+    backgroundColor: '#05728F',
+    borderColor: '#05728F',
+  },
+  radioActive: {
+    backgroundColor: '#05728F',
+    borderColor: '#05728F',
   },
   radioInner: {
-    width: 13,
-    height: 13,
-    borderRadius: 6.5,
-    backgroundColor: colors.white,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#fff',
   },
   checkboxText: {
     flex: 1,

@@ -1,6 +1,6 @@
 import { ScrollView, Pressable, StyleSheet, Text } from 'react-native';
 import { CatalogTabItem } from '../../data/catalogData';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type CatalogTabsProps = {
   items: CatalogTabItem[];
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 16,
-    fontWeight: '600',
+    ...typography.Inter[600],
     lineHeight: 22,
   },
   activeChipText: {

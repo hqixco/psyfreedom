@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { datingBookedEvents, DatingBookedEvent } from './datingData';
+import { typography } from '../../constants/theme';
 
 type DatingBookedEventsScreenProps = {
   onBack: () => void;
@@ -52,7 +54,7 @@ export function DatingBookedEventsScreen({
       >
         <View style={styles.header}>
           <Pressable onPress={onBack} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={24} color="#3A0718" />
+            <BackChevronIcon color="#3A0718" />
           </Pressable>
           <Text style={styles.title}>Забронированные мероприятия</Text>
         </View>
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   bookedItem: {
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     lineHeight: 23,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   infoRow: {
@@ -120,12 +122,13 @@ const styles = StyleSheet.create({
   price: {
     marginRight: 12,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   status: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
   },
 });
+

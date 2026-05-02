@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SpecialistAboutSectionProps = {
   text: string;
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     lineHeight: 28,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   text: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   link: {
     marginTop: 6,
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type CategoryChipsProps = {
   items: string[];
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   activeChipText: {

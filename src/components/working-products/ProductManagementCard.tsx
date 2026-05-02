@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WorkingProduct } from '../../data/workingProductsData';
 
 export function ProductManagementCard({
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   type: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   menuButton: {

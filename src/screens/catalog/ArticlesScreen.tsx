@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, useWindowDimensions } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { UniversalFilterSheet } from '../../components/filters/UniversalFilterSheet';
 import { ArticleCard } from '../../components/journal/ArticleCard';
@@ -7,9 +7,9 @@ import { ArticlesToolbar } from '../../components/journal/ArticlesToolbar';
 import { JournalHeader } from '../../components/journal/JournalHeader';
 import { JournalHelpBanner } from '../../components/journal/JournalHelpBanner';
 import { PopularArticleTopics } from '../../components/journal/PopularArticleTopics';
-import { colors } from '../../constants/theme';
-import { articlesFilterConfig, defaultProductFilters, SelectedFilters } from '../../data/filterData';
-import { Article, ArticleTopic } from '../../data/journalData';
+import { colors, typography } from '../../constants/theme';
+import { articlesFilterConfig, defaultProductFilters, type SelectedFilters } from '../../data/filterData';
+import type { Article, ArticleTopic } from '../../data/journalData';
 
 type ArticlesScreenProps = {
   bottomTabsHeight: number;
@@ -46,10 +46,8 @@ export function ArticlesScreen({
   onPressBanner,
   onPressArticle,
 }: ArticlesScreenProps) {
-  const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const cardWidth = (width - 16 * 2 - 10) / 2;
-  const featuredWidth = 180;
+  const cardWidth = 180;
   const featuredArticles = articles.slice(0, 5);
 
   return (
@@ -64,12 +62,22 @@ export function ArticlesScreen({
 
         <PopularArticleTopics topics={topics} onPressTopic={onPressTopic} />
 
-        <Text style={styles.sectionTitle}>Популярные темы статей</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
-          {featuredArticles.map((item) => (
-            <ArticleCard key={item.id} item={item} width={featuredWidth} onPress={() => onPressArticle(item.id)} />
-          ))}
-        </ScrollView>
+        <View style={styles.featuredSection}>
+          <Text style={styles.featuredTitle}>Популярные статьи</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
+            {featuredArticles.map((item, index) => (
+              <View key={item.id} style={index === featuredArticles.length - 1 ? undefined : styles.featuredCardGap}>
+                <ArticleCard
+                  item={item}
+                  width={185}
+                  imageHeight={185}
+                  variant="featured"
+                  onPress={() => onPressArticle(item.id)}
+                />
+              </View>
+            ))}
+          </ScrollView>
+        </View>
 
         <ArticlesToolbar onOpenFilter={onOpenFilter} />
 
@@ -99,16 +107,25 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingTop: 0,
   },
-  sectionTitle: {
-    marginTop: 24,
+  featuredSection: {
+    marginTop: 26,
+    paddingTop: 30,
+    paddingBottom: 10,
+    backgroundColor: 'rgba(255, 240, 225, 0.56)',
+  },
+  featuredTitle: {
     marginHorizontal: 16,
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[600],
     color: colors.text,
   },
   horizontalList: {
     paddingHorizontal: 16,
     paddingTop: 12,
+    paddingBottom: 2,
+  },
+  featuredCardGap: {
+    marginRight: 8,
   },
 });

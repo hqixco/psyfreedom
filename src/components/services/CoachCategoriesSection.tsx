@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { CoachCategory } from '../../data/servicesData';
 import { CoachCategoryCard } from './CoachCategoryCard';
 
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginTop: 18,
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.text,
   },
   content: {

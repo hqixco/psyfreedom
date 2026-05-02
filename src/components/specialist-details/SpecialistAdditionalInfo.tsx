@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Image, ImageSourcePropType, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { EducationItem } from '../../data/specialistDetailsData';
 
 type TabKey = 'education' | 'certificates' | 'media';
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   tabsRow: {
@@ -146,11 +146,11 @@ const styles = StyleSheet.create({
   },
   activeText: {
     color: colors.white,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   inactiveText: {
     color: colors.primaryDark,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   educationItem: {
     marginTop: 14,
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   },
   years: {
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   educationText: {

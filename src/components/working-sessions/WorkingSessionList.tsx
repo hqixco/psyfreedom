@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WorkingSessionItem } from '../../data/workingSessionsData';
 import { WorkingSessionListItem } from './WorkingSessionListItem';
 
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     marginBottom: 12,
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
 });

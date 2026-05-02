@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
+import { FavoriteHeartIcon } from './icons/FavoriteHeartIcon';
 import { theme, typography } from '../constants/theme';
 import { ArticleItem } from '../data/mockData';
 
@@ -16,14 +16,19 @@ export function ArticleCard({ item }: ArticleCardProps) {
     <View style={styles.card}>
       <View style={styles.imageWrap}>
         <Image source={typeof item.image === 'string' ? { uri: item.image } : item.image} style={styles.image} />
-        <Pressable style={styles.heartButton} onPress={() => setLiked((current) => !current)} hitSlop={10}>
-          <Ionicons name={liked ? 'heart' : 'heart-outline'} size={22} color={theme.white} />
-        </Pressable>
         <View style={styles.viewsRow}>
           <EyeIcon />
           <Text style={styles.viewsText}>{item.views}</Text>
         </View>
       </View>
+      <Pressable
+        style={styles.heartButton}
+        onPress={() => setLiked((current) => !current)}
+        hitSlop={10}
+        android_ripple={{ color: 'transparent' }}
+      >
+        <FavoriteHeartIcon filled={liked} />
+      </Pressable>
 
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.topic}>{item.topic}</Text>
@@ -65,8 +70,14 @@ const styles = StyleSheet.create({
   },
   heartButton: {
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 11,
+    right: 11,
+    zIndex: 3,
+    elevation: 3,
+    width: 20,
+    height: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   viewsRow: {
     position: 'absolute',

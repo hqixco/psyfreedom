@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProductFilterModalProps = {
   visible: boolean;
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   scrollContent: {
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     marginTop: 20,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   checkboxRow: {
@@ -203,26 +203,30 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
   applyButton: {
-    height: 46,
-    borderRadius: 23,
+    height: 43,
+    borderRadius: 360,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary,
   },
   applyButtonText: {
-    fontSize: 15,
-    fontWeight: '700',
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.white,
   },
   resetButton: {
     marginTop: 12,
-    height: 40,
+    height: 43,
+    borderRadius: 360,
+    borderWidth: 1,
+    borderColor: '#05728F',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.white,
   },
   resetButtonText: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: colors.primary,
+    fontSize: 16,
+    ...typography.Inter[600],
+    color: '#033542',
   },
 });

@@ -1,19 +1,20 @@
-import { ReactNode, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { SearchOverlay } from '../../components/search/SearchOverlay';
 import { ArticleCard } from '../../components/journal/ArticleCard';
 import { JournalCategoryGrid } from '../../components/journal/JournalCategoryGrid';
 import { JournalHeader } from '../../components/journal/JournalHeader';
 import { JournalHelpBanner } from '../../components/journal/JournalHelpBanner';
 import { JournalSectionHeader } from '../../components/journal/JournalSectionHeader';
 import { VideoCard } from '../../components/journal/VideoCard';
+import { SearchOverlay } from '../../components/search/SearchOverlay';
 import { colors } from '../../constants/theme';
-import { Announcement } from '../../data/announcementsData';
-import { defaultProductFilters, SelectedFilters } from '../../data/filterData';
-import { HumorPost } from '../../data/humorData';
+import type { Announcement } from '../../data/announcementsData';
+import { defaultProductFilters, type SelectedFilters } from '../../data/filterData';
+import type { HumorPost } from '../../data/humorData';
 import { articles, articleTopics, journalCategories } from '../../data/journalData';
-import { VideoJournalItem, videoJournalItems } from '../../data/videoJournalData';
+import type { VideoJournalItem } from '../../data/videoJournalData';
+import { videoJournalItems } from '../../data/videoJournalData';
 import { AnnouncementDetailsScreen } from './AnnouncementDetailsScreen';
 import { AnnouncementsScreen } from './AnnouncementsScreen';
 import { ArticlesScreen } from './ArticlesScreen';
@@ -21,7 +22,7 @@ import { HumorDetailsScreen } from './HumorDetailsScreen';
 import { HumorScreen } from './HumorScreen';
 import { VideoJournalDetailsScreen } from './VideoJournalDetailsScreen';
 import { VideoJournalScreen } from './VideoJournalScreen';
-import { CatalogScreenNavigationProps } from './types';
+import { type CatalogScreenNavigationProps } from './types';
 
 type JournalView =
   | 'journal'
@@ -210,8 +211,18 @@ export function JournalScreen({
             onPressMore={() => setJournalView('articles')}
             content={
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
-                {articles.slice(0, 5).map((item) => (
-                  <ArticleCard key={item.id} item={item} width={cardWidth} onPress={() => handleOpenArticle(item.id)} />
+                {articles.slice(0, 5).map((item, index, list) => (
+                  <View
+                    key={item.id}
+                    style={[styles.cardWrap, index === list.length - 1 ? undefined : styles.cardGap]}
+                  >
+                    <ArticleCard
+                      item={item}
+                      width={cardWidth}
+                      imageHeight={181}
+                      onPress={() => handleOpenArticle(item.id)}
+                    />
+                  </View>
                 ))}
               </ScrollView>
             }
@@ -222,22 +233,26 @@ export function JournalScreen({
             onPressMore={() => setJournalView('video-journal')}
             content={
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
-                {videoJournalItems.slice(0, 5).map((item) => (
-                  <VideoCard
+                {videoJournalItems.slice(0, 5).map((item, index, list) => (
+                  <View
                     key={item.id}
-                    item={{
-                      id: item.id,
-                      title: item.title,
-                      topic: item.topic,
-                      views: item.views,
-                      image: item.image,
-                    }}
-                    width={cardWidth}
-                    onPress={() => {
-                      setSelectedVideo(item);
-                      setJournalView('video-details');
-                    }}
-                  />
+                    style={[styles.cardWrap, index === list.length - 1 ? undefined : styles.cardGap]}
+                  >
+                    <VideoCard
+                      item={{
+                        id: item.id,
+                        title: item.title,
+                        topic: item.topic,
+                        views: item.views,
+                        image: item.image,
+                      }}
+                      width={cardWidth}
+                      onPress={() => {
+                        setSelectedVideo(item);
+                        setJournalView('video-details');
+                      }}
+                    />
+                  </View>
                 ))}
               </ScrollView>
             }
@@ -283,6 +298,12 @@ const styles = StyleSheet.create({
   horizontalList: {
     paddingHorizontal: 16,
     paddingTop: 18,
+  },
+  cardWrap: {
+    marginBottom: 10,
+  },
+  cardGap: {
+    marginRight: 10,
   },
   section: {
     marginTop: 30,

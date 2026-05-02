@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ConsentCheckboxProps = {
   checked: boolean;
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
   },
   link: {
     color: colors.primary,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
 });

@@ -1,5 +1,5 @@
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SortModalProps = {
   visible: boolean;
@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
-    marginBottom: 12,
+    marginBottom: 17,
   },
   optionRow: {
-    paddingVertical: 12,
+    paddingVertical: 7,
   },
   optionText: {
     fontSize: 16,
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
   },
   optionTextActive: {
     color: colors.primary,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

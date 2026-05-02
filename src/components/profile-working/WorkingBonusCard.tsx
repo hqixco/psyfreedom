@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { workingProfileMock } from '../../data/workingProfileData';
 
 export function WorkingBonusCard({
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   amount: {
     fontSize: 28,
     lineHeight: 34,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   description: {
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   historyText: {
     color: colors.primary,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   topUpButton: {
     flex: 1,
@@ -93,6 +93,6 @@ const styles = StyleSheet.create({
   topUpText: {
     color: colors.white,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

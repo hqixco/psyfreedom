@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function ProductFileUpload({
   title,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 13,
     lineHeight: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   description: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   fileName: {
     marginTop: 8,
     fontSize: 12,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

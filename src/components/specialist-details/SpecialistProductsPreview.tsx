@@ -1,6 +1,6 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ProductCard } from '../products/ProductCard';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SpecialistProduct } from '../../data/specialistDetailsData';
 import { Product } from '../../data/productsData';
 
@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   allText: {
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   list: {

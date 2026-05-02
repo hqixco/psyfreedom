@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type JournalSectionHeaderProps = {
   title: string;
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 28,
-    lineHeight: 34,
-    fontWeight: '700',
+    fontSize: 24,
+    lineHeight: 30,
+    ...typography.Inter[600],
     color: colors.text,
   },
   button: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 14,
-    fontWeight: '500',
+    ...typography.Inter[500],
     color: colors.muted,
   },
 });

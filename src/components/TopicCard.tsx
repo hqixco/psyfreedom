@@ -105,6 +105,7 @@ function PlusIcon() {
 const styles = StyleSheet.create({
   card: {
     height: 124,
+    marginBottom: 8,
     borderRadius: 12,
     paddingHorizontal: 10,
     paddingTop: 10,

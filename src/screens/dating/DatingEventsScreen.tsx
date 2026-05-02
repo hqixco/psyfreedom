@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Dimensions, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { datingEvents, DatingEventItem } from './datingData';
 import { datingColors } from './datingStyles';
+import { typography } from '../../constants/theme';
 
 const gap = 10;
 const screenWidth = Dimensions.get('window').width;
@@ -68,7 +70,7 @@ export function DatingEventsScreen({ onBack, onOpenEvent }: DatingEventsScreenPr
       >
         <View style={styles.header}>
           <Pressable onPress={onBack} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={24} color={datingColors.dark} />
+            <BackChevronIcon color={datingColors.dark} />
           </Pressable>
           <Text style={styles.headerTitle}>Мероприятия</Text>
         </View>
@@ -125,14 +127,14 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   sectionTitle: {
     marginTop: 16,
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   grid: {
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
   filtersText: {
     marginRight: 8,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   eventCard: {
@@ -188,7 +190,7 @@ const styles = StyleSheet.create({
   dateDay: {
     fontSize: 20,
     lineHeight: 21,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   dateMonth: {
@@ -211,14 +213,14 @@ const styles = StyleSheet.create({
   viewsText: {
     marginLeft: 4,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.white,
   },
   title: {
     marginTop: 8,
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   city: {
@@ -228,3 +230,4 @@ const styles = StyleSheet.create({
     color: datingColors.muted,
   },
 });
+

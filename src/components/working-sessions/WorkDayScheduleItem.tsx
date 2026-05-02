@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WorkDaySchedule } from '../../data/workingSessionsData';
 import { WorkTimeRangeRow } from './WorkTimeRangeRow';
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   dayTitle: {
     fontSize: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     marginLeft: 10,
   },
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   addTime: {
     marginTop: 14,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

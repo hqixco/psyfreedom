@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function ReplyToReviewSheet({
   visible,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   input: {
@@ -113,6 +113,6 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

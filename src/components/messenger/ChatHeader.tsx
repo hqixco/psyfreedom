@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { ChatPreview } from '../../data/messengerData';
 
 type ChatHeaderProps = {
@@ -12,7 +13,7 @@ export function ChatHeader({ chat, onBack }: ChatHeaderProps) {
   return (
     <View style={styles.container}>
       <Pressable style={styles.backButton} onPress={onBack}>
-        <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+        <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={styles.title} numberOfLines={1}>
         {chat.user.name}
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   avatarWrap: {
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   supportText: {
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
 });

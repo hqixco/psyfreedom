@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../../constants/theme';
+import { FavoriteHeartIcon } from '../icons/FavoriteHeartIcon';
+import { colors, typography } from '../../constants/theme';
 import { Article } from '../../data/journalData';
 
 type ArticleCardProps = {
@@ -9,6 +10,7 @@ type ArticleCardProps = {
   width: number;
   imageHeight?: number;
   onPress: () => void;
+  variant?: 'default' | 'featured';
 };
 
 export function ArticleCard({
@@ -16,35 +18,65 @@ export function ArticleCard({
   width,
   imageHeight = 145,
   onPress,
+  variant = 'default',
 }: ArticleCardProps) {
+  const isFeatured = variant === 'featured';
   const [liked, setLiked] = useState(Boolean(item.isFavorite));
 
   return (
-    <Pressable style={[styles.card, { width }]} onPress={onPress}>
-      <View style={[styles.imageWrap, { height: imageHeight }]}>
-        <Image source={item.image} style={styles.image} resizeMode="cover" />
-        <Pressable style={styles.heartButton} onPress={() => setLiked((value) => !value)}>
-          <Ionicons name={liked ? 'heart' : 'heart-outline'} size={22} color={colors.white} />
-        </Pressable>
-        <View style={styles.viewsRow}>
-          <Ionicons name="eye-outline" size={15} color={colors.white} />
-          <Text style={styles.viewsText}>{item.views}</Text>
+    <View style={[styles.card, isFeatured && styles.featuredCard, { width }]}>
+      <Pressable onPress={onPress}>
+        <View style={[styles.imageWrap, isFeatured && styles.featuredImageWrap, { height: imageHeight }]}>
+          <Image source={item.image} style={styles.image} resizeMode="cover" />
+          <View style={styles.viewsRow}>
+            <Ionicons name="eye-outline" size={15} color={colors.white} />
+            <Text style={styles.viewsText}>{item.views}</Text>
+          </View>
         </View>
-      </View>
-      <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
-      <Text style={styles.topic}>{item.topic}</Text>
-    </Pressable>
+        <View style={isFeatured ? styles.featuredContent : undefined}>
+          <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
+          <Text style={styles.topic}>{item.topic}</Text>
+        </View>
+      </Pressable>
+      <Pressable
+        style={styles.heartButton}
+        onPress={() => setLiked((value) => !value)}
+        hitSlop={10}
+        android_ripple={{ color: 'transparent' }}
+      >
+        <FavoriteHeartIcon filled={liked} />
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
+    position: 'relative',
+    marginBottom: 18,
     backgroundColor: colors.white,
+  },
+  featuredCard: {
+    borderWidth: 1,
+    borderColor: 'rgba(255, 154, 79, 1)',
+    borderRadius: 12,
   },
   imageWrap: {
     borderRadius: 10,
     overflow: 'hidden',
     backgroundColor: colors.cardLight,
+  },
+  featuredImageWrap: {
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  featuredContent: {
+    flex: 1,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingBottom: 10,
   },
   image: {
     width: '100%',
@@ -52,13 +84,19 @@ const styles = StyleSheet.create({
   },
   heartButton: {
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 11,
+    right: 11,
+    zIndex: 3,
+    elevation: 3,
+    width: 20,
+    height: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   viewsRow: {
     position: 'absolute',
-    right: 8,
-    bottom: 8,
+    right: 12,
+    bottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -66,13 +104,13 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     fontSize: 13,
     color: colors.white,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   title: {
     marginTop: 8,
     fontSize: 14,
     lineHeight: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   topic: {

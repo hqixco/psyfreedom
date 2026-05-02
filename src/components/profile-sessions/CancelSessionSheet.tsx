@@ -1,6 +1,6 @@
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 const reasons = [
   'Передумал идти к этому специалисту',
@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     lineHeight: 28,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   subtitle: {
     marginTop: 22,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   radioRow: {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   noButtonText: {
     color: colors.primary,
-    fontWeight: '700',
+    ...typography.Inter[700],
     fontSize: 15,
   },
   yesButton: {
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
   yesButtonText: {
     color: colors.white,
-    fontWeight: '700',
+    ...typography.Inter[700],
     fontSize: 15,
   },
 });

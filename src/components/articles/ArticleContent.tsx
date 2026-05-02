@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { ArticleContentBlock } from '../../data/articlesData';
 
 type ArticleContentProps = {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     lineHeight: 29,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   topicChip: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   topicText: {
     fontSize: 13,
-    fontWeight: '500',
+    ...typography.Inter[500],
     color: colors.primaryDark,
   },
   contentWrap: {
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     fontSize: 22,
     lineHeight: 27,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
 });

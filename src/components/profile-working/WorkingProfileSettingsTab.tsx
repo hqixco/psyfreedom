@@ -1,5 +1,5 @@
 import { StyleSheet, Switch, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { workingProfileSettingsMenu } from '../../data/workingProfileData';
 import { WorkingProfileMenuItem } from './WorkingProfileMenuItem';
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   sectionText: {
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   pushLabel: {
     fontSize: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   menu: {

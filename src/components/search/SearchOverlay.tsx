@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { typography } from '../../constants/theme';
 import {
   Modal,
   Pressable,
@@ -286,7 +287,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontSize: 20,
     lineHeight: 28,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: '#05728F',
   },
   resultCard: {
@@ -329,24 +330,24 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 14,
     lineHeight: 21,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: '#031D23',
   },
   itemType: {
     fontSize: 12,
-    fontWeight: '400',
+    ...typography.Inter[400],
     lineHeight: 18,
     color: '#6F7678',
   },
   specialistsTitle: {
     fontSize: 14,
     lineHeight: 21,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: '#031D23',
   },
   specialistsDescription: {
     fontSize: 12,
-    fontWeight: '400',
+    ...typography.Inter[400],
     lineHeight: 18,
     color: '#6F7678',
   },
@@ -365,7 +366,7 @@ const styles = StyleSheet.create({
   notFoundTitle: {
     fontSize: 20,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#043F4A',
     textAlign: 'center',
   },
@@ -377,3 +378,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+

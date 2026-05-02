@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Dimensions, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { datingBooks, DatingBookItem } from './datingData';
 import { datingColors } from './datingStyles';
+import { typography } from '../../constants/theme';
 
 const gap = 10;
 const screenWidth = Dimensions.get('window').width;
@@ -47,7 +49,7 @@ export function DatingBooksScreen({ onBack }: { onBack: () => void }) {
       >
         <View style={styles.header}>
           <Pressable onPress={onBack} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={24} color={datingColors.dark} />
+            <BackChevronIcon color={datingColors.dark} />
           </Pressable>
           <Text style={styles.headerTitle}>Книги</Text>
         </View>
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
   filtersRow: {
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
   },
   filtersText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
     marginRight: 8,
   },
@@ -151,14 +153,14 @@ const styles = StyleSheet.create({
   ratingText: {
     marginLeft: 4,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.white,
   },
   title: {
     marginTop: 10,
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#043F4A',
   },
   type: {
@@ -171,7 +173,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#07849A',
   },
 });
+

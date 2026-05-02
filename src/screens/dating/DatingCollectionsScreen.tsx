@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
+import { typography } from '../../constants/theme';
 import { Dimensions, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -104,7 +106,7 @@ export function DatingCollectionsScreen({
       >
         <View style={styles.header}>
           <Pressable onPress={onBack} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={24} color={datingColors.dark} />
+            <BackChevronIcon color={datingColors.dark} />
           </Pressable>
           <Text style={styles.headerTitle}>Подборки</Text>
         </View>
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   tabsWrap: {
@@ -190,12 +192,12 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   tabTextActive: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
   grid: {
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
   },
   nameBadgeText: {
     fontSize: 13,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
   deletedOverlay: {
@@ -258,7 +260,7 @@ const styles = StyleSheet.create({
   },
   deletedBadgeText: {
     fontSize: 13,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
   emptyState: {
@@ -270,7 +272,7 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
     textAlign: 'center',
   },
@@ -282,3 +284,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+

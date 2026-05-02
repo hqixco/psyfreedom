@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type Item = { label: string; value: string };
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   title: {
     marginHorizontal: 16,
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   row: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   value: {
     width: '50%',
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     textAlign: 'right',
     color: colors.primaryDark,
   },

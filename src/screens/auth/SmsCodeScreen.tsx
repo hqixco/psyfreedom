@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthButton } from '../../components/auth/AuthButton';
 import { AuthHeader } from '../../components/auth/AuthHeader';
 import { SmsCodeInput } from '../../components/auth/SmsCodeInput';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SmsCodeScreenProps = {
   phone: string;
@@ -78,20 +78,23 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    fontSize: 30,
+    fontSize: 24,
     lineHeight: 36,
-    fontWeight: '700',
+    ...typography.Inter[600],
     color: colors.primaryDark,
     marginTop: 20,
   },
   subtitle: {
     marginTop: 12,
     fontSize: 15,
+    ...typography.Inter[400],
     lineHeight: 20,
-    color: colors.muted,
+    color: colors.primaryDark,
   },
   button: {
     marginTop: 32,
+    fontSize: 14,
+    ...typography.Inter[600],
   },
   timer: {
     marginTop: 24,
@@ -102,8 +105,8 @@ const styles = StyleSheet.create({
   helpLink: {
     marginTop: 14,
     textAlign: 'center',
-    fontSize: 15,
-    fontWeight: '700',
-    color: colors.primary,
+    fontSize: 14,
+    ...typography.Inter[400],
+    color: colors.primaryDark,
   },
 });

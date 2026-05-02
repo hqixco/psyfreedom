@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WrittenReview } from '../../data/myReviewsData';
 import { ReviewReplyCard } from './ReviewReplyCard';
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 17,
     lineHeight: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   menuButton: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   rating: {
     marginLeft: 4,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   date: {
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   moreLink: {
     marginTop: 8,
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

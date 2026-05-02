@@ -1,7 +1,7 @@
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { OfficeRentDetailsHeader } from '../../components/office-rent/OfficeRentDetailsHeader';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { OfficeRentItem } from '../../data/officeRentData';
 
 export function OfficeRentDetailsScreen({
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   meta: {
     marginTop: 8,
     fontSize: 20,
     lineHeight: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   address: {
@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.primary,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

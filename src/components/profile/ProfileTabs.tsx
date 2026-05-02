@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export type ProfileTabKey = 'profile' | 'settings' | 'info';
 
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   tabTextActive: {
     color: colors.white,

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ConsultationPaymentSheetProps = {
   visible: boolean;
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   date: {
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   count: {
     fontSize: 16,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   divider: {
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   priceValue: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   payButton: {
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   payButtonText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
 });

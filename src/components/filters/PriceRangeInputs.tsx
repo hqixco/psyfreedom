@@ -34,11 +34,13 @@ const styles = StyleSheet.create({
   },
   priceInput: {
     width: '48.5%',
-    height: 44,
-    borderRadius: 12,
+    height: 39,
+    borderRadius: 360,
     paddingHorizontal: 14,
     justifyContent: 'center',
-    backgroundColor: colors.cardLight,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: '#90A5AB',
   },
   priceText: {
     fontSize: 14,

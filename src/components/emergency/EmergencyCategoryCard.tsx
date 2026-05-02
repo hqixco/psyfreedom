@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { EmergencyCategory } from '../../data/emergencyHelpData';
 
 export function EmergencyCategoryCard({
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     fontSize: 21,
     lineHeight: 25,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   backgroundImage: {

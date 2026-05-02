@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { Announcement } from '../../data/announcementsData';
 
 type AnnouncementListCardProps = {
@@ -51,20 +51,20 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 13,
-    fontWeight: '500',
+    ...typography.Inter[500],
     color: colors.primaryDark,
   },
   date: {
     marginBottom: 12,
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   title: {
     fontSize: 17,
     lineHeight: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   image: {

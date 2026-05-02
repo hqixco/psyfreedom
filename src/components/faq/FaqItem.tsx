@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export type FaqItemProps = {
   title: string;
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     fontSize: 17,
     lineHeight: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   answerContainer: {

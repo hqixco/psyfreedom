@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { ActivityIndicator, Image, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { WebView } from 'react-native-webview';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type LocationPickerScreenProps = {
   onBack: () => void;
@@ -18,7 +19,7 @@ export function LocationPickerScreen({ onBack, onSelectLocation, bottomTabsHeigh
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.header}>
         <Pressable style={styles.backButton} onPress={onBack}>
-          <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+          <BackChevronIcon color={colors.primaryDark} />
         </Pressable>
         <Text style={styles.headerTitle}>Выбрать местоположение</Text>
       </View>
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   mapArea: {
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
   mapBadgeText: {
     marginLeft: 6,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   card: {
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   specialization: {
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
   price: {
     marginTop: 4,
     fontSize: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   tagsRow: {

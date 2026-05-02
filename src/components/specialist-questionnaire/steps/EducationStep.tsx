@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../../constants/theme';
+import { colors, typography } from '../../../constants/theme';
 import { EducationItem } from '../../../data/specialistQuestionnaireData';
 import { QuestionnaireCheckbox } from '../QuestionnaireCheckbox';
 import { QuestionnaireFileUpload } from '../QuestionnaireFileUpload';
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontSize: 20,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   block: {
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   addLink: {
     marginTop: 8,
     fontSize: 13,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

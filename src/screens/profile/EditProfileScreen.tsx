@@ -5,7 +5,7 @@ import { AuthHeader } from '../../components/auth/AuthHeader';
 import { AddPhotoSheet } from '../../components/profile/AddPhotoSheet';
 import { EditableProfile, EditProfileForm } from '../../components/profile/EditProfileForm';
 import { EditPhotoSheet } from '../../components/profile/EditPhotoSheet';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type EditProfileScreenProps = {
   profile: EditableProfile;
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     marginTop: 12,
     marginBottom: 28,

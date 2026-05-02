@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function OfficeRentDetailsHeader({
   title,
@@ -12,7 +13,7 @@ export function OfficeRentDetailsHeader({
   return (
     <View style={styles.container}>
       <Pressable style={styles.backButton} onPress={onBack}>
-        <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+        <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={styles.title} numberOfLines={1}>
         {title}
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
 });

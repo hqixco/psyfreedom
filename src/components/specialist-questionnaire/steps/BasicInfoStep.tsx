@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../../constants/theme';
+import { colors, typography } from '../../../constants/theme';
 import { SpecialistApplicationForm } from '../../../data/specialistQuestionnaireData';
 import { QuestionnaireFileUpload } from '../QuestionnaireFileUpload';
 import { QuestionnaireInput } from '../QuestionnaireInput';
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontSize: 20,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

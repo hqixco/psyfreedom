@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SessionItem } from '../../data/mySessionsData';
 
 export function SessionListItem({ item, onPress }: { item: SessionItem; onPress: (item: SessionItem) => void }) {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   subtitle: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 14,
     color: colors.primary,
-    fontWeight: '600',
+    ...typography.Inter[600],
     marginRight: 6,
   },
 });

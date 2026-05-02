@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SpecialistDetails } from '../../data/specialistDetailsData';
 
 type SpecialistStatsProps = {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   label: {

@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { HumorPost } from '../../data/humorData';
 import { HumorPostActions } from './HumorPostActions';
 
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   authorName: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   createdAt: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   readMore: {
     fontSize: 15,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
   },
   image: {

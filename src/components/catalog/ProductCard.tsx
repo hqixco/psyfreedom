@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { CatalogProduct } from '../../data/catalogData';
 
 type ProductCardProps = {
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
   },
   favoriteButton: {
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 11,
+    right: 11,
   },
   ratingBadge: {
     position: 'absolute',
@@ -61,12 +61,12 @@ const styles = StyleSheet.create({
   ratingText: {
     fontSize: 12,
     color: colors.white,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   title: {
     marginTop: 8,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   type: {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   price: {
     marginTop: 6,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

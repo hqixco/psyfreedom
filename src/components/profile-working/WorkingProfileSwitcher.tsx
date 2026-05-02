@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { workingProfileMock } from '../../data/workingProfileData';
 
 export function WorkingProfileSwitcher({
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   selectedText: {
     color: colors.primary,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   bellButton: {
     position: 'absolute',

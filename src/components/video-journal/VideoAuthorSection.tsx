@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { VideoJournalItem } from '../../data/videoJournalData';
 
 type VideoAuthorSectionProps = {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     fontSize: 28,
     lineHeight: 34,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   card: {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   role: {

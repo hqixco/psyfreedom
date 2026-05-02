@@ -1,7 +1,7 @@
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProductSortModalProps = {
   visible: boolean;
@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   header: {
-    marginBottom: 16,
+    marginBottom: 21,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   title: {
     fontSize: 20,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   closeButton: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 7,
   },
   radioOuter: {
     width: 18,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     color: colors.primaryDark,
   },
   activeText: {
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

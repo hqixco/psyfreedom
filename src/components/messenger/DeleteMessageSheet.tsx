@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type DeleteMessageSheetProps = {
   visible: boolean;
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   buttonsRow: {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   deleteButton: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   deleteText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
 });

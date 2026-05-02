@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { AnnouncementCategory } from '../../data/announcementsData';
 
 type AnnouncementChip = {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   activeText: {
     color: colors.white,

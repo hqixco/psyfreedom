@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AnnouncementChips } from '../../components/announcements/AnnouncementChips';
 import { AnnouncementListCard } from '../../components/announcements/AnnouncementListCard';
@@ -44,13 +44,15 @@ export function AnnouncementsScreen({
           activeCategory={activeCategory}
           onSelect={setActiveCategory}
         />
-        {visibleAnnouncements.map((item) => (
-          <AnnouncementListCard
-            key={item.id}
-            item={item}
-            onPress={() => onOpenAnnouncement(item)}
-          />
-        ))}
+        <View style={styles.list}>
+          {visibleAnnouncements.map((item) => (
+            <AnnouncementListCard
+              key={item.id}
+              item={item}
+              onPress={() => onOpenAnnouncement(item)}
+            />
+          ))}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -64,5 +66,7 @@ const styles = StyleSheet.create({
   content: {
     paddingTop: 0,
   },
+  list: {
+    paddingTop: 4,
+  },
 });
-

@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function StoryCard({
   image,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 21,
     lineHeight: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
   subtitle: {

@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { ProductCategory } from '../../data/productsData';
 
 const videosIconXml = `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 12,
     lineHeight: 13,
-    fontWeight: '500',
+    ...typography.Inter[500],
     textAlign: 'center',
     color: colors.primaryDark,
   },

@@ -51,7 +51,7 @@ export type SpecialistDetails = {
   reviews: SpecialistReview[];
 };
 
-const specialistImage = require('../../assets/image (1).png');
+const specialistImage = require('../../assets/image (4).jpg');
 const specialistAvatar = require('../../assets/images/specialist-avatar-1.png');
 const reviewAvatar = require('../../assets/картинка.png');
 const certificate1 = require('../../assets/images/certificate-1.png');

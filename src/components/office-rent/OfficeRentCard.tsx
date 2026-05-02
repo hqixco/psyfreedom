@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { OfficeRentItem } from '../../data/officeRentData';
 
 export function OfficeRentCard({
@@ -49,14 +49,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     lineHeight: 25,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   meta: {
     marginTop: 6,
     fontSize: 18,
     lineHeight: 23,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   address: {
@@ -78,6 +78,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.primary,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

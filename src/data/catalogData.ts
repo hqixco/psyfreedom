@@ -149,7 +149,7 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -158,7 +158,7 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '10 000 ₽',
     rating: '5.0',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -167,7 +167,7 @@ export const products: CatalogProduct[] = [
     type: 'Тест',
     price: 'Бесплатно',
     rating: '4.8',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -176,7 +176,7 @@ export const products: CatalogProduct[] = [
     type: 'Промокод',
     price: '1 100 ₽',
     rating: '4.7',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -185,7 +185,7 @@ export const products: CatalogProduct[] = [
     type: 'Вебинар',
     price: '3 800 ₽',
     rating: '4.9',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -194,7 +194,7 @@ export const products: CatalogProduct[] = [
     type: 'Книга',
     price: '2 500 ₽',
     rating: '4.9',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -203,7 +203,7 @@ export const products: CatalogProduct[] = [
     type: 'Группа',
     price: '8 700 ₽',
     rating: '4.6',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -212,7 +212,7 @@ export const products: CatalogProduct[] = [
     type: 'Игра',
     price: '4 200 ₽',
     rating: '4.8',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -221,7 +221,7 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '6 300 ₽',
     rating: '5.0',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -230,7 +230,7 @@ export const products: CatalogProduct[] = [
     type: 'Видеоурок',
     price: '990 ₽',
     rating: '4.4',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -239,7 +239,7 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '7 200 ₽',
     rating: '4.8',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
   {
@@ -248,7 +248,7 @@ export const products: CatalogProduct[] = [
     type: 'Промокод',
     price: '600 ₽',
     rating: '4.5',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/image (3).jpg'),
     ...productTemplate,
   },
 ];
@@ -271,7 +271,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Психолог',
     price: 'От 1 200 ₽',
     rating: '5.0',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/image (4).jpg'),
     ...specialistTemplate,
   },
   {
@@ -280,7 +280,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Психотерапевт',
     price: 'От 2 400 ₽',
     rating: '5.0',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/image (4).jpg'),
     ...specialistTemplate,
   },
   {
@@ -289,7 +289,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Коуч',
     price: 'От 1 800 ₽',
     rating: '4.9',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/image (4).jpg'),
     ...specialistTemplate,
   },
   {
@@ -298,7 +298,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Психиатр',
     price: 'От 3 200 ₽',
     rating: '4.8',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/image (4).jpg'),
     ...specialistTemplate,
   },
   {
@@ -307,7 +307,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Ментор',
     price: 'От 2 000 ₽',
     rating: '4.7',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/image (4).jpg'),
     ...specialistTemplate,
   },
   {
@@ -316,7 +316,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Коуч',
     price: 'От 1 500 ₽',
     rating: '4.9',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/image (4).jpg'),
     ...specialistTemplate,
   },
 ];

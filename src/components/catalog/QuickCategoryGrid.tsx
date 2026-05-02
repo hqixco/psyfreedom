@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { QuickLinkItem } from '../../data/catalogData';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type QuickCategoryGridProps = {
   items: QuickLinkItem[];
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   quickCardText: {
     marginTop: 12,
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primaryDark,
     textAlign: 'center',
   },

@@ -7,18 +7,19 @@ const productSnapInterval = 190;
 
 type ProductsSectionProps = {
   onOpenProductDetails?: (productId: string) => void;
+  onOpenProducts?: () => void;
 };
 
 const homeProducts = products.filter((product) =>
   ['product-1', 'product-2', 'product-6', 'product-9'].includes(product.id)
 );
 
-export function ProductsSection({ onOpenProductDetails }: ProductsSectionProps) {
+export function ProductsSection({ onOpenProductDetails, onOpenProducts }: ProductsSectionProps) {
   return (
     <View>
       <View style={styles.header}>
         <Text style={styles.title}>Товары</Text>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={onOpenProducts}>
           <Text style={styles.buttonText}>Ещё</Text>
         </Pressable>
       </View>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 18,
+    fontSize: 24,
     color: theme.text,
     ...typography.Inter[600],
   },

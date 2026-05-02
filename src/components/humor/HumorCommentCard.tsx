@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { HumorComment } from '../../data/humorData';
 
 type HumorCommentCardProps = {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   author: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   date: {

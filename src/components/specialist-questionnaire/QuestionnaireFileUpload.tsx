@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { AttachedFile } from '../../data/specialistQuestionnaireData';
 
 export function QuestionnaireFileUpload({
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 13,
     lineHeight: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   description: {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   attached: {
     marginTop: 6,
     fontSize: 12,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

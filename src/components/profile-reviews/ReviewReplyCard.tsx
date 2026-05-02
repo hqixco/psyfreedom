@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function ReviewReplyCard({
   author,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   author: {
     fontSize: 15,
     lineHeight: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   date: {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type TestQuestionViewProps = {
   question: string;
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   question: {
     fontSize: 15,
     lineHeight: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   radioRow: {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   nextButton: {
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   nextButtonText: {
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
 });

@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { colors } from '../../constants/theme';
 import { ShareIcon } from '../icons/ShareIcon';
@@ -12,7 +13,7 @@ export function VideoDetailsHeader({ onBack, onShare }: VideoDetailsHeaderProps)
   return (
     <View style={styles.container}>
       <Pressable style={styles.iconButton} onPress={onBack}>
-        <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+        <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Pressable style={styles.iconButton} onPress={onShare}>
         <ShareIcon size={22} color={colors.primaryDark} />

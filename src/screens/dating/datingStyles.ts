@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { typography } from '../../constants/theme';
 
 export const datingColors = {
   pink: '#F50057',
@@ -23,14 +24,14 @@ export const datingCommonStyles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
     marginLeft: 12,
   },
   label: {
     fontSize: 13,
     lineHeight: 17,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: datingColors.dark,
     marginBottom: 6,
   },
@@ -80,7 +81,7 @@ export const datingCommonStyles = StyleSheet.create({
   primaryButtonText: {
     color: datingColors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   outlineButton: {
     flex: 1,
@@ -95,7 +96,7 @@ export const datingCommonStyles = StyleSheet.create({
   outlineButtonText: {
     color: datingColors.pink,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   tag: {
     minHeight: 34,
@@ -119,7 +120,7 @@ export const datingCommonStyles = StyleSheet.create({
   },
   tagTextActive: {
     color: datingColors.white,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   hint: {
     marginTop: 4,
@@ -130,7 +131,7 @@ export const datingCommonStyles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: datingColors.dark,
   },
 });

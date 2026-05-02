@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { ChatPreview } from '../../data/messengerData';
 
 type ChatListItemProps = {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   supportAvatarText: {
     fontSize: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
   content: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   role: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 12,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
 });

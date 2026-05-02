@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WorkingSessionItem } from '../../data/workingSessionsData';
 
 export function WorkingSessionListItem({
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   subtitle: {
@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 14,
     color: colors.primary,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
 });

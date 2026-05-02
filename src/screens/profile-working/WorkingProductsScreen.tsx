@@ -9,7 +9,7 @@ import {
   WorkingProductsTabKey,
   WorkingProductsTabs,
 } from '../../components/working-products/WorkingProductsTabs';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WorkingProduct } from '../../data/workingProductsData';
 
 export function WorkingProductsScreen({
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 20,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     textAlign: 'center',
   },

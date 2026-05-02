@@ -1,7 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import {
-  Dimensions,
   FlatList,
   ImageBackground,
   Pressable,
@@ -9,6 +8,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -29,12 +29,10 @@ import { theme, typography } from '../constants/theme';
 import { banners, topics } from '../data/mockData';
 import { specialists } from '../data/catalogData';
 
-const { width: screenWidth } = Dimensions.get('window');
 const horizontalPadding = 14;
 const topicGap = 8;
-const topicCardWidth = (screenWidth - horizontalPadding * 2 - topicGap * 2) / 3;
 const bannerSnapInterval = 292;
-const specialistSnapInterval = 190;
+const specialistSnapInterval = 195;
 const homeSections = [
   'search-topics',
   'specialists-header',
@@ -53,6 +51,9 @@ type HomeScreenProps = {
   bottomTabsHeight?: number;
   onOpenDating?: () => void;
   onOpenArticleFromSearch?: (articleId: string) => void;
+  onOpenJournal?: () => void;
+  onOpenProducts?: () => void;
+  onOpenSpecialists?: () => void;
   onOpenServicesFromSearch?: (topicId: string) => void;
   onOpenSpecialistDetails?: (specialistId: string) => void;
   onOpenProductDetails?: (productId: string) => void;
@@ -63,14 +64,19 @@ export function HomeScreen({
   bottomTabsHeight: bottomTabsHeightProp,
   onOpenDating,
   onOpenArticleFromSearch,
+  onOpenJournal,
+  onOpenProducts,
+  onOpenSpecialists,
   onOpenServicesFromSearch,
   onOpenSpecialistDetails,
   onOpenProductDetails,
 }: HomeScreenProps) {
   const [isTopicsVisible, setTopicsVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
+  const { width } = useWindowDimensions();
   const { bottom: bottomInset } = useSafeAreaInsets();
   const bottomTabsHeight = bottomTabsHeightProp ?? getBottomTabsHeight(bottomInset);
+  const topicCardWidth = Math.floor((width - horizontalPadding * 2 - topicGap * 2) / 3);
 
   const renderSection = ({ item }: { item: HomeSection }) => {
     if (item === 'search-topics') {
@@ -106,7 +112,7 @@ export function HomeScreen({
       return (
         <View style={styles.specialistsHeader}>
           <Text style={styles.specialistsTitle}>{'\u0421\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0441\u0442\u044b'}</Text>
-          <Pressable style={styles.allProfilesButton}>
+          <Pressable style={styles.allProfilesButton} onPress={onOpenSpecialists}>
             <Text style={styles.allProfilesText}>{'\u0412\u0441\u0435 \u0430\u043d\u043a\u0435\u0442\u044b'}</Text>
           </Pressable>
         </View>
@@ -136,7 +142,7 @@ export function HomeScreen({
     }
 
     if (item === 'products') {
-      return <ProductsSection onOpenProductDetails={onOpenProductDetails} />;
+      return <ProductsSection onOpenProductDetails={onOpenProductDetails} onOpenProducts={onOpenProducts} />;
     }
 
     if (item === 'guide') {
@@ -151,7 +157,7 @@ export function HomeScreen({
       return <CategoryGrid />;
     }
 
-    return <ArticlesSection />;
+    return <ArticlesSection onOpenJournal={onOpenJournal} />;
   };
 
   return (
@@ -331,7 +337,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 14,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
+    justifyContent: 'space-between',
   },
   specialistsHeader: {
     marginTop: 28,

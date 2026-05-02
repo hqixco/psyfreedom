@@ -1,6 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { Video } from '../../data/journalData';
 
 type VideoCardProps = {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   imageWrap: {
-    height: 145,
+    height: 180,
     borderRadius: 10,
     overflow: 'hidden',
     backgroundColor: colors.cardLight,
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
   },
   viewsRow: {
     position: 'absolute',
-    right: 8,
-    bottom: 8,
+    right: 12,
+    bottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -66,13 +66,13 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     fontSize: 13,
     color: colors.white,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   title: {
     marginTop: 8,
     fontSize: 14,
     lineHeight: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   topic: {

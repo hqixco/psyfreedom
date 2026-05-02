@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SmsCodeInputProps = {
   value: string;
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   cell: {
     flex: 1,
-    height: 58,
+    height: 86,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: colors.border,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   digit: {
     fontSize: 24,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
 });

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type PaymentInputProps = TextInputProps & {
   label: string;
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   label: {
     marginBottom: 8,
     fontSize: 15,
-    fontWeight: '500',
+    ...typography.Inter[500],
     color: colors.primaryDark,
   },
   input: {

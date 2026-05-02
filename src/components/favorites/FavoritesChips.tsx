@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { favoriteChips } from '../../data/favoritesData';
 
 type FavoriteChipId = (typeof favoriteChips)[number]['id'];
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   chipTextActive: {
     color: colors.white,

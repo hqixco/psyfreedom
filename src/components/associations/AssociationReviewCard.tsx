@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { AssociationReview } from '../../data/associationsData';
 
 export function AssociationReviewCard({ review }: { review: AssociationReview }) {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   author: {
     marginTop: 6,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   ratingRow: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   rating: {
     marginLeft: 6,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   text: {

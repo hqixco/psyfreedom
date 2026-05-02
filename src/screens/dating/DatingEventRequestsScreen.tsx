@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
+import { typography } from '../../constants/theme';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -91,7 +93,7 @@ export function DatingEventRequestsScreen({
       >
         <View style={styles.header}>
           <Pressable onPress={onBack} style={styles.backButton}>
-            <Ionicons name="chevron-back" size={24} color="#3A0718" />
+            <BackChevronIcon color="#3A0718" />
           </Pressable>
           <Text style={styles.title}>Мероприятия</Text>
         </View>
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   tabs: {
@@ -188,12 +190,12 @@ const styles = StyleSheet.create({
   },
   tabTextActive: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
   tabTextInactive: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   card: {
@@ -207,7 +209,7 @@ const styles = StyleSheet.create({
     color: '#3A0718',
   },
   boldText: {
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   buttonsRow: {
     marginTop: 16,
@@ -227,7 +229,7 @@ const styles = StyleSheet.create({
   },
   declineText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
   },
   acceptButton: {
@@ -240,7 +242,7 @@ const styles = StyleSheet.create({
   },
   acceptText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
   cancelButton: {
@@ -255,7 +257,8 @@ const styles = StyleSheet.create({
   },
   cancelText: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
   },
 });
+

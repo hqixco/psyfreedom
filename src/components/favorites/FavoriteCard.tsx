@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { FavoriteItem } from '../../data/favoritesData';
 
 type FavoriteCardProps = {
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
   },
   heartButton: {
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 11,
+    right: 11,
   },
   ratingBadge: {
     position: 'absolute',
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   ratingText: {
     marginLeft: 4,
     fontSize: 13,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
   deletedOverlay: {
@@ -107,14 +107,14 @@ const styles = StyleSheet.create({
   },
   statusText: {
     fontSize: 13,
-    fontWeight: '500',
+    ...typography.Inter[500],
     color: colors.white,
   },
   title: {
     marginTop: 10,
     fontSize: 15,
     lineHeight: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   type: {
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontSize: 18,
     lineHeight: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   textMuted: {

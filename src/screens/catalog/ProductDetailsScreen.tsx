@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -79,7 +80,7 @@ export function ProductDetailsScreen({
         <View style={styles.container}>
           <View style={styles.header}>
             <Pressable style={styles.iconButton} onPress={() => setTestView('details')}>
-              <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+              <BackChevronIcon color={colors.primaryDark} />
             </Pressable>
             <View style={styles.iconButton} />
           </View>
@@ -100,7 +101,7 @@ export function ProductDetailsScreen({
         <View style={styles.container}>
           <View style={styles.header}>
             <Pressable style={styles.iconButton} onPress={() => setTestView('question')}>
-              <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+              <BackChevronIcon color={colors.primaryDark} />
             </Pressable>
             <View style={styles.iconButton} />
           </View>
@@ -130,7 +131,7 @@ export function ProductDetailsScreen({
         >
           <View style={styles.header}>
             <Pressable style={styles.iconButton} onPress={onBack}>
-              <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+              <BackChevronIcon color={colors.primaryDark} />
             </Pressable>
             <Pressable style={styles.iconButton} onPress={handleHeaderRightPress}>
               <ShareIcon size={22} color={colors.primaryDark} />

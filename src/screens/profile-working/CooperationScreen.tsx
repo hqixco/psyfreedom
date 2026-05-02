@@ -6,7 +6,7 @@ import { CooperationHeader } from '../../components/cooperation/CooperationHeade
 import { CooperationStickyButton } from '../../components/cooperation/CooperationStickyButton';
 import { SpecialistStepsAccordion } from '../../components/cooperation/SpecialistStepsAccordion';
 import { StoriesSection } from '../../components/cooperation/StoriesSection';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { commissionItems, cooperationBanners } from '../../data/cooperationData';
 
 export function CooperationScreen({ onBack }: { onBack: () => void }) {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   introTitle: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   introDescription: {

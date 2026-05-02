@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type PartnerForm = {
   name: string;
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   label: {
@@ -135,6 +135,6 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

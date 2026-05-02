@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../../constants/theme';
+import { colors, typography } from '../../../constants/theme';
 import {
   methodOptions,
   specializationOptions,
@@ -83,14 +83,14 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     fontSize: 20,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   sectionTitle: {
     marginTop: 8,
     fontSize: 14,
     lineHeight: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   sectionHint: {

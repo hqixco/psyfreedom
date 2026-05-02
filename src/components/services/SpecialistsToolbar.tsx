@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SpecialistsToolbarProps = {
   selectedSort: string;
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 14,
-    fontWeight: '400',
     lineHeight: 14,
+    ...typography.Inter[400],
     color: colors.primaryDark,
   },
   sortIcon: {

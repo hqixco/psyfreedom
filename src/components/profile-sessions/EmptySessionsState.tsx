@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function EmptySessionsState({ onBookSession }: { onBookSession: () => void }) {
   return (
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     lineHeight: 28,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     textAlign: 'center',
   },
@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

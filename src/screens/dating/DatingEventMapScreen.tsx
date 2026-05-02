@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { datingMapMock } from './datingData';
+import { typography } from '../../constants/theme';
 
 type DatingEventMapScreenProps = {
   onBack: () => void;
@@ -23,7 +25,7 @@ export function DatingEventMapScreen({ onBack, setBottomTabsVisible }: DatingEve
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.header}>
         <Pressable onPress={onBack} style={styles.backButton}>
-          <Ionicons name="chevron-back" size={24} color="#3A0718" />
+          <BackChevronIcon color="#3A0718" />
         </Pressable>
         <Text style={styles.title}>Показать на карте</Text>
       </View>
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   mapContainer: {
@@ -95,3 +97,4 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '45deg' }],
   },
 });
+

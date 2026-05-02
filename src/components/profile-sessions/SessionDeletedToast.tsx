@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function SessionDeletedToast({
   visible,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   title: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   subtitle: {
     color: 'rgba(255,255,255,0.9)',

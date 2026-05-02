@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FavoriteHeartIcon } from './icons/FavoriteHeartIcon';
 import { theme, typography } from '../constants/theme';
 import { CatalogSpecialist } from '../data/catalogData';
 
@@ -13,39 +13,46 @@ export function SpecialistCard({ item, onPress }: SpecialistCardProps) {
   const [liked, setLiked] = useState(false);
 
   return (
-    <Pressable style={styles.card} onPress={onPress}>
-      <View style={styles.imageWrap}>
-        <Image source={typeof item.image === 'string' ? { uri: item.image } : item.image} style={styles.image} />
-        <Pressable style={styles.heartBadge} onPress={() => setLiked((current) => !current)} hitSlop={10}>
-          <Ionicons name={liked ? 'heart' : 'heart-outline'} size={20} color={theme.white} />
-        </Pressable>
-        <View style={styles.ratingBadge}>
-          <Text style={styles.ratingText}>{`\u2605 ${item.rating}`}</Text>
+    <View style={styles.card}>
+      <Pressable onPress={onPress}>
+        <View style={styles.imageWrap}>
+          <Image source={typeof item.image === 'string' ? { uri: item.image } : item.image} style={styles.image} />
+          <View style={styles.ratingBadge}>
+            <Text style={styles.ratingText}>{`\u2605 ${item.rating}`}</Text>
+          </View>
         </View>
-      </View>
-
-      <View style={styles.content}>
-        <Text style={styles.name} numberOfLines={1}>
-          {item.name}
-        </Text>
-        <Text style={styles.specialization} numberOfLines={1}>
-          {item.specialization}
-        </Text>
-        <Text style={styles.price}>{item.price}</Text>
-      </View>
-    </Pressable>
+        <View style={styles.content}>
+          <Text style={styles.name} numberOfLines={1}>
+            {item.name}
+          </Text>
+          <Text style={styles.specialization} numberOfLines={1}>
+            {item.specialization}
+          </Text>
+          <Text style={styles.price}>{item.price}</Text>
+        </View>
+      </Pressable>
+      <Pressable
+        style={styles.heartBadge}
+        onPress={() => setLiked((current) => !current)}
+        hitSlop={10}
+        android_ripple={{ color: 'transparent' }}
+      >
+        <FavoriteHeartIcon filled={liked} />
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    width: 180,
+    position: 'relative',
+    width: 185,
     marginRight: 10,
     borderRadius: 8,
     backgroundColor: theme.white,
   },
   imageWrap: {
-    height: 180,
+    height: 185,
     borderRadius: 8,
     overflow: 'hidden',
     position: 'relative',
@@ -56,8 +63,14 @@ const styles = StyleSheet.create({
   },
   heartBadge: {
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 11,
+    right: 11,
+    zIndex: 3,
+    elevation: 3,
+    width: 20,
+    height: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ratingBadge: {
     position: 'absolute',

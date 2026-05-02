@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AuthHeader } from '../../components/auth/AuthHeader';
 import { ProfileMenuItem } from '../../components/profile/ProfileMenuItem';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type AboutAppScreenProps = {
   onBack: () => void;
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     marginTop: 12,
   },
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   versionLabel: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   versionValue: {

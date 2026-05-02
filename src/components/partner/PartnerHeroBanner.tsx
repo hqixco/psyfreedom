@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function PartnerHeroBanner({
   title,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 19,
     lineHeight: 23,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   image: {

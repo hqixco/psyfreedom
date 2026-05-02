@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FavoriteHeartIcon } from './icons/FavoriteHeartIcon';
 import { theme, typography } from '../constants/theme';
 import { CatalogProduct } from '../data/catalogData';
 
@@ -13,25 +13,33 @@ export function ProductCard({ item, onPress }: ProductCardProps) {
   const [liked, setLiked] = useState(false);
 
   return (
-    <Pressable style={styles.card} onPress={onPress}>
-      <View style={styles.imageWrap}>
-        <Image source={typeof item.image === 'string' ? { uri: item.image } : item.image} style={styles.image} />
-        <Pressable style={styles.heartButton} onPress={() => setLiked((current) => !current)} hitSlop={10}>
-          <Ionicons name={liked ? 'heart' : 'heart-outline'} size={22} color={theme.white} />
-        </Pressable>
-        <View style={styles.ratingBadge}>
-          <Text style={styles.ratingText}>{`\u2605 ${item.rating}`}</Text>
+    <View style={styles.card}>
+      <Pressable onPress={onPress}>
+        <View style={styles.imageWrap}>
+          <Image source={typeof item.image === 'string' ? { uri: item.image } : item.image} style={styles.image} />
+          <View style={styles.ratingBadge}>
+            <Text style={styles.ratingText}>{`\u2605 ${item.rating}`}</Text>
+          </View>
         </View>
-      </View>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.type}>{item.type}</Text>
-      <Text style={styles.price}>{item.price}</Text>
-    </Pressable>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.type}>{item.type}</Text>
+        <Text style={styles.price}>{item.price}</Text>
+      </Pressable>
+      <Pressable
+        style={styles.heartButton}
+        onPress={() => setLiked((current) => !current)}
+        hitSlop={10}
+        android_ripple={{ color: 'transparent' }}
+      >
+        <FavoriteHeartIcon filled={liked} />
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
+    position: 'relative',
     width: 180,
     marginRight: 10,
     backgroundColor: theme.white,
@@ -49,8 +57,14 @@ const styles = StyleSheet.create({
   },
   heartButton: {
     position: 'absolute',
-    top: 8,
-    right: 8,
+    top: 11,
+    right: 11,
+    zIndex: 3,
+    elevation: 3,
+    width: 20,
+    height: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ratingBadge: {
     position: 'absolute',

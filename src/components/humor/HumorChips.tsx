@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { HumorFilterType } from '../../data/humorData';
 
 type HumorChipsProps = {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   activeText: {
     color: colors.white,

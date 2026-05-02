@@ -1,5 +1,5 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type CatalogBannerProps = {
   title: string;
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   bannerTitle: {
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
     zIndex: 1,
   },

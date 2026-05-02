@@ -7,7 +7,7 @@ import { AdditionalInfoStep } from '../../components/specialist-questionnaire/st
 import { BasicInfoStep } from '../../components/specialist-questionnaire/steps/BasicInfoStep';
 import { EducationStep } from '../../components/specialist-questionnaire/steps/EducationStep';
 import { SpecializationStep } from '../../components/specialist-questionnaire/steps/SpecializationStep';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import {
   EducationItem,
   initialSpecialistApplicationForm,
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   rejectedText: {
     fontSize: 14,
     lineHeight: 18,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   pendingContainer: {
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   pendingTitle: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     textAlign: 'center',
   },
@@ -250,6 +250,6 @@ const styles = StyleSheet.create({
   pendingButtonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

@@ -8,7 +8,7 @@ import { PendingReviewCard } from '../../components/profile-reviews/PendingRevie
 import { ReviewActionsSheet } from '../../components/profile-reviews/ReviewActionsSheet';
 import { ReviewsTabKey, ReviewsTabs } from '../../components/profile-reviews/ReviewsTabs';
 import { WrittenReviewCard } from '../../components/profile-reviews/WrittenReviewCard';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import {
   PendingReview,
   pendingReviewsMock,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 20,
     lineHeight: 26,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     textAlign: 'center',
   },

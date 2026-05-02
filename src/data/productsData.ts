@@ -36,9 +36,9 @@ export const productCategories: ProductCategory[] = [
   { id: 'tests', title: 'Тесты', icon: 'help-circle' },
 ];
 
-const productImage = require('../../assets/photo.png');
-const bookImage = require('../../assets/photo.png');
-const courseImage = require('../../assets/photo.png');
+const productImage = require('../../assets/image (3).jpg');
+const bookImage = require('../../assets/image (3).jpg');
+const courseImage = require('../../assets/image (3).jpg');
 
 export const topProducts: Product[] = [
   {

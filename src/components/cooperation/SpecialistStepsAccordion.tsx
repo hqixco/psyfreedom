@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { specialistSteps } from '../../data/cooperationData';
 import { SpecialistStepItem } from './SpecialistStepItem';
 
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
     marginBottom: 12,
   },

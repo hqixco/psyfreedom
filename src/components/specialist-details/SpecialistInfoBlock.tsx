@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SpecialistDetails } from '../../data/specialistDetailsData';
 
 type SpecialistInfoBlockProps = {
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 28,
     lineHeight: 34,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
   name: {
     marginTop: 6,
     fontSize: 24,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   role: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   tagText: {
     fontSize: 13,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
   },
   ratingRow: {

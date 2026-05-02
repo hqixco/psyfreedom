@@ -1,3 +1,4 @@
+import { typography } from '../../constants/theme';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 26,
     lineHeight: 30,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   whiteSection: {
@@ -194,7 +195,7 @@ const styles = StyleSheet.create({
   },
   menuText: {
     fontSize: 17,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   promoCard: {
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
   promoTitle: {
     fontSize: 22,
     lineHeight: 27,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   promoSubtitle: {
@@ -237,19 +238,19 @@ const styles = StyleSheet.create({
   activeOptionText: {
     fontSize: 17,
     lineHeight: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#3A0718',
   },
   disabledOptionText: {
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: '#C9C1C4',
   },
   optionBadge: {
     marginLeft: 10,
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#F50057',
   },
   promoButton: {
@@ -262,7 +263,8 @@ const styles = StyleSheet.create({
   },
   promoButtonText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: '#FFFFFF',
   },
 });
+

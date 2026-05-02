@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export type EditableProfile = {
   name: string;
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   photoPlaceholder: {
     color: colors.primary,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
     textAlign: 'center',
   },
   field: {
@@ -139,6 +139,6 @@ const styles = StyleSheet.create({
   saveButtonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

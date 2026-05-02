@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type FilterChipProps = {
   label: string;
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 8,
     fontSize: 12,
-    fontWeight: '400',
+    ...typography.Inter[400],
     color: colors.primary,
   },
 });

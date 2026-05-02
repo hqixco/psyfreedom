@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 export function QuestionnaireFooter({
   onBack,
@@ -64,11 +64,11 @@ const styles = StyleSheet.create({
   backText: {
     color: colors.primary,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   nextText: {
     color: colors.white,
     fontSize: 14,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });

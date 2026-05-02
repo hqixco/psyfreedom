@@ -1,20 +1,15 @@
-import { ScrollView, StyleSheet, Text, useWindowDimensions } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { UniversalFilterSheet } from '../../components/filters/UniversalFilterSheet';
+import { useWindowDimensions } from 'react-native';
 import { CoachCategoriesSection } from '../../components/services/CoachCategoriesSection';
-import { ServicesHelpBanner } from '../../components/services/ServicesHelpBanner';
-import { SpecialistsGrid } from '../../components/services/SpecialistsGrid';
-import { SpecialistsToolbar } from '../../components/services/SpecialistsToolbar';
-import { colors } from '../../constants/theme';
-import { coachesFilterConfig, SelectedFilters } from '../../data/filterData';
+import { coachesFilterConfig, type SelectedFilters } from '../../data/filterData';
 import { coachCategories, coaches } from '../../data/servicesData';
-import { ProductSortModal } from '../../components/products/ProductSortModal';
+import { SpecialistsCategoryScreen } from './SpecialistsCategoryScreen';
 
 type CoachesScreenProps = {
   selectedSort: string;
   selectedFilters: SelectedFilters;
   isSortOpen: boolean;
   isFilterOpen: boolean;
+  onBack: () => void;
   onOpenServicesHelp: () => void;
   onOpenSort: () => void;
   onCloseSort: () => void;
@@ -34,6 +29,7 @@ export function CoachesScreen({
   selectedFilters,
   isSortOpen,
   isFilterOpen,
+  onBack,
   onOpenServicesHelp,
   onOpenSort,
   onCloseSort,
@@ -48,60 +44,37 @@ export function CoachesScreen({
   onPressSpecialist,
 }: CoachesScreenProps) {
   const { width } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
-  const cardGap = 10;
-  const coachCardWidth = (width - 16 * 2 - 8) / 2;
-  const specialistCardWidth = (width - 16 * 2 - cardGap) / 2;
+  const coachCardWidth = Math.min(181, width - 32);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.scrollContent, { paddingBottom: 100 + insets.bottom }]}
-      >
-        <Text style={styles.title}>Коучи</Text>
-        <ServicesHelpBanner onPress={onOpenServicesHelp} />
-        <CoachCategoriesSection categories={coachCategories} cardWidth={coachCardWidth} onPressCategory={onPressCoachCategory} />
-        <SpecialistsToolbar selectedSort={selectedSort} onOpenSort={onOpenSort} onOpenFilter={onOpenFilter} />
-        <SpecialistsGrid specialists={coaches} cardWidth={specialistCardWidth} onPressSpecialist={onPressSpecialist} />
-      </ScrollView>
-
-      <ProductSortModal
-        visible={isSortOpen}
-        selectedSort={selectedSort}
-        options={['Популярные', 'По цене', 'Новые анкеты', 'Топ-10', 'По рейтингу']}
-        onClose={onCloseSort}
-        onSelect={onSelectSort}
-      />
-
-      <UniversalFilterSheet
-        visible={isFilterOpen}
-        onClose={onCloseFilter}
-        onApply={onApplyFilters}
-        onReset={onResetFilters}
-        config={coachesFilterConfig}
-        selectedFilters={selectedFilters}
-        onChangeFilters={onChangeFilters}
-        onOpenLocation={onOpenLocation}
-      />
-    </SafeAreaView>
+    <SpecialistsCategoryScreen
+      title="Коучи"
+      specialists={coaches}
+      filterConfig={coachesFilterConfig}
+      selectedSort={selectedSort}
+      selectedFilters={selectedFilters}
+      isSortOpen={isSortOpen}
+      isFilterOpen={isFilterOpen}
+      onBack={onBack}
+      onOpenServicesHelp={onOpenServicesHelp}
+      onOpenSort={onOpenSort}
+      onCloseSort={onCloseSort}
+      onSelectSort={onSelectSort}
+      onOpenFilter={onOpenFilter}
+      onCloseFilter={onCloseFilter}
+      onApplyFilters={onApplyFilters}
+      onResetFilters={onResetFilters}
+      onChangeFilters={onChangeFilters}
+      onOpenLocation={onOpenLocation}
+      onPressSpecialist={onPressSpecialist}
+      sortOptions={['Популярные', 'По цене', 'Новые анкеты', 'Топ-10', 'По рейтингу']}
+      topSection={
+        <CoachCategoriesSection
+          categories={coachCategories}
+          cardWidth={coachCardWidth}
+          onPressCategory={onPressCoachCategory}
+        />
+      }
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-  scrollContent: {
-    paddingTop: 8,
-  },
-  title: {
-    marginHorizontal: 16,
-    marginTop: 8,
-    fontSize: 28,
-    lineHeight: 34,
-    fontWeight: '700',
-    color: colors.text,
-  },
-});

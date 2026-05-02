@@ -5,12 +5,16 @@ import { ArticleCard } from './ArticleCard';
 
 const articleSnapInterval = 190;
 
-export function ArticlesSection() {
+type ArticlesSectionProps = {
+  onOpenJournal?: () => void;
+};
+
+export function ArticlesSection({ onOpenJournal }: ArticlesSectionProps) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Статьи</Text>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={onOpenJournal}>
           <Text style={styles.buttonText}>Ещё</Text>
         </Pressable>
       </View>

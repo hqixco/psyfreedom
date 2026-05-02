@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { colors } from '../../constants/theme';
 
@@ -10,7 +11,7 @@ export function HumorDetailsHeader({ onBack }: HumorDetailsHeaderProps) {
   return (
     <View style={styles.container}>
       <Pressable style={styles.iconButton} onPress={onBack}>
-        <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+        <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
     </View>
   );

@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SessionsCalendarProps = {
   selectedDate: string;
@@ -51,7 +52,7 @@ export function SessionsCalendar({ selectedDate, markedDates, onSelectDate }: Se
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Ionicons name="chevron-back" size={22} color={colors.primaryDark} />
+        <BackChevronIcon color={colors.primaryDark} />
         <Text style={styles.monthTitle}>Октябрь, <Text style={styles.year}>2024</Text></Text>
         <Ionicons name="chevron-forward" size={22} color={colors.primaryDark} />
       </View>
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   monthTitle: {
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   year: {

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { FavoriteHeartIcon } from '../icons/FavoriteHeartIcon';
+import { colors, typography } from '../../constants/theme';
 import { Specialist } from '../../data/servicesData';
 
 type SpecialistCardProps = {
@@ -18,33 +19,40 @@ export function SpecialistCard({ item, width, imageHeight, onPress, variant = 'd
   const [liked, setLiked] = useState(false);
 
   return (
-    <Pressable style={[styles.card, isTop10 && styles.top10Card, { width }]} onPress={onPress}>
-      <View style={[styles.imageWrap, isTop10 && styles.top10ImageWrap, { width: imageWidth, height: imageHeight }]}>
-        <Image source={item.image} style={styles.image} resizeMode="cover" />
-        <Pressable style={styles.heartButton} onPress={() => setLiked((value) => !value)} hitSlop={10}>
-          <Ionicons name={liked ? 'heart' : 'heart-outline'} size={20} color={colors.white} />
-        </Pressable>
-        <View style={styles.ratingRow}>
-          <Ionicons name="star" size={12} color={colors.white} />
-          <Text style={styles.ratingText}>{item.rating}</Text>
+    <View style={[styles.card, isTop10 && styles.top10Card, { width }]}>
+      <Pressable onPress={onPress}>
+        <View style={[styles.imageWrap, isTop10 && styles.top10ImageWrap, { width: imageWidth, height: imageHeight }]}>
+          <Image source={item.image} style={styles.image} resizeMode="cover" />
+          <View style={styles.ratingRow}>
+            <Ionicons name="star" size={12} color={colors.white} />
+            <Text style={styles.ratingText}>{item.rating}</Text>
+          </View>
         </View>
-      </View>
-      <View style={isTop10 ? styles.top10Content : undefined}>
-        <Text style={styles.name} numberOfLines={2}>{item.name}</Text>
-        <Text style={styles.specialization}>{item.specialization}</Text>
-        <Text style={[styles.price, isTop10 && styles.top10Price]}>{item.price}</Text>
-      </View>
-    </Pressable>
+        <View style={isTop10 ? styles.top10Content : undefined}>
+          <Text style={styles.name} numberOfLines={2}>{item.name}</Text>
+          <Text style={styles.specialization}>{item.specialization}</Text>
+          <Text style={[styles.price, isTop10 && styles.top10Price]}>{item.price}</Text>
+        </View>
+      </Pressable>
+      <Pressable
+        style={styles.heartButton}
+        onPress={() => setLiked((value) => !value)}
+        hitSlop={10}
+        android_ripple={{ color: 'transparent' }}
+      >
+        <FavoriteHeartIcon filled={liked} />
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
+    position: 'relative',
     marginBottom: 18,
     backgroundColor: colors.white,
   },
   top10Card: {
-    height: 290,
     borderWidth: 1,
     borderColor: 'rgba(255, 154, 79, 1)',
     borderRadius: 12,
@@ -73,8 +81,14 @@ const styles = StyleSheet.create({
   },
   heartButton: {
     position: 'absolute',
-    top: 6,
-    right: 6,
+    top: 11,
+    right: 11,
+    zIndex: 3,
+    elevation: 3,
+    width: 20,
+    height: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ratingRow: {
     position: 'absolute',
@@ -86,31 +100,29 @@ const styles = StyleSheet.create({
   ratingText: {
     marginLeft: 3,
     fontSize: 14,
-    fontWeight: '400',
+    ...typography.Inter[400],
     color: colors.white,
   },
   name: {
-    marginTop: 6,
+    marginTop: 11,
+    marginBottom: 5,
     fontSize: 14,
-    lineHeight: 18,
-    fontWeight: '600',
+    lineHeight: 16,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   specialization: {
-    marginTop: 2,
+    marginTop: 3,
     fontSize: 14,
     lineHeight: 18,
-    fontWeight: '400',
+    ...typography.Inter[400],
     color: colors.muted,
   },
   price: {
-    marginTop: 3,
+    marginTop: 6,
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
-  },
-  top10Price: {
-    marginTop: 'auto',
   },
 });

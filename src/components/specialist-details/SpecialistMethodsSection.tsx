@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { SpecialistDetails } from '../../data/specialistDetailsData';
 
 type TabKey = 'methods' | 'topics' | 'benefits';
@@ -85,11 +85,11 @@ const styles = StyleSheet.create({
   },
   activeText: {
     color: colors.white,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
   inactiveText: {
     color: colors.primaryDark,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
   item: {
     marginTop: 8,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   link: {
     marginTop: 10,
     fontSize: 14,
-    fontWeight: '600',
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

@@ -4,7 +4,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { HumorCommentCard } from '../../components/humor/HumorCommentCard';
 import { HumorDetailsHeader } from '../../components/humor/HumorDetailsHeader';
 import { HumorPostActions } from '../../components/humor/HumorPostActions';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { HumorPost } from '../../data/humorData';
 
 type HumorDetailsScreenProps = {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   author: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   createdAt: {
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 24,
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primary,
   },
 });

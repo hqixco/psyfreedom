@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type SelectedMessageHeaderProps = {
   onClose: () => void;
@@ -12,7 +13,7 @@ export function SelectedMessageHeader({ onClose, onEdit, onDelete }: SelectedMes
   return (
     <View style={styles.container}>
       <Pressable onPress={onClose} style={styles.backButton}>
-        <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+        <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={styles.title}>Выбрано сообщение</Text>
       <Pressable onPress={onEdit} style={styles.editButton}>
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     fontSize: 22,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   editButton: {

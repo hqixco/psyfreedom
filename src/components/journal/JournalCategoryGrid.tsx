@@ -27,7 +27,7 @@ export function JournalCategoryGrid({
 const styles = StyleSheet.create({
   grid: {
     marginHorizontal: 16,
-    marginTop: 24,
+    marginTop: 34,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

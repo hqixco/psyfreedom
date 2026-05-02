@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 
 type ProductCourseProgramSectionProps = {
   items?: { id: string; title: string; description: string }[];
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   title: {
     marginHorizontal: 16,
     fontSize: 20,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   card: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 15,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   cardText: {

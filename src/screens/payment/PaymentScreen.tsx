@@ -1,10 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PaymentCheckbox } from '../../components/payment/PaymentCheckbox';
 import { PaymentInput } from '../../components/payment/PaymentInput';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { paymentFormInitialValues } from '../../data/paymentData';
 
 type PaymentScreenProps = {
@@ -58,7 +59,7 @@ export function PaymentScreen({ onBack, setBottomTabsVisible }: PaymentScreenPro
         >
           <View style={styles.header}>
             <Pressable style={styles.backButton} onPress={onBack}>
-              <Ionicons name="chevron-back" size={24} color={colors.primaryDark} />
+              <BackChevronIcon color={colors.primaryDark} />
             </Pressable>
             <Text style={styles.title}>Оплата билетов</Text>
           </View>
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     lineHeight: 32,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   row: {
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
   },
   payButtonText: {
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.white,
   },
   offerText: {
@@ -197,6 +198,6 @@ const styles = StyleSheet.create({
   },
   offerLink: {
     color: colors.primary,
-    fontWeight: '600',
+    ...typography.Inter[600],
   },
 });

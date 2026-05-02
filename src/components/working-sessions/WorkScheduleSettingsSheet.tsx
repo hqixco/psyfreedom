@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WorkDaySchedule } from '../../data/workingSessionsData';
 import { WorkDayScheduleItem } from './WorkDayScheduleItem';
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 24,
     lineHeight: 29,
-    fontWeight: '700',
+    ...typography.Inter[700],
     color: colors.primaryDark,
   },
   saveButton: {
@@ -113,6 +113,6 @@ const styles = StyleSheet.create({
   saveButtonText: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: '700',
+    ...typography.Inter[700],
   },
 });
