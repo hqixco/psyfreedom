@@ -30,8 +30,8 @@ export const favoriteChips = [
   { id: 'video', title: 'Видеоурок' },
 ] as const;
 
-const favoriteImage = require('../../assets/images/product-devichnik.png');
-const favoriteBookImage = require('../../assets/photo.png');
+const favoriteImage = require('../../assets/images/product-course-devichnik.png');
+const favoriteBookImage = require('../../assets/product-placeholder-square.png');
 
 export const mockFavorites: FavoriteItem[] = [
   {
@@ -93,3 +93,4 @@ export const mockFavorites: FavoriteItem[] = [
     status: 'default',
   },
 ];
+

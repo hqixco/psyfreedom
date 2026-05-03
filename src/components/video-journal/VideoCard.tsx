@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
@@ -10,13 +11,20 @@ type VideoCardProps = {
 };
 
 export function VideoCard({ item, width, onPress }: VideoCardProps) {
+  const [isFavorite, setIsFavorite] = useState(Boolean(item.isFavorite));
   const imageHeight = width * 0.9;
 
   return (
     <Pressable style={[styles.card, { width }]} onPress={onPress}>
       <View style={[styles.imageWrap, { height: imageHeight }]}>
         <Image source={item.image} style={styles.image} />
-        <Ionicons style={styles.heart} name="heart" size={24} color={colors.white} />
+        <Pressable
+          style={styles.heartButton}
+          onPress={() => setIsFavorite((value) => !value)}
+          hitSlop={8}
+        >
+          <Ionicons name="heart" size={24} color={isFavorite ? '#FF2F72' : colors.white} />
+        </Pressable>
         <View style={styles.playButton}>
           <Ionicons name="play" size={20} color={colors.primary} />
         </View>
@@ -33,7 +41,8 @@ export function VideoCard({ item, width, onPress }: VideoCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    marginBottom: 26,
+    width: 180,
+    marginBottom: 16,
     backgroundColor: colors.white,
   },
   imageWrap: {
@@ -46,10 +55,14 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'cover',
   },
-  heart: {
+  heartButton: {
     position: 'absolute',
     top: 8,
     right: 8,
+    width: 28,
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   playButton: {
     position: 'absolute',
@@ -74,20 +87,19 @@ const styles = StyleSheet.create({
   viewsText: {
     marginLeft: 4,
     fontSize: 14,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.white,
   },
   title: {
-    marginTop: 8,
-    fontSize: 15,
+    marginTop: 11,
+    fontSize: 14,
     lineHeight: 18,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   topic: {
-    marginTop: 3,
+    marginTop: 1,
     fontSize: 14,
     color: colors.muted,
   },
 });
-

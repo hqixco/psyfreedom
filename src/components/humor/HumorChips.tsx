@@ -30,7 +30,8 @@ export function HumorChips({ chips, activeType, onSelect }: HumorChipsProps) {
 const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
-    paddingBottom: 16,
+    paddingBottom: 21,
+    paddingTop: 5,
   },
   chip: {
     height: 44,
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   text: {
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[600],
   },
   activeText: {
     color: colors.white,

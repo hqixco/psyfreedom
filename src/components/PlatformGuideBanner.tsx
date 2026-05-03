@@ -5,7 +5,7 @@ import { theme, typography } from '../constants/theme';
 export function PlatformGuideBanner() {
   return (
     <ImageBackground
-      source={require('../../assets/Mask group (17).jpg')}
+      source={require('../../assets/platform-guide-banner-bg.jpg')}
       style={styles.container}
       imageStyle={styles.backgroundImage}
       resizeMode="stretch"
@@ -76,3 +76,4 @@ const styles = StyleSheet.create({
     ...typography.Inter[500],
   },
 });
+

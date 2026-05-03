@@ -33,21 +33,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   card: {
-    width: '31.5%',
-    height: 72,
+    width: 118,
+    height: 96,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.cardLight,
   },
   value: {
-    fontSize: 26,
-    ...typography.Inter[700],
+    fontSize: 32,
+    ...typography.Inter[600],
     color: colors.primary,
   },
   label: {
-    marginTop: 2,
-    fontSize: 13,
+    marginTop: 5,
+    fontSize: 14,
+    ...typography.Inter[400],
     color: colors.primaryDark,
   },
 });

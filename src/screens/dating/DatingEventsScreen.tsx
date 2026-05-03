@@ -23,7 +23,7 @@ function DatingEventCard({
   const eventTitle = item.id === '1' ? 'Секреты счастливой жены' : item.title;
   const eventCity = item.id === '1' ? 'Москва' : item.city;
   const eventImage =
-    item.id === '1' ? require('../../../assets/images/dating-event-1.png') : item.image;
+    item.id === '1' ? require('../../../assets/images/dating-event-card-1.png') : item.image;
 
   return (
     <Pressable style={styles.eventCard} onPress={onPress}>
@@ -230,4 +230,5 @@ const styles = StyleSheet.create({
     color: datingColors.muted,
   },
 });
+
 

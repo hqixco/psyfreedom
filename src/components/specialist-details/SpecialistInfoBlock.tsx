@@ -1,7 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { SpecialistDetails } from '../../data/specialistDetailsData';
+
+const priceBadges = require('../../../assets/specialist-price-badges.svg');
 
 type SpecialistInfoBlockProps = {
   specialist: SpecialistDetails;
@@ -10,7 +12,10 @@ type SpecialistInfoBlockProps = {
 export function SpecialistInfoBlock({ specialist }: SpecialistInfoBlockProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.price}>{specialist.price}</Text>
+      <View style={styles.priceRow}>
+        <Text style={styles.price}>{specialist.price}</Text>
+        <Image source={priceBadges} style={styles.priceBadges} resizeMode="contain" />
+      </View>
       <Text style={styles.name}>{specialist.name}</Text>
       <Text style={styles.role}>{specialist.specialization}</Text>
       <Text style={styles.meta}>{`Опыт работы: ${specialist.experience}`}</Text>
@@ -26,7 +31,8 @@ export function SpecialistInfoBlock({ specialist }: SpecialistInfoBlockProps) {
 
       <View style={styles.ratingRow}>
         <Ionicons name="star" size={18} color="#FFC93C" />
-        <Text style={styles.ratingText}>{`${specialist.rating} ${specialist.reviewsCount} отзывов`}</Text>
+        <Text style={styles.ratingValue}>{specialist.rating}</Text>
+        <Text style={styles.reviewsText}>{`${specialist.reviewsCount} отзывов`}</Text>
       </View>
     </View>
   );
@@ -37,22 +43,33 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 14,
   },
+  priceRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+  },
   price: {
-    fontSize: 28,
+    fontSize: 24,
     lineHeight: 34,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primary,
+  },
+  priceBadges: {
+    width: 40,
+    height: 18,
+    marginTop: 8,
+    flexShrink: 0,
   },
   name: {
     marginTop: 6,
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 30,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   role: {
     marginTop: 2,
-    fontSize: 16,
+    fontSize: 14,
     color: colors.muted,
   },
   meta: {
@@ -71,7 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   tagChip: {
-    height: 28,
+    height: 18,
     borderRadius: 14,
     backgroundColor: '#EAF8FA',
     paddingHorizontal: 12,
@@ -81,16 +98,22 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   tagText: {
-    fontSize: 13,
-    ...typography.Inter[600],
-    color: colors.primary,
+    fontSize: 12,
+    ...typography.Inter[400],
+    color: colors.primaryDark,
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 4,
   },
-  ratingText: {
+  ratingValue: {
+    marginLeft: 6,
+    fontSize: 14,
+    ...typography.Inter[600],
+    color: colors.primaryDark,
+  },
+  reviewsText: {
     marginLeft: 6,
     fontSize: 14,
     color: colors.muted,

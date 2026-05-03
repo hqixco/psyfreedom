@@ -45,10 +45,10 @@ export function AnnouncementChips({
 const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
-    paddingBottom: 12,
+    paddingBottom: 14,
   },
   chip: {
-    height: 44,
+    height: 43,
     borderRadius: 22,
     paddingHorizontal: 22,
     alignItems: 'center',
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   text: {
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[600],
   },
   activeText: {
     color: colors.white,

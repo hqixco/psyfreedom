@@ -25,6 +25,8 @@ export function ProductStickyActionBar({
   onToggleFavorite,
   onPress,
 }: ProductStickyActionBarProps) {
+  const hasSplitContent = Boolean(priceLabel);
+
   return (
     <View style={[styles.wrap, { bottom: bottomOffset, paddingBottom: bottomPadding }]}>
       <View style={styles.row}>
@@ -40,6 +42,7 @@ export function ProductStickyActionBar({
         <Pressable
           style={[
             styles.button,
+            hasSplitContent && styles.buttonSplit,
             showFavorite ? styles.buttonWithFavorite : styles.buttonFullWidth,
           ]}
           onPress={onPress}
@@ -47,7 +50,7 @@ export function ProductStickyActionBar({
           {priceLabel ? (
             <>
               <Text style={styles.buttonText}>{label}</Text>
-              <Text style={styles.buttonText}>{priceLabel}</Text>
+              <Text style={styles.priceText}>{priceLabel}</Text>
             </>
           ) : (
             <Text style={styles.buttonText}>{label}</Text>
@@ -75,34 +78,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   favoriteButton: {
-    width: 52,
-    height: 52,
+    width: 41,
+    height: 41,
     marginRight: 10,
-    borderRadius: 26,
+    borderRadius: 360,
     borderWidth: 1,
     borderColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   button: {
-    height: 52,
-    borderRadius: 26,
+    height: 41,
+    borderRadius: 360,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary,
+  },
+  buttonSplit: {
+    paddingHorizontal: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   buttonFullWidth: {
     flex: 1,
   },
   buttonWithFavorite: {
     flex: 1,
-    paddingHorizontal: 28,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    paddingHorizontal: 35,
   },
   buttonText: {
-    fontSize: 15,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
+    color: colors.white,
+  },
+  priceText: {
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.white,
   },
   note: {

@@ -1,4 +1,15 @@
-import { Image, ImageSourcePropType, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  ImageSourcePropType,
+  ImageStyle,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { colors } from '../../constants/theme';
 
 type ImageMessageProps = {
@@ -7,9 +18,25 @@ type ImageMessageProps = {
   text?: string;
   isSelected?: boolean;
   onLongPress?: () => void;
+  rowStyle?: StyleProp<ViewStyle>;
+  imageContainerStyle?: StyleProp<ViewStyle>;
+  imageStyle?: StyleProp<ImageStyle>;
+  captionStyle?: StyleProp<TextStyle>;
+  selectedRowStyle?: StyleProp<ViewStyle>;
 };
 
-export function ImageMessage({ sender, image, text, isSelected = false, onLongPress }: ImageMessageProps) {
+export function ImageMessage({
+  sender,
+  image,
+  text,
+  isSelected = false,
+  onLongPress,
+  rowStyle,
+  imageContainerStyle,
+  imageStyle,
+  captionStyle,
+  selectedRowStyle,
+}: ImageMessageProps) {
   const isMe = sender === 'me';
 
   return (
@@ -20,6 +47,8 @@ export function ImageMessage({ sender, image, text, isSelected = false, onLongPr
         styles.row,
         isMe ? styles.rowMe : styles.rowOther,
         isSelected ? styles.selectedRow : null,
+        rowStyle,
+        isSelected ? selectedRowStyle : null,
       ]}
     >
       <View
@@ -27,10 +56,11 @@ export function ImageMessage({ sender, image, text, isSelected = false, onLongPr
           text ? styles.imageWithTextContainer : null,
           !text ? styles.imageOnlyWrap : null,
           isMe ? styles.meBackground : styles.otherBackground,
+          imageContainerStyle,
         ]}
       >
-        <Image source={image} style={text ? styles.imageWithText : styles.imageOnly} />
-        {text ? <Text style={styles.caption}>{text}</Text> : null}
+        <Image source={image} style={[text ? styles.imageWithText : styles.imageOnly, imageStyle]} />
+        {text ? <Text style={[styles.caption, captionStyle]}>{text}</Text> : null}
       </View>
     </Pressable>
   );

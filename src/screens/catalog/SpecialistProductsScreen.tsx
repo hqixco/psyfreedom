@@ -3,10 +3,11 @@ import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { CatalogSearch } from '../../components/catalog/CatalogSearch';
 import { ProductCard } from '../../components/products/ProductCard';
 import { colors, typography } from '../../constants/theme';
 import { SpecialistProduct } from '../../data/specialistDetailsData';
-import { Product } from '../../data/productsData';
+import { Product, products as catalogProducts } from '../../data/productsData';
 
 type SpecialistProductsScreenProps = {
   products: SpecialistProduct[];
@@ -26,6 +27,8 @@ export function SpecialistProductsScreen({
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const [activeChip, setActiveChip] = useState<ChipKey>('all');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const cardWidth = (width - 16 * 2 - 10) / 2;
 
   const chips = useMemo(
@@ -38,20 +41,40 @@ export function SpecialistProductsScreen({
     [products],
   );
 
-  const visibleProducts = products.filter((item) => {
-    if (activeChip === 'all') {
+  const resolvedProducts = products.map((item) => {
+    const actualProduct = catalogProducts.find((catalogItem) => catalogItem.id === item.id);
+    return {
+      source: item,
+      product: (actualProduct ?? item) as Product,
+    };
+  });
+  const normalizedQuery = searchValue.trim().toLowerCase();
+  const visibleProducts = resolvedProducts.filter(({ source, product }) => {
+    if (activeChip === 'course' && source.type !== 'Курс') {
+      return false;
+    }
+    if (activeChip === 'game' && source.type !== 'Игра') {
+      return false;
+    }
+    if (activeChip === 'video' && source.type !== 'Видеоурок') {
+      return false;
+    }
+    if (!normalizedQuery) {
       return true;
     }
-    if (activeChip === 'course') {
-      return item.type === 'Курс';
-    }
-    if (activeChip === 'game') {
-      return item.type === 'Игра';
-    }
-    if (activeChip === 'video') {
-      return item.type === 'Видеоурок';
-    }
-    return true;
+
+    const searchable = [
+      product.title,
+      product.subtitle,
+      product.type,
+      source.title,
+      source.type,
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase();
+
+    return searchable.includes(normalizedQuery);
   });
 
   return (
@@ -67,10 +90,20 @@ export function SpecialistProductsScreen({
             </Pressable>
             <Text style={styles.title}>Товары специалиста</Text>
           </View>
-          <Pressable style={styles.iconButton} onPress={onSearch}>
+          <Pressable
+            style={styles.iconButton}
+            onPress={() => {
+              setIsSearchOpen((value) => !value);
+              onSearch();
+            }}
+          >
             <Ionicons name="search-outline" size={25} color={colors.primaryDark} />
           </Pressable>
         </View>
+
+        {isSearchOpen ? (
+          <CatalogSearch value={searchValue} onChangeText={setSearchValue} />
+        ) : null}
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipsList}>
           {chips.map((chip) => {
@@ -90,13 +123,14 @@ export function SpecialistProductsScreen({
         </ScrollView>
 
         <View style={styles.grid}>
-          {visibleProducts.map((item) => (
-            <View key={item.id} style={styles.cardWrap}>
+          {visibleProducts.map(({ source, product }) => (
+            <View key={source.id} style={styles.cardWrap}>
               <ProductCard
-                item={item as Product}
+                item={product}
                 width={cardWidth}
                 imageHeight={cardWidth * 0.75}
-                onPress={() => onOpenProduct(item.id)}
+                showFavoriteButton
+                onPress={() => onOpenProduct(source.id)}
               />
             </View>
           ))}
@@ -135,8 +169,8 @@ const styles = StyleSheet.create({
   },
   title: {
     marginLeft: 6,
-    fontSize: 24,
-    ...typography.Inter[700],
+    fontSize: 18,
+    ...typography.Inter[600],
     color: colors.primaryDark,
     flexShrink: 1,
   },
@@ -146,7 +180,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   chip: {
-    height: 42,
+    height: 43,
     borderRadius: 22,
     paddingHorizontal: 22,
     marginRight: 8,
@@ -163,7 +197,7 @@ const styles = StyleSheet.create({
   },
   chipText: {
     fontSize: 16,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
   },
   activeChipText: {
     color: colors.white,

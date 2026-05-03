@@ -71,6 +71,8 @@ export function PaymentScreen({ onBack, setBottomTabsVisible }: PaymentScreenPro
             placeholder="2200 0000 0000 0000"
             keyboardType="number-pad"
             maxLength={19}
+            labelStyle={styles.inputLabel}
+            inputStyle={styles.input}
           />
 
           <View style={styles.row}>
@@ -82,6 +84,8 @@ export function PaymentScreen({ onBack, setBottomTabsVisible }: PaymentScreenPro
                 placeholder="ММ/ГГГГ"
                 keyboardType="number-pad"
                 maxLength={7}
+                labelStyle={styles.inputLabel}
+                inputStyle={styles.input}
               />
             </View>
             <View style={styles.rowItem}>
@@ -92,6 +96,8 @@ export function PaymentScreen({ onBack, setBottomTabsVisible }: PaymentScreenPro
                 placeholder="000"
                 keyboardType="number-pad"
                 maxLength={3}
+                labelStyle={styles.inputLabel}
+                inputStyle={styles.input}
               />
             </View>
           </View>
@@ -105,6 +111,8 @@ export function PaymentScreen({ onBack, setBottomTabsVisible }: PaymentScreenPro
             autoCapitalize="none"
             autoCorrect={false}
             containerStyle={styles.inputBlock}
+            labelStyle={styles.inputLabel}
+            inputStyle={styles.input}
           />
 
           <PaymentCheckbox
@@ -152,41 +160,62 @@ const styles = StyleSheet.create({
     paddingTop: 18,
   },
   header: {
-    height: 52,
-    flexDirection: 'row',
-    alignItems: 'center',
+    paddingTop: 2,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
   backButton: {
-    marginRight: 12,
+    marginBottom: 10,
   },
+
   title: {
-    fontSize: 26,
+    fontSize: 24,
+    marginTop: 20,
+    marginBottom: 20,
     lineHeight: 32,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   row: {
     flexDirection: 'row',
-    marginTop: 18,
+    marginTop: 15,
     gap: 10,
   },
   rowItem: {
     flex: 1,
   },
+  inputLabel: {
+    marginBottom: 5,
+    fontSize: 12,
+    ...typography.Inter[400],
+    color: colors.primaryDark,
+  },
+  input: {
+    height: 41,
+    borderRadius: 360,
+    borderWidth: 1,
+    borderColor: '#A9A9A9',
+    backgroundColor: colors.white,
+    paddingHorizontal: 14,
+    fontSize: 14,
+    fontWeight: '400',
+    color: colors.primaryDark,
+  },
   inputBlock: {
-    marginTop: 18,
+    marginTop: 14,
   },
   payButton: {
-    marginTop: 28,
-    height: 52,
+    marginTop: 17,
+    height: 41,
     borderRadius: 26,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary,
   },
   payButtonText: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.white,
   },
   offerText: {

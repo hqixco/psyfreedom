@@ -3,7 +3,7 @@ export const userProfileMock = {
   phone: '+7 (987)654-32-10',
   email: 'info@mail.ru',
   birthDate: '21.04.1986',
-  photo: require('../../assets/images/author-maria.png'),
+  photo: require('../../assets/images/avatar-maria.png'),
   selectedProfileType: 'main' as const,
   pushEnabled: true,
 };
@@ -46,7 +46,8 @@ export const profilePartnerBanner = {
   title: 'Как стать\nпартнером',
   description: 'Оставьте заявку на\nразмещение рекламы\nили услуги',
   buttonText: 'Перейти',
-  image: require('../../assets/Rectangle 17114.jpg'),
+  image: require('../../assets/help-banner-bg.jpg'),
   height: 220,
   variant: 'mint' as const,
 };
+

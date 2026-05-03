@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   avatar: {
-    width: 44,
-    height: 44,
+    width: 36,
+    height: 36,
     borderRadius: 22,
     marginRight: 12,
     backgroundColor: colors.cardLight,
@@ -37,19 +37,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   author: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   date: {
     marginTop: 2,
-    fontSize: 13,
+    fontSize: 12,
     color: colors.muted,
   },
   text: {
     marginTop: 10,
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 14,
+    lineHeight: 18,
     color: colors.text,
   },
 });

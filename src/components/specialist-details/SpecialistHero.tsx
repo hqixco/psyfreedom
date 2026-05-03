@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 348,
+    height: 368,
     borderRadius: 12,
     backgroundColor: colors.cardLight,
   },

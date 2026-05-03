@@ -122,7 +122,7 @@ export const datingClubData = {
   title: 'Знакомства',
   heroTitle: 'Хочешь отношений?',
   heroText: 'Регистрируйтесь на нашем сайте знакомств и найди свою вторую половинку',
-  heroImage: require('../../../assets/images/banner-dating.png'),
+  heroImage: require('../../../assets/images/dating-hero-banner.png'),
   accordion: [
     {
       id: 'who',
@@ -165,13 +165,13 @@ export const datingApprovedHero = {
   title: 'Нужна помощь специалиста?',
   text: 'Регистрируйся на нашем сайте и пользуйся всеми преимуществами маркетплейса',
   buttonText: 'Подобрать специалиста',
-  image: require('../../../assets/images/help-specialist.png'),
+  image: require('../../../assets/images/specialist-help-banner.png'),
 };
 
 export const datingCatalogHero = {
   title: 'Хочешь отношений?',
   text: 'Регистрируйтесь на нашем сайте знакомств и найди свою вторую половинку',
-  image: require('../../../assets/images/banner-dating.png'),
+  image: require('../../../assets/images/dating-hero-banner.png'),
 };
 
 export const datingApprovedCategories: DatingApprovedCategory[] = [
@@ -186,7 +186,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '1',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/author-1.png'),
+    image: require('../../../assets/images/avatar-user-default.png'),
     isFavorite: false,
     isHighlighted: true,
   },
@@ -194,7 +194,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '2',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-1.png'),
+    image: require('../../../assets/images/specialist-photo-1.png'),
     isFavorite: false,
     isHighlighted: false,
   },
@@ -202,7 +202,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '3',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-2.png'),
+    image: require('../../../assets/images/specialist-photo-2.png'),
     isFavorite: false,
     isHighlighted: false,
   },
@@ -210,7 +210,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '4',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/author-1.png'),
+    image: require('../../../assets/images/avatar-user-default.png'),
     isFavorite: false,
     isHighlighted: false,
   },
@@ -218,7 +218,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '5',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-1.png'),
+    image: require('../../../assets/images/specialist-photo-1.png'),
     isFavorite: false,
     isHighlighted: false,
   },
@@ -226,7 +226,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '6',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-2.png'),
+    image: require('../../../assets/images/specialist-photo-2.png'),
     isFavorite: false,
     isHighlighted: false,
   },
@@ -234,7 +234,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '7',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/author-1.png'),
+    image: require('../../../assets/images/avatar-user-default.png'),
     isFavorite: false,
     isHighlighted: false,
   },
@@ -242,7 +242,7 @@ export const datingProfiles: DatingProfileItem[] = [
     id: '8',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-1.png'),
+    image: require('../../../assets/images/specialist-photo-1.png'),
     isFavorite: false,
     isHighlighted: false,
   },
@@ -256,7 +256,7 @@ export const datingEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: true,
   },
   {
@@ -266,7 +266,7 @@ export const datingEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/banner-humor.png'),
+    image: require('../../../assets/images/humor-card-banner.png'),
     isFavorite: true,
   },
   {
@@ -276,7 +276,7 @@ export const datingEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: true,
   },
   {
@@ -286,7 +286,7 @@ export const datingEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/banner-humor.png'),
+    image: require('../../../assets/images/humor-card-banner.png'),
     isFavorite: true,
   },
   {
@@ -296,7 +296,7 @@ export const datingEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: true,
   },
   {
@@ -306,7 +306,7 @@ export const datingEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/banner-humor.png'),
+    image: require('../../../assets/images/humor-card-banner.png'),
     isFavorite: true,
   },
   {
@@ -316,7 +316,7 @@ export const datingEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: true,
   },
 ];
@@ -329,7 +329,7 @@ export const datingFavoriteEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: true,
   },
   {
@@ -339,7 +339,7 @@ export const datingFavoriteEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/banner-humor.png'),
+    image: require('../../../assets/images/humor-card-banner.png'),
     isFavorite: true,
   },
   {
@@ -349,7 +349,7 @@ export const datingFavoriteEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: true,
   },
   {
@@ -359,7 +359,7 @@ export const datingFavoriteEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/banner-humor.png'),
+    image: require('../../../assets/images/humor-card-banner.png'),
     isFavorite: true,
   },
   {
@@ -369,7 +369,7 @@ export const datingFavoriteEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: true,
   },
   {
@@ -379,7 +379,7 @@ export const datingFavoriteEvents: DatingEventItem[] = [
     title: 'Название',
     city: 'Город проведения',
     views: 28,
-    image: require('../../../assets/images/banner-humor.png'),
+    image: require('../../../assets/images/humor-card-banner.png'),
     isFavorite: true,
   },
 ];
@@ -391,7 +391,7 @@ export const datingBooks: DatingBookItem[] = [
     typeLabel: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: false,
   },
   {
@@ -400,7 +400,7 @@ export const datingBooks: DatingBookItem[] = [
     typeLabel: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: false,
   },
   {
@@ -409,7 +409,7 @@ export const datingBooks: DatingBookItem[] = [
     typeLabel: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: false,
   },
   {
@@ -418,7 +418,7 @@ export const datingBooks: DatingBookItem[] = [
     typeLabel: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: false,
   },
   {
@@ -427,7 +427,7 @@ export const datingBooks: DatingBookItem[] = [
     typeLabel: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: false,
   },
   {
@@ -436,7 +436,7 @@ export const datingBooks: DatingBookItem[] = [
     typeLabel: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     isFavorite: false,
   },
 ];
@@ -449,10 +449,10 @@ export const datingProfileDetailsMock = {
   city: 'Москва',
   isFavorite: true,
   photos: [
-    require('../../../assets/images/author-1.png'),
-    require('../../../assets/images/author-1.png'),
-    require('../../../assets/images/author-1.png'),
-    require('../../../assets/images/author-1.png'),
+    require('../../../assets/images/avatar-user-default.png'),
+    require('../../../assets/images/avatar-user-default.png'),
+    require('../../../assets/images/avatar-user-default.png'),
+    require('../../../assets/images/avatar-user-default.png'),
   ],
   about:
     'Если вы спросите у психологов: «За что вам платят?». Многие ответят: «За инсайт». Это значит за то, что во время сессии вы узнаете о себе, что-то новое. Мне клиенты платят не за инсайты, не за мое время и знания, а за конкретное изменение, на которое они решатся в результате нашей работы.',
@@ -533,7 +533,7 @@ export const datingProfileDetailsMock = {
 export const datingUserProfileMock = {
   name: 'Имя',
   surname: 'Фамилия',
-  avatar: require('../../../assets/images/author-1.png'),
+  avatar: require('../../../assets/images/avatar-user-default.png'),
 };
 
 export const datingProfileMenuItems = [
@@ -582,7 +582,7 @@ export const datingCollectionsProfiles: DatingCollectionProfileItem[] = [
     tab: 'likesMe',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/author-1.png'),
+    image: require('../../../assets/images/avatar-user-default.png'),
     isLiked: true,
     isDeleted: false,
   },
@@ -591,7 +591,7 @@ export const datingCollectionsProfiles: DatingCollectionProfileItem[] = [
     tab: 'likesMe',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-1.png'),
+    image: require('../../../assets/images/specialist-photo-1.png'),
     isLiked: true,
     isDeleted: true,
   },
@@ -600,7 +600,7 @@ export const datingCollectionsProfiles: DatingCollectionProfileItem[] = [
     tab: 'likesMe',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-2.png'),
+    image: require('../../../assets/images/specialist-photo-2.png'),
     isLiked: true,
     isDeleted: false,
   },
@@ -609,7 +609,7 @@ export const datingCollectionsProfiles: DatingCollectionProfileItem[] = [
     tab: 'likesMe',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/author-1.png'),
+    image: require('../../../assets/images/avatar-user-default.png'),
     isLiked: true,
     isDeleted: false,
   },
@@ -618,7 +618,7 @@ export const datingCollectionsProfiles: DatingCollectionProfileItem[] = [
     tab: 'myLikes',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-1.png'),
+    image: require('../../../assets/images/specialist-photo-1.png'),
     isLiked: true,
     isDeleted: false,
   },
@@ -627,7 +627,7 @@ export const datingCollectionsProfiles: DatingCollectionProfileItem[] = [
     tab: 'guests',
     name: 'Анна',
     age: 25,
-    image: require('../../../assets/images/specialist-2.png'),
+    image: require('../../../assets/images/specialist-photo-2.png'),
     isLiked: true,
     isDeleted: false,
   },
@@ -727,7 +727,7 @@ export const initialDatingForm = {
   },
 };
 
-export const mockDatingPhoto = require('../../../assets/images/placeholder.png');
+export const mockDatingPhoto = require('../../../assets/images/image-placeholder.png');
 
 export const datingEventDetailsMock: DatingEventDetailsMock = {
   id: '1',
@@ -736,7 +736,7 @@ export const datingEventDetailsMock: DatingEventDetailsMock = {
   dateTime: 'Дата и время проведения',
   address: 'г. Москва, Красная Площадь, 1',
   participants: 'Кол-во участников',
-  image: require('../../../assets/images/dating-event-1.png'),
+  image: require('../../../assets/images/dating-event-card-1.png'),
   isFavorite: false,
   description:
     'Если вы спросите у психологов: «За что вам платят?». Многие ответят: «За инсайт». Это значит за то, что во время сессии вы узнаете о себе, что-то новое. Мне клиенты платят не за инсайты, не за мое время и знания, а за конкретное изменение, на которое они решатся в результате нашей работы.',
@@ -745,7 +745,7 @@ export const datingEventDetailsMock: DatingEventDetailsMock = {
   organizer: {
     name: 'Мария Лапина',
     role: 'Организатор',
-    avatar: require('../../../assets/images/author-maria.png'),
+    avatar: require('../../../assets/images/avatar-maria.png'),
   },
 };
 
@@ -801,3 +801,4 @@ export const datingOutgoingInvites: DatingOutgoingInvite[] = [
 export const datingMapMock = {
   image: require('../../../assets/images/dating-map-moscow.png'),
 };
+

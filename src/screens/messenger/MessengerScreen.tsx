@@ -95,6 +95,7 @@ function ChatListItem({
 
       <View style={styles.chatContent}>
         <Text style={styles.chatName}>{chat.name}</Text>
+        <Text style={styles.supportRole}>{chat.role}</Text>
         <Text style={styles.chatMessage} numberOfLines={1}>
           {chat.lastMessage}
         </Text>
@@ -160,15 +161,15 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 20,
-    fontSize: 30,
+    fontSize: 24,
     lineHeight: 36,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: '#3A0718',
   },
   searchContainer: {
-    marginTop: 26,
-    height: 52,
-    borderRadius: 26,
+    marginTop: 16,
+    height: 44,
+    borderRadius: 360,
     borderWidth: 1,
     borderColor: '#C8C8C8',
     backgroundColor: '#FFFFFF',
@@ -188,20 +189,20 @@ const styles = StyleSheet.create({
     right: 18,
   },
   chatList: {
-    marginTop: 24,
+    marginTop: 20,
   },
   supportCard: {
     height: 94,
     borderRadius: 12,
-    backgroundColor: '#FFF2F6',
+    backgroundColor: '#F5F9FD',
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
   },
   supportAvatar: {
-    width: 54,
-    height: 54,
+    width: 44,
+    height: 44,
     borderRadius: 27,
     backgroundColor: '#F50057',
     marginRight: 14,
@@ -211,8 +212,8 @@ const styles = StyleSheet.create({
   },
   supportAvatarText: {
     color: '#FFFFFF',
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
   },
   avatarImage: {
     width: '100%',
@@ -225,14 +226,14 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   chatName: {
-    fontSize: 17,
+    fontSize: 14,
     lineHeight: 21,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: '#3A0718',
   },
   supportRole: {
     marginTop: 1,
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 18,
     color: '#B0B0B0',
   },
@@ -250,34 +251,36 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   supportTime: {
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: '600',
     color: '#3A0718',
   },
   unreadBadge: {
     minWidth: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: '#F50057',
+    backgroundColor: '#05728F',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 6,
   },
   unreadText: {
-    fontSize: 12,
+    fontSize: 10,
     ...typography.Inter[700],
     color: '#FFFFFF',
   },
   chatRow: {
-    minHeight: 96,
+    minHeight: 92,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#EFE7EA',
     paddingVertical: 18,
+    paddingHorizontal: 16,
   },
   defaultAvatar: {
-    width: 54,
-    height: 54,
+    width: 44,
+    height: 44,
     borderRadius: 27,
     marginRight: 14,
     backgroundColor: '#F3F3F3',
@@ -292,7 +295,7 @@ const styles = StyleSheet.create({
   emptyText: {
     marginTop: 40,
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 14,
     color: '#8A8A8A',
   },
 });

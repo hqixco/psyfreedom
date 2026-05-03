@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 6,
   },
   backButton: {
     width: 28,

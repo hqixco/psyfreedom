@@ -1,6 +1,9 @@
-import { Image, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Image, type ImageSourcePropType, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import type { ArticleTopic } from '../../data/journalData';
+
+const defaultTopicBackground = require('../../../assets/images/coach-category-card-bg.png');
+const parentsTopicBackground = require('../../../assets/article-topic-parents-bg.jpg');
 
 type PopularArticleTopicsProps = {
   topics: ArticleTopic[];
@@ -23,7 +26,7 @@ export function PopularArticleTopics({ topics, onPressTopic }: PopularArticleTop
                 <Image source={require('../../../assets/images/arrow-forward.svg')} style={styles.arrowIcon} />
               </View>
               <Image
-                source={require('../../../assets/images/coach-category-bg.png')}
+                source={getTopicBackground(topic)}
                 style={styles.decor}
                 resizeMode="cover"
               />
@@ -33,6 +36,14 @@ export function PopularArticleTopics({ topics, onPressTopic }: PopularArticleTop
       </ScrollView>
     </View>
   );
+}
+
+function getTopicBackground(topic: ArticleTopic): ImageSourcePropType {
+  if (topic.id.startsWith('parents')) {
+    return parentsTopicBackground;
+  }
+
+  return defaultTopicBackground;
 }
 
 const styles = StyleSheet.create({
@@ -90,3 +101,4 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
 });
+

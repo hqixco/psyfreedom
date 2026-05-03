@@ -31,21 +31,21 @@ export function ProductPriceBlock({
 const styles = StyleSheet.create({
   price: {
     marginTop: 16,
-    fontSize: 28,
+    fontSize: 24,
     lineHeight: 34,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primary,
   },
   title: {
     marginTop: 8,
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 30,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   category: {
     marginTop: 4,
-    fontSize: 15,
+    fontSize: 14,
     color: colors.muted,
   },
   badge: {
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFE9EF',
   },
   badgeText: {
-    fontSize: 13,
-    ...typography.Inter[700],
+    fontSize: 12,
+    ...typography.Inter[400],
     color: '#FF5F7D',
   },
 });

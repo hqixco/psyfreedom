@@ -13,8 +13,8 @@ type EditProfileScreenProps = {
   onSave: (profile: EditableProfile) => void;
 };
 
-const mockPhoto = require('../../../assets/images/author-maria.png');
-const mockReplacementPhoto = require('../../../assets/images/specialist-1.png');
+const mockPhoto = require('../../../assets/images/avatar-maria.png');
+const mockReplacementPhoto = require('../../../assets/images/specialist-photo-1.png');
 
 export function EditProfileScreen({ profile, onBack, onSave }: EditProfileScreenProps) {
   const insets = useSafeAreaInsets();
@@ -98,3 +98,4 @@ const styles = StyleSheet.create({
     marginBottom: 28,
   },
 });
+

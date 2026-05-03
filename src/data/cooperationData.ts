@@ -50,25 +50,25 @@ export const cooperationStories: CooperationStory[] = [
     id: '1',
     title: 'После выхода на\nPsyfreedom я смогла\nисполнить свою мечту!',
     subtitle: 'После выхода на Psyfreedom я смогла\nисполнить свою мечту!',
-    image: require('../../assets/images/author-maria.png'),
+    image: require('../../assets/images/avatar-maria.png'),
   },
   {
     id: '2',
     title: 'После выхода на\nPsyfreedom я смогла\nисполнить свою мечту!',
     subtitle: 'После выхода на Psyfreedom я смогла\nисполнить свою мечту!',
-    image: require('../../assets/images/specialist-1.png'),
+    image: require('../../assets/images/specialist-photo-1.png'),
   },
   {
     id: '3',
     title: 'После выхода на\nPsyfreedom я смогла\nисполнить свою мечту!',
     subtitle: 'После выхода на Psyfreedom я смогла\nисполнить свою мечту!',
-    image: require('../../assets/images/specialist-2.png'),
+    image: require('../../assets/images/specialist-photo-2.png'),
   },
   {
     id: '4',
     title: 'После выхода на\nPsyfreedom я смогла\nисполнить свою мечту!',
     subtitle: 'После выхода на Psyfreedom я смогла\nисполнить свою мечту!',
-    image: require('../../assets/images/help-specialist.png'),
+    image: require('../../assets/images/specialist-help-banner.png'),
   },
 ];
 
@@ -111,20 +111,21 @@ export const cooperationBanners: CooperationBannerItem[] = [
     title: 'Аренда кабинета',
     description: 'Здесь вы можете найти информацию\nпо аренде помещений для встреч\nс клиентами',
     variant: 'blue',
-    image: require('../../assets/images/map-moscow.jpg'),
+    image: require('../../assets/images/location-map-moscow.jpg'),
   },
   {
     id: 'productReview',
     title: 'Разобрать продукт',
     description: 'Здесь вы можете найти информацию\nпо аренде помещений для встреч\nс клиентами',
     variant: 'mint',
-    image: require('../../assets/images/book-1.png'),
+    image: require('../../assets/images/partner-book-cover.png'),
   },
   {
     id: 'earn',
     title: 'Как начать зарабатывать\nс платформой',
     description: 'Здесь вы можете найти информацию\nпо аренде помещений для встреч\nс клиентами',
     variant: 'lavender',
-    image: require('../../assets/images/help-specialist.png'),
+    image: require('../../assets/images/specialist-help-banner.png'),
   },
 ];
+

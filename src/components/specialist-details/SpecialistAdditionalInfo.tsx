@@ -13,8 +13,8 @@ type SpecialistAdditionalInfoProps = {
 };
 
 const infoGallery = [
-  require('../../../assets/WWDvTdjDYzFBRH9tuRdsQuoWph7EXREpHVWkpHSj_960_720.png'),
-  require('../../../assets/eKR5o7rg4Y40ooosviwY8JrVqlmzlIQEKvuRbjMP_960_720.png'),
+  require('../../../assets/specialist-gallery-image-1.png'),
+  require('../../../assets/specialist-gallery-image-2.png'),
 ];
 
 export function SpecialistAdditionalInfo({
@@ -35,7 +35,11 @@ export function SpecialistAdditionalInfo({
     <>
       <View style={styles.section}>
         <Text style={styles.title}>Дополнительная информация</Text>
-        <View style={styles.tabsRow}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.tabsRow}
+        >
           {tabs.map((tab) => {
             const active = activeTab === tab.key;
             return (
@@ -50,7 +54,7 @@ export function SpecialistAdditionalInfo({
               </Pressable>
             );
           })}
-        </View>
+        </ScrollView>
 
         {activeTab === 'education'
           ? education.map((item) => (
@@ -63,22 +67,21 @@ export function SpecialistAdditionalInfo({
             ))
           : null}
 
-        {activeTab === 'certificates'
-          ? certificates.map((item, index) => (
-              <View key={`cert-${index}`} style={styles.certificateItem}>
-                <Pressable onPress={() => setPreviewImage(item)}>
-                  <Image source={item} style={styles.certificateImage} resizeMode="cover" />
-                </Pressable>
-                <GalleryRow onOpenImage={setPreviewImage} />
-              </View>
-            ))
-          : null}
+        {activeTab === 'certificates' ? (
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.mediaList}>
+            {certificates.map((item, index) => (
+              <Pressable key={`cert-${index}`} onPress={() => setPreviewImage(item)}>
+                <Image source={item} style={styles.sliderImage} resizeMode="cover" />
+              </Pressable>
+            ))}
+          </ScrollView>
+        ) : null}
 
         {activeTab === 'media' ? (
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.mediaList}>
             {media.map((item, index) => (
               <Pressable key={`media-${index}`} onPress={() => setPreviewImage(item)}>
-                <Image source={item} style={styles.mediaImage} resizeMode="cover" />
+                <Image source={item} style={styles.sliderImage} resizeMode="cover" />
               </Pressable>
             ))}
           </ScrollView>
@@ -111,7 +114,7 @@ function GalleryRow({ onOpenImage }: { onOpenImage: (image: ImageSourcePropType)
 
 const styles = StyleSheet.create({
   section: {
-    marginTop: 30,
+    marginTop: 70,
     marginHorizontal: 16,
   },
   title: {
@@ -121,17 +124,17 @@ const styles = StyleSheet.create({
   },
   tabsRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 14,
+    marginTop: 30,
+    marginBottom: 10,
+    paddingRight: 16,
   },
   tab: {
-    height: 34,
-    borderRadius: 17,
-    paddingHorizontal: 16,
+    height: 43,
+    borderRadius: 360,
+    paddingHorizontal: 21,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
-    marginBottom: 8,
   },
   activeTab: {
     backgroundColor: colors.primary,
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 16,
   },
   activeText: {
     color: colors.white,
@@ -158,16 +161,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
   },
-  certificateItem: {
-    marginTop: 14,
-    paddingBottom: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
-  },
   years: {
-    fontSize: 14,
-    ...typography.Inter[700],
-    color: colors.primary,
+    fontSize: 16,
+    ...typography.Inter[600],
+    marginBottom: 15,
+    color: colors.primaryDark,
   },
   educationText: {
     marginTop: 4,
@@ -175,14 +173,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     color: colors.text,
   },
-  certificateImage: {
-    width: '100%',
-    height: 180,
-    borderRadius: 12,
-    backgroundColor: colors.cardLight,
-  },
   galleryRow: {
-    paddingTop: 12,
+    paddingTop: 20,
   },
   galleryImage: {
     width: 148,
@@ -194,7 +186,7 @@ const styles = StyleSheet.create({
   mediaList: {
     paddingTop: 14,
   },
-  mediaImage: {
+  sliderImage: {
     width: 180,
     height: 110,
     borderRadius: 8,

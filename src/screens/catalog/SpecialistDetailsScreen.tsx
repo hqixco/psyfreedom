@@ -127,10 +127,7 @@ export function SpecialistDetailsScreen({
         onSelectSpecialization={setSpecialization}
         onSelectMeetingType={setMeetingType}
         onClose={() => setIsAppointmentOpen(false)}
-        onSubmit={() => {
-          setIsAppointmentOpen(false);
-          setIsPaymentSheetOpen(true);
-        }}
+        onSubmit={() => {}}
       />
 
       <ConsultationPaymentSheet

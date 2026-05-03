@@ -5,10 +5,11 @@ import { FavoriteCard } from './FavoriteCard';
 type FavoritesGridProps = {
   items: FavoriteItem[];
   onPressItem: (item: FavoriteItem) => void;
-  onRemoveItem: (id: string) => void;
+  onToggleHeart: (id: string) => void;
+  heartMutedMap: Record<string, boolean>;
 };
 
-export function FavoritesGrid({ items, onPressItem, onRemoveItem }: FavoritesGridProps) {
+export function FavoritesGrid({ items, onPressItem, onToggleHeart, heartMutedMap }: FavoritesGridProps) {
   const { width } = useWindowDimensions();
   const cardGap = 10;
   const cardWidth = (width - 16 * 2 - cardGap) / 2;
@@ -21,7 +22,8 @@ export function FavoritesGrid({ items, onPressItem, onRemoveItem }: FavoritesGri
           item={item}
           width={cardWidth}
           onPress={onPressItem}
-          onRemove={onRemoveItem}
+          isHeartMuted={heartMutedMap[item.id] ?? false}
+          onToggleHeart={onToggleHeart}
         />
       ))}
     </View>
@@ -31,7 +33,7 @@ export function FavoritesGrid({ items, onPressItem, onRemoveItem }: FavoritesGri
 const styles = StyleSheet.create({
   grid: {
     marginHorizontal: 16,
-    marginTop: 4,
+    marginTop: 22,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

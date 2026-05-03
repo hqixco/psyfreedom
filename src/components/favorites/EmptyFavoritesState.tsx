@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 type EmptyFavoritesStateProps = {
@@ -8,10 +8,10 @@ type EmptyFavoritesStateProps = {
 export function EmptyFavoritesState({ onOpenCatalog }: EmptyFavoritesStateProps) {
   return (
     <View style={styles.container}>
+      <Image source={require('../../../assets/favorites-empty-heart.svg')} style={styles.icon} />
       <Text style={styles.title}>У вас пока нет сохраненных{'\n'}услуг и товаров</Text>
       <Text style={styles.description}>
-        Нажимайте на ♡ и добавляйте{'\n'}понравившиеся услуги и товары{'\n'}в подборки, чтобы не
-        потерять
+        Нажимайте на ♡ и добавляйте{'\n'}понравившиеся услуги и товары{'\n'}в подборки, чтобы не потерять
       </Text>
 
       <Pressable style={styles.button} onPress={onOpenCatalog}>
@@ -29,32 +29,37 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     marginTop: 120,
   },
+  icon: {
+    width: 27,
+    height: 25,
+    marginBottom: 15,
+  },
   title: {
-    fontSize: 22,
-    lineHeight: 28,
-    ...typography.Inter[700],
+    fontSize: 16,
+    lineHeight: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
     textAlign: 'center',
   },
   description: {
-    marginTop: 18,
-    fontSize: 15,
-    lineHeight: 21,
+    marginTop: 16,
+    fontSize: 14,
+    lineHeight: 18,
     color: colors.muted,
     textAlign: 'center',
   },
   button: {
-    marginTop: 32,
-    height: 52,
+    marginTop: 28,
+    height: 41,
     borderRadius: 26,
     backgroundColor: colors.primary,
-    paddingHorizontal: 34,
+    paddingHorizontal: 60,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonText: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.white,
   },
 });

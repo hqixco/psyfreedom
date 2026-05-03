@@ -10,8 +10,6 @@ import { ProductCharacteristicsSection } from '../../components/product-details/
 import { ProductCompactFooter } from '../../components/product-details/ProductCompactFooter';
 import { ProductCourseProgramSection } from '../../components/product-details/ProductCourseProgramSection';
 import { ProductHero } from '../../components/product-details/ProductHero';
-import { ProductPromoInfoSection } from '../../components/product-details/ProductPromoInfoSection';
-import { ProductRelatedSection } from '../../components/product-details/ProductRelatedSection';
 import { ProductReviewsSection } from '../../components/product-details/ProductReviewsSection';
 import { ProductStickyActionBar } from '../../components/product-details/ProductStickyActionBar';
 import { ReviewSheet } from '../../components/specialist-details/ReviewSheet';
@@ -29,6 +27,7 @@ type TestView = 'details' | 'question' | 'result';
 export function ProductDetailsScreen({
   bottomTabsHeight,
   onBack,
+  onOpenInstituteDetails,
   onOpenPaymentScreen,
   onOpenProductDetails,
   onOpenSpecialistDetails,
@@ -41,12 +40,18 @@ export function ProductDetailsScreen({
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const details = getProductDetailsById(product.id);
   const isTest = details.variant === 'testPaid' || details.variant === 'testFree';
+  const isBuyAction =
+    details.variant === 'courseCompact' ||
+    details.variant === 'courseFull' ||
+    details.variant === 'book' ||
+    details.variant === 'testPaid' ||
+    (details.variant === 'promoCode' && details.price !== 'Бесплатно');
   const stickyBottomOffset = 0;
   const stickyBottomPadding = 10 + insets.bottom;
   const contentBottomPadding = 120 + insets.bottom;
   const linkedSpecialist = specialists.find((item) => item.id === '1');
   const linkedAuthor =
-    details.variant === 'courseCompact' || details.variant === 'courseFull'
+    (details.variant === 'courseCompact' || details.variant === 'courseFull') && !details.author?.preserveAuthor
       ? {
           name: linkedSpecialist?.name ?? details.author?.name ?? 'Анна Смирнова',
           role: linkedSpecialist?.specialization ?? details.author?.role ?? 'Психолог',
@@ -56,8 +61,16 @@ export function ProductDetailsScreen({
           image: linkedSpecialist?.image ?? details.author?.image,
         }
       : details.author;
-  const detailsWithCardImage = { ...details, image: product.image };
+  const handleAuthorPress = (author: NonNullable<typeof details.author>) => {
+    if (author.kind === 'institute') {
+      onOpenInstituteDetails?.(author.instituteId ?? '1');
+      return;
+    }
 
+    if (author.specialistId) {
+      onOpenSpecialistDetails(author.specialistId);
+    }
+  };
   useEffect(() => {
     if (!setBottomTabsVisible) {
       return;
@@ -73,6 +86,8 @@ export function ProductDetailsScreen({
   const handleHeaderRightPress = () => {
     console.log('share product', details.id);
   };
+  const stickyLabel = isBuyAction ? 'Купить' : details.actionLabel ?? `Купить ${details.price}`;
+  const stickyPriceLabel = isBuyAction ? details.actionPrice ?? details.price : undefined;
 
   if (isTest && testView === 'question') {
     return (
@@ -112,9 +127,7 @@ export function ProductDetailsScreen({
             summary={testResult.summary}
             descriptions={testResult.descriptions}
             author={testResult.author}
-            reviews={testResult.reviews}
             onRetry={() => setTestView('question')}
-            onOpenReview={() => setIsReviewOpen(true)}
           />
           <ReviewSheet visible={isReviewOpen} onClose={() => setIsReviewOpen(false)} />
         </View>
@@ -138,13 +151,13 @@ export function ProductDetailsScreen({
             </Pressable>
           </View>
 
-          <ProductHero product={detailsWithCardImage} />
+          <ProductHero product={details} />
 
           {details.variant === 'courseCompact' ? (
             <>
               <ProductAboutSection title="О товаре" text={details.description} compact />
               <ProductCharacteristicsSection items={details.characteristics} />
-              <ProductAuthorSection author={linkedAuthor} onPressAuthor={onOpenSpecialistDetails} />
+              <ProductAuthorSection author={linkedAuthor} onPressAuthor={handleAuthorPress} />
               <ProductReviewsSection
                 rating={details.rating}
                 reviewsCount={details.reviewsCount}
@@ -159,7 +172,7 @@ export function ProductDetailsScreen({
             <>
               <ProductAboutSection title="О товаре" text={details.description} />
               <ProductCharacteristicsSection items={details.characteristics} />
-              <ProductAuthorSection author={linkedAuthor} onPressAuthor={onOpenSpecialistDetails} />
+              <ProductAuthorSection author={linkedAuthor} onPressAuthor={handleAuthorPress} />
               <ProductReviewsSection
                 rating={details.rating}
                 reviewsCount={details.reviewsCount}
@@ -171,10 +184,7 @@ export function ProductDetailsScreen({
 
           {details.variant === 'promoCode' ? (
             <>
-              <ProductPromoInfoSection items={details.promoInfo} />
-              <ProductAboutSection title="Условия использования" text={details.terms} />
-              <ProductAboutSection title="Описание" text={details.description} />
-              <ProductAuthorSection author={details.author} onPressAuthor={onOpenSpecialistDetails} />
+              <ProductAuthorSection author={details.author} onPressAuthor={handleAuthorPress} />
             </>
           ) : null}
 
@@ -182,21 +192,20 @@ export function ProductDetailsScreen({
             <>
               <ProductAboutSection title="О книге" text={details.description} />
               <ProductBookInfoSection items={details.bookInfo} />
-              <ProductAuthorSection author={details.author} onPressAuthor={onOpenSpecialistDetails} />
+              <ProductAuthorSection author={details.author} onPressAuthor={handleAuthorPress} />
               <ProductReviewsSection
                 rating={details.rating}
                 reviewsCount={details.reviewsCount}
                 reviews={details.reviews}
                 onOpenReview={() => setIsReviewOpen(true)}
               />
-              <ProductRelatedSection items={details.relatedItems} onPressItem={onOpenProductDetails} />
             </>
           ) : null}
 
           {details.variant === 'testPaid' || details.variant === 'testFree' ? (
             <>
               <ProductAboutSection title="Описание товара" text={details.description} />
-              <ProductAuthorSection author={details.author} onPressAuthor={onOpenSpecialistDetails} />
+              <ProductAuthorSection author={details.author} onPressAuthor={handleAuthorPress} />
             </>
           ) : null}
         </ScrollView>
@@ -204,8 +213,8 @@ export function ProductDetailsScreen({
         <ProductStickyActionBar
           bottomOffset={stickyBottomOffset}
           bottomPadding={stickyBottomPadding}
-          label={details.actionLabel ?? `Купить ${details.price}`}
-          priceLabel={details.variant === 'testPaid' ? details.actionPrice : undefined}
+          label={stickyLabel}
+          priceLabel={stickyPriceLabel}
           note={details.actionNote}
           showFavorite
           favorite={favorite}

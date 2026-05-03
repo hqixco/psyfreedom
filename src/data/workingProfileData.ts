@@ -1,12 +1,12 @@
 export const workingProfileMock = {
   mainProfile: {
     title: 'Основной',
-    avatar: require('../../assets/images/author-maria.png'),
+    avatar: require('../../assets/images/avatar-maria.png'),
   },
   workProfile: {
     title: 'Рабочий',
     selectedLabel: 'Выбран',
-    avatar: require('../../assets/images/author-maria.png'),
+    avatar: require('../../assets/images/avatar-maria.png'),
   },
   bonuses: {
     amount: 200,
@@ -46,3 +46,4 @@ export const workingProfileInfoMenu = [
   { id: 'faq', title: 'Вопрос-ответ' },
   { id: 'feedback', title: 'Обратная связь' },
 ] as const;
+

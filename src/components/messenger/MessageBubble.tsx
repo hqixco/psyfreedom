@@ -1,4 +1,13 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  ImageStyle,
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { colors } from '../../constants/theme';
 import { ChatMessage } from '../../data/messengerData';
 import { ImageMessage } from './ImageMessage';
@@ -7,9 +16,31 @@ type MessageBubbleProps = {
   message: Extract<ChatMessage, { type: 'text' | 'image' | 'imageWithText' }>;
   isSelected?: boolean;
   onLongPress?: () => void;
+  wrapperStyle?: StyleProp<ViewStyle>;
+  bubbleStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  selectedWrapperStyle?: StyleProp<ViewStyle>;
+  imageRowStyle?: StyleProp<ViewStyle>;
+  imageContainerStyle?: StyleProp<ViewStyle>;
+  imageStyle?: StyleProp<ImageStyle>;
+  captionStyle?: StyleProp<TextStyle>;
+  selectedImageRowStyle?: StyleProp<ViewStyle>;
 };
 
-export function MessageBubble({ message, isSelected = false, onLongPress }: MessageBubbleProps) {
+export function MessageBubble({
+  message,
+  isSelected = false,
+  onLongPress,
+  wrapperStyle,
+  bubbleStyle,
+  textStyle,
+  selectedWrapperStyle,
+  imageRowStyle,
+  imageContainerStyle,
+  imageStyle,
+  captionStyle,
+  selectedImageRowStyle,
+}: MessageBubbleProps) {
   if (message.type === 'image' || message.type === 'imageWithText') {
     return (
       <ImageMessage
@@ -18,6 +49,11 @@ export function MessageBubble({ message, isSelected = false, onLongPress }: Mess
         text={message.type === 'imageWithText' ? message.text : undefined}
         isSelected={isSelected}
         onLongPress={onLongPress}
+        rowStyle={imageRowStyle}
+        imageContainerStyle={imageContainerStyle}
+        imageStyle={imageStyle}
+        captionStyle={captionStyle}
+        selectedRowStyle={selectedImageRowStyle}
       />
     );
   }
@@ -30,6 +66,8 @@ export function MessageBubble({ message, isSelected = false, onLongPress }: Mess
         styles.wrapper,
         isMe ? styles.wrapperMe : styles.wrapperOther,
         isSelected ? styles.selectedWrapper : null,
+        wrapperStyle,
+        isSelected ? selectedWrapperStyle : null,
       ]}
     >
       <Pressable
@@ -38,9 +76,10 @@ export function MessageBubble({ message, isSelected = false, onLongPress }: Mess
         style={[
           styles.bubble,
           isMe ? styles.bubbleMe : styles.bubbleOther,
+          bubbleStyle,
         ]}
       >
-        <Text style={styles.text}>{message.text}</Text>
+        <Text style={[styles.text, textStyle]}>{message.text}</Text>
       </Pressable>
     </View>
   );

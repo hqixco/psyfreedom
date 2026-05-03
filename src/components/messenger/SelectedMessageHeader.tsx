@@ -1,6 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import { BackChevronIcon } from '../icons/BackChevronIcon';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 type SelectedMessageHeaderProps = {
@@ -17,10 +16,10 @@ export function SelectedMessageHeader({ onClose, onEdit, onDelete }: SelectedMes
       </Pressable>
       <Text style={styles.title}>Выбрано сообщение</Text>
       <Pressable onPress={onEdit} style={styles.editButton}>
-        <Ionicons name="create-outline" size={24} color={colors.primaryDark} />
+        <Image source={require('../../../assets/chat-edit-icon.svg')} style={styles.editIcon} />
       </Pressable>
-      <Pressable onPress={onDelete}>
-        <Ionicons name="trash-outline" size={24} color="#F02F6B" />
+      <Pressable onPress={onDelete} style={styles.deleteButton}>
+        <Image source={require('../../../assets/chat-delete-icon.svg')} style={styles.deleteIcon} />
       </Pressable>
     </View>
   );
@@ -40,11 +39,25 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 22,
-    ...typography.Inter[700],
+    fontSize: 18,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   editButton: {
     marginRight: 20,
+  },
+  deleteButton: {
+    width: 24,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  editIcon: {
+    width: 24,
+    height: 24,
+  },
+  deleteIcon: {
+    width: 24,
+    height: 24,
   },
 });

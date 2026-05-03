@@ -21,10 +21,10 @@ export const announcementChips: { id: AnnouncementCategory; title: string }[] = 
   { id: 'video', title: 'Видеоурок (1)' },
 ];
 
-const announcementBook = require('../../assets/photo.png');
-const announcementPromo = require('../../assets/images/promo-1.png');
+const announcementBook = require('../../assets/product-placeholder-square.png');
+const announcementPromo = require('../../assets/images/promo-card-default.png');
 const announcementGame = require('../../assets/images/product-test-character.png');
-const announcementVideo = require('../../assets/images/video-1.png');
+const announcementVideo = require('../../assets/images/video-card-cover-default.png');
 
 const defaultDescription =
   'Если вы спросите у психологов: «За что вам платят?». Многие ответят: «За инсайт». Это значит за то, что во время сессии вы узнаете о себе что-то новое. Мне клиенты платят не за инсайты, не за мое время и знания, а за конкретное изменение, на которое они решаются в результате нашей работы.';
@@ -91,3 +91,4 @@ export const announcements: Announcement[] = [
     image: announcementVideo,
   },
 ];
+

@@ -19,7 +19,7 @@ export function TopProductsSection({ products, onPressProduct, favoriteMap, onTo
           <View key={item.id} style={index === products.length - 1 ? undefined : styles.itemSpacer}>
             <ProductCard
               item={item}
-              width={174}
+              width={181}
               imageHeight={180}
               variant="top10"
               isFavorite={favoriteMap[item.id] ?? false}

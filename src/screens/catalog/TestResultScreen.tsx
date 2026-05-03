@@ -14,9 +14,7 @@ export function TestResultScreen({ onRetry }: TestResultScreenProps) {
       summary={testResult.summary}
       descriptions={testResult.descriptions}
       author={testResult.author}
-      reviews={testResult.reviews}
       onRetry={onRetry}
-      onOpenReview={() => console.log('open review sheet')}
     />
   );
 }

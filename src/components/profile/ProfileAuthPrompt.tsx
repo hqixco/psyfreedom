@@ -27,30 +27,31 @@ export function ProfileAuthPrompt({ onLogin, onRegister }: ProfileAuthPromptProp
 const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
-    fontSize: 28,
+    fontSize: 24,
     lineHeight: 34,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   description: {
     marginTop: 10,
     textAlign: 'center',
-    fontSize: 16,
-    lineHeight: 20,
+    fontSize: 12,
+    lineHeight: 15,
     color: colors.primaryDark,
   },
   loginButton: {
     marginTop: 24,
-    height: 48,
+    width: 243,
+    height: 41,
     borderRadius: 24,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 12,
+    marginHorizontal: 'auto',
   },
   loginButtonText: {
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.white,
   },
   secondaryText: {
@@ -61,9 +62,10 @@ const styles = StyleSheet.create({
   },
   registerLink: {
     marginTop: 6,
+    marginBottom: 20,
     textAlign: 'center',
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

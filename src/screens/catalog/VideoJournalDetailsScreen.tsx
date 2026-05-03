@@ -35,7 +35,14 @@ export function VideoJournalDetailsScreen({ item, onBack }: VideoJournalDetailsS
         </View>
 
         <VideoAuthorSection author={item.author} />
-        <FavoriteButton isFavorite={isFavorite} onPress={() => setIsFavorite((value) => !value)} />
+        <FavoriteButton
+          isFavorite={isFavorite}
+          onPress={() => setIsFavorite((value) => !value)}
+          buttonStyle={styles.favoriteButton}
+          activeButtonStyle={styles.favoriteButtonActive}
+          iconStyle={styles.favoriteIcon}
+          textStyle={styles.favoriteText}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -51,18 +58,18 @@ const styles = StyleSheet.create({
   },
   info: {
     marginHorizontal: 16,
-    marginTop: 18,
+    marginTop: 13,
   },
   title: {
-    fontSize: 24,
-    lineHeight: 30,
-    ...typography.Inter[700],
+    fontSize: 20,
+    lineHeight: 24,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   topicChip: {
     marginTop: 10,
     alignSelf: 'flex-start',
-    height: 26,
+    height: 18,
     borderRadius: 13,
     backgroundColor: colors.cardLight,
     paddingHorizontal: 12,
@@ -70,14 +77,42 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   topicText: {
-    fontSize: 13,
-    ...typography.Inter[500],
+    fontSize: 12,
+    lineHeight: 18,
+    ...typography.Inter[400],
     color: colors.primaryDark,
   },
   description: {
-    marginTop: 36,
-    fontSize: 19,
-    lineHeight: 26,
+    marginTop: 29,
+    marginBottom: 8,
+    fontSize: 16,
+    fontWeight  : '400',
+    lineHeight: 20,
     color: colors.primaryDark,
+  },
+  favoriteButton: {
+    marginHorizontal: 16,
+    marginTop: 42,
+    marginBottom: 24,
+    height: 46,
+    borderRadius: 26,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    backgroundColor: colors.white,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  favoriteButtonActive: {
+    backgroundColor: '#EAF8FA',
+  },
+  favoriteIcon: {
+    marginRight: 10,
+  },
+  favoriteText: {
+    fontSize: 14,
+    lineHeight: 46,
+    ...typography.Inter[500],
+    color: colors.primary,
   },
 });

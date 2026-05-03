@@ -1,8 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { Image, ImageSourcePropType, Pressable, StyleSheet, View } from 'react-native';
 
 type AttachmentPreviewProps = {
-  source: number;
+  source: ImageSourcePropType;
   onRemove: () => void;
 };
 
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
     marginBottom: 8,
-    width: 86,
+    width: 80,
     height: 86,
     borderRadius: 8,
     overflow: 'visible',

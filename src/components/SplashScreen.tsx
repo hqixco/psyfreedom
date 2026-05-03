@@ -5,7 +5,7 @@ export function SplashScreen() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/Mask group.png')}
+        source={require('../../assets/splash-hero-image.png')}
         style={styles.logo}
         resizeMode="contain"
       />
@@ -41,3 +41,4 @@ const styles = StyleSheet.create({
     ...typography.Inter[400],
   },
 });
+

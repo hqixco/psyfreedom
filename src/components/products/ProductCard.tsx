@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { FavoriteHeartIcon } from '../icons/FavoriteHeartIcon';
 import { colors, typography } from '../../constants/theme';
@@ -11,6 +12,7 @@ type ProductCardProps = {
   onPress: () => void;
   isFavorite?: boolean;
   onToggleFavorite?: () => void;
+  showFavoriteButton?: boolean;
   variant?: 'default' | 'top10';
 };
 
@@ -21,10 +23,22 @@ export function ProductCard({
   onPress,
   isFavorite = false,
   onToggleFavorite,
+  showFavoriteButton = Boolean(onToggleFavorite),
   variant = 'default',
 }: ProductCardProps) {
+  const [localFavorite, setLocalFavorite] = useState(false);
   const isTop10 = variant === 'top10';
   const imageWidth = width - 2;
+  const favoriteFilled = onToggleFavorite ? isFavorite : localFavorite;
+
+  const handleToggleFavorite = () => {
+    if (onToggleFavorite) {
+      onToggleFavorite();
+      return;
+    }
+
+    setLocalFavorite((current) => !current);
+  };
 
   return (
     <View style={[styles.card, isTop10 && styles.top10Card, { width }]}>
@@ -42,14 +56,14 @@ export function ProductCard({
           <Text style={[styles.price, isTop10 && styles.top10Price]}>{item.price}</Text>
         </View>
       </Pressable>
-      {onToggleFavorite ? (
+      {showFavoriteButton ? (
         <Pressable
           style={styles.favoriteButton}
-          onPress={onToggleFavorite}
+          onPress={handleToggleFavorite}
           hitSlop={8}
           android_ripple={{ color: 'transparent' }}
         >
-          <FavoriteHeartIcon filled={isFavorite} />
+          <FavoriteHeartIcon filled={favoriteFilled} />
         </Pressable>
       ) : null}
     </View>
@@ -117,21 +131,21 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   title: {
-    marginTop: 6,
+    marginTop: 12,
     fontSize: 14,
     lineHeight: 18,
     ...typography.Inter[600],
     color: colors.primaryDark,
   },
   type: {
-    marginTop: 2,
+    marginTop: 6,
     fontSize: 14,
     lineHeight: 18,
     ...typography.Inter[400],
     color: colors.muted,
   },
   price: {
-    marginTop: 3,
+    marginTop: 5,
     fontSize: 16,
     lineHeight: 20,
     ...typography.Inter[600],

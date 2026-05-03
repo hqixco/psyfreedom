@@ -22,19 +22,19 @@ export const emergencyCategories: EmergencyCategory[] = [
     id: 'children',
     title: 'Для детей, подростков\nи родителей',
     variant: 'blue',
-    backgroundImage: require('../../assets/images/help-specialist.png'),
+    backgroundImage: require('../../assets/images/specialist-help-banner.png'),
   },
   {
     id: 'women',
     title: 'Для женщин, оказавшихся\nв сложной ситуации',
     variant: 'mint',
-    backgroundImage: require('../../assets/images/help-specialist.png'),
+    backgroundImage: require('../../assets/images/specialist-help-banner.png'),
   },
   {
     id: 'psychiatric',
     title: 'Скорая психиатрическая\nпомощь (круглосуточно)',
     variant: 'lavender',
-    backgroundImage: require('../../assets/images/help-specialist.png'),
+    backgroundImage: require('../../assets/images/specialist-help-banner.png'),
   },
 ];
 
@@ -46,9 +46,10 @@ export const emergencyContacts: EmergencyContact[] = [
     phone: '+7 (495) 898-89-00',
     phoneRaw: '+74958988900',
     website: 'https://globalpsy.org',
-    logo: require('../../assets/images/placeholder.png'),
+    logo: require('../../assets/images/image-placeholder.png'),
   },
 ];
 
 export const emergencyDescription =
   'Не все сотрудники горячих линий – например, государственных понимают особенности психических расстройств. Если специалист не смог помочь вам, попробуйте позвонить в другую службу и поговорить с оператором.';
+

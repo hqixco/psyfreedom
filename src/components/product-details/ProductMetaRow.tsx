@@ -1,6 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../constants/theme';
+import { RatingStarIcon } from '../icons/RatingStarIcon';
 
 type ProductMetaRowProps = {
   rating?: string;
@@ -14,21 +14,29 @@ export function ProductMetaRow({ rating, reviewsCount }: ProductMetaRowProps) {
 
   return (
     <View style={styles.row}>
-      <Ionicons name="star" size={14} color={colors.primary} />
-      <Text style={styles.text}>{`${rating} ${reviewsCount} отзывов`}</Text>
+      <RatingStarIcon />
+      <Text style={styles.rating}>{rating}</Text>
+      <Text style={styles.reviews}>{`${reviewsCount} отзывов`}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   row: {
-    marginTop: 8,
+    marginTop: 14,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  text: {
-    marginLeft: 6,
+  rating: {
+    marginLeft: 3,
     fontSize: 14,
+    fontWeight: '600',
     color: colors.primaryDark,
+  },
+  reviews: {
+    marginLeft: 7,
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#A9A9A9',
   },
 });

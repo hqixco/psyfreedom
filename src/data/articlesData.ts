@@ -26,9 +26,9 @@ export type ArticleDetails = {
   isFavorite?: boolean;
 };
 
-const articleImage = require('../../assets/images/article-1.png');
-const articlePlaceholder = require('../../assets/images/article-placeholder.png');
-const authorImage = require('../../assets/images/author-maria.png');
+const articleImage = require('../../assets/images/article-card-cover-default.png');
+const articlePlaceholder = require('../../assets/images/article-card-cover-placeholder.png');
+const authorImage = require('../../assets/images/avatar-maria.png');
 
 const defaultContent: ArticleContentBlock[] = [
   {
@@ -96,4 +96,5 @@ export function getArticleDetailsById(id: string): ArticleDetails {
     }
   );
 }
+
 

@@ -41,7 +41,7 @@ export function EditReviewSheet({
             </Pressable>
           </View>
 
-          <Text style={styles.objectTitle}>{objectTitle}</Text>
+          {objectTitle ? <Text style={styles.objectTitle}>{objectTitle}</Text> : null}
           <Text style={styles.label}>Поставьте оценку</Text>
           <View style={styles.starsRow}>
             <StarsRating rating={rating} onChange={onChangeRating} />
@@ -50,7 +50,7 @@ export function EditReviewSheet({
           <TextInput
             value={text}
             onChangeText={onChangeText}
-            placeholder="Напишите что-нибудь"
+            placeholder="Напишите свой отзыв"
             placeholderTextColor="#B0B0B0"
             style={styles.input}
             multiline
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
-    paddingTop: 22,
+    paddingTop: 17,
     maxHeight: '88%',
   },
   header: {
@@ -92,28 +92,28 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 30,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   objectTitle: {
-    marginTop: 18,
+    marginTop: 7,
     fontSize: 17,
     lineHeight: 22,
     ...typography.Inter[700],
     color: colors.primaryDark,
   },
   label: {
-    marginTop: 22,
+    marginTop: 17,
     fontSize: 16,
     color: colors.primaryDark,
   },
   starsRow: {
-    marginTop: 14,
+    marginTop: 9,
   },
   input: {
-    marginTop: 24,
+    marginTop: 29,
     minHeight: 150,
     borderWidth: 1,
     borderColor: '#C8C8C8',
@@ -130,16 +130,16 @@ const styles = StyleSheet.create({
     color: '#B0B0B0',
   },
   submitButton: {
-    marginTop: 28,
-    height: 52,
+    marginTop: 23,
+    height: 41,
     borderRadius: 26,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   submitButtonText: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.white,
   },
 });

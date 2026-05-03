@@ -7,65 +7,66 @@ type FavoriteCardProps = {
   item: FavoriteItem;
   width: number;
   onPress: (item: FavoriteItem) => void;
-  onRemove: (id: string) => void;
+  isHeartMuted?: boolean;
+  onToggleHeart: (id: string) => void;
 };
 
-export function FavoriteCard({ item, width, onPress, onRemove }: FavoriteCardProps) {
+export function FavoriteCard({ item, width, onPress, isHeartMuted = false, onToggleHeart }: FavoriteCardProps) {
   const isDeleted = item.status === 'deletedByAuthor';
   const isViewed = item.status === 'viewed';
   const textMuted = isDeleted;
   const rating = item.rating ?? '0.0';
 
   return (
-    <Pressable style={[styles.card, { width }]} onPress={() => onPress(item)}>
-      <View style={[styles.imageWrap, { width, height: width }]}>
-        <Image source={item.image} style={styles.image} />
-        <Pressable
-          style={styles.heartButton}
-          onPress={(event) => {
-            event.stopPropagation();
-            onRemove(item.id);
-          }}
-          hitSlop={10}
-        >
-          <Ionicons name="heart" size={26} color="#FF2F72" />
-        </Pressable>
+    <View style={[styles.card, { width }]}>
+      <Pressable style={styles.cardPressable} onPress={() => onPress(item)}>
+        <View style={[styles.imageWrap, { width, height: width }]}>
+          <Image source={item.image} style={styles.image} />
 
-        <View style={styles.ratingBadge}>
-          <Ionicons name="star" size={13} color={colors.white} />
-          <Text style={styles.ratingText}>{rating}</Text>
+          <View style={styles.ratingBadge}>
+            <Ionicons name="star" size={13} color={colors.white} />
+            <Text style={styles.ratingText}>{rating}</Text>
+          </View>
+
+          {isDeleted ? <View style={styles.deletedOverlay} /> : null}
+          {isDeleted || isViewed ? (
+            <View style={styles.statusBadge}>
+              <Text style={styles.statusText}>{isDeleted ? 'Удалено автором' : 'Просмотрено'}</Text>
+            </View>
+          ) : null}
         </View>
 
-        {isDeleted ? <View style={styles.deletedOverlay} /> : null}
-        {isDeleted || isViewed ? (
-          <View style={styles.statusBadge}>
-            <Text style={styles.statusText}>{isDeleted ? 'Удалено автором' : 'Просмотрено'}</Text>
-          </View>
-        ) : null}
-      </View>
-
-      <Text style={[styles.title, textMuted ? styles.textMuted : null]} numberOfLines={2}>
-        {item.title}
-      </Text>
-      <Text style={[styles.type, textMuted ? styles.textMuted : null]} numberOfLines={1}>
-        {item.type}
-      </Text>
-      {item.price ? (
-        <Text style={[styles.price, textMuted ? styles.priceMuted : null]} numberOfLines={1}>
-          {item.price}
+        <Text style={[styles.title, textMuted ? styles.textMuted : null]} numberOfLines={2}>
+          {item.title}
         </Text>
-      ) : null}
-    </Pressable>
+        <Text style={[styles.type, textMuted ? styles.textMuted : null]} numberOfLines={1}>
+          {item.type}
+        </Text>
+        {item.price ? (
+          <Text style={[styles.price, textMuted ? styles.priceMuted : null]} numberOfLines={1}>
+            {item.price}
+          </Text>
+        ) : null}
+      </Pressable>
+
+      <Pressable style={styles.heartButton} onPress={() => onToggleHeart(item.id)} hitSlop={10}>
+        <Ionicons name="heart" size={26} color={isHeartMuted ? colors.white : '#FF2F72'} />
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    marginBottom: 26,
+    position: 'relative',
+    marginBottom: 18,
     backgroundColor: colors.white,
   },
+  cardPressable: {
+    flex: 1,
+  },
   imageWrap: {
-    borderRadius: 10,
+    borderRadius: 8,
     overflow: 'hidden',
     backgroundColor: colors.cardLight,
   },
@@ -78,18 +79,24 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 11,
     right: 11,
+    zIndex: 3,
+    elevation: 3,
+    width: 20,
+    height: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   ratingBadge: {
     position: 'absolute',
-    right: 8,
-    bottom: 8,
+    right: 6,
+    bottom: 5,
     flexDirection: 'row',
     alignItems: 'center',
   },
   ratingText: {
-    marginLeft: 4,
-    fontSize: 13,
-    ...typography.Inter[700],
+    marginLeft: 3,
+    fontSize: 14,
+    ...typography.Inter[400],
     color: colors.white,
   },
   deletedOverlay: {
@@ -111,22 +118,23 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   title: {
-    marginTop: 10,
-    fontSize: 15,
+    marginTop: 12,
+    fontSize: 14,
     lineHeight: 18,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   type: {
-    marginTop: 4,
+    marginTop: 6,
     fontSize: 14,
+    lineHeight: 18,
     color: colors.muted,
   },
   price: {
-    marginTop: 6,
-    fontSize: 18,
-    lineHeight: 22,
-    ...typography.Inter[700],
+    marginTop: 5,
+    fontSize: 16,
+    lineHeight: 20,
+    ...typography.Inter[600],
     color: colors.primary,
   },
   textMuted: {

@@ -19,8 +19,8 @@ export const purchaseChips = [
   { id: 'videos', title: 'Видеоуроки (4)' },
 ] as const;
 
-const purchaseImage = require('../../assets/images/product-devichnik.png');
-const purchaseBookImage = require('../../assets/photo.png');
+const purchaseImage = require('../../assets/images/product-course-devichnik.png');
+const purchaseBookImage = require('../../assets/product-placeholder-square.png');
 
 export const purchasesMock: PurchaseItem[] = [
   { id: '1', category: 'courses', title: 'Секреты счастливой жены\nКак найти себя', price: '100 000 ₽', type: 'Курс', author: 'Имя Фамилия автора', image: purchaseImage },
@@ -34,3 +34,4 @@ export const purchasesMock: PurchaseItem[] = [
   { id: '9', category: 'videos', title: 'Видеоурок\nПро семью', price: '100 000 ₽', type: 'Видеоурок', author: 'Имя Фамилия автора', image: purchaseImage },
   { id: '10', category: 'videos', title: 'Видеоурок\nПро самооценку', price: '100 000 ₽', type: 'Видеоурок', author: 'Имя Фамилия автора', image: purchaseImage },
 ];
+

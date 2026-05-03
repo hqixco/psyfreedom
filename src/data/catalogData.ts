@@ -94,14 +94,14 @@ export const homeBanners: HomeBannerItem[] = [
   {
     id: 'humor',
     title: 'Юмор',
-    image: require('../../assets/humor-orange.jpg'),
+    image: require('../../assets/home-banner-humor.jpg'),
     kind: 'small',
     accent: ['#FFC76B', '#FF8E68'],
   },
   {
     id: 'dating',
     title: 'Знакомства',
-    image: require('../../assets/znakomstva.jpg'),
+    image: require('../../assets/home-banner-dating.jpg'),
     kind: 'small',
     accent: ['#FF5F7D', '#FF9BB5'],
   },
@@ -109,7 +109,7 @@ export const homeBanners: HomeBannerItem[] = [
     id: 'book',
     title: 'Новая книга О. Рой',
     subtitle: 'с 16 февраля',
-    image: require('../../assets/novaya-kniga.jpg'),
+    image: require('../../assets/home-banner-book-release.jpg'),
     backgroundColor: '#66D5ED',
     kind: 'large',
   },
@@ -117,7 +117,7 @@ export const homeBanners: HomeBannerItem[] = [
     id: 'depression',
     title: 'Как справиться\nс депрессией?',
     subtitle: 'Ваши проблемы решаются',
-    image: require('../../assets/kak-spravitsa.jpg'),
+    image: require('../../assets/home-banner-depression-help.jpg'),
     backgroundColor: '#8F9697',
     kind: 'large',
   },
@@ -149,7 +149,7 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '6 000 ₽',
     rating: '0.0',
-    image: require('../../assets/image (3).jpg'),
+      image: require('../../assets/course-cover.jpg'),
     ...productTemplate,
   },
   {
@@ -158,7 +158,16 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '10 000 ₽',
     rating: '5.0',
-    image: require('../../assets/image (3).jpg'),
+      image: require('../../assets/course-cover.jpg'),
+    ...productTemplate,
+  },
+  {
+    id: 'test-paid-1',
+    title: 'Какой у тебя характер',
+    type: 'Тест',
+    price: '10 000 ₽',
+    rating: '5.0',
+    image: require('../../assets/фото (5).jpg'),
     ...productTemplate,
   },
   {
@@ -167,7 +176,7 @@ export const products: CatalogProduct[] = [
     type: 'Тест',
     price: 'Бесплатно',
     rating: '4.8',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/фото (5).jpg'),
     ...productTemplate,
   },
   {
@@ -176,7 +185,7 @@ export const products: CatalogProduct[] = [
     type: 'Промокод',
     price: '1 100 ₽',
     rating: '4.7',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/promo-code-card-cover.jpg'),
     ...productTemplate,
   },
   {
@@ -185,7 +194,7 @@ export const products: CatalogProduct[] = [
     type: 'Вебинар',
     price: '3 800 ₽',
     rating: '4.9',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/product-cover-default.jpg'),
     ...productTemplate,
   },
   {
@@ -194,7 +203,7 @@ export const products: CatalogProduct[] = [
     type: 'Книга',
     price: '2 500 ₽',
     rating: '4.9',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/product-placeholder-square.png'),
     ...productTemplate,
   },
   {
@@ -203,7 +212,7 @@ export const products: CatalogProduct[] = [
     type: 'Группа',
     price: '8 700 ₽',
     rating: '4.6',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/product-cover-default.jpg'),
     ...productTemplate,
   },
   {
@@ -212,7 +221,7 @@ export const products: CatalogProduct[] = [
     type: 'Игра',
     price: '4 200 ₽',
     rating: '4.8',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/product-cover-default.jpg'),
     ...productTemplate,
   },
   {
@@ -221,7 +230,7 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '6 300 ₽',
     rating: '5.0',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/course-cover.jpg'),
     ...productTemplate,
   },
   {
@@ -230,7 +239,7 @@ export const products: CatalogProduct[] = [
     type: 'Видеоурок',
     price: '990 ₽',
     rating: '4.4',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/product-cover-default.jpg'),
     ...productTemplate,
   },
   {
@@ -239,7 +248,7 @@ export const products: CatalogProduct[] = [
     type: 'Курс',
     price: '7 200 ₽',
     rating: '4.8',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/course-cover.jpg'),
     ...productTemplate,
   },
   {
@@ -248,7 +257,7 @@ export const products: CatalogProduct[] = [
     type: 'Промокод',
     price: '600 ₽',
     rating: '4.5',
-    image: require('../../assets/image (3).jpg'),
+    image: require('../../assets/promo-code-card-cover.jpg'),
     ...productTemplate,
   },
 ];
@@ -271,7 +280,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Психолог',
     price: 'От 1 200 ₽',
     rating: '5.0',
-    image: require('../../assets/image (4).jpg'),
+    image: require('../../assets/specialist-photo-default.jpg'),
     ...specialistTemplate,
   },
   {
@@ -280,7 +289,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Психотерапевт',
     price: 'От 2 400 ₽',
     rating: '5.0',
-    image: require('../../assets/image (4).jpg'),
+    image: require('../../assets/specialist-photo-default.jpg'),
     ...specialistTemplate,
   },
   {
@@ -289,7 +298,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Коуч',
     price: 'От 1 800 ₽',
     rating: '4.9',
-    image: require('../../assets/image (4).jpg'),
+    image: require('../../assets/specialist-photo-default.jpg'),
     ...specialistTemplate,
   },
   {
@@ -298,7 +307,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Психиатр',
     price: 'От 3 200 ₽',
     rating: '4.8',
-    image: require('../../assets/image (4).jpg'),
+    image: require('../../assets/specialist-photo-default.jpg'),
     ...specialistTemplate,
   },
   {
@@ -307,7 +316,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Ментор',
     price: 'От 2 000 ₽',
     rating: '4.7',
-    image: require('../../assets/image (4).jpg'),
+    image: require('../../assets/specialist-photo-default.jpg'),
     ...specialistTemplate,
   },
   {
@@ -316,7 +325,7 @@ export const specialists: CatalogSpecialist[] = [
     specialization: 'Коуч',
     price: 'От 1 500 ₽',
     rating: '4.9',
-    image: require('../../assets/image (4).jpg'),
+    image: require('../../assets/specialist-photo-default.jpg'),
     ...specialistTemplate,
   },
 ];
@@ -327,7 +336,7 @@ export const articles: CatalogArticle[] = [
     title: 'Название статьи',
     topic: 'Тема',
     views: 28,
-    image: require('../../assets/images/article-1.png'),
+    image: require('../../assets/images/article-card-cover-default.png'),
     author: 'Том Рат',
     body:
       'Статья о том, как замечать собственные паттерны поведения, пересобирать ежедневные привычки и не терять контакт с собой в периоды высокой нагрузки.',
@@ -338,7 +347,7 @@ export const articles: CatalogArticle[] = [
     title: 'Как пережить расставание',
     topic: 'Отношения',
     views: 43,
-    image: require('../../assets/images/article-1.png'),
+    image: require('../../assets/images/article-card-cover-default.png'),
     author: 'Ольга Самойлова',
     body:
       'Разбираем, почему после утраты отношений так сложно восстановиться, и какие шаги помогают вернуть опору и ритм жизни.',
@@ -349,7 +358,7 @@ export const articles: CatalogArticle[] = [
     title: 'Пять практик против тревоги',
     topic: 'Саморазвитие',
     views: 57,
-    image: require('../../assets/images/article-1.png'),
+    image: require('../../assets/images/article-card-cover-default.png'),
     author: 'Марина Котова',
     body:
       'Короткие практики, которые можно встроить в день без специальных условий. Подойдут для мягкого снижения напряжения и возвращения внимания в тело.',
@@ -363,7 +372,7 @@ export const videos: CatalogArticle[] = [
     title: 'Название',
     topic: 'Тема',
     views: 28,
-    image: require('../../assets/images/video-1.png'),
+    image: require('../../assets/images/video-card-cover-default.png'),
     author: 'Том Рат',
     body:
       'Видеоразбор о том, как отслеживать автоматические реакции и перестраивать коммуникацию в сложных разговорах.',
@@ -374,7 +383,7 @@ export const videos: CatalogArticle[] = [
     title: 'Как стать счастливым',
     topic: 'Отношения',
     views: 80,
-    image: require('../../assets/images/video-1.png'),
+    image: require('../../assets/images/video-card-cover-default.png'),
     author: 'Павел Миронов',
     body:
       'Видеоматериал о внутренней опоре, навыках самоподдержки и практиках, которые помогают сохранять устойчивость.',

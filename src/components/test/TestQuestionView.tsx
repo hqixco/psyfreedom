@@ -32,7 +32,7 @@ export function TestQuestionView({
           const active = option === selected;
           return (
             <Pressable key={option} style={styles.radioRow} onPress={() => setSelected(option)}>
-              <View style={[styles.radioOuter, active ? styles.radioOuterActive : null]}>
+              <View style={[styles.radioOuter, active ? styles.radioOuterActive : styles.radioOuterInactive]}>
                 {active ? <View style={styles.radioInner} /> : null}
               </View>
               <Text style={styles.optionText}>{option}</Text>
@@ -70,14 +70,15 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 16,
-    paddingTop: 32,
+    paddingTop: 20,
     paddingBottom: 120,
   },
   question: {
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 20,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
+    marginBottom: 5,
   },
   radioRow: {
     flexDirection: 'row',
@@ -88,20 +89,23 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     borderRadius: 9,
-    borderWidth: 2,
-    borderColor: '#B7DCE2',
     marginRight: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioOuterActive: {
-    borderColor: colors.primary,
+    backgroundColor: colors.primary,
+  },
+  radioOuterInactive: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: 'rgba(193, 212, 217, 1)',
   },
   radioInner: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: colors.primary,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: colors.white,
   },
   optionText: {
     fontSize: 14,
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 18,
     height: 118,
     borderWidth: 1,
-    borderColor: '#C8C8C8',
+    borderColor: '#A9A9A9',
     borderRadius: 10,
     paddingHorizontal: 14,
     paddingTop: 12,
@@ -127,7 +131,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     flex: 1,
-    height: 44,
+    height: 41,
     borderRadius: 22,
     borderWidth: 1,
     borderColor: colors.primary,
@@ -138,12 +142,12 @@ const styles = StyleSheet.create({
   },
   backButtonText: {
     fontSize: 14,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primary,
   },
   nextButton: {
     flex: 1,
-    height: 44,
+    height: 41,
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
   },
   nextButtonText: {
     fontSize: 14,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.white,
   },
 });

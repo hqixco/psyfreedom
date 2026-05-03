@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { SpecialistDetails } from '../../data/specialistDetailsData';
 
@@ -13,6 +13,8 @@ export function SpecialistMethodsSection({
   sessionBenefits,
 }: SpecialistMethodsSectionProps) {
   const [activeTab, setActiveTab] = useState<TabKey>('methods');
+  const [expanded, setExpanded] = useState(false);
+  const visibleItemsCount = 3;
 
   const tabs = [
     { key: 'methods' as const, label: 'Методы работы' },
@@ -22,17 +24,26 @@ export function SpecialistMethodsSection({
 
   const items =
     activeTab === 'methods' ? methods : activeTab === 'topics' ? topics : sessionBenefits;
+  const visibleItems = expanded ? items : items.slice(0, visibleItemsCount);
+  const canExpand = items.length > visibleItemsCount;
 
   return (
     <View style={styles.section}>
-      <View style={styles.tabsRow}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.tabsRow}
+      >
         {tabs.map((tab) => {
           const active = tab.key === activeTab;
           return (
             <Pressable
               key={tab.key}
               style={[styles.tab, active ? styles.activeTab : styles.inactiveTab]}
-              onPress={() => setActiveTab(tab.key)}
+              onPress={() => {
+                setActiveTab(tab.key);
+                setExpanded(false);
+              }}
             >
               <Text style={[styles.tabText, active ? styles.activeText : styles.inactiveText]}>
                 {tab.label}
@@ -40,37 +51,38 @@ export function SpecialistMethodsSection({
             </Pressable>
           );
         })}
-      </View>
+      </ScrollView>
 
-      {items.map((item) => (
+      {visibleItems.map((item) => (
         <Text key={item} style={styles.item}>{`\u2022 ${item}`}</Text>
       ))}
 
-      <Pressable onPress={() => console.log('expand specialist methods')}>
-        <Text style={styles.link}>Читать ещё</Text>
-      </Pressable>
+      {canExpand ? (
+        <Pressable onPress={() => setExpanded((value) => !value)}>
+          <Text style={styles.link}>{expanded ? 'Свернуть' : 'Читать ещё'}</Text>
+        </Pressable>
+      ) : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   section: {
-    marginTop: 26,
+    marginTop: 62,
     marginHorizontal: 16,
   },
   tabsRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     marginBottom: 14,
+    paddingRight: 16,
   },
   tab: {
-    height: 34,
-    borderRadius: 17,
-    paddingHorizontal: 16,
+    height: 43,
+    borderRadius: 360,
+    paddingHorizontal: 21,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 8,
-    marginBottom: 8,
   },
   activeTab: {
     backgroundColor: colors.primary,
@@ -81,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 16,
   },
   activeText: {
     color: colors.white,
@@ -93,14 +105,14 @@ const styles = StyleSheet.create({
   },
   item: {
     marginTop: 8,
-    fontSize: 14,
+    fontSize: 16,
     lineHeight: 20,
     color: colors.text,
   },
   link: {
-    marginTop: 10,
+    marginTop: 15,
     fontSize: 14,
-    ...typography.Inter[600],
+    ...typography.Inter[400],
     color: colors.primary,
   },
 });

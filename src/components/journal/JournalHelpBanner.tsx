@@ -13,7 +13,7 @@ type JournalHelpBannerProps = {
 export function JournalHelpBanner({ onPress }: JournalHelpBannerProps) {
   return (
     <ImageBackground 
-      source={require('../../../assets/Rectangle 114.jpg')} 
+      source={require('../../../assets/journal-help-banner-bg.jpg')} 
       style={styles.banner}
       resizeMode="cover"
     >
@@ -85,3 +85,4 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
 });
+

@@ -31,12 +31,13 @@ export function ProductCharacteristicsSection({
 
 const styles = StyleSheet.create({
   section: {
-    marginTop: 24,
+    marginTop: 31,
   },
   title: {
     marginHorizontal: 16,
-    fontSize: 20,
-    ...typography.Inter[700],
+    marginBottom: 6,
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   row: {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   value: {
     width: '50%',
     fontSize: 14,
-    ...typography.Inter[600],
+    ...typography.Inter[400],
     textAlign: 'right',
     color: colors.primaryDark,
   },

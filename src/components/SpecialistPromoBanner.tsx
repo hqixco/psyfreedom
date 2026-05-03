@@ -1,11 +1,11 @@
-import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+﻿import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { theme, typography } from '../constants/theme';
 
 export function SpecialistPromoBanner() {
   return (
     <ImageBackground
-      source={require('../../assets/specialist-promo-bg.png')}
+      source={require('../../assets/specialist-promo-banner-bg.png')}
       style={styles.container}
       imageStyle={styles.backgroundImage}
       resizeMode="cover"
@@ -82,3 +82,4 @@ const styles = StyleSheet.create({
     ...typography.Inter[500],
   },
 });
+

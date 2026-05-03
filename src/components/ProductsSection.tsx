@@ -1,7 +1,7 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { theme, typography } from '../constants/theme';
 import { products } from '../data/catalogData';
-import { ProductCard } from './ProductCard';
+import { ProductCard } from './products/ProductCard';
 
 const productSnapInterval = 190;
 
@@ -32,8 +32,20 @@ export function ProductsSection({ onOpenProductDetails, onOpenProducts }: Produc
         snapToAlignment="start"
       >
         {homeProducts.map((product, index) => (
-          <View key={product.id} style={index === homeProducts.length - 1 ? styles.lastCard : undefined}>
-            <ProductCard item={product} onPress={() => onOpenProductDetails?.(product.id)} />
+          <View
+            key={product.id}
+            style={[
+              index !== homeProducts.length - 1 ? styles.cardGap : undefined,
+              index === homeProducts.length - 1 ? styles.lastCard : undefined,
+            ]}
+          >
+            <ProductCard
+              item={product}
+              width={180}
+              imageHeight={180}
+              showFavoriteButton
+              onPress={() => onOpenProductDetails?.(product.id)}
+            />
           </View>
         ))}
       </ScrollView>
@@ -74,6 +86,9 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: 18,
+  },
+  cardGap: {
+    marginRight: 10,
   },
   lastCard: {
     paddingRight: 18,

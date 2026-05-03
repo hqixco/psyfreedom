@@ -17,9 +17,9 @@ export type VideoJournalItem = {
   isFavorite?: boolean;
 };
 
-const videoImage = require('../../assets/images/video-1.png');
-const articleImage = require('../../assets/images/article-1.png');
-const authorImage = require('../../assets/images/author-maria.png');
+const videoImage = require('../../assets/images/video-card-cover-default.png');
+const articleImage = require('../../assets/images/article-card-cover-default.png');
+const authorImage = require('../../assets/images/avatar-maria.png');
 
 const description =
   'Если вы спросите у психологов: «За что вам платят?». Многие ответят: «За инсайт». Это значит за то, что во время сессии вы узнаете о себе что-то новое. Мне клиенты платят не за инсайты, не за мое время и знания, а за конкретное изменение, на которое они решаются в результате нашей работы.';
@@ -42,4 +42,5 @@ export const videoJournalItems: VideoJournalItem[] = [
   { id: 'video-journal-7', title: 'Найти опору в себе', topic: 'Саморазвитие', views: 32, image: videoImage, description, author },
   { id: 'video-journal-8', title: 'Сон без перегруза', topic: 'Проблемы со сном', views: 20, image: articleImage, description, author },
 ];
+
 

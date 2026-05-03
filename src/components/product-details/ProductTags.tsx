@@ -23,23 +23,23 @@ export function ProductTags({ tags }: ProductTagsProps) {
 
 const styles = StyleSheet.create({
   row: {
-    marginTop: 10,
+    marginTop: 8,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
   chip: {
-    height: 28,
+    height: 18,
     marginRight: 8,
     marginBottom: 8,
     paddingHorizontal: 12,
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EAF8FA',
+    backgroundColor: '#F5F9FD',
   },
   text: {
-    fontSize: 13,
-    ...typography.Inter[600],
-    color: colors.primary,
+    fontSize: 12,
+    ...typography.Inter[400],
+    color: colors.primaryDark,
   },
 });

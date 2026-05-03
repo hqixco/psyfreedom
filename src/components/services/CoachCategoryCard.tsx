@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+﻿import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { CoachCategory } from '../../data/servicesData';
 
@@ -15,7 +15,7 @@ export function CoachCategoryCard({ item, width, onPress }: CoachCategoryCardPro
       <View style={styles.arrowBubble}>
         <Image source={require('../../../assets/images/arrow-forward.svg')} style={styles.arrowIcon} />
       </View>
-      <Image source={item.image ?? require('../../../assets/images/coach-category-bg.png')} style={styles.decor} resizeMode="cover" />
+      <Image source={item.image ?? require('../../../assets/images/coach-category-card-bg.png')} style={styles.decor} resizeMode="cover" />
     </Pressable>
   );
 }
@@ -61,3 +61,4 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
 });
+

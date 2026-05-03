@@ -18,7 +18,7 @@ export const partnerPageData: PartnerPageData = {
     '2. Если вы спросите у психологов',
     '3. Если вы спросите у психологов',
   ],
-  bannerImage: require('../../assets/images/help-specialist.png'),
+  bannerImage: require('../../assets/images/specialist-help-banner.png'),
 };
 
 export const partnerFormInitialValues = {
@@ -26,3 +26,4 @@ export const partnerFormInitialValues = {
   phone: '+7 (987)654-32-10',
   email: 'info@mail.ru',
 };
+

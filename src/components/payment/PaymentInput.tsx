@@ -1,45 +1,33 @@
-import { StyleSheet, Text, TextInput, TextInputProps, View } from 'react-native';
-import { colors, typography } from '../../constants/theme';
+import { StyleSheet, Text, TextInput, TextInputProps, View, TextStyle } from 'react-native';
+import { colors } from '../../constants/theme';
 
 type PaymentInputProps = TextInputProps & {
   label: string;
   containerStyle?: TextInputProps['style'];
+  labelStyle?: TextStyle;
+  inputStyle?: TextStyle;
 };
 
 export function PaymentInput({
   label,
   containerStyle,
+  labelStyle,
+  inputStyle,
   style,
   ...props
 }: PaymentInputProps) {
   return (
     <View style={containerStyle}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, labelStyle]}>{label}</Text>
       <TextInput
         {...props}
         placeholderTextColor={colors.muted}
-        style={[styles.input, style]}
+        style={[styles.input, inputStyle, style]}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  label: {
-    marginBottom: 8,
-    fontSize: 15,
-    ...typography.Inter[500],
-    color: colors.primaryDark,
-  },
-  input: {
-    height: 50,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.white,
-    paddingHorizontal: 14,
-    fontSize: 16,
-    color: colors.primaryDark,
-  },
+  input: {},
 });
-

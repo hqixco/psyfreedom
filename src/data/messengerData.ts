@@ -31,11 +31,11 @@ export type ChatMessage =
       createdAt?: string;
     };
 
-const mariaAvatar = require('../../assets/images/author-maria.png');
-const specialistAvatar = require('../../assets/images/specialist-1.png');
-const specialistAvatarAlt = require('../../assets/images/specialist-2.png');
-const imageOne = require('../../assets/images/video-1.png');
-const imageTwo = require('../../assets/images/product-devichnik.png');
+const mariaAvatar = require('../../assets/images/avatar-maria.png');
+const specialistAvatar = require('../../assets/images/specialist-photo-1.png');
+const specialistAvatarAlt = require('../../assets/images/specialist-photo-2.png');
+const imageOne = require('../../assets/images/video-card-cover-default.png');
+const imageTwo = require('../../assets/images/product-course-devichnik.png');
 
 export const chatAttachmentMock = imageOne;
 
@@ -47,6 +47,7 @@ export const chatPreviews: ChatPreview[] = [
       id: 'support',
       name: 'Поддержка',
       role: 'Чат-бот',
+      avatar: require('../../assets/support-avatar.svg'),
     },
     lastMessage: 'Здравствуйте! Я рада, что вы обратились в поддержку.',
     time: '10:09',
@@ -121,23 +122,23 @@ export const chatMessagesByChatId: Record<string, ChatMessage[]> = {
   maria: [
     {
       id: 'm1',
+      type: 'date',
+      label: '22 февраля',
+    },
+    {
+      id: 'm1-1',
       sender: 'me',
       type: 'text',
       text: 'Здравствуйте, я бы хотел записаться на консультацию к психологу. У меня возникли некоторые проблемы, которые я не могу решить самостоятельно.',
     },
     {
-      id: 'date-1',
-      type: 'date',
-      label: '22 февраля',
-    },
-    {
-      id: 'm2',
+      id: 'm1-2',
       sender: 'other',
       type: 'text',
       text: 'Здравствуйте! Я рада, что вы обратились ко мне. Расскажите, пожалуйста, о своих проблемах. Что именно вас беспокоит?',
     },
     {
-      id: 'date-2',
+      id: 'm2',
       type: 'date',
       label: 'Сегодня',
     },
@@ -152,7 +153,7 @@ export const chatMessagesByChatId: Record<string, ChatMessage[]> = {
       sender: 'other',
       type: 'imageWithText',
       image: imageTwo,
-      text: 'Картинка и текст',
+      text: 'Спасибо, вижу, что это важный для вас запрос. Давайте разберёмся вместе.',
     },
   ],
   donald: [
@@ -208,3 +209,4 @@ export const chatMessagesByChatId: Record<string, ChatMessage[]> = {
     },
   ],
 };
+

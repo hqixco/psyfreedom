@@ -1,5 +1,13 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import {
+  Image,
+  NativeSyntheticEvent,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  TextInputContentSizeChangeEventData,
+  View,
+} from 'react-native';
 import { colors } from '../../constants/theme';
 
 type ChatInputProps = {
@@ -8,21 +16,44 @@ type ChatInputProps = {
   onAttach: () => void;
   onSend: () => void;
   editing?: boolean;
+  hideAttach?: boolean;
 };
 
-export function ChatInput({ value, onChangeText, onAttach, onSend, editing = false }: ChatInputProps) {
+export function ChatInput({
+  value,
+  onChangeText,
+  onAttach,
+  onSend,
+  editing = false,
+  hideAttach = false,
+}: ChatInputProps) {
+  const [inputHeight, setInputHeight] = useState(36);
+
+  useEffect(() => {
+    setInputHeight(36);
+  }, [editing]);
+
+  const handleContentSizeChange = (
+    event: NativeSyntheticEvent<TextInputContentSizeChangeEventData>,
+  ) => {
+    setInputHeight(Math.max(36, Math.ceil(event.nativeEvent.contentSize.height + 16)));
+  };
+
   return (
     <View style={styles.container}>
-      <Pressable style={styles.attachButton} onPress={onAttach}>
-        <Ionicons name="image-outline" size={26} color={colors.primaryDark} />
-      </Pressable>
+      {!hideAttach ? (
+        <Pressable style={styles.attachButton} onPress={onAttach}>
+          <Image source={require('../../../assets/chat-attach-image.svg')} style={styles.attachIcon} />
+        </Pressable>
+      ) : null}
 
-      <View style={[styles.inputWrapper, editing ? styles.inputWrapperEditing : null]}>
+      <View style={[styles.inputWrapper, { height: inputHeight }, editing ? styles.inputWrapperEditing : null]}>
         <TextInput
           value={value}
           onChangeText={onChangeText}
           placeholder="Написать сообщение"
           placeholderTextColor="#B0B0B0"
+          onContentSizeChange={handleContentSizeChange}
           style={[styles.input, editing ? styles.inputEditing : null]}
           multiline
           textAlignVertical="top"
@@ -30,7 +61,7 @@ export function ChatInput({ value, onChangeText, onAttach, onSend, editing = fal
       </View>
 
       <Pressable style={styles.sendButton} onPress={onSend}>
-        <Ionicons name="paper-plane" size={22} color={colors.white} />
+        <Image source={require('../../../assets/chat-send-icon.svg')} style={styles.sendIcon} />
       </Pressable>
     </View>
   );
@@ -43,39 +74,49 @@ const styles = StyleSheet.create({
   },
   attachButton: {
     width: 32,
-    height: 44,
+    height: 36,
     alignItems: 'flex-start',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    paddingBottom: 4,
+    marginRight: 8,
+  },
+  attachIcon: {
+    width: 22,
+    height: 22,
   },
   inputWrapper: {
     flex: 1,
-    minHeight: 44,
     borderRadius: 22,
     borderWidth: 1,
     borderColor: '#043F4A',
     paddingHorizontal: 16,
+    paddingVertical: 8,
     justifyContent: 'center',
   },
   inputWrapperEditing: {
     borderColor: colors.primary,
-    minHeight: 52,
   },
   input: {
-    fontSize: 16,
+    flex: 1,
+    fontSize: 14,
+    lineHeight: 16,
     color: colors.primaryDark,
-    paddingVertical: 8,
+    paddingVertical: 0,
     maxHeight: 120,
   },
-  inputEditing: {
-    minHeight: 52,
-  },
+  inputEditing: {},
+
   sendButton: {
-    width: 48,
-    height: 48,
+    width: 36,
+    height: 36,
     borderRadius: 24,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 8,
+  },
+  sendIcon: {
+    width: '100%',
+    height: '100%',
   },
 });

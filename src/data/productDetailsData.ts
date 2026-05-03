@@ -38,9 +38,12 @@ export type ProductDetails = {
     name: string;
     role: string;
     specialistId?: string;
+    instituteId?: string;
     rating?: string;
     reviewsCount?: number;
     image?: ImageSourcePropType;
+    kind?: 'person' | 'institute';
+    preserveAuthor?: boolean;
   };
   tags?: string[];
   description?: string;
@@ -57,14 +60,15 @@ export type ProductDetails = {
   actionNote?: string;
 };
 
-const authorImage = require('../../assets/image (1).png');
-const reviewAvatar = require('../../assets/картинка.png');
-const productCourse = require('../../assets/photo.png');
-const promoImage = require('../../assets/photo.png');
-const bookImage = require('../../assets/photo.png');
-const testImage = require('../../assets/photo.png');
-const mariaAuthorImage = require('../../assets/images/author-maria.png');
-const placeholderImage = require('../../assets/photo.png');
+const authorImage = require('../../assets/avatar-person-default.png');
+const reviewAvatar = require('../../assets/review-avatar-default.png');
+const productCourse = require('../../assets/course-cover.jpg');
+const productImage = require('../../assets/product-cover-default.jpg');
+const promoImage = require('../../assets/promo-code-card-cover.jpg');
+const bookImage = require('../../assets/product-placeholder-square.png');
+const testImage = require('../../assets/фото (5).jpg');
+const mariaAuthorImage = require('../../assets/images/avatar-maria.png');
+const placeholderImage = require('../../assets/product-placeholder-square.png');
 
 const defaultDescription =
   'Подробный курс о выстраивании устойчивых отношений, работе с внутренними страхами и формировании эмоциональной опоры. Материал подан простым языком и подходит для самостоятельного прохождения, если вам нужен спокойный и структурный формат движения к результату.';
@@ -73,16 +77,16 @@ const longCourseDescription =
   'Этот курс помогает мягко пересобрать привычные сценарии отношений, заметить повторяющиеся паттерны и научиться действовать устойчивее. Внутри собраны видеоуроки, письменные материалы и практические задания, которые позволяют не только понять причину сложностей, но и применить новые инструменты в реальной жизни. Курс подходит тем, кто хочет глубже разобраться в своих реакциях, снизить тревожность и научиться выстраивать более честный контакт с собой и близкими.';
 
 const promoDescription =
-  'Промокод даёт скидку на участие в выбранном курсе и позволяет активировать доступ по сниженной цене. Подходит тем, кто хочет попробовать формат обучения на платформе Psyfreedom и получить выгоду сразу после активации.';
+  'Промокод даёт скидку на участие в выбранном продукте и позволяет активировать доступ по сниженной цене. Подходит тем, кто хочет попробовать формат платформы Psyfreedom и получить выгоду сразу после активации.';
 
 const promoTerms =
-  'Промокод действует один раз на один заказ, не суммируется с другими акциями и распространяется только на выбранные курсы раздела психологии. Скидка применяется автоматически после ввода кода на этапе оформления. Если срок действия истёк, промокод становится недоступен для активации.';
+  'Промокод действует один раз на один заказ, не суммируется с другими акциями и распространяется только на выбранные продукты раздела психологии. Скидка применяется автоматически после ввода кода на этапе оформления. Если срок действия истёк, промокод становится недоступен для активации.';
 
 const bookDescription =
   'Книга о внутренней опоре, отношениях и саморазвитии. Автор последовательно проводит читателя через темы близости, границ, тревоги и повседневной устойчивости, добавляя примеры, упражнения и вопросы для самостоятельной работы.';
 
 const testDescription =
-  'Если вы спросите у психологов: «За что вам платят?», часть из них скажет, что за знание методик. Но часто человеку важнее получить ясность о себе и своих реакциях. Этот тест помогает мягко посмотреть на характер, заметить сильные стороны и увидеть привычные поведенческие сценарии.';
+  'Этот тест помогает мягко посмотреть на характер, заметить сильные стороны и увидеть привычные поведенческие сценарии. Формат подойдёт тем, кто хочет быстро получить первую ясность о себе и своих реакциях.';
 
 const defaultCharacteristics = [
   { label: 'Формат', value: 'Онлайн' },
@@ -98,6 +102,17 @@ const defaultAuthor = {
   rating: '5.0',
   reviewsCount: 120,
   image: authorImage,
+  kind: 'person' as const,
+};
+
+const instituteAuthor = {
+  name: 'Московский гештальт институт',
+  role: 'Институт',
+  instituteId: '1',
+  rating: '5.0',
+  reviewsCount: 120,
+  kind: 'institute' as const,
+  preserveAuthor: true,
 };
 
 const defaultReviews: Review[] = [
@@ -126,7 +141,7 @@ const defaultReviews: Review[] = [
 
 const relatedItems: ProductSummary[] = [
   { id: 'product-2', title: 'Секреты счастливой жены', type: 'Курс', price: '10 000 ₽', rating: '5.0', image: productCourse },
-  { id: 'product-4', title: 'Промокод на курс', type: 'Промокод', price: 'Бесплатно', rating: '4.7', image: promoImage },
+  { id: 'product-4', title: 'Промокод на консультацию', type: 'Промокод', price: '1 100 ₽', rating: '4.7', image: promoImage },
   { id: 'product-6', title: 'Название книги', type: 'Книга', price: '10 000 ₽', rating: '4.9', image: bookImage },
   { id: 'product-1', title: 'Девичник', type: 'Курс', price: '6 000 ₽', rating: '4.8', image: productCourse },
 ];
@@ -168,15 +183,17 @@ export const productDetailsMap: Record<string, ProductDetails> = {
     tags: ['Отношения', 'Семья', 'Фобии'],
     description: defaultDescription,
     characteristics: defaultCharacteristics,
-    author: defaultAuthor,
+    author: {
+      ...instituteAuthor,
+    },
     actionLabel: 'Купить 10 000 ₽',
   },
   'product-4': {
     id: 'product-4',
     variant: 'promoCode',
-    title: 'Промокод на курс',
+    title: 'Промокод на консультацию',
     categoryLabel: 'Промокод',
-    price: 'Бесплатно',
+    price: '1 100 ₽',
     image: promoImage,
     tags: ['Скидка', 'Курсы'],
     description: promoDescription,
@@ -194,8 +211,32 @@ export const productDetailsMap: Record<string, ProductDetails> = {
       role: 'Партнёрская программа',
       image: authorImage,
     },
-    actionLabel: 'Получить промокод',
-    actionNote: 'Промокод будет доступен сразу после активации',
+    actionLabel: 'Купить 1 100 ₽',
+  },
+  'product-12': {
+    id: 'product-12',
+    variant: 'promoCode',
+    title: 'Промокод на вебинар',
+    categoryLabel: 'Промокод',
+    price: '600 ₽',
+    image: promoImage,
+    tags: ['Скидка', 'Вебинары'],
+    description: promoDescription,
+    terms: promoTerms,
+    promoBadge: 'Скидка 15%',
+    promoInfo: [
+      { label: 'Промокод', value: 'PSY15' },
+      { label: 'Размер скидки', value: '15%' },
+      { label: 'Действует до', value: '31.12.2026' },
+      { label: 'Категория', value: 'Вебинары / Психология' },
+      { label: 'Формат', value: 'Онлайн' },
+    ],
+    author: {
+      name: 'Psyfreedom',
+      role: 'Партнёрская программа',
+      image: authorImage,
+    },
+    actionLabel: 'Купить 600 ₽',
   },
   'product-6': {
     id: 'product-6',
@@ -217,11 +258,9 @@ export const productDetailsMap: Record<string, ProductDetails> = {
       { label: 'Язык', value: 'Русский' },
     ],
     author: {
-      name: 'Олег Рой',
-      role: 'Автор',
+      ...instituteAuthor,
       rating: '4.9',
       reviewsCount: 54,
-      image: authorImage,
     },
     reviews: defaultReviews,
     relatedItems,
@@ -239,7 +278,10 @@ export const productDetailsMap: Record<string, ProductDetails> = {
     tags: ['Выгорание', 'Саморазвитие', 'Стресс'],
     description: longCourseDescription,
     characteristics: defaultCharacteristics,
-    author: defaultAuthor,
+    author: {
+      ...instituteAuthor,
+      name: 'Институт повышения квалификации и переподготовки кадров РУДН',
+    },
     courseProgram: [
       { id: 'burnout-1', title: '1. Введение', description: 'Как заметить первые признаки истощения.' },
       { id: 'burnout-2', title: '2. Базовые принципы', description: 'Что реально влияет на восстановление, а что только усиливает усталость.' },
@@ -290,7 +332,7 @@ export const productDetailsMap: Record<string, ProductDetails> = {
       image: mariaAuthorImage,
     },
     actionLabel: 'Купить',
-    actionPrice: '1 000 ₽',
+    actionPrice: '10 000 ₽',
   },
   'test-free-1': {
     id: 'test-free-1',
@@ -311,6 +353,86 @@ export const productDetailsMap: Record<string, ProductDetails> = {
       image: mariaAuthorImage,
     },
     actionLabel: 'Начать тест',
+  },
+  'product-5': {
+    id: 'product-5',
+    variant: 'courseCompact',
+    title: 'Вебинар об отношениях',
+    categoryLabel: 'Вебинар',
+    price: '3 800 ₽',
+    image: productImage,
+    rating: '4.9',
+    reviewsCount: 120,
+    tags: ['Отношения', 'Семья', 'Фобии'],
+    description: defaultDescription,
+    characteristics: defaultCharacteristics,
+    author: defaultAuthor,
+    reviews: defaultReviews,
+    actionLabel: 'Купить 3 800 ₽',
+  },
+  'product-7': {
+    id: 'product-7',
+    variant: 'courseCompact',
+    title: 'Терапевтическая группа',
+    categoryLabel: 'Группа',
+    price: '8 700 ₽',
+    image: productImage,
+    rating: '4.6',
+    reviewsCount: 120,
+    tags: ['Отношения', 'Семья', 'Фобии'],
+    description: defaultDescription,
+    characteristics: defaultCharacteristics,
+    author: defaultAuthor,
+    reviews: defaultReviews,
+    actionLabel: 'Купить 8 700 ₽',
+  },
+  'product-8': {
+    id: 'product-8',
+    variant: 'courseCompact',
+    title: 'Игра на доверие',
+    categoryLabel: 'Игра',
+    price: '4 200 ₽',
+    image: productImage,
+    rating: '4.8',
+    reviewsCount: 120,
+    tags: ['Отношения', 'Семья', 'Фобии'],
+    description: defaultDescription,
+    characteristics: defaultCharacteristics,
+    author: defaultAuthor,
+    reviews: defaultReviews,
+    actionLabel: 'Купить 4 200 ₽',
+  },
+  'product-10': {
+    id: 'product-10',
+    variant: 'courseCompact',
+    title: 'Видеоурок по самооценке',
+    categoryLabel: 'Видеоурок',
+    price: '990 ₽',
+    image: productImage,
+    rating: '4.4',
+    reviewsCount: 120,
+    tags: ['Отношения', 'Семья', 'Фобии'],
+    description: defaultDescription,
+    characteristics: defaultCharacteristics,
+    author: defaultAuthor,
+    reviews: defaultReviews,
+    actionLabel: 'Купить 990 ₽',
+  },
+  'product-11': {
+    id: 'product-11',
+    variant: 'courseCompact',
+    title: 'Курс по тревожности',
+    categoryLabel: 'Курс',
+    price: '7 200 ₽',
+    image: productCourse,
+    rating: '4.8',
+    reviewsCount: 120,
+    tags: ['Отношения', 'Семья', 'Фобии'],
+    description: defaultDescription,
+    characteristics: defaultCharacteristics,
+    author: instituteAuthor,
+    reviews: defaultReviews,
+    actionLabel: 'Купить 7 200 ₽',
   },
 };
 

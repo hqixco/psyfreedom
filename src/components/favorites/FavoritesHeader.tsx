@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     lineHeight: 34,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
 });

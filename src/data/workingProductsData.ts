@@ -60,7 +60,7 @@ export const workingProductsMock: WorkingProduct[] = [
     type: 'videoLesson',
     typeLabel: 'Видеоурок',
     price: '100 000 ₽',
-    image: require('../../assets/images/product-devichnik.png'),
+    image: require('../../assets/images/product-course-devichnik.png'),
     status: 'published',
   },
   {
@@ -69,7 +69,7 @@ export const workingProductsMock: WorkingProduct[] = [
     type: 'videoLesson',
     typeLabel: 'Видеоурок',
     price: '100 000 ₽',
-    image: require('../../assets/images/product-devichnik.png'),
+    image: require('../../assets/images/product-course-devichnik.png'),
     status: 'published',
   },
   {
@@ -78,7 +78,7 @@ export const workingProductsMock: WorkingProduct[] = [
     type: 'videoLesson',
     typeLabel: 'Видеоурок',
     price: '100 000 ₽',
-    image: require('../../assets/images/product-devichnik.png'),
+    image: require('../../assets/images/product-course-devichnik.png'),
     status: 'archived',
   },
 ];
@@ -133,3 +133,4 @@ export const productTypeLabelMap: Record<WorkingProductType, string> = {
   promoCode: 'Промокод',
   videoLesson: 'Видеоурок',
 };
+

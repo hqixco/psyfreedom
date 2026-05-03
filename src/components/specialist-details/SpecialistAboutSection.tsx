@@ -30,21 +30,22 @@ const styles = StyleSheet.create({
     marginTop: 28,
   },
   title: {
-    fontSize: 22,
+    fontSize: 16,
     lineHeight: 28,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   text: {
     marginTop: 10,
-    fontSize: 14,
-    lineHeight: 21,
+    fontSize: 16,
+    ...typography.Inter[400],
+    lineHeight: 19,
     color: colors.text,
   },
   link: {
-    marginTop: 6,
+    marginTop: 20,
     fontSize: 14,
-    ...typography.Inter[600],
+    ...typography.Inter[400],
     color: colors.primary,
   },
 });

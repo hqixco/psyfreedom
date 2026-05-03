@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     marginBottom: 22,
   },
   title: {
-    fontSize: 24,
-    ...typography.Inter[700],
+    fontSize: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   buttonsRow: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     flex: 1,
-    height: 48,
+    height: 41,
     borderRadius: 24,
     borderWidth: 1,
     borderColor: colors.primary,
@@ -76,21 +76,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cancelText: {
-    fontSize: 15,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primary,
   },
   deleteButton: {
     flex: 1,
-    height: 48,
+    height: 41,
     borderRadius: 24,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   deleteText: {
-    fontSize: 15,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.white,
   },
 });

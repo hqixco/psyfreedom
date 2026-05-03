@@ -35,10 +35,10 @@ export const humorChips: { id: HumorFilterType; title: string }[] = [
   { id: 'image', title: 'Изображения' },
 ];
 
-const authorAvatar = require('../../assets/images/author-maria.png');
-const commentAvatar = require('../../assets/картинка.png');
-const humorImage = require('../../assets/images/article-1.png');
-const humorAltImage = require('../../assets/images/video-1.png');
+const authorAvatar = require('../../assets/images/avatar-maria.png');
+const commentAvatar = require('../../assets/review-avatar-default.png');
+const humorImage = require('../../assets/images/article-card-cover-default.png');
+const humorAltImage = require('../../assets/images/video-card-cover-default.png');
 
 const postText =
   'Если вы спросите у психологов: «За что вам платят?». Многие ответят: «За инсайт». Это значит за то, что во время сессии вы узнаете о себе что-то новое. Мне клиенты платят не за инсайты, не за мое время и знания, а за конкретное изменение, на которое они решаются в результате нашей работы.';
@@ -125,3 +125,4 @@ export const humorPosts: HumorPost[] = [
     comments,
   },
 ];
+

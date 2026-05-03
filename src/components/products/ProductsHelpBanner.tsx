@@ -13,7 +13,7 @@ type ProductsHelpBannerProps = {
 export function ProductsHelpBanner({ onPress }: ProductsHelpBannerProps) {
   return (
     <ImageBackground
-      source={require('../../../assets/Rectangle 17114.jpg')}
+      source={require('../../../assets/help-banner-bg.jpg')}
       resizeMode="cover"
       style={styles.banner}
       imageStyle={styles.bannerImage}
@@ -104,3 +104,4 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
 });
+

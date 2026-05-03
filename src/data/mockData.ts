@@ -57,17 +57,17 @@ export const banners: BannerItem[] = [
   {
     id: 'banner-1',
     title: 'Почему выбирают\nPsyfreedom',
-    image: require('../../assets/1.jpg'),
+    image: require('../../assets/marketing-banner-platform-choice.jpg'),
   },
   {
     id: 'banner-2',
     title: 'Как справиться\nсо стрессом',
-    image: require('../../assets/2.jpg'),
+    image: require('../../assets/marketing-banner-support.jpg'),
   },
   {
     id: 'banner-3',
     title: 'Поддержка\nв сложный период',
-    image: require('../../assets/2.jpg'),
+    image: require('../../assets/marketing-banner-support.jpg'),
   },
 ];
 
@@ -77,42 +77,42 @@ export const topics: TopicItem[] = [
     title: 'Любовь',
     icon: 'heart-outline',
     backgroundColor: '#D8FFF0',
-    image: require('../../assets/lyubov.png'),
+    image: require('../../assets/topic-love.png'),
   },
   {
     id: 'career',
     title: 'Карьера',
     icon: 'briefcase-outline',
     backgroundColor: '#CFFBEA',
-    image: require('../../assets/karjera.png'),
+    image: require('../../assets/topic-career.png'),
   },
   {
     id: 'money',
     title: 'Деньги',
     icon: 'cash-outline',
     backgroundColor: '#D8FFF0',
-    image: require('../../assets/dengi.png'),
+    image: require('../../assets/topic-money.png'),
   },
   {
     id: 'esteem',
     title: 'Самооценка',
     icon: 'ribbon-outline',
     backgroundColor: '#CFFBEA',
-    image: require('../../assets/samoocenka.png'),
+    image: require('../../assets/topic-self-esteem.png'),
   },
   {
     id: 'stress',
     title: 'Стресс',
     icon: 'flash-outline',
     backgroundColor: '#D8FFF0',
-    image: require('../../assets/stress.png'),
+    image: require('../../assets/topic-stress.png'),
   },
   {
     id: 'all-topics',
     title: 'Все темы',
     icon: 'add',
     backgroundColor: '#CFFBEA',
-    image: require('../../assets/vse temy.png'),
+    image: require('../../assets/topic-all-categories.png'),
     isAllTopics: true,
   },
 ];
@@ -124,7 +124,7 @@ export const specialists: SpecialistItem[] = [
     specialization: 'Психолог',
     price: 'От 1 200 ₽',
     rating: '5.0',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/avatar-person-default.png'),
   },
   {
     id: 'spec-2',
@@ -132,7 +132,7 @@ export const specialists: SpecialistItem[] = [
     specialization: 'Психотерапевт',
     price: 'От 1 200 ₽',
     rating: '5.0',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/avatar-person-default.png'),
   },
   {
     id: 'spec-3',
@@ -140,7 +140,7 @@ export const specialists: SpecialistItem[] = [
     specialization: 'Семейный психолог',
     price: 'От 1 200 ₽',
     rating: '5.0',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/avatar-person-default.png'),
   },
   {
     id: 'spec-4',
@@ -148,7 +148,7 @@ export const specialists: SpecialistItem[] = [
     specialization: 'Коуч',
     price: 'От 1 200 ₽',
     rating: '5.0',
-    image: require('../../assets/image (1).png'),
+    image: require('../../assets/avatar-person-default.png'),
   },
 ];
 
@@ -193,7 +193,7 @@ export const products: ProductItem[] = [
     type: 'Курс',
     price: '100 000 ₽',
     rating: '5.0',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/product-placeholder-square.png'),
   },
   {
     id: 'product-2',
@@ -201,7 +201,7 @@ export const products: ProductItem[] = [
     type: 'Курс',
     price: '100 000 ₽',
     rating: '5.0',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/product-placeholder-square.png'),
   },
   {
     id: 'product-3',
@@ -209,7 +209,7 @@ export const products: ProductItem[] = [
     type: 'Курс',
     price: '100 000 ₽',
     rating: '5.0',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/product-placeholder-square.png'),
   },
   {
     id: 'product-4',
@@ -217,13 +217,13 @@ export const products: ProductItem[] = [
     type: 'Курс',
     price: '100 000 ₽',
     rating: '5.0',
-    image: require('../../assets/photo.png'),
+    image: require('../../assets/product-placeholder-square.png'),
   },
 ];
 
-export const platformGuideImage = require('../../assets/happy-young-female-working-laptop 1.png');
+export const platformGuideImage = require('../../assets/platform-guide-illustration.png');
 
-export const specialistPromoDecor = require('../../assets/kak-stat.png');
+export const specialistPromoDecor = require('../../assets/specialist-promo-illustration.png');
 
 export const specialistCategories: SpecialistCategoryItem[] = [
   {
@@ -258,27 +258,28 @@ export const articles: ArticleItem[] = [
     title: 'Название статьи',
     topic: 'Тема',
     views: 28,
-    image: require('../../assets/image (2).png'),
+    image: require('../../assets/article-cover-default.png'),
   },
   {
     id: 'article-2',
     title: 'Название статьи',
     topic: 'Тема',
     views: 28,
-    image: require('../../assets/image (2).png'),
+    image: require('../../assets/article-cover-default.png'),
   },
   {
     id: 'article-3',
     title: 'Название статьи',
     topic: 'Тема',
     views: 28,
-    image: require('../../assets/image (2).png'),
+    image: require('../../assets/article-cover-default.png'),
   },
   {
     id: 'article-4',
     title: 'Название статьи',
     topic: 'Тема',
     views: 28,
-    image: require('../../assets/image (2).png'),
+    image: require('../../assets/article-cover-default.png'),
   },
 ];
+

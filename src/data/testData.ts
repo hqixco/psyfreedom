@@ -17,8 +17,8 @@ export const testQuestions = [
   },
 ];
 
-const authorMaria = require('../../assets/images/author-maria.png');
-const reviewAvatar = require('../../assets/картинка.png');
+const authorMaria = require('../../assets/images/avatar-maria.png');
+const reviewAvatar = require('../../assets/review-avatar-default.png');
 
 export const testResult: {
   title: string;
@@ -83,3 +83,4 @@ export const testResult: {
     },
   ],
 };
+

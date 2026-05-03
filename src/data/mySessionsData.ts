@@ -25,7 +25,7 @@ export const sessionsMock: SessionItem[] = [
     title: 'Онлайн консультация',
     specialistName: 'Мария Лапина',
     specialistRole: 'Психолог',
-    specialistAvatar: require('../../assets/images/author-maria.png'),
+    specialistAvatar: require('../../assets/images/avatar-maria.png'),
     rating: '5.0',
     reviewsCount: 120,
     price: '9 000 ₽',
@@ -40,7 +40,7 @@ export const sessionsMock: SessionItem[] = [
     title: 'Онлайн консультация',
     specialistName: 'Мария Лапина',
     specialistRole: 'Психолог',
-    specialistAvatar: require('../../assets/images/author-maria.png'),
+    specialistAvatar: require('../../assets/images/avatar-maria.png'),
     rating: '5.0',
     reviewsCount: 120,
     price: '9 000 ₽',
@@ -55,7 +55,7 @@ export const sessionsMock: SessionItem[] = [
     title: 'Онлайн консультация',
     specialistName: 'Мария Лапина',
     specialistRole: 'Психолог',
-    specialistAvatar: require('../../assets/images/author-maria.png'),
+    specialistAvatar: require('../../assets/images/avatar-maria.png'),
     rating: '5.0',
     reviewsCount: 120,
     price: '9 000 ₽',
@@ -70,3 +70,4 @@ export const calendarMonthMock = {
   selectedDate: '2024-10-19',
   markedDates: ['2024-10-06', '2024-10-07', '2024-10-19'],
 };
+

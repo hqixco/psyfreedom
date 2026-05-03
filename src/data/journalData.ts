@@ -43,9 +43,9 @@ export const articleTopics: ArticleTopic[] = [
   { id: 'family', title: 'Семья,\nотношения\nи границы' },
 ];
 
-const articleImage = require('../../assets/images/article-1.png');
-const articlePlaceholder = require('../../assets/images/article-placeholder.png');
-const videoImage = require('../../assets/images/video-1.png');
+const articleImage = require('../../assets/images/article-card-cover-default.png');
+const articlePlaceholder = require('../../assets/images/article-card-cover-placeholder.png');
+const videoImage = require('../../assets/images/video-card-cover-default.png');
 
 export const articles: Article[] = [
   { id: 'article-1', title: 'Название статьи', topic: 'Тема', views: 28, image: articleImage },
@@ -76,3 +76,4 @@ export const videos: Video[] = [
   { id: 'video-7', title: 'Найти опору в себе', topic: 'Самооценка', views: 32, image: videoImage },
   { id: 'video-8', title: 'Сон без перегруза', topic: 'Проблемы со сном', views: 20, image: articlePlaceholder },
 ];
+

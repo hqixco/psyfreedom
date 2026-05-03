@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { favoriteChips } from '../../data/favoritesData';
 
@@ -11,12 +11,7 @@ type FavoritesChipsProps = {
 
 export function FavoritesChips({ activeCategory, onSelect }: FavoritesChipsProps) {
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.content}
-      style={styles.scroll}
-    >
+    <View style={styles.scroll}>
       {favoriteChips.map((chip) => {
         const isActive = chip.id === activeCategory;
 
@@ -32,20 +27,20 @@ export function FavoritesChips({ activeCategory, onSelect }: FavoritesChipsProps
           </Pressable>
         );
       })}
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   scroll: {
     marginTop: 24,
-  },
-  content: {
     paddingHorizontal: 16,
-    paddingBottom: 16,
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
   },
   chip: {
-    height: 44,
+    height: 43,
     borderRadius: 22,
     paddingHorizontal: 22,
     alignItems: 'center',
@@ -53,6 +48,8 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   chipActive: {
+    borderWidth: 1,
+    borderColor: colors.primary,
     backgroundColor: colors.primary,
   },
   chipInactive: {
@@ -61,8 +58,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   chipText: {
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 16,
+    lineHeight: 18,
+    ...typography.Inter[600],
   },
   chipTextActive: {
     color: colors.white,

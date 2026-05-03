@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, typography } from '../../constants/theme';
+import { SelectChevronIcon } from '../icons/SelectChevronIcon';
 
 type AppointmentSheetProps = {
   visible: boolean;
@@ -32,7 +33,7 @@ function RadioRow({
       <View style={[styles.radioOuter, active ? styles.radioOuterActive : null]}>
         {active ? <View style={styles.radioInner} /> : null}
       </View>
-      <Text style={styles.radioText}>{label}</Text>
+      <Text style={[styles.radioText, active ? styles.radioTextActive : null]}>{label}</Text>
     </Pressable>
   );
 }
@@ -92,6 +93,11 @@ export function AppointmentSheet({
             Выберите дату и время для записи на прием
           </Text>
 
+          <View style={styles.fieldLabelsRow}>
+            <Text style={styles.fieldLabel}>Дата приема</Text>
+            <Text style={styles.fieldLabel}>Время приема</Text>
+          </View>
+
           <View style={styles.fieldsRow}>
             <Pressable
               style={[styles.field, isDateOpen ? styles.fieldActive : null]}
@@ -101,7 +107,9 @@ export function AppointmentSheet({
               }}
             >
               <Text style={styles.fieldValue}>{date}</Text>
-              <Ionicons name={isDateOpen ? 'chevron-up' : 'chevron-down'} size={18} color={colors.primaryDark} />
+              <View style={[styles.fieldIconWrap, isDateOpen ? styles.fieldIconWrapOpen : null]}>
+                <SelectChevronIcon />
+              </View>
             </Pressable>
             <Pressable
               style={[styles.field, isTimeOpen ? styles.fieldActive : null]}
@@ -111,7 +119,9 @@ export function AppointmentSheet({
               }}
             >
               <Text style={styles.fieldValue}>{time}</Text>
-              <Ionicons name={isTimeOpen ? 'chevron-up' : 'chevron-down'} size={18} color={colors.primaryDark} />
+              <View style={[styles.fieldIconWrap, isTimeOpen ? styles.fieldIconWrapOpen : null]}>
+                <SelectChevronIcon />
+              </View>
             </Pressable>
           </View>
 
@@ -186,60 +196,77 @@ const styles = StyleSheet.create({
     marginBottom: 22,
   },
   title: {
-    fontSize: 24,
-    ...typography.Inter[700],
+    fontSize: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   sectionTitle: {
     marginBottom: 12,
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   meetingTitle: {
     marginTop: 18,
   },
   datetimeTitle: {
-    marginTop: 22,
+    marginTop: 17,
     lineHeight: 22,
   },
   radioRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    paddingVertical: 5,
   },
   radioOuter: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    borderWidth: 2,
-    borderColor: '#B7DCE2',
+    width: 18,
+    height: 18,
+    borderRadius: 9,
     marginRight: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(193, 212, 217, 1)',
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioOuterActive: {
-    borderColor: colors.primary,
+    backgroundColor: '#05728F',
+    borderColor: '#05728F',
   },
   radioInner: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: colors.primary,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: colors.white,
   },
   radioText: {
-    fontSize: 16,
+    fontSize: 14,
     color: colors.primaryDark,
+  },
+  radioTextActive: {
+    color: colors.primaryDark,
+    ...typography.Inter[400],
   },
   fieldsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 14,
+    marginTop: 0,
+  },
+  fieldLabelsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 2,
+  },
+  fieldLabel: {
+    width: '48.5%',
+    marginBottom: 6,
+    fontSize: 12,
+    color: colors.primaryDark,
   },
   field: {
     width: '48.5%',
-    height: 48,
-    borderRadius: 24,
+    height: 39,
+    borderRadius: 360,
     borderWidth: 1,
     borderColor: colors.primary,
     paddingHorizontal: 16,
@@ -251,8 +278,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#F6FBFC',
   },
   fieldValue: {
-    fontSize: 15,
+    fontSize: 12,
+    fontWeight: '400',
     color: colors.primaryDark,
+  },
+  fieldIconWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fieldIconWrapOpen: {
+    transform: [{ rotate: '180deg' }],
   },
   optionsPanel: {
     marginTop: 10,
@@ -264,12 +299,12 @@ const styles = StyleSheet.create({
   },
   optionRow: {
     paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#EEF4F6',
   },
   optionText: {
-    fontSize: 15,
+    fontSize: 12,
     color: colors.primaryDark,
   },
   optionTextActive: {
@@ -288,25 +323,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   costLabel: {
-    fontSize: 18,
+    fontSize: 16,
     color: colors.text,
   },
   costValue: {
-    fontSize: 26,
-    ...typography.Inter[700],
+    fontSize: 20,
+    ...typography.Inter[600],
     color: colors.primary,
   },
   submitButton: {
     marginTop: 18,
-    height: 52,
+    height: 41,
     borderRadius: 26,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary,
   },
   submitButtonText: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.white,
   },
 });

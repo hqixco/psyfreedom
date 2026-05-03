@@ -71,33 +71,33 @@ const styles = StyleSheet.create({
   },
   postWrap: {
     marginHorizontal: 16,
-    marginTop: 12,
+    marginTop: 7,
   },
   authorRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   avatar: {
-    width: 40,
-    height: 40,
+    width: 32,
+    height: 32,
     borderRadius: 20,
     marginRight: 10,
     backgroundColor: colors.cardLight,
   },
   author: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   createdAt: {
     marginTop: 2,
-    fontSize: 14,
+    fontSize: 12,
     color: colors.muted,
   },
   text: {
     marginTop: 18,
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 14,
+    lineHeight: 18,
     color: colors.text,
   },
   image: {
@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
   commentsTitle: {
     marginHorizontal: 16,
     marginTop: 24,
-    fontSize: 20,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

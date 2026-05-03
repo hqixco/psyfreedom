@@ -1,7 +1,7 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { SpecialistReview } from '../../data/specialistDetailsData';
+import { RatingStarIcon } from '../icons/RatingStarIcon';
 
 type SpecialistReviewsSectionProps = {
   rating: string;
@@ -21,8 +21,9 @@ export function SpecialistReviewsSection({
       <View style={styles.header}>
         <Text style={styles.title}>Отзывы</Text>
         <View style={styles.ratingRow}>
-          <Ionicons name="star" size={16} color="#FFC93C" />
-          <Text style={styles.ratingText}>{`${rating} ${reviewsCount} отзывов`}</Text>
+          <RatingStarIcon />
+          <Text style={styles.ratingValue}>{rating}</Text>
+          <Text style={styles.reviewsValue}>{`${reviewsCount} отзывов`}</Text>
         </View>
       </View>
 
@@ -31,13 +32,13 @@ export function SpecialistReviewsSection({
           <View style={styles.cardTop}>
             <Image source={review.avatar} style={styles.avatar} />
             <View style={styles.meta}>
-              <Text style={styles.date}>{review.date}</Text>
-              <Text style={styles.author}>{review.author}</Text>
               <View style={styles.starsRow}>
                 {Array.from({ length: review.rating }).map((_, index) => (
-                  <Ionicons key={`${review.id}-${index}`} name="star" size={14} color="#FFC93C" />
+                  <RatingStarIcon key={`${review.id}-${index}`} width={18} />
                 ))}
               </View>
+              <Text style={styles.date}>{review.date}</Text>
+              <Text style={styles.author}>{review.author}</Text>
             </View>
           </View>
           <Text style={styles.text}>{review.text}</Text>
@@ -53,7 +54,7 @@ export function SpecialistReviewsSection({
 
 const styles = StyleSheet.create({
   section: {
-    marginTop: 28,
+    marginTop: 60,
   },
   header: {
     marginHorizontal: 16,
@@ -62,18 +63,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 22,
-    ...typography.Inter[700],
+    fontSize: 24,
+    marginBottom: 10,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  ratingText: {
-    marginLeft: 6,
+  ratingValue: {
+    marginLeft: 3,
     fontSize: 14,
-    color: colors.muted,
+    fontWeight: '600',
+    color: colors.primaryDark,
+  },
+  reviewsValue: {
+    marginLeft: 7,
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#A9A9A9',
   },
   card: {
     marginHorizontal: 16,
@@ -82,45 +91,46 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#F0F0F0',
     backgroundColor: colors.white,
-    padding: 14,
+    padding: 17,
   },
   cardTop: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 88,
+    height: 88,
+    borderRadius: 360,
     marginRight: 12,
     backgroundColor: colors.cardLight,
   },
   meta: {
     flex: 1,
   },
+  starsRow: {
+    flexDirection: 'row',
+    gap: 2,
+  },
   date: {
+    marginTop: 4,
     fontSize: 12,
     color: colors.muted,
   },
   author: {
-    marginTop: 2,
-    fontSize: 15,
-    ...typography.Inter[700],
+    marginTop: 10,
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
-  starsRow: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
   text: {
-    marginTop: 8,
+    marginTop: 13,
     fontSize: 14,
-    lineHeight: 20,
+    lineHeight: 16,
     color: colors.text,
   },
   button: {
     marginHorizontal: 16,
-    marginTop: 14,
+    marginTop: 20,
     height: 42,
     borderRadius: 21,
     borderWidth: 1,
@@ -129,8 +139,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    fontSize: 15,
-    ...typography.Inter[700],
-    color: colors.primary,
+    fontSize: 16,
+    ...typography.Inter[600],
+    color: '#033542',
   },
 });

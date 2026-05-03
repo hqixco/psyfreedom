@@ -37,26 +37,26 @@ export function ProductAboutSection({
 
 const styles = StyleSheet.create({
   section: {
-    marginTop: 24,
+    marginTop: 35,
   },
   title: {
     marginHorizontal: 16,
-    fontSize: 20,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   text: {
-    marginTop: 10,
+    marginTop: 15,
     marginHorizontal: 16,
-    fontSize: 14,
+    fontSize: 16,
     lineHeight: 20,
     color: colors.text,
   },
   link: {
-    marginTop: 8,
+    marginTop: 18,
     marginHorizontal: 16,
     fontSize: 14,
-    ...typography.Inter[600],
+    ...typography.Inter[400],
     color: colors.primary,
   },
 });

@@ -31,6 +31,16 @@ type BaseServicesView = Exclude<ServicesView, 'map'>;
 const serviceSortOptions = ['По цене', 'По рейтингу', 'Новые анкеты'];
 
 function getSpecialistDetailId(id: string) {
+  const topMatch = id.match(/^top-(\d+)$/);
+  if (topMatch) {
+    return `specialist-${topMatch[1]}`;
+  }
+
+  const numericMatch = id.match(/^(\d+)$/);
+  if (numericMatch) {
+    return `specialist-${numericMatch[1]}`;
+  }
+
   return id;
 }
 

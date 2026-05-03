@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   favoriteButton: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
+    width: 41,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
     borderColor: colors.primary,
     alignItems: 'center',
@@ -57,15 +57,15 @@ const styles = StyleSheet.create({
   },
   mainButton: {
     flex: 1,
-    height: 52,
-    borderRadius: 26,
+    height: 41,
+    borderRadius: 360,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary,
   },
   mainButtonText: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.white,
   },
 });

@@ -20,7 +20,7 @@ export type PendingReview = {
   type: 'product' | 'specialist' | 'session';
 };
 
-const purchaseImage = require('../../assets/images/product-devichnik.png');
+const purchaseImage = require('../../assets/images/product-course-devichnik.png');
 
 export const writtenReviewsMock: WrittenReview[] = [
   {
@@ -100,3 +100,4 @@ export const pendingReviewsMock: PendingReview[] = [
     type: 'product',
   },
 ];
+

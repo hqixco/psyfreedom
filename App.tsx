@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import {
   Inter_400Regular,
@@ -15,10 +15,8 @@ import { getBottomTabsHeight } from './src/components/bottomTabsLayout';
 import { HomeScreen } from './src/components/HomeScreen';
 import { SplashScreen } from './src/components/SplashScreen';
 import { colors, typography } from './src/constants/theme';
-import { authInitialValues } from './src/data/authData';
-import { userProfileMock } from './src/data/authorizedProfileData';
-import { articles, products, specialists, videos } from './src/data/catalogData';
-import { EditableProfile } from './src/components/profile/EditProfileForm';
+import { articles, products, specialists as catalogSpecialists, videos } from './src/data/catalogData';
+import { specialists as serviceSpecialists } from './src/data/servicesData';
 import { FavoritesScreen } from './src/screens/FavoritesScreen';
 import { LoginScreen } from './src/screens/auth/LoginScreen';
 import { RegisterScreen } from './src/screens/auth/RegisterScreen';
@@ -27,6 +25,7 @@ import { ArticleDetailsScreen } from './src/screens/catalog/ArticleDetailsScreen
 import { CatalogScreen } from './src/screens/catalog/CatalogScreen';
 import { JournalScreen } from './src/screens/catalog/JournalScreen';
 import { ProductDetailsScreen } from './src/screens/catalog/ProductDetailsScreen';
+import { InstituteDetailsScreen } from './src/screens/catalog/InstituteDetailsScreen';
 import { ProductsScreen } from './src/screens/catalog/ProductsScreen';
 import { ServicesScreen } from './src/screens/catalog/ServicesScreen';
 import { SpecialistDetailsScreen } from './src/screens/catalog/SpecialistDetailsScreen';
@@ -74,77 +73,15 @@ import {
   SpecialistQuestionnaireScreen,
 } from './src/screens/profile/SpecialistQuestionnaireScreen';
 import {
-  initialSpecialistApplicationForm,
-  SpecialistApplicationForm,
-  SpecialistApplicationStatus,
-} from './src/data/specialistQuestionnaireData';
-import {
-  createProductInitialValues,
-  WorkingProduct,
   WorkingProductFormValues,
-  workingProductsMock,
 } from './src/data/workingProductsData';
 import { associationsMock } from './src/data/associationsData';
+import { institutesMock } from './src/data/institutesData';
 import { officeRentItems } from './src/data/officeRentData';
-
-type AppRoute =
-  | { name: 'home' }
-  | { name: 'catalog' }
-  | { name: 'products'; categoryId?: string; title?: string }
-  | { name: 'services'; title?: string; topicId?: string; categoryId?: string }
-  | { name: 'journal' }
-  | { name: 'messenger' }
-  | { name: 'chat'; chatId: string }
-  | { name: 'product-details'; productId: string }
-  | { name: 'specialist-details'; specialistId: string }
-  | { name: 'article-details'; articleId: string }
-  | { name: 'payment' }
-  | { name: 'like' }
-  | { name: 'profile' }
-  | { name: 'login' }
-  | { name: 'sms-code' }
-  | { name: 'register' }
-  | { name: 'edit-profile' }
-  | { name: 'about-app' }
-  | { name: 'faq' }
-  | { name: 'become-partner' }
-  | { name: 'emergency-help' }
-  | { name: 'my-sessions' }
-  | { name: 'my-purchases' }
-  | { name: 'my-reviews' }
-  | { name: 'dating-club' }
-  | { name: 'dating-approved-home' }
-  | { name: 'dating-books' }
-  | { name: 'dating-booked-events' }
-  | { name: 'dating-collections' }
-  | { name: 'dating-event-details'; eventId: string }
-  | { name: 'dating-event-map'; eventId: string }
-  | { name: 'dating-event-requests' }
-  | { name: 'dating-events' }
-  | { name: 'dating-favorites' }
-  | { name: 'dating-profiles-catalog' }
-  | { name: 'dating-profile-view'; profileId: string }
-  | { name: 'dating-user-profile' }
-  | { name: 'dating-questionnaire' }
-  | { name: 'working-sessions-calendar' }
-  | { name: 'working-reviews' }
-  | { name: 'working-products' }
-  | { name: 'create-product'; productId?: string }
-  | { name: 'associations' }
-  | { name: 'association-details'; associationId: string }
-  | { name: 'office-rent' }
-  | { name: 'office-rent-details'; officeId: string }
-  | { name: 'cooperation' }
-  | { name: 'specialist-questionnaire' }
-  | { name: 'specialist-application-pending' };
-
-type ReturnRoute =
-  | { name: 'catalog' }
-  | { name: 'journal' }
-  | { name: 'home' }
-  | { name: 'like' }
-  | { name: 'product-details'; productId: string }
-  | { name: 'specialist-details'; specialistId: string };
+import { useAppNavigationState } from './src/hooks/app/useAppNavigationState';
+import { useAuthState } from './src/hooks/app/useAuthState';
+import { useProfileState } from './src/hooks/app/useProfileState';
+import { useWorkingProfileState } from './src/hooks/app/useWorkingProfileState';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -176,175 +113,68 @@ export default function App() {
 function AppShell() {
   const insets = useSafeAreaInsets();
   const bottomTabsHeight = getBottomTabsHeight(insets.bottom);
-  const [route, setRoute] = useState<AppRoute>({ name: 'home' });
-  const [bottomTabsVisible, setBottomTabsVisible] = useState(true);
-  const [articleReturnRoute, setArticleReturnRoute] = useState<ReturnRoute>({ name: 'journal' });
-  const [paymentReturnRoute, setPaymentReturnRoute] = useState<ReturnRoute>({ name: 'catalog' });
-  const [productReturnRoute, setProductReturnRoute] = useState<AppRoute>({ name: 'catalog' });
-  const [specialistReturnRoute, setSpecialistReturnRoute] = useState<AppRoute>({ name: 'catalog' });
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const [authPhone, setAuthPhone] = useState(authInitialValues.phone);
-  const [authConsent, setAuthConsent] = useState(authInitialValues.consent);
-  const [registerName, setRegisterName] = useState(authInitialValues.name);
-  const [registerPhone, setRegisterPhone] = useState(authInitialValues.phone);
-  const [registerPassword, setRegisterPassword] = useState(authInitialValues.password);
-  const [registerRepeatPassword, setRegisterRepeatPassword] = useState(authInitialValues.repeatPassword);
-  const [registerConsent, setRegisterConsent] = useState(authInitialValues.consent);
-  const [authFlowSource, setAuthFlowSource] = useState<'login' | 'register'>('login');
-  const [userProfile, setUserProfile] = useState<EditableProfile>({
-    name: userProfileMock.name,
-    phone: userProfileMock.phone,
-    email: userProfileMock.email,
-    birthDate: userProfileMock.birthDate,
-    photo: userProfileMock.photo,
-  });
-  const [selectedProfileType, setSelectedProfileType] = useState<'main' | 'work'>(userProfileMock.selectedProfileType);
-  const [pushEnabled, setPushEnabled] = useState(userProfileMock.pushEnabled);
-  const [workPushEnabled, setWorkPushEnabled] = useState(true);
-  const [specialistApplicationStatus, setSpecialistApplicationStatus] =
-    useState<SpecialistApplicationStatus>('notStarted');
-  const [specialistQuestionnaireStep, setSpecialistQuestionnaireStep] = useState(1);
-  const [specialistApplicationForm, setSpecialistApplicationForm] =
-    useState<SpecialistApplicationForm>(initialSpecialistApplicationForm);
-  const [workingProducts, setWorkingProducts] = useState<WorkingProduct[]>(workingProductsMock);
   const [datingQuestionnaireStatus, setDatingQuestionnaireStatus] =
     useState<DatingQuestionnaireStatus>('approved');
-  const [datingFavoritesReturnRoute, setDatingFavoritesReturnRoute] = useState<AppRoute>({
-    name: 'dating-approved-home',
-  });
-
-  const openDatingSection = () => {
-    if (datingQuestionnaireStatus === 'approved') {
-      setRoute({ name: 'dating-approved-home' });
-      return;
-    }
-
-    setRoute({ name: 'dating-club' });
-  };
-
-  const openProductDetails = (productId: string) => {
-    setProductReturnRoute(route);
-    setRoute({ name: 'product-details', productId });
-  };
-
-  const openSpecialistDetails = (specialistId: string) => {
-    setSpecialistReturnRoute(route);
-    setRoute({ name: 'specialist-details', specialistId });
-  };
-
-  const isDatingRoute =
-    route.name === 'dating-club' ||
-    route.name === 'dating-approved-home' ||
-    route.name === 'dating-books' ||
-    route.name === 'dating-booked-events' ||
-    route.name === 'dating-collections' ||
-    route.name === 'dating-event-details' ||
-    route.name === 'dating-event-map' ||
-    route.name === 'dating-event-requests' ||
-    route.name === 'dating-events' ||
-    route.name === 'dating-favorites' ||
-    route.name === 'dating-profiles-catalog' ||
-    route.name === 'dating-profile-view' ||
-    route.name === 'dating-user-profile' ||
-    route.name === 'dating-questionnaire';
-
-  const activeTab: TabKey = useMemo(() => {
-    switch (route.name) {
-      case 'catalog':
-      case 'products':
-      case 'services':
-      case 'journal':
-      case 'product-details':
-      case 'specialist-details':
-      case 'article-details':
-        return 'catalog';
-      case 'messenger':
-      case 'chat':
-        return 'message';
-      case 'payment':
-        return 'catalog';
-      case 'like':
-        return 'like';
-      case 'profile':
-      case 'login':
-      case 'sms-code':
-      case 'register':
-      case 'edit-profile':
-      case 'about-app':
-      case 'faq':
-      case 'become-partner':
-      case 'emergency-help':
-      case 'my-sessions':
-      case 'my-purchases':
-      case 'my-reviews':
-      case 'dating-club':
-      case 'dating-approved-home':
-      case 'dating-books':
-      case 'dating-event-details':
-      case 'dating-event-map':
-      case 'dating-collections':
-      case 'dating-events':
-      case 'dating-questionnaire':
-        return 'home';
-      case 'dating-favorites':
-      case 'dating-profiles-catalog':
-      case 'dating-profile-view':
-        return 'like';
-      case 'dating-booked-events':
-      case 'dating-event-requests':
-      case 'dating-user-profile':
-        return 'user';
-      case 'working-sessions-calendar':
-      case 'working-reviews':
-      case 'working-products':
-      case 'create-product':
-      case 'associations':
-      case 'association-details':
-      case 'office-rent':
-      case 'office-rent-details':
-      case 'cooperation':
-      case 'specialist-questionnaire':
-      case 'specialist-application-pending':
-        return 'user';
-      default:
-        return 'home';
-    }
-  }, [route.name]);
-
-  const openTab = (tab: TabKey) => {
-    switch (tab) {
-      case 'catalog':
-        setRoute({ name: 'catalog' });
-        break;
-      case 'message':
-        setRoute({ name: 'messenger' });
-        break;
-      case 'like':
-        if (isDatingRoute && datingQuestionnaireStatus === 'approved') {
-          if (route.name !== 'dating-favorites') {
-            setDatingFavoritesReturnRoute(route);
-          }
-          setRoute({ name: 'dating-favorites' });
-        } else {
-          setRoute({ name: 'like' });
-        }
-        break;
-      case 'user':
-        if (isDatingRoute && datingQuestionnaireStatus === 'approved') {
-          setRoute({ name: 'dating-user-profile' });
-        } else {
-          setRoute({ name: 'profile' });
-        }
-        break;
-      default:
-        if (isDatingRoute) {
-          openDatingSection();
-        } else {
-          setRoute({ name: 'home' });
-        }
-        break;
-    }
-  };
+  const {
+    route,
+    setRoute,
+    bottomTabsVisible,
+    setBottomTabsVisible,
+    articleReturnRoute,
+    setArticleReturnRoute,
+    paymentReturnRoute,
+    setPaymentReturnRoute,
+    productReturnRoute,
+    instituteReturnRoute,
+    specialistReturnRoute,
+    datingFavoritesReturnRoute,
+    openDatingSection,
+    openProductDetails,
+    openInstituteDetails,
+    openSpecialistDetails,
+    activeTab,
+    openTab,
+  } = useAppNavigationState({ datingQuestionnaireStatus });
+  const {
+    isAuthorized,
+    setIsAuthorized,
+    authPhone,
+    setAuthPhone,
+    authConsent,
+    setAuthConsent,
+    registerName,
+    setRegisterName,
+    registerPhone,
+    setRegisterPhone,
+    registerPassword,
+    setRegisterPassword,
+    registerRepeatPassword,
+    setRegisterRepeatPassword,
+    registerConsent,
+    setRegisterConsent,
+    authFlowSource,
+    setAuthFlowSource,
+  } = useAuthState();
+  const {
+    userProfile,
+    setUserProfile,
+    selectedProfileType,
+    setSelectedProfileType,
+    pushEnabled,
+    setPushEnabled,
+    workPushEnabled,
+    setWorkPushEnabled,
+  } = useProfileState();
+  const {
+    specialistApplicationStatus,
+    setSpecialistApplicationStatus,
+    specialistQuestionnaireStep,
+    setSpecialistQuestionnaireStep,
+    specialistApplicationForm,
+    setSpecialistApplicationForm,
+    workingProducts,
+    setWorkingProducts,
+  } = useWorkingProfileState();
 
   const handleProfileTypeChange = (type: 'main' | 'work') => {
     if (type === 'main') {
@@ -389,7 +219,9 @@ function AppShell() {
     onOpenServicesSection: (categoryId: string, title: string) => setRoute({ name: 'services', categoryId, title }),
     onOpenJournal: () => setRoute({ name: 'journal' }),
     onOpenProductDetails: openProductDetails,
+    onOpenInstituteDetails: openInstituteDetails,
     onOpenSpecialistDetails: openSpecialistDetails,
+    onOpenAssociationDetails: (associationId: string) => setRoute({ name: 'association-details', associationId }),
     onOpenArticleDetails: (articleId: string) => {
       switch (route.name) {
         case 'home':
@@ -426,9 +258,17 @@ function AppShell() {
   const selectedProduct = route.name === 'product-details'
     ? products.find((item) => item.id === route.productId) ?? products[0]
     : products[0];
+  const selectedInstitute =
+    route.name === 'institute-details'
+      ? institutesMock.find((item) => item.id === route.instituteId) ?? institutesMock[0]
+      : institutesMock[0];
   const selectedSpecialist = route.name === 'specialist-details'
-    ? specialists.find((item) => item.id === route.specialistId) ?? specialists[0]
-    : specialists[0];
+    ? catalogSpecialists.find((item) => item.id === route.specialistId)
+      ?? serviceSpecialists.find((item) => item.id === route.specialistId.replace(/^specialist-/, ''))
+      ?? serviceSpecialists.find((item) => item.id === route.specialistId)
+      ?? catalogSpecialists[0]
+      ?? serviceSpecialists[0]
+    : catalogSpecialists[0] ?? serviceSpecialists[0];
   const selectedArticle = route.name === 'article-details'
     ? [...articles, ...videos].find((item) => item.id === route.articleId) ?? articles[0]
     : articles[0];
@@ -509,6 +349,15 @@ function AppShell() {
           {...commonScreenProps}
           onBack={() => setRoute(productReturnRoute)}
           product={selectedProduct}
+        />
+      );
+      break;
+    case 'institute-details':
+      content = (
+        <InstituteDetailsScreen
+          institute={selectedInstitute}
+          onBack={() => setRoute(instituteReturnRoute)}
+          setBottomTabsVisible={setBottomTabsVisible}
         />
       );
       break;

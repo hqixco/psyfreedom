@@ -17,7 +17,7 @@ export const officeRentItems: OfficeRentItem[] = [
     area: '12 м²',
     price: 'от 100 000 ₽',
     address: 'г. Москва, ул. Ленина, 99',
-    image: require('../../assets/images/map-moscow.jpg'),
+    image: require('../../assets/images/location-map-moscow.jpg'),
     description: 'Кабинет для проведения индивидуальных консультаций и встреч с клиентами.',
   },
   {
@@ -26,7 +26,8 @@ export const officeRentItems: OfficeRentItem[] = [
     area: '12 м²',
     price: 'от 100 000 ₽',
     address: 'г. Москва, ул. Ленина, 99',
-    image: require('../../assets/images/map-moscow.jpg'),
+    image: require('../../assets/images/location-map-moscow.jpg'),
     description: 'Кабинет для проведения индивидуальных консультаций и встреч с клиентами.',
   },
 ];
+

@@ -26,7 +26,7 @@ export function LocationPickerScreen({ onBack, onSelectLocation, bottomTabsHeigh
 
       <Pressable style={styles.mapArea} onPress={() => onSelectLocation('Москва')}>
         {Platform.OS === 'web' ? (
-          <Image source={require('../../../assets/images/map-moscow.jpg')} style={styles.webFallbackImage} resizeMode="cover" />
+          <Image source={require('../../../assets/images/location-map-moscow.jpg')} style={styles.webFallbackImage} resizeMode="cover" />
         ) : (
           <WebView
             source={{ uri: mapUrl }}
@@ -51,7 +51,7 @@ export function LocationPickerScreen({ onBack, onSelectLocation, bottomTabsHeigh
           <Ionicons name="heart-outline" size={18} color="#9BC7D1" />
         </Pressable>
 
-        <Image source={require('../../../assets/images/specialist-1.png')} style={styles.avatar} />
+        <Image source={require('../../../assets/images/specialist-photo-1.png')} style={styles.avatar} />
 
         <View style={styles.cardContent}>
           <Text style={styles.name}>Имя Фамилия</Text>
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   headerTitle: {
-    fontSize: 22,
-    ...typography.Inter[700],
+    fontSize: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   mapArea: {
@@ -218,3 +218,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
 });
+

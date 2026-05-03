@@ -40,7 +40,7 @@ const baseAssociation: Omit<Association, 'id' | 'city'> = {
     role: 'Психолог',
     rating: '5.0',
     reviewsCount: 120,
-    avatar: require('../../assets/images/author-maria.png'),
+    avatar: require('../../assets/images/avatar-maria.png'),
   },
   reviews: [
     {
@@ -84,3 +84,4 @@ export const associationsMock: Association[] = [
     ...baseAssociation,
   },
 ];
+

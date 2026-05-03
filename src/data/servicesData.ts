@@ -24,7 +24,7 @@ export type CoachCategory = {
   image?: ImageSourcePropType;
 };
 
-const specialistImage = require('../../assets/image (4).jpg');
+const specialistImage = require('../../assets/specialist-photo-default.jpg');
 
 export const serviceCategories: ServiceCategory[] = [
   { id: 'psychologists', title: 'Психологи /\nПсихотерапевты', icon: 'people' },
@@ -63,8 +63,8 @@ export const specialists: Specialist[] = [
 ];
 
 export const coachCategories: CoachCategory[] = [
-  { id: 'parents', title: 'Коучинг для\nродителей', image: require('../../assets/kouching-dlya-roditelej.jpg') },
-  { id: 'career', title: 'Карьерный\nкоучинг', image: require('../../assets/karjernyj-kouching.jpg') },
+  { id: 'parents', title: 'Коучинг для\nродителей', image: require('../../assets/coach-category-parents.jpg') },
+  { id: 'career', title: 'Карьерный\nкоучинг', image: require('../../assets/coach-category-career.jpg') },
   { id: 'personal', title: 'Личностный\nкоучинг' },
 ];
 
@@ -86,3 +86,4 @@ export const coaches: Specialist[] = [
   { id: 'coach-15', name: 'Полина Егорова', specialization: 'Коуч', price: 'От 1 200 ₽', rating: '5.0', city: 'Москва', tags: ['Отношения', 'Семья'], image: specialistImage },
   { id: 'coach-16', name: 'Евгения Борисова', specialization: 'Коуч', price: 'От 1 200 ₽', rating: '5.0', city: 'Москва', tags: ['Отношения', 'Семья'], image: specialistImage },
 ];
+

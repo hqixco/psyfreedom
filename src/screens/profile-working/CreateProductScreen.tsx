@@ -159,7 +159,7 @@ export function mapFormToWorkingProduct(values: WorkingProductFormValues, produc
     type,
     typeLabel: productTypeLabelMap[type],
     price: values.price,
-    image: require('../../../assets/images/product-devichnik.png'),
+    image: require('../../../assets/images/product-course-devichnik.png'),
     status: 'published',
   };
 }
@@ -177,3 +177,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
 });
+

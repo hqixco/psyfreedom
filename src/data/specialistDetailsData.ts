@@ -51,15 +51,15 @@ export type SpecialistDetails = {
   reviews: SpecialistReview[];
 };
 
-const specialistImage = require('../../assets/image (4).jpg');
-const specialistAvatar = require('../../assets/images/specialist-avatar-1.png');
-const reviewAvatar = require('../../assets/картинка.png');
-const certificate1 = require('../../assets/images/certificate-1.png');
-const certificate2 = require('../../assets/images/certificate-2.png');
-const media1 = require('../../assets/images/media-1.png');
-const placeholder = require('../../assets/photo.png');
-const productCourse = require('../../assets/photo.png');
-const bookImage = require('../../assets/photo.png');
+const specialistImage = require('../../assets/specialist-photo-default.jpg');
+const specialistAvatar = require('../../assets/images/specialist-avatar-default.png');
+const reviewAvatar = require('../../assets/review-avatar-default.png');
+const certificate1 = require('../../assets/images/specialist-certificate-1.png');
+const certificate2 = require('../../assets/images/specialist-certificate-2.png');
+const media1 = require('../../assets/images/specialist-media-preview-1.png');
+const placeholder = require('../../assets/product-placeholder-square.png');
+const productCourse = require('../../assets/product-placeholder-square.png');
+const bookImage = require('../../assets/product-placeholder-square.png');
 
 export const specialistDetails: SpecialistDetails = {
   id: 'specialist-1',
@@ -153,3 +153,4 @@ export function getSpecialistDetailsById(id: string): SpecialistDetails {
     specialization: 'Специализация',
   };
 }
+
