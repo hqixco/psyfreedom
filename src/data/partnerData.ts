@@ -18,7 +18,7 @@ export const partnerPageData: PartnerPageData = {
     '2. Если вы спросите у психологов',
     '3. Если вы спросите у психологов',
   ],
-  bannerImage: require('../../assets/блок (1).jpg'),
+  bannerImage: require('../../assets/partner-banner-bg.jpg'),
 };
 
 export const partnerFormInitialValues = {

@@ -66,7 +66,7 @@ const productCourse = require('../../assets/course-cover.jpg');
 const productImage = require('../../assets/product-cover-default.jpg');
 const promoImage = require('../../assets/promo-code-card-cover.jpg');
 const bookImage = require('../../assets/product-placeholder-square.png');
-const testImage = require('../../assets/фото (5).jpg');
+const testImage = require('../../assets/photo-5.jpg');
 const mariaAuthorImage = require('../../assets/images/avatar-maria.png');
 const placeholderImage = require('../../assets/product-placeholder-square.png');
 

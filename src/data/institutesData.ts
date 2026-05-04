@@ -38,7 +38,7 @@ export type InstituteDetails = {
   media: InstituteMediaItem[];
 };
 
-const instituteCover = require('../../assets/фото (6).jpg');
+const instituteCover = require('../../assets/photo-6.jpg');
 const instituteReviewAvatar = require('../../assets/review-avatar-default.png');
 const instituteMediaA = require('../../assets/images/promo-card-default.png');
 const instituteMediaB = require('../../assets/images/image-placeholder.png');

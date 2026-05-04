@@ -61,7 +61,7 @@ export const mockFavorites: FavoriteItem[] = [
     type: 'Тест',
     price: 'Бесплатно',
     rating: '5.0',
-    image: require('../../assets/фото (5).jpg'),
+    image: require('../../assets/photo-5.jpg'),
     status: 'default',
   },
   {

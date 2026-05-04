@@ -40,7 +40,7 @@ const productImage = require('../../assets/product-cover-default.jpg');
 const bookImage = require('../../assets/product-placeholder-square.png');
 const courseImage = require('../../assets/course-cover.jpg');
 const promoImage = require('../../assets/promo-code-card-cover.jpg');
-const testImage = require('../../assets/фото (5).jpg');
+const testImage = require('../../assets/photo-5.jpg');
 
 export const topProducts: Product[] = [
   {

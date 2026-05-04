@@ -5,7 +5,7 @@ import { theme, typography } from '../constants/theme';
 export function PlatformGuideBanner() {
   return (
     <ImageBackground
-      source={require('../../assets/Group 1171275382.jpg')}
+      source={require('../../assets/platform-guide-banner-bg.jpg')}
       style={styles.container}
       imageStyle={styles.backgroundImage}
       resizeMode="cover"

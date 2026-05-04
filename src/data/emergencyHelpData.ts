@@ -22,19 +22,19 @@ export const emergencyCategories: EmergencyCategory[] = [
     id: 'children',
     title: 'Для детей, подростков\nи родителей',
     variant: 'blue',
-    backgroundImage: require('../../assets/1 (1).jpg'),
+    backgroundImage: require('../../assets/emergency-children-bg.jpg'),
   },
   {
     id: 'women',
     title: 'Для женщин, оказавшихся\nв сложной ситуации',
     variant: 'mint',
-    backgroundImage: require('../../assets/2.jpg'),
+    backgroundImage: require('../../assets/emergency-women-bg.jpg'),
   },
   {
     id: 'psychiatric',
     title: 'Скорая психиатрическая\nпомощь (круглосуточно)',
     variant: 'lavender',
-    backgroundImage: require('../../assets/блок.jpg'),
+    backgroundImage: require('../../assets/emergency-help-bg.jpg'),
   },
 ];
 
@@ -46,7 +46,7 @@ export const emergencyContacts: EmergencyContact[] = [
     phone: '+7 (495) 898-89-00',
     phoneRaw: '+74958988900',
     website: 'https://globalpsy.org',
-    logo: require('../../assets/Rectangle 39993 (9).png'),
+    logo: require('../../assets/emergency-mchs-logo.png'),
   },
 ];
 

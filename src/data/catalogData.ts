@@ -167,7 +167,7 @@ export const products: CatalogProduct[] = [
     type: 'Тест',
     price: '10 000 ₽',
     rating: '5.0',
-    image: require('../../assets/фото (5).jpg'),
+    image: require('../../assets/photo-5.jpg'),
     ...productTemplate,
   },
   {
@@ -176,7 +176,7 @@ export const products: CatalogProduct[] = [
     type: 'Тест',
     price: 'Бесплатно',
     rating: '4.8',
-    image: require('../../assets/фото (5).jpg'),
+    image: require('../../assets/photo-5.jpg'),
     ...productTemplate,
   },
   {
