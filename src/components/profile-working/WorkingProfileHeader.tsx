@@ -1,10 +1,16 @@
-import { View } from 'react-native';
-import { WorkingProfileSwitcher } from './WorkingProfileSwitcher';
+import { AuthorizedProfileHeader } from '../profile/AuthorizedProfileHeader';
 
-export function WorkingProfileHeader({ onSelectMain }: { onSelectMain: () => void }) {
+export function WorkingProfileHeader({
+  selectedProfileType,
+  onSelectProfileType,
+}: {
+  selectedProfileType: 'main' | 'work';
+  onSelectProfileType: (type: 'main' | 'work') => void;
+}) {
   return (
-    <View>
-      <WorkingProfileSwitcher onSelectMain={onSelectMain} />
-    </View>
+    <AuthorizedProfileHeader
+      selectedProfileType={selectedProfileType}
+      onSelectProfileType={onSelectProfileType}
+    />
   );
 }

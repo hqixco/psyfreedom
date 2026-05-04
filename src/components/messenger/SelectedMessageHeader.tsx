@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#F3F3F3',
   },
   backButton: {
-    marginRight: 12,
+    marginRight: 20,
   },
   title: {
     flex: 1,

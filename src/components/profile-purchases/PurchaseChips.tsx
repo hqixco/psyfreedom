@@ -1,19 +1,26 @@
 import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import { colors, typography } from '../../constants/theme';
-import { purchaseChips } from '../../data/myPurchasesData';
+import { PurchaseCategory } from '../../data/myPurchasesData';
 
-type PurchaseChipId = (typeof purchaseChips)[number]['id'];
+type PurchaseChipId = 'all' | PurchaseCategory;
+
+type PurchaseChip = {
+  id: PurchaseChipId;
+  title: string;
+};
 
 export function PurchaseChips({
+  chips,
   activeCategory,
   onSelectCategory,
 }: {
   activeCategory: PurchaseChipId;
   onSelectCategory: (category: PurchaseChipId) => void;
+  chips: PurchaseChip[];
 }) {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.content}>
-      {purchaseChips.map((chip) => {
+      {chips.map((chip) => {
         const isActive = chip.id === activeCategory;
         return (
           <Pressable
@@ -35,11 +42,11 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: 16,
     paddingTop: 8,
-    paddingBottom: 18,
+    paddingBottom: 23,
   },
   chip: {
-    height: 44,
-    borderRadius: 22,
+    height: 43,
+    borderRadius: 360,
     paddingHorizontal: 22,
     marginRight: 8,
     alignItems: 'center',
@@ -54,8 +61,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   text: {
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[600],
   },
   activeText: {
     color: colors.white,

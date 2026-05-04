@@ -25,7 +25,7 @@ export function ProductManagementCard({
       </View>
 
       <Pressable style={styles.menuButton} onPress={() => onOpenActions(product)}>
-        <Ionicons name="ellipsis-horizontal" size={22} color={colors.primaryDark} />
+        <Ionicons name="ellipsis-horizontal" size={13} color={colors.primaryDark} />
       </Pressable>
     </Pressable>
   );
@@ -34,15 +34,14 @@ export function ProductManagementCard({
 const styles = StyleSheet.create({
   card: {
     marginHorizontal: 16,
-    marginTop: 14,
-    minHeight: 112,
+    marginBottom: 10,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#F0F0F0',
+    borderColor: '#EEEFEF',
     backgroundColor: colors.white,
-    padding: 12,
+    padding: 14,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   image: {
     width: 92,
@@ -50,34 +49,33 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     resizeMode: 'cover',
     backgroundColor: colors.cardLight,
-    marginRight: 12,
+    marginRight: 14,
   },
   content: {
     flex: 1,
-    paddingRight: 32,
+    paddingRight: 28,
   },
   title: {
-    fontSize: 16,
-    lineHeight: 20,
-    ...typography.Inter[700],
+    fontSize: 14,
+    lineHeight: 18,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   type: {
-    marginTop: 6,
-    fontSize: 14,
+    marginTop: 8,
+    fontSize: 12,
     color: colors.muted,
   },
   price: {
     marginTop: 6,
-    fontSize: 20,
-    lineHeight: 24,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[600],
     color: colors.primary,
   },
   menuButton: {
     position: 'absolute',
-    top: 12,
-    right: 12,
+    top: 14,
+    right: 14,
     width: 32,
     height: 32,
     alignItems: 'flex-end',

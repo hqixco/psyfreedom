@@ -1,10 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, typography } from '../../constants/theme';
 import { ProductDetails } from '../../data/productDetailsData';
-
-const retryButtonIcon = require('../../../assets/Vecto222r.svg');
 
 type Metric = {
   label: string;
@@ -73,7 +71,7 @@ export function TestResultView({
 
       <View style={[styles.footerShell, { paddingBottom: 16 + insets.bottom }]}>
         <Pressable style={styles.retryButton} onPress={onRetry}>
-          <Image source={retryButtonIcon} style={styles.retryButtonIcon} resizeMode="contain" />
+          <Ionicons name="refresh" size={18} color={colors.white} style={styles.retryButtonIcon} />
           <Text style={styles.retryButtonText}>Пройти тест еще раз</Text>
         </Pressable>
       </View>

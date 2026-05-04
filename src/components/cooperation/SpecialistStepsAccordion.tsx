@@ -26,12 +26,12 @@ export function SpecialistStepsAccordion() {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 16,
-    marginTop: 24,
+    marginTop: 34,
   },
   heading: {
-    fontSize: 26,
-    lineHeight: 32,
-    ...typography.Inter[700],
+    fontSize: 24,
+    lineHeight: 28,
+    ...typography.Inter[600],
     color: colors.primaryDark,
     marginBottom: 12,
   },

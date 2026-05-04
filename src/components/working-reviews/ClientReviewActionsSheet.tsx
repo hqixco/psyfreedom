@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   outlineButton: {
     flex: 1,
-    height: 48,
+    height: 41,
     borderRadius: 24,
     borderWidth: 1,
     borderColor: colors.primary,

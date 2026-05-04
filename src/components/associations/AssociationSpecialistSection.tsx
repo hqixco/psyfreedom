@@ -29,14 +29,14 @@ export function AssociationSpecialistSection({ association }: { association: Ass
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 16,
-    marginTop: 36,
+    marginTop: 28,
   },
   title: {
     fontSize: 24,
     lineHeight: 30,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
-    marginBottom: 14,
+    marginBottom: 12,
   },
   card: {
     backgroundColor: colors.cardLight,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   role: {

@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
   groupTitle: {
     marginHorizontal: 16,
     marginTop: 28,
-    marginBottom: 12,
-    fontSize: 22,
+    marginBottom: 22,
+    fontSize: 18,
     ...typography.Inter[700],
     color: colors.primaryDark,
   },

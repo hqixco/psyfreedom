@@ -1,26 +1,24 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { PendingReview } from '../../data/myReviewsData';
+import { StarsRating } from './StarsRating';
 
 export function PendingReviewCard({
   item,
   onLeaveReview,
 }: {
   item: PendingReview;
-  onLeaveReview: (item: PendingReview) => void;
+  onLeaveReview: (item: PendingReview, rating: number) => void;
 }) {
   return (
     <View style={styles.card}>
       <Image source={item.image} style={styles.image} />
       <View style={styles.content}>
         <View style={styles.starsRow}>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Ionicons key={index} name="star" size={22} color="#F0F5F7" />
-          ))}
+          <StarsRating rating={0} onChange={(value) => onLeaveReview(item, value)} size={22} gap={6} />
         </View>
         <Text style={styles.title}>{item.targetTitle}</Text>
-        <Pressable onPress={() => onLeaveReview(item)}>
+        <Pressable onPress={() => onLeaveReview(item, 5)}>
           <Text style={styles.link}>Оставить отзыв</Text>
         </Pressable>
       </View>

@@ -1,21 +1,32 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 type ConsentCheckboxProps = {
   checked: boolean;
   onToggle: () => void;
+  containerStyle?: StyleProp<ViewStyle>;
+  boxStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  linkStyle?: StyleProp<TextStyle>;
 };
 
-export function ConsentCheckbox({ checked, onToggle }: ConsentCheckboxProps) {
+export function ConsentCheckbox({
+  checked,
+  onToggle,
+  containerStyle,
+  boxStyle,
+  textStyle,
+  linkStyle,
+}: ConsentCheckboxProps) {
   return (
-    <Pressable style={styles.container} onPress={onToggle}>
-      <View style={[styles.box, checked ? styles.boxChecked : null]}>
-        {checked ? <Ionicons name="checkmark" size={14} color={colors.white} /> : null}
+    <Pressable style={[styles.container, containerStyle]} onPress={onToggle}>
+      <View style={[styles.box, checked ? styles.boxChecked : null, boxStyle]}>
+        {checked ? <Image source={require('../../../assets/auth-checkbox-check.svg')} style={styles.checkIcon} /> : null}
       </View>
-      <Text style={styles.text}>
-        Я принимаю <Text style={styles.link}>Политику конфиденциальности</Text>{'\n'}
-        и <Text style={styles.link}>Согласие на обработку персональных данных</Text>
+      <Text style={[styles.text, textStyle]}>
+        Я принимаю <Text style={[styles.link, linkStyle]}>Политику конфиденциальности</Text>{'\n'}
+        и <Text style={[styles.link, linkStyle]}>Согласие на обработку персональных данных</Text>
       </Text>
     </Pressable>
   );
@@ -41,6 +52,11 @@ const styles = StyleSheet.create({
   boxChecked: {
     backgroundColor: colors.primary,
     borderColor: colors.primary,
+  },
+  checkIcon: {
+    width: 10,
+    height: 10,
+    resizeMode: 'contain',
   },
   text: {
     flex: 1,

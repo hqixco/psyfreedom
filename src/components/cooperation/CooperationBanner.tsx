@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { CooperationBannerItem } from '../../data/cooperationData';
 
@@ -16,6 +16,19 @@ export function CooperationBanner({
         ? colors.mintLight
         : '#EAF0FF';
 
+  if ((item.id === 'officeRent' || item.id === 'productReview' || item.id === 'earn') && item.image) {
+    return (
+      <Pressable style={styles.imageBanner} onPress={onPress}>
+        <ImageBackground source={item.image} resizeMode="cover" style={styles.background} imageStyle={styles.imageBg}>
+          <View style={styles.content}>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.description}>{item.description}</Text>
+          </View>
+        </ImageBackground>
+      </Pressable>
+    );
+  }
+
   return (
     <Pressable style={[styles.banner, { backgroundColor }]} onPress={onPress}>
       <Text style={styles.title}>{item.title}</Text>
@@ -27,22 +40,40 @@ export function CooperationBanner({
 
 const styles = StyleSheet.create({
   banner: {
-    height: 76,
+    height: 120,
     borderRadius: 12,
-    paddingHorizontal: 16,
+    paddingHorizontal: 23,
     justifyContent: 'center',
     overflow: 'hidden',
     marginBottom: 8,
   },
+  imageBanner: {
+    paddingBottom: 27,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 8,
+  },
+  background: {
+    flex: 1,
+  },
+  imageBg: {
+    borderRadius: 12,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 23,
+    justifyContent: 'center',
+  },
   title: {
-    fontSize: 17,
-    lineHeight: 21,
-    ...typography.Inter[700],
+    fontSize: 16,
+    lineHeight: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
-    maxWidth: 190,
+    maxWidth: 210,
+    paddingTop: 18,
   },
   description: {
-    marginTop: 4,
+    marginTop: 15,
     fontSize: 12,
     lineHeight: 15,
     color: colors.primaryDark,

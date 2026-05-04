@@ -1,19 +1,24 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { SessionItem } from '../../data/mySessionsData';
 
 export function SessionListItem({ item, onPress }: { item: SessionItem; onPress: (item: SessionItem) => void }) {
   return (
     <Pressable style={styles.card} onPress={() => onPress(item)}>
-      <View style={styles.left}>
-        <Text style={styles.title}>{item.title} в {item.time}</Text>
-        <Text style={styles.subtitle}>{item.specialistRole}</Text>
+      <Image source={item.specialistAvatar} style={styles.avatar} />
+
+      <View style={styles.content}>
+        <Text style={styles.title} numberOfLines={1}>
+          {item.title} в {item.time}
+        </Text>
+        <Text style={styles.subtitle} numberOfLines={1}>
+          {item.specialistName}
+        </Text>
+        <Text style={styles.status} numberOfLines={1}>
+          {item.status}
+        </Text>
       </View>
-      <View style={styles.right}>
-        <Text style={styles.status}>{item.status}</Text>
-        <Ionicons name="chevron-forward" size={20} color={colors.primaryDark} />
-      </View>
+
     </Pressable>
   );
 }
@@ -22,37 +27,37 @@ const styles = StyleSheet.create({
   card: {
     marginHorizontal: 16,
     marginBottom: 8,
-    minHeight: 68,
+    minHeight: 84,
     borderRadius: 12,
     backgroundColor: colors.cardLight,
     paddingHorizontal: 16,
     paddingVertical: 12,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
-  left: {
-    flex: 1,
+  avatar: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
     marginRight: 12,
   },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   title: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 12,
+    ...typography.Inter[400],
     color: colors.primaryDark,
   },
   subtitle: {
-    marginTop: 4,
     fontSize: 14,
-    color: colors.muted,
-  },
-  right: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    fontWeight: '600',
+    color: colors.primaryDark,
   },
   status: {
     fontSize: 14,
     color: colors.primary,
-    ...typography.Inter[600],
-    marginRight: 6,
+    ...typography.Inter[400],
   },
 });

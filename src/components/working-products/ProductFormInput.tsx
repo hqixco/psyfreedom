@@ -20,23 +20,26 @@ export function ProductFormInput({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '400',
     color: colors.primaryDark,
     marginBottom: 8,
   },
   input: {
-    height: 44,
-    borderRadius: 22,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
-    borderColor: '#C8C8C8',
+    borderColor: '#A9A9A9',
     backgroundColor: colors.white,
-    paddingHorizontal: 16,
-    fontSize: 15,
+    paddingHorizontal: 14,
+    fontSize: 14,
+    fontWeight: '400',
     color: colors.primaryDark,
     marginBottom: 16,
   },
   inputMultiline: {
     height: undefined,
+    borderRadius: 12,
   },
 });

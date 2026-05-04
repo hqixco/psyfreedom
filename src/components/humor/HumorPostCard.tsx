@@ -6,6 +6,7 @@ import { HumorPostActions } from './HumorPostActions';
 type HumorPostCardProps = {
   post: HumorPost;
   isLiked: boolean;
+  likes: number;
   onToggleLike: () => void;
   onPress: () => void;
 };
@@ -13,6 +14,7 @@ type HumorPostCardProps = {
 export function HumorPostCard({
   post,
   isLiked,
+  likes,
   onToggleLike,
   onPress,
 }: HumorPostCardProps) {
@@ -37,7 +39,7 @@ export function HumorPostCard({
       {post.image ? <Image source={post.image} style={styles.image} /> : null}
 
       <HumorPostActions
-        likes={post.likes}
+        likes={likes}
         commentsCount={post.commentsCount}
         views={post.views}
         isLiked={isLiked}
@@ -103,4 +105,3 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cardLight,
   },
 });
-

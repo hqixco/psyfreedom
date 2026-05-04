@@ -32,8 +32,9 @@ export function ProductFormTextArea({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '400',
     color: colors.primaryDark,
     marginBottom: 8,
   },
@@ -41,11 +42,12 @@ const styles = StyleSheet.create({
     minHeight: 170,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#C8C8C8',
+    borderColor: '#A9A9A9',
     paddingHorizontal: 14,
     paddingTop: 12,
-    fontSize: 15,
-    lineHeight: 20,
+    fontSize: 14,
+    lineHeight: 18,
+    fontWeight: '400',
     color: colors.primaryDark,
     marginBottom: 6,
   },

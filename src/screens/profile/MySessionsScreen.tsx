@@ -38,7 +38,7 @@ export function MySessionsScreen({
   }, [toastVisible]);
 
   const visibleSessions = useMemo(() => {
-    const filtered = sessions.filter((item) => item.date === selectedDate || item.dateLabel === 'Сегодня');
+    const filtered = sessions.filter((item) => item.date === selectedDate);
     return filtered.length > 0 ? filtered : sessions;
   }, [selectedDate, sessions]);
 
@@ -52,7 +52,11 @@ export function MySessionsScreen({
             <EmptySessionsState onBookSession={onOpenServices} />
           ) : (
             <>
-              <SessionsCalendar selectedDate={selectedDate} markedDates={calendarMonthMock.markedDates} onSelectDate={setSelectedDate} />
+              <SessionsCalendar
+                selectedDate={selectedDate}
+                markedDates={calendarMonthMock.markedDates}
+                onSelectDate={setSelectedDate}
+              />
               <SessionList
                 sessions={visibleSessions}
                 onOpenSession={(item) => {

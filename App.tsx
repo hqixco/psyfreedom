@@ -37,6 +37,7 @@ import { BecomePartnerScreen } from './src/screens/profile/BecomePartnerScreen';
 import { EmergencyHelpScreen } from './src/screens/profile/EmergencyHelpScreen';
 import { EditProfileScreen } from './src/screens/profile/EditProfileScreen';
 import { FaqScreen } from './src/screens/profile/FaqScreen';
+import { FeedbackScreen } from './src/screens/profile/FeedbackScreen';
 import { MyPurchasesScreen } from './src/screens/profile/MyPurchasesScreen';
 import { MyReviewsScreen } from './src/screens/profile/MyReviewsScreen';
 import { MySessionsScreen } from './src/screens/profile/MySessionsScreen';
@@ -115,6 +116,9 @@ function AppShell() {
   const bottomTabsHeight = getBottomTabsHeight(insets.bottom);
   const [datingQuestionnaireStatus, setDatingQuestionnaireStatus] =
     useState<DatingQuestionnaireStatus>('approved');
+  const [paymentScreenKind, setPaymentScreenKind] = useState<
+    'book' | 'course' | 'specialist' | 'test' | 'promo' | null
+  >(null);
   const {
     route,
     setRoute,
@@ -128,6 +132,7 @@ function AppShell() {
     instituteReturnRoute,
     specialistReturnRoute,
     datingFavoritesReturnRoute,
+    goBackFromDetail,
     openDatingSection,
     openProductDetails,
     openInstituteDetails,
@@ -206,7 +211,11 @@ function AppShell() {
     }
 
     if (specialistApplicationStatus === 'submitted') {
-      setRoute({ name: 'specialist-application-pending' });
+      setSpecialistApplicationStatus('approved');
+      setSelectedProfileType('work');
+      if (route.name !== 'profile') {
+        setRoute({ name: 'profile' });
+      }
     }
   };
 
@@ -239,7 +248,7 @@ function AppShell() {
       }
       setRoute({ name: 'article-details', articleId });
     },
-    onOpenPaymentScreen: (context?: { title?: string; price?: string }) => {
+    onOpenPaymentScreen: (context?: { kind?: 'book' | 'course' | 'specialist' | 'test' | 'promo'; price?: string }) => {
       if (route.name === 'product-details') {
         setPaymentReturnRoute({ name: 'product-details', productId: route.productId });
       } else if (route.name === 'specialist-details') {
@@ -248,6 +257,7 @@ function AppShell() {
         setPaymentReturnRoute({ name: 'catalog' });
       }
 
+      setPaymentScreenKind(context?.kind ?? null);
       console.log('open payment screen', context);
       setRoute({ name: 'payment' });
     },
@@ -347,7 +357,9 @@ function AppShell() {
       content = (
         <ProductDetailsScreen
           {...commonScreenProps}
-          onBack={() => setRoute(productReturnRoute)}
+          onBack={goBackFromDetail}
+          isPurchased={route.isPurchased}
+          isFavorite={route.isFavorite}
           product={selectedProduct}
         />
       );
@@ -356,7 +368,7 @@ function AppShell() {
       content = (
         <InstituteDetailsScreen
           institute={selectedInstitute}
-          onBack={() => setRoute(instituteReturnRoute)}
+          onBack={goBackFromDetail}
           setBottomTabsVisible={setBottomTabsVisible}
         />
       );
@@ -365,7 +377,7 @@ function AppShell() {
       content = (
         <SpecialistDetailsScreen
           {...commonScreenProps}
-          onBack={() => setRoute(specialistReturnRoute)}
+          onBack={goBackFromDetail}
           specialist={selectedSpecialist}
         />
       );
@@ -375,15 +387,16 @@ function AppShell() {
         <ArticleDetailsScreen
           {...commonScreenProps}
           article={selectedArticle}
-          onBack={() => setRoute(articleReturnRoute)}
+          onBack={goBackFromDetail}
         />
       );
       break;
     case 'payment':
       content = (
         <PaymentScreen
-          onBack={() => setRoute(paymentReturnRoute)}
+          onBack={goBackFromDetail}
           setBottomTabsVisible={setBottomTabsVisible}
+          paymentKind={paymentScreenKind}
         />
       );
       break;
@@ -426,8 +439,12 @@ function AppShell() {
           onOpenEditProfile={() => setRoute({ name: 'edit-profile' })}
           onOpenAboutApp={() => setRoute({ name: 'about-app' })}
           onOpenFaq={() => setRoute({ name: 'faq' })}
+          onOpenFeedback={() => setRoute({ name: 'feedback' })}
           onOpenBecomePartner={() => setRoute({ name: 'become-partner' })}
-          onOpenPayment={() => setRoute({ name: 'payment' })}
+          onOpenPayment={() => {
+            setPaymentScreenKind(null);
+            setRoute({ name: 'payment' });
+          }}
           onOpenEditWorkingProfile={() => {
             setSpecialistQuestionnaireStep(1);
             setRoute({ name: 'specialist-questionnaire' });
@@ -513,6 +530,7 @@ function AppShell() {
           profile={userProfile}
           onBack={() => setRoute({ name: 'profile' })}
           onSave={setUserProfile}
+          setBottomTabsVisible={setBottomTabsVisible}
         />
       );
       break;
@@ -521,6 +539,9 @@ function AppShell() {
       break;
     case 'faq':
       content = <FaqScreen onBack={() => setRoute({ name: 'profile' })} />;
+      break;
+    case 'feedback':
+      content = <FeedbackScreen onBack={() => setRoute({ name: 'profile' })} />;
       break;
     case 'become-partner':
       content = <BecomePartnerScreen onBack={() => setRoute({ name: 'profile' })} />;
@@ -543,7 +564,7 @@ function AppShell() {
           onBack={() => setRoute({ name: 'profile' })}
           onGoToCatalog={() => setRoute({ name: 'catalog' })}
           onOpenPurchase={(purchaseId) =>
-            openProductDetails(purchaseId === '1' ? 'product-1' : 'product-6')
+            openProductDetails(purchaseId === '1' ? 'product-1' : 'product-6', true)
           }
         />
       );
@@ -751,8 +772,8 @@ function AppShell() {
           onChangeForm={setSpecialistApplicationForm}
           onChangeStatus={setSpecialistApplicationStatus}
           onSubmit={() => {
-            setSpecialistApplicationStatus('submitted');
-            setSelectedProfileType('main');
+            setSpecialistApplicationStatus('approved');
+            setSelectedProfileType('work');
             setRoute({ name: 'profile' });
           }}
           setBottomTabsVisible={setBottomTabsVisible}
@@ -766,10 +787,52 @@ function AppShell() {
       break;
   }
 
+  const backHeaderRoutes = new Set([
+    'chat',
+    'product-details',
+    'institute-details',
+    'specialist-details',
+    'article-details',
+    'payment',
+    'login',
+    'sms-code',
+    'register',
+    'edit-profile',
+    'about-app',
+    'faq',
+    'feedback',
+    'become-partner',
+    'emergency-help',
+    'my-sessions',
+    'my-purchases',
+    'my-reviews',
+    'dating-booked-events',
+    'dating-event-requests',
+    'dating-event-details',
+    'dating-event-map',
+    'dating-collections',
+    'dating-profiles-catalog',
+    'dating-profile-view',
+    'dating-user-profile',
+    'dating-questionnaire',
+    'working-sessions-calendar',
+    'working-reviews',
+    'working-products',
+    'create-product',
+    'cooperation',
+    'associations',
+    'association-details',
+    'office-rent',
+    'office-rent-details',
+    'specialist-questionnaire',
+    'specialist-application-pending',
+  ]);
+  const shouldShowBottomTabs = bottomTabsVisible && !backHeaderRoutes.has(route.name);
+
   return (
     <View style={styles.shell}>
       {content}
-      {bottomTabsVisible ? <BottomTabs bottomInset={insets.bottom} activeTab={activeTab} onTabPress={openTab} /> : null}
+      {shouldShowBottomTabs ? <BottomTabs bottomInset={insets.bottom} activeTab={activeTab} onTabPress={openTab} /> : null}
     </View>
   );
 }

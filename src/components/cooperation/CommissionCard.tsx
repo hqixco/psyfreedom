@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 export function CommissionCard({
@@ -9,44 +9,40 @@ export function CommissionCard({
   description: string;
 }) {
   return (
-    <View style={styles.card}>
+    <ImageBackground
+      source={require('../../../assets/cooperation-commission-card-bg.jpg')}
+      resizeMode="cover"
+      style={styles.card}
+      imageStyle={styles.image}
+    >
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
-      <View style={styles.decor} />
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
     width: 300,
-    height: 150,
+    height: 280,
     borderRadius: 12,
-    backgroundColor: colors.blueLight,
     padding: 20,
     marginRight: 10,
     overflow: 'hidden',
   },
+  image: {
+    borderRadius: 12,
+  },
   title: {
-    fontSize: 21,
-    lineHeight: 25,
-    ...typography.Inter[700],
+    fontSize: 18,
+    lineHeight: 24,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   description: {
-    marginTop: 8,
-    fontSize: 15,
-    lineHeight: 19,
+    marginTop: 6,
+    fontSize: 12,
+    lineHeight: 14,
     color: colors.primaryDark,
-  },
-  decor: {
-    position: 'absolute',
-    right: -24,
-    bottom: -18,
-    width: 140,
-    height: 140,
-    borderRadius: 70,
-    backgroundColor: '#B8EDF7',
-    opacity: 0.25,
   },
 });

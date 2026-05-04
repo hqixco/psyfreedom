@@ -33,7 +33,15 @@ export function UniversalFilterSheet({
   }
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      transparent
+      animationType="slide"
+      visible={visible}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={onClose}
+    >
       <View style={styles.modalOverlay}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
         <View style={[styles.sheet, { paddingBottom: 18 + insets.bottom, maxHeight: '88%' }]}>

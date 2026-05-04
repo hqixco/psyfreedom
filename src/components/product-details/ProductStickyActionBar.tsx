@@ -29,6 +29,7 @@ export function ProductStickyActionBar({
 
   return (
     <View style={[styles.wrap, { bottom: bottomOffset, paddingBottom: bottomPadding }]}>
+      {note ? <Text style={styles.note}>{note}</Text> : null}
       <View style={styles.row}>
         {showFavorite ? (
           <Pressable style={styles.favoriteButton} onPress={onToggleFavorite}>
@@ -57,7 +58,6 @@ export function ProductStickyActionBar({
           )}
         </Pressable>
       </View>
-      {note ? <Text style={styles.note}>{note}</Text> : null}
     </View>
   );
 }
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingHorizontal: 16,
-    paddingTop: 10,
+    paddingTop: 12,
     backgroundColor: colors.white,
     borderTopWidth: 1,
     borderTopColor: '#F1F1F1',
@@ -117,10 +117,9 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   note: {
-    marginTop: 8,
-    marginBottom: 8,
+    marginBottom: 11,
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: 14,
     color: colors.muted,
   },
 });

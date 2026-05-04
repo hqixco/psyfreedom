@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { ConsultationPaymentSheet } from '../../components/payment/ConsultationPaymentSheet';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppointmentSheet } from '../../components/specialist-details/AppointmentSheet';
 import { ReviewSheet } from '../../components/specialist-details/ReviewSheet';
@@ -43,7 +42,6 @@ export function SpecialistDetailsScreen({
   const [view, setView] = useState<LocalView>('details');
   const [isFavorite, setIsFavorite] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-  const [isPaymentSheetOpen, setIsPaymentSheetOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [specialization, setSpecialization] = useState('Психолог');
   const [meetingType, setMeetingType] = useState('Онлайн');
@@ -127,24 +125,13 @@ export function SpecialistDetailsScreen({
         onSelectSpecialization={setSpecialization}
         onSelectMeetingType={setMeetingType}
         onClose={() => setIsAppointmentOpen(false)}
-        onSubmit={() => {}}
-      />
-
-      <ConsultationPaymentSheet
-        visible={isPaymentSheetOpen}
-        onClose={() => setIsPaymentSheetOpen(false)}
-        onPay={() => {
-          setIsPaymentSheetOpen(false);
+        onSubmit={() => {
+          setIsAppointmentOpen(false);
           onOpenPaymentScreen?.({
-            title: consultationPaymentMock.title,
+            kind: 'specialist',
             price: consultationPaymentMock.price,
           });
         }}
-        title={consultationPaymentMock.title}
-        dateLabel={consultationPaymentMock.dateLabel}
-        sessionsCount={consultationPaymentMock.sessionsCount}
-        price={consultationPaymentMock.price}
-        baseSessionPrice={consultationPaymentMock.baseSessionPrice}
       />
 
       <ReviewSheet visible={isReviewOpen} onClose={() => setIsReviewOpen(false)} />

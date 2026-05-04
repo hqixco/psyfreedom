@@ -42,8 +42,12 @@ export function WorkingProfileMainTab({
         return <WorkingProfileMenuItem key={item.id} title={item.title} onPress={onPress} />;
       })}
 
-      <WorkingStatsCard />
-      <WorkingBonusCard onHistory={() => console.log('working bonus history')} onTopUp={onOpenPayment} />
+      <View style={{ marginTop: 32 }}>
+        <WorkingStatsCard />
+      </View>
+      <View style={{ marginTop: 16 }}>
+        <WorkingBonusCard onHistory={() => console.log('working bonus history')} onTopUp={onOpenPayment} />
+      </View>
 
       <View style={{ marginTop: 18 }}>
         {workingProfileExtraMenu.map((item) => {

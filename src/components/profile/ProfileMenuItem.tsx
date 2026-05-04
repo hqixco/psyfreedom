@@ -11,25 +11,25 @@ export function ProfileMenuItem({ title, onPress }: ProfileMenuItemProps) {
   return (
     <Pressable style={styles.item} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
-      <Ionicons name="chevron-forward" size={22} color={colors.primaryDark} />
+      <Ionicons name="chevron-forward" size={15} color={colors.primaryDark} />
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   item: {
-    height: 56,
+    height: 48,
     borderRadius: 12,
     backgroundColor: colors.cardLight,
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   text: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
 });

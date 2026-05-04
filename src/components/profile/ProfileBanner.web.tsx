@@ -1,5 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Image, ImageSourcePropType, Pressable, StyleSheet, Text, View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 import { colors, typography } from '../../constants/theme';
 
 type ProfileBannerProps = {
@@ -32,10 +32,21 @@ export function ProfileBanner({ title, description, buttonText, variant, image, 
 
       <Pressable style={[styles.button, isMint ? styles.buttonMint : styles.buttonBlue]} onPress={onPress ?? (() => console.log('profile banner'))}>
         <Text style={styles.buttonText}>{buttonText}</Text>
-        <Ionicons name="arrow-forward" size={20} color={colors.primary} style={styles.buttonIcon} />
+        <ArrowIcon />
       </Pressable>
       </View>
     </View>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <Svg width={18} height={11} viewBox="0 0 20 12" fill="none">
+      <Path
+        d="M0.75 4.77295C0.335786 4.77295 0 5.10874 0 5.52295C0 5.93716 0.335786 6.27295 0.75 6.27295V5.52295V4.77295ZM19.2803 6.05328C19.5732 5.76039 19.5732 5.28551 19.2803 4.99262L14.5074 0.219648C14.2145 -0.073245 13.7396 -0.073245 13.4467 0.219648C13.1538 0.512542 13.1538 0.987415 13.4467 1.28031L17.6893 5.52295L13.4467 9.76559C13.1538 10.0585 13.1538 10.5334 13.4467 10.8263C13.7396 11.1191 14.2145 11.1191 14.5074 10.8263L19.2803 6.05328ZM0.75 5.52295V6.27295H18.75V5.52295V4.77295H0.75V5.52295Z"
+        fill="#008CA3"
+      />
+    </Svg>
   );
 }
 
@@ -107,28 +118,24 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: 'flex-start',
+    width: 135,
+    height: 41,
+    borderRadius: 360,
     backgroundColor: colors.white,
-    paddingHorizontal: 22,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 14,
   },
   buttonMint: {
     marginTop: 26,
-    height: 41,
-    borderRadius: 360,
   },
   buttonBlue: {
     marginTop: 30,
-    height: 40,
-    borderRadius: 22,
   },
   buttonText: {
-    fontSize: 16,
-    ...typography.Inter[700],
-    color: colors.primary,
-  },
-  buttonIcon: {
-    marginLeft: 18,
+    fontSize: 14,
+    ...typography.Inter[500],
+    color: '#008CA3',
   },
 });

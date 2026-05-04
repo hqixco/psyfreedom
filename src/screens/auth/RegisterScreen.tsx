@@ -59,6 +59,8 @@ export function RegisterScreen({
             onChangeText={onChangeName}
             placeholder="Имя или название организации"
             containerStyle={styles.field}
+            labelStyle={styles.fieldLabel}
+            inputStyle={styles.fieldInput}
           />
           <AuthInput
             label="Номер телефона"
@@ -67,6 +69,8 @@ export function RegisterScreen({
             placeholder="+7 (987)654-32-10"
             keyboardType="phone-pad"
             containerStyle={styles.field}
+            labelStyle={styles.fieldLabel}
+            inputStyle={styles.fieldInput}
           />
           <AuthInput
             label="Придумайте пароль"
@@ -74,6 +78,8 @@ export function RegisterScreen({
             onChangeText={onChangePassword}
             secureTextEntry
             containerStyle={styles.field}
+            labelStyle={styles.fieldLabel}
+            inputStyle={styles.fieldInput}
           />
           <AuthInput
             label="Повторите пароль"
@@ -81,6 +87,8 @@ export function RegisterScreen({
             onChangeText={onChangeRepeatPassword}
             secureTextEntry
             containerStyle={styles.field}
+            labelStyle={styles.fieldLabel}
+            inputStyle={styles.fieldInput}
           />
 
           <AuthButton
@@ -89,7 +97,14 @@ export function RegisterScreen({
             disabled={isDisabled}
             style={styles.button}
           />
-          <ConsentCheckbox checked={consent} onToggle={onToggleConsent} />
+          <ConsentCheckbox
+            checked={consent}
+            onToggle={onToggleConsent}
+            containerStyle={styles.consentContainer}
+            boxStyle={styles.consentBox}
+            textStyle={styles.consentText}
+            linkStyle={styles.consentLink}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -110,17 +125,53 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    fontSize: 30,
-    lineHeight: 36,
-    ...typography.Inter[700],
+    fontSize: 24,
+    lineHeight: 30,
+    ...typography.Inter[600],
     color: colors.primaryDark,
-    marginBottom: 34,
-    marginTop: 20,
+    marginBottom: 18,
+    marginTop: 15,
   },
   field: {
-    marginBottom: 18,
+    marginBottom: 13,
+  },
+  fieldLabel: {
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '400',
+    color: colors.primaryDark,
+    marginBottom: 8,
+  },
+  fieldInput: {
+    height: 41,
+    borderRadius: 360,
+    borderWidth: 1,
+    borderColor: '#A9A9A9',
+    paddingHorizontal: 14,
+    fontSize: 14,
+    fontWeight: '400',
+    color: colors.primaryDark,
+    backgroundColor: colors.white,
   },
   button: {
+    height: 41,
+    marginTop: 4,
+  },
+  consentContainer: {
     marginTop: 10,
+  },
+  consentBox: {
+    width: 18,
+    height: 18,
+    borderRadius: 5,
+  },
+  consentText: {
+    fontSize: 13,
+    lineHeight: 16,
+    color: colors.muted,
+  },
+  consentLink: {
+    color: colors.primary,
+    ...typography.Inter[400],
   },
 });

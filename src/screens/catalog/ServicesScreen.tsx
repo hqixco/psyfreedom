@@ -14,6 +14,7 @@ import { TopSpecialistsSection } from '../../components/services/TopSpecialistsS
 import { colors, typography } from '../../constants/theme';
 import { defaultProductFilters, type SelectedFilters, servicesFilterConfig } from '../../data/filterData';
 import { serviceCategories, type Specialist, specialists, topSpecialists } from '../../data/servicesData';
+import { sortSpecialistsByOption } from '../../utils/catalogSort';
 import { CoachesScreen } from './CoachesScreen';
 import { LocationPickerScreen } from './LocationPickerScreen';
 import { SpecialistsCategoryScreen } from './SpecialistsCategoryScreen';
@@ -109,14 +110,15 @@ export function ServicesScreen({
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const categoryWidth = Math.min(Math.floor((width - 16 * 2 - 8 * 2) / 3), 118);
   const specialistCardWidth = Math.min(185, Math.floor((width - 16 * 2 - 10) / 2));
+  const visibleSpecialists = sortSpecialistsByOption(specialists, selectedSort);
 
   useEffect(() => {
-    setBottomTabsVisible?.(currentView !== 'map');
+    setBottomTabsVisible?.(currentView !== 'map' && !isSortOpen && !isFilterOpen);
 
     return () => {
       setBottomTabsVisible?.(true);
     };
-  }, [currentView, setBottomTabsVisible]);
+  }, [currentView, isFilterOpen, isSortOpen, setBottomTabsVisible]);
 
   useEffect(() => {
     if (!initialTopicId) {
@@ -207,7 +209,7 @@ export function ServicesScreen({
     return (
       <SpecialistsCategoryScreen
         title={selectedCategoryTitle ?? getCategoryTitle(selectedCategoryId)}
-        specialists={getCategorySpecialists(selectedCategoryId)}
+        specialists={sortSpecialistsByOption(getCategorySpecialists(selectedCategoryId), selectedSort)}
         filterConfig={servicesFilterConfig}
         selectedSort={selectedSort}
         selectedFilters={selectedFilters}
@@ -279,7 +281,7 @@ export function ServicesScreen({
           />
 
           <SpecialistsGrid
-            specialists={specialists}
+            specialists={visibleSpecialists}
             cardWidth={specialistCardWidth}
             onPressSpecialist={(id) => onOpenSpecialistDetails(getSpecialistDetailId(id))}
           />

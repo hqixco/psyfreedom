@@ -31,15 +31,16 @@ export function QuestionnaireSelect({
 const styles = StyleSheet.create({
   label: {
     fontSize: 12,
-    lineHeight: 16,
+    lineHeight: 17,
+    fontWeight: '400',
     color: colors.primaryDark,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   field: {
-    height: 38,
-    borderRadius: 19,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
-    borderColor: '#C8C8C8',
+    borderColor: '#A9A9A9',
     paddingHorizontal: 14,
     backgroundColor: colors.white,
     marginBottom: 14,
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
   },
   value: {
     fontSize: 14,
+    fontWeight: '400',
     color: colors.primaryDark,
     flex: 1,
   },

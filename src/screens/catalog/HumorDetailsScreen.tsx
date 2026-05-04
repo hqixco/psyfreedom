@@ -15,6 +15,7 @@ type HumorDetailsScreenProps = {
 export function HumorDetailsScreen({ post, onBack }: HumorDetailsScreenProps) {
   const insets = useSafeAreaInsets();
   const [isLiked, setIsLiked] = useState(Boolean(post.isLiked));
+  const [likes, setLikes] = useState(post.likes + (post.isLiked ? 1 : 0));
 
   const paragraphs = post.text.split('\n\n');
 
@@ -44,11 +45,17 @@ export function HumorDetailsScreen({ post, onBack }: HumorDetailsScreenProps) {
           {post.image ? <Image source={post.image} style={styles.image} /> : null}
 
           <HumorPostActions
-            likes={post.likes}
+            likes={likes}
             commentsCount={post.commentsCount}
             views={post.views}
             isLiked={isLiked}
-            onToggleLike={() => setIsLiked((value) => !value)}
+            onToggleLike={() => {
+              setIsLiked((value) => {
+                const next = !value;
+                setLikes((currentLikes) => Math.max(0, currentLikes + (next ? 1 : -1)));
+                return next;
+              });
+            }}
           />
         </View>
 
@@ -116,4 +123,3 @@ const styles = StyleSheet.create({
     color: colors.primary,
   },
 });
-

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, ImageSourcePropType, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageSourcePropType, Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors, typography } from '../../constants/theme';
 import { EducationItem } from '../../data/specialistDetailsData';
@@ -22,6 +22,7 @@ export function SpecialistAdditionalInfo({
   certificates,
   media,
 }: SpecialistAdditionalInfoProps) {
+  const { width, height } = useWindowDimensions();
   const [activeTab, setActiveTab] = useState<TabKey>('education');
   const [previewImage, setPreviewImage] = useState<ImageSourcePropType | null>(null);
 
@@ -88,12 +89,22 @@ export function SpecialistAdditionalInfo({
         ) : null}
       </View>
 
-      <Modal visible={Boolean(previewImage)} transparent animationType="fade" onRequestClose={() => setPreviewImage(null)}>
-        <View style={styles.modalOverlay}>
+      <Modal
+        visible={Boolean(previewImage)}
+        transparent
+        animationType="fade"
+        presentationStyle="overFullScreen"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() => setPreviewImage(null)}
+      >
+        <View style={[styles.modalOverlay, { width, height }]}>
           <Pressable style={styles.closeButton} onPress={() => setPreviewImage(null)}>
             <Ionicons name="close" size={28} color={colors.white} />
           </Pressable>
-          {previewImage ? <Image source={previewImage} style={styles.previewImage} resizeMode="contain" /> : null}
+          {previewImage ? (
+            <Image source={previewImage} style={[styles.previewImage, { width, height }]} resizeMode="contain" />
+          ) : null}
         </View>
       </Modal>
     </>
@@ -196,9 +207,6 @@ const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.92)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 16,
   },
   closeButton: {
     position: 'absolute',
@@ -207,7 +215,8 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   previewImage: {
-    width: '100%',
-    height: '78%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
   },
 });

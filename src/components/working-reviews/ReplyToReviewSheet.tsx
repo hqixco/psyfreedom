@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 24,
-    ...typography.Inter[700],
+    fontSize: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   input: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     marginTop: 28,
-    height: 52,
+    height: 41,
     borderRadius: 26,
     backgroundColor: colors.primary,
     alignItems: 'center',

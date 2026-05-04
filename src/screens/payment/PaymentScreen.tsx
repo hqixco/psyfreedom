@@ -1,16 +1,27 @@
-import { Ionicons } from '@expo/vector-icons';
-import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
-import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useEffect, useState } from 'react';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { PaymentCheckbox } from '../../components/payment/PaymentCheckbox';
 import { PaymentInput } from '../../components/payment/PaymentInput';
 import { colors, typography } from '../../constants/theme';
 import { paymentFormInitialValues } from '../../data/paymentData';
 
+type PaymentKind = 'book' | 'course' | 'specialist' | 'test' | 'promo' | null;
+
 type PaymentScreenProps = {
   onBack: () => void;
   setBottomTabsVisible?: (visible: boolean) => void;
+  paymentKind?: PaymentKind;
 };
 
 function formatCardNumber(value: string) {
@@ -23,16 +34,35 @@ function formatExpiry(value: string) {
   if (digits.length <= 2) {
     return digits;
   }
+
   return `${digits.slice(0, 2)}/${digits.slice(2)}`;
 }
 
-export function PaymentScreen({ onBack, setBottomTabsVisible }: PaymentScreenProps) {
+function getPaymentTitle(kind?: PaymentKind) {
+  switch (kind) {
+    case 'book':
+      return 'Оплата книги';
+    case 'course':
+      return 'Оплата курса';
+    case 'specialist':
+      return 'Оплата консультации';
+    case 'test':
+      return 'Оплата теста';
+    case 'promo':
+      return 'Оплата промокода';
+    default:
+      return 'Оплата';
+  }
+}
+
+export function PaymentScreen({ onBack, setBottomTabsVisible, paymentKind }: PaymentScreenProps) {
   const insets = useSafeAreaInsets();
   const [cardNumber, setCardNumber] = useState(paymentFormInitialValues.cardNumber);
   const [expiry, setExpiry] = useState(paymentFormInitialValues.expiry);
   const [cvc, setCvc] = useState(paymentFormInitialValues.cvc);
   const [email, setEmail] = useState(paymentFormInitialValues.email);
   const [sendReceipt, setSendReceipt] = useState(paymentFormInitialValues.sendReceipt);
+  const title = getPaymentTitle(paymentKind);
 
   useEffect(() => {
     if (!setBottomTabsVisible) {
@@ -48,100 +78,106 @@ export function PaymentScreen({ onBack, setBottomTabsVisible }: PaymentScreenPro
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <KeyboardAvoidingView
-        style={styles.keyboard}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      >
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={[styles.content, { paddingBottom: 40 + insets.bottom }]}
-        >
-          <View style={styles.header}>
-            <Pressable style={styles.backButton} onPress={onBack}>
-              <BackChevronIcon color={colors.primaryDark} />
-            </Pressable>
-            <Text style={styles.title}>Оплата билетов</Text>
-          </View>
-
-          <PaymentInput
-            label="Номер карты"
-            value={cardNumber}
-            onChangeText={(value) => setCardNumber(formatCardNumber(value))}
-            placeholder="2200 0000 0000 0000"
-            keyboardType="number-pad"
-            maxLength={19}
-            labelStyle={styles.inputLabel}
-            inputStyle={styles.input}
-          />
-
-          <View style={styles.row}>
-            <View style={styles.rowItem}>
-              <PaymentInput
-                label="Срок действия"
-                value={expiry}
-                onChangeText={(value) => setExpiry(formatExpiry(value))}
-                placeholder="ММ/ГГГГ"
-                keyboardType="number-pad"
-                maxLength={7}
-                labelStyle={styles.inputLabel}
-                inputStyle={styles.input}
-              />
-            </View>
-            <View style={styles.rowItem}>
-              <PaymentInput
-                label="Код CVC"
-                value={cvc}
-                onChangeText={(value) => setCvc(value.replace(/\D/g, '').slice(0, 3))}
-                placeholder="000"
-                keyboardType="number-pad"
-                maxLength={3}
-                labelStyle={styles.inputLabel}
-                inputStyle={styles.input}
-              />
-            </View>
-          </View>
-
-          <PaymentInput
-            label="Email"
-            value={email}
-            onChangeText={setEmail}
-            placeholder="info@mail.com"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            containerStyle={styles.inputBlock}
-            labelStyle={styles.inputLabel}
-            inputStyle={styles.input}
-          />
-
-          <PaymentCheckbox
-            checked={sendReceipt}
-            label="Отправить квитанцию на E-mail"
-            onPress={() => setSendReceipt((value) => !value)}
-          />
-
-          <Pressable
-            style={styles.payButton}
-            onPress={() => {
-              console.log({
-                cardNumber,
-                expiry,
-                cvc,
-                email,
-                sendReceipt,
-              });
-              Alert.alert('Оплата', 'Платеж успешно отправлен в тестовом режиме');
-            }}
+      <KeyboardAvoidingView style={styles.keyboard} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <View style={styles.container}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+            contentContainerStyle={[styles.content, { paddingBottom: 120 + insets.bottom }] }
           >
-            <Text style={styles.payButtonText}>Оплатить</Text>
-          </Pressable>
+            <View style={styles.header}>
+              <Pressable style={styles.backButton} onPress={onBack}>
+                <BackChevronIcon color={colors.primaryDark} />
+              </Pressable>
+              <Text style={styles.title}>{title}</Text>
+            </View>
 
-          <Text style={styles.offerText}>
-            Оплачивая подписку, я соглашаюсь с{' '}
-            <Text style={styles.offerLink}>Публичной офертой</Text>
-          </Text>
-        </ScrollView>
+            <PaymentInput
+              label="Номер карты"
+              value={cardNumber}
+              onChangeText={(value) => setCardNumber(formatCardNumber(value))}
+              placeholder="2200 0000 0000 0000"
+              keyboardType="number-pad"
+              maxLength={19}
+              labelStyle={styles.inputLabel}
+              inputStyle={styles.input}
+            />
+
+            <View style={styles.row}>
+              <View style={styles.rowItem}>
+                <PaymentInput
+                  label="Срок действия"
+                  value={expiry}
+                  onChangeText={(value) => setExpiry(formatExpiry(value))}
+                  placeholder="ММ/ГГГГ"
+                  keyboardType="number-pad"
+                  maxLength={7}
+                  labelStyle={styles.inputLabel}
+                  inputStyle={styles.input}
+                />
+              </View>
+              <View style={styles.rowItem}>
+                <PaymentInput
+                  label="Код CVC"
+                  value={cvc}
+                  onChangeText={(value) => setCvc(value.replace(/\D/g, '').slice(0, 3))}
+                  placeholder="000"
+                  keyboardType="number-pad"
+                  maxLength={3}
+                  labelStyle={styles.inputLabel}
+                  inputStyle={styles.input}
+                />
+              </View>
+            </View>
+
+            <PaymentInput
+              label="Email"
+              value={email}
+              onChangeText={setEmail}
+              placeholder="info@mail.com"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              containerStyle={styles.inputBlock}
+              labelStyle={styles.inputLabel}
+              inputStyle={styles.input}
+            />
+
+            <PaymentCheckbox
+              checked={sendReceipt}
+              label="Отправить квитанцию на E-mail"
+              onPress={() => setSendReceipt((value) => !value)}
+            />
+
+            <Text style={styles.offerText}>
+              Оплачивая покупку, я соглашаюсь с{' '}
+              <Text style={styles.offerLink}>Публичной офертой</Text>
+            </Text>
+          </ScrollView>
+
+          <View style={[styles.footer, { paddingBottom: 16 + insets.bottom }]}>
+            <Pressable
+              style={styles.payButton}
+              onPress={() => {
+                console.log({
+                  cardNumber,
+                  expiry,
+                  cvc,
+                  email,
+                  sendReceipt,
+                });
+                Alert.alert('Оплата', 'Платеж успешно отправлен в тестовом режиме', [
+                  {
+                    text: 'OK',
+                    onPress: onBack,
+                  },
+                ]);
+              }}
+            >
+              <Text style={styles.payButtonText}>Оплатить</Text>
+            </Pressable>
+          </View>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -155,25 +191,25 @@ const styles = StyleSheet.create({
   keyboard: {
     flex: 1,
   },
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   content: {
     paddingHorizontal: 16,
     paddingTop: 18,
   },
   header: {
-    paddingTop: 2,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
   },
   backButton: {
-    marginBottom: 10,
+    marginRight: 20,
   },
-
   title: {
-    fontSize: 24,
-    marginTop: 20,
-    marginBottom: 20,
-    lineHeight: 32,
+    fontSize: 18,
+    lineHeight: 56,
     ...typography.Inter[600],
     color: colors.primaryDark,
   },
@@ -205,19 +241,6 @@ const styles = StyleSheet.create({
   inputBlock: {
     marginTop: 14,
   },
-  payButton: {
-    marginTop: 17,
-    height: 41,
-    borderRadius: 26,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.primary,
-  },
-  payButtonText: {
-    fontSize: 14,
-    ...typography.Inter[600],
-    color: colors.white,
-  },
   offerText: {
     marginTop: 18,
     fontSize: 12,
@@ -228,5 +251,26 @@ const styles = StyleSheet.create({
   offerLink: {
     color: colors.primary,
     ...typography.Inter[600],
+  },
+  footer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: colors.white,
+    paddingHorizontal: 16,
+    paddingTop: 10,
+  },
+  payButton: {
+    height: 41,
+    borderRadius: 360,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.primary,
+  },
+  payButtonText: {
+    fontSize: 14,
+    ...typography.Inter[600],
+    color: colors.white,
   },
 });

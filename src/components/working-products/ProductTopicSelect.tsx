@@ -48,17 +48,18 @@ export function ProductTopicSelect({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '400',
     color: colors.primaryDark,
     marginBottom: 8,
   },
   select: {
-    height: 44,
-    borderRadius: 22,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
-    borderColor: '#C8C8C8',
-    paddingHorizontal: 16,
+    borderColor: '#A9A9A9',
+    paddingHorizontal: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
   },
   valueText: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 14,
+    fontWeight: '400',
     color: colors.primaryDark,
     marginRight: 8,
   },
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     borderWidth: 1,
-    borderColor: '#C8C8C8',
+    borderColor: '#A9A9A9',
     borderRadius: 16,
     paddingVertical: 6,
     marginBottom: 16,
@@ -101,7 +103,8 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   optionText: {
-    fontSize: 15,
+    fontSize: 14,
+    fontWeight: '400',
     color: colors.primaryDark,
   },
 });

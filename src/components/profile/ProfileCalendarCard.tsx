@@ -18,7 +18,7 @@ export function ProfileCalendarCard({ onOpenSessions }: { onOpenSessions: () => 
           <View key={item.id} style={styles.appointmentCard}>
             <Text style={styles.time}>{item.time}</Text>
             <Text style={styles.appointmentTitle}>{item.title}</Text>
-            <Ionicons name="chevron-forward" size={20} color={colors.primaryDark} />
+            <Ionicons name="chevron-forward" size={15} color={colors.primaryDark} />
           </View>
         ))}
       </View>
@@ -30,28 +30,28 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.cardLight,
     borderRadius: 14,
-    padding: 18,
+    padding: 20,
     marginTop: 8,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 30,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 18,
+    marginTop: 8,
   },
   label: {
-    fontSize: 16,
+    fontSize: 14,
     color: colors.primaryDark,
   },
   date: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[500],
     color: colors.primaryDark,
   },
   appointments: {
@@ -59,22 +59,23 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   appointmentCard: {
-    height: 48,
-    borderRadius: 24,
+    height: 41,
+    borderRadius: 12,
     backgroundColor: colors.white,
-    paddingHorizontal: 18,
+    paddingHorizontal: 17,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   time: {
     color: colors.primary,
-    ...typography.Inter[700],
-    width: 54,
+    ...typography.Inter[500],
+    fontSize: 14,
+    width: 49,
   },
   appointmentTitle: {
     flex: 1,
     color: colors.primaryDark,
-    marginHorizontal: 8,
+    marginHorizontal: 0,
   },
 });

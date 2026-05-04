@@ -16,7 +16,9 @@ export function EmergencyContactCard({
     <View style={styles.card}>
       <View style={styles.topRow}>
         <Text style={styles.title}>{contact.title}</Text>
-        <Image source={contact.logo} style={styles.logo} />
+        <View style={styles.logoCircle}>
+          <Image source={contact.logo} style={styles.logo} />
+        </View>
       </View>
 
       <EmergencyTags tags={contact.tags} />
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     backgroundColor: colors.white,
-    padding: 18,
+    padding: 14,
   },
   topRow: {
     flexDirection: 'row',
@@ -48,29 +50,36 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     paddingRight: 12,
-    fontSize: 17,
-    lineHeight: 21,
-    ...typography.Inter[700],
+    fontSize: 14,
+    lineHeight: 18,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
-  logo: {
-    width: 64,
-    height: 64,
+  logoCircle: {
+    width: 57,
+    height: 57,
     borderRadius: 32,
+    backgroundColor: '#F5F9FD',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    width: 57,
+    height: 57,
     resizeMode: 'contain',
   },
   phone: {
     marginTop: 14,
-    fontSize: 21,
-    lineHeight: 26,
-    ...typography.Inter[700],
+    fontSize: 16,
+    lineHeight: 18,
+    ...typography.Inter[600],
     color: '#F02F6B',
   },
   website: {
-    marginTop: 8,
-    fontSize: 17,
-    lineHeight: 22,
-    ...typography.Inter[700],
+    marginTop: 6,
+    fontSize: 14,
+    lineHeight: 18,
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

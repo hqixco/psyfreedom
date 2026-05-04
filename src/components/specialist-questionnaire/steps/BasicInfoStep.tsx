@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../../constants/theme';
 import { SpecialistApplicationForm } from '../../../data/specialistQuestionnaireData';
+import { pickImageFileName } from '../../../utils/pickImageFile';
 import { QuestionnaireFileUpload } from '../QuestionnaireFileUpload';
 import { QuestionnaireInput } from '../QuestionnaireInput';
 
@@ -14,13 +15,33 @@ export function BasicInfoStep({
   return (
     <View>
       <Text style={styles.title}>1. Основная информация</Text>
-      <QuestionnaireInput label="Имя Фамилия или название организации" value={value.name} onChangeText={(name) => onChange({ ...value, name })} />
-      <QuestionnaireInput label="Возраст" value={value.age} onChangeText={(age) => onChange({ ...value, age })} keyboardType="number-pad" />
-      <QuestionnaireInput label="Стаж работы" value={value.experience} onChangeText={(experience) => onChange({ ...value, experience })} />
+      <QuestionnaireInput
+        label="Имя Фамилия или название организации"
+        value={value.name}
+        onChangeText={(name) => onChange({ ...value, name })}
+      />
+      <QuestionnaireInput
+        label="Возраст"
+        value={value.age}
+        onChangeText={(age) => onChange({ ...value, age })}
+        keyboardType="number-pad"
+      />
+      <QuestionnaireInput
+        label="Стаж работы"
+        value={value.experience}
+        onChangeText={(experience) => onChange({ ...value, experience })}
+      />
       <QuestionnaireFileUpload
         title="Если вы меняли имя или фамилию прикрепите подтверждающий документ"
         file={value.nameChangeDocument}
-        onPress={() => onChange({ ...value, nameChangeDocument: { name: 'document.jpg' } })}
+        onPress={async () => {
+          const fileName = await pickImageFileName();
+          if (!fileName) {
+            return;
+          }
+
+          onChange({ ...value, nameChangeDocument: { name: fileName } });
+        }}
       />
     </View>
   );

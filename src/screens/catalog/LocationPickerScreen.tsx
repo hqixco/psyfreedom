@@ -1,8 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
-import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
-import { ActivityIndicator, Image, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { WebView } from 'react-native-webview';
+import { BackChevronIcon } from '../../components/icons/BackChevronIcon';
 import { colors, typography } from '../../constants/theme';
 
 type LocationPickerScreenProps = {
@@ -13,7 +12,6 @@ type LocationPickerScreenProps = {
 
 export function LocationPickerScreen({ onBack, onSelectLocation, bottomTabsHeight = 0 }: LocationPickerScreenProps) {
   const insets = useSafeAreaInsets();
-  const mapUrl = 'https://yandex.ru/maps/213/moscow/?ll=37.617761%2C55.755773&z=11';
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
@@ -24,27 +22,13 @@ export function LocationPickerScreen({ onBack, onSelectLocation, bottomTabsHeigh
         <Text style={styles.headerTitle}>Выбрать местоположение</Text>
       </View>
 
-      <Pressable style={styles.mapArea} onPress={() => onSelectLocation('Москва')}>
-        {Platform.OS === 'web' ? (
-          <Image source={require('../../../assets/images/location-map-moscow.jpg')} style={styles.webFallbackImage} resizeMode="cover" />
-        ) : (
-          <WebView
-            source={{ uri: mapUrl }}
-            style={styles.webview}
-            startInLoadingState
-            renderLoading={() => (
-              <View style={styles.loaderWrap}>
-                <ActivityIndicator size="large" color={colors.primary} />
-                <Text style={styles.loaderText}>Загружаем карту Москвы</Text>
-              </View>
-            )}
-          />
-        )}
+      <View style={styles.mapArea}>
+        <Image source={require('../../../assets/images/location-map-moscow.jpg')} style={styles.mapImage} resizeMode="cover" />
         <View style={styles.mapBadge}>
           <Ionicons name="location" size={18} color={colors.primary} />
           <Text style={styles.mapBadgeText}>Москва</Text>
         </View>
-      </Pressable>
+      </View>
 
       <View style={[styles.card, { bottom: 24 + insets.bottom + bottomTabsHeight }]}>
         <Pressable style={styles.heartButton}>
@@ -88,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   backButton: {
-    marginRight: 12,
+    marginRight: 20,
   },
   headerTitle: {
     fontSize: 20,
@@ -99,24 +83,10 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
   },
-  webview: {
-    flex: 1,
-  },
-  webFallbackImage: {
+  mapImage: {
     flex: 1,
     width: '100%',
     height: '100%',
-  },
-  loaderWrap: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#EAF7FB',
-  },
-  loaderText: {
-    marginTop: 12,
-    fontSize: 14,
-    color: colors.primaryDark,
   },
   mapBadge: {
     position: 'absolute',
@@ -218,4 +188,3 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
 });
-

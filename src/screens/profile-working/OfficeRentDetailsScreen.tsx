@@ -15,7 +15,10 @@ export function OfficeRentDetailsScreen({
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 + insets.bottom }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[styles.contentContainer, { paddingBottom: 100 + insets.bottom }]}
+      >
         <OfficeRentDetailsHeader title={office.title} onBack={onBack} />
         <Image source={office.image} style={styles.image} />
         <View style={styles.content}>
@@ -39,6 +42,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  contentContainer: {
+    paddingBottom: 100,
+  },
   image: {
     width: '100%',
     height: 240,
@@ -57,15 +63,15 @@ const styles = StyleSheet.create({
   },
   meta: {
     marginTop: 8,
-    fontSize: 20,
-    lineHeight: 24,
+    fontSize: 18,
+    lineHeight: 23,
     ...typography.Inter[700],
     color: colors.primary,
   },
   address: {
     marginTop: 10,
-    fontSize: 16,
-    lineHeight: 22,
+    fontSize: 15,
+    lineHeight: 20,
     color: colors.text,
   },
   description: {
@@ -76,8 +82,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 24,
-    height: 46,
-    borderRadius: 23,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
     borderColor: colors.primary,
     backgroundColor: colors.white,
@@ -85,8 +91,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: colors.primary,
-    fontSize: 15,
-    ...typography.Inter[700],
+    color: colors.primaryDark,
+    fontSize: 14,
+    ...typography.Inter[600],
   },
 });

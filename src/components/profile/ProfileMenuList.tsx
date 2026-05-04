@@ -3,14 +3,40 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { profileMenuItems } from '../../data/profileData';
 
-export function ProfileMenuList({ onOpenFaq = () => undefined }: { onOpenFaq?: () => void }) {
+export function ProfileMenuList({
+  onOpenAboutApp,
+  onOpenFaq,
+  onOpenFeedback,
+}: {
+  onOpenAboutApp?: () => void;
+  onOpenFaq?: () => void;
+  onOpenFeedback?: () => void;
+}) {
+
   return (
     <View style={styles.container}>
       {profileMenuItems.map((item) => (
         <Pressable
           key={item.id}
           style={styles.item}
-          onPress={item.id === 'faq' ? onOpenFaq : () => console.log('profile menu', item.id)}
+          onPress={() => {
+            if (item.id === 'about') {
+              onOpenAboutApp?.();
+              return;
+            }
+
+            if (item.id === 'faq') {
+              onOpenFaq?.();
+              return;
+            }
+
+            if (item.id === 'feedback') {
+              onOpenFeedback?.();
+              return;
+            }
+
+            console.log('profile menu', item.id);
+          }}
         >
           <Text style={styles.itemText}>{item.title}</Text>
           <Ionicons name="chevron-forward" size={22} color={colors.primaryDark} />

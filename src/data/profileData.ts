@@ -27,4 +27,3 @@ export const profileMenuItems = [
   { id: 'faq', title: 'Вопрос-ответ' },
   { id: 'feedback', title: 'Обратная связь' },
 ] as const;
-

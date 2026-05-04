@@ -104,6 +104,7 @@ type ProductCategoryTileProps = {
 
 export function ProductCategoryTile({ item, width, onPress }: ProductCategoryTileProps) {
   const customIconXml = getCustomIconXml(item.id);
+  const isLongTitle = item.id === 'groups';
 
   return (
     <Pressable style={[styles.tile, { width }]} onPress={() => onPress(item.id)}>
@@ -114,7 +115,9 @@ export function ProductCategoryTile({ item, width, onPress }: ProductCategoryTil
           <Ionicons name={item.icon} size={17} color={colors.white} />
         )}
       </View>
-      <Text style={styles.title}>{item.title}</Text>
+      <Text style={[styles.title, isLongTitle && styles.tightTitle]} numberOfLines={2}>
+        {item.title}
+      </Text>
     </Pressable>
   );
 }
@@ -137,10 +140,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
+    width: '100%',
     fontSize: 12,
     lineHeight: 13,
+    letterSpacing: 0,
     ...typography.Inter[500],
     textAlign: 'center',
     color: colors.primaryDark,
+  },
+  tightTitle: {
+    letterSpacing: -0.35,
   },
 });

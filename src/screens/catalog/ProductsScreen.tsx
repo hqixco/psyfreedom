@@ -14,6 +14,7 @@ import { SearchOverlay } from '../../components/search/SearchOverlay';
 import { colors, typography } from '../../constants/theme';
 import { defaultProductFilters, productFilterConfig, type SelectedFilters } from '../../data/filterData';
 import { productCategories, products, productSortOptions, topProducts } from '../../data/productsData';
+import { sortProductsByOption } from '../../utils/catalogSort';
 import { LocationPickerScreen } from './LocationPickerScreen';
 import { ProductCategoryScreen } from './ProductCategoryScreen';
 import { type CatalogScreenNavigationProps } from './types';
@@ -84,12 +85,12 @@ export function ProductsScreen({
   const productCardWidth = (width - screenPadding * 2 - gridGap) / 2;
 
   useEffect(() => {
-    setBottomTabsVisible?.(screen !== 'location');
+    setBottomTabsVisible?.(screen !== 'location' && !isSortOpen && !isFilterOpen);
 
     return () => {
       setBottomTabsVisible?.(true);
     };
-  }, [screen, setBottomTabsVisible]);
+  }, [isFilterOpen, isSortOpen, screen, setBottomTabsVisible]);
 
   useEffect(() => {
     setActiveCategory(initialCategoryId ?? null);
@@ -98,7 +99,7 @@ export function ProductsScreen({
     setPreviousScreen(initialCategoryId ? 'category' : 'products');
   }, [initialCategoryId, initialCategoryTitle]);
 
-  const visibleProducts = products.filter((item) => {
+  const filteredProducts = products.filter((item) => {
     if (activeCategory) {
       const allowedTypes = categoryTypeMap[activeCategory] ?? [];
       if (!allowedTypes.includes(item.type)) {
@@ -116,6 +117,7 @@ export function ProductsScreen({
 
     return true;
   });
+  const visibleProducts = sortProductsByOption(filteredProducts, selectedSort);
 
   const toggleFavorite = (id: string) => {
     setFavoriteMap((prev) => ({

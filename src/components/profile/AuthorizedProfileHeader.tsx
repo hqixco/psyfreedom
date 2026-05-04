@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { colors, typography } from '../../constants/theme';
 import { ProfileTypeSwitcher } from './ProfileTypeSwitcher';
 
 type AuthorizedProfileHeaderProps = {
@@ -17,9 +17,15 @@ export function AuthorizedProfileHeader({
       <ProfileTypeSwitcher
         selectedProfileType={selectedProfileType}
         onSelectProfileType={onSelectProfileType}
+        rowStyle={styles.row}
+        profileCardStyle={styles.profileCard}
+        circleStyle={styles.circle}
+        mainLabelStyle={styles.label}
+        workLabelStyle={styles.workLabel}
+        selectedLabelStyle={styles.selectedLabel}
       />
       <Pressable style={styles.bellButton} onPress={() => console.log('profile notifications')}>
-        <Ionicons name="notifications-outline" size={28} color={colors.primaryDark} />
+        <Image source={require('../../../assets/profile-notifications-icon.svg')} style={styles.bellIcon} />
       </Pressable>
     </View>
   );
@@ -29,9 +35,45 @@ const styles = StyleSheet.create({
   container: {
     position: 'relative',
   },
+  row: {
+    gap: 18,
+  },
+  profileCard: {
+    alignItems: 'center',
+  },
+  circle: {
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+  },
+  label: {
+    marginTop: 4,
+    fontSize: 13,
+    lineHeight: 18,
+    ...typography.Inter[400],
+    textAlign: 'center',
+  },
+  workLabel: {
+    marginTop: 4,
+    fontSize: 13,
+    lineHeight: 16,
+    ...typography.Inter[400],
+    textAlign: 'center',
+  },
+  selectedLabel: {
+    color: colors.primary,
+    ...typography.Inter[400],
+    textAlign: 'center',
+  },
   bellButton: {
     position: 'absolute',
     right: 0,
     top: 8,
+    padding: 2,
+  },
+  bellIcon: {
+    width: 28,
+    height: 28,
+    resizeMode: 'contain',
   },
 });

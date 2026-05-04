@@ -44,7 +44,7 @@ export function ProductReviewsSection({
               <View style={styles.meta}>
                 <View style={styles.starsRow}>
                   {Array.from({ length: reviewRating }).map((_, index) => (
-                    <RatingStarIcon key={`${review.id}-${index}`} width={18} />
+                    <RatingStarIcon key={`${review.id}-${index}`} size={18} />
                   ))}
                 </View>
                 <Text style={styles.date}>{review.date}</Text>

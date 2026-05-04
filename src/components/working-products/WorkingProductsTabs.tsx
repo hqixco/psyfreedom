@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 16,
     marginTop: 12,
+    marginBottom: 25,
     flexDirection: 'row',
     gap: 8,
   },

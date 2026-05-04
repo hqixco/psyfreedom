@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    marginLeft: 6,
+    marginLeft: 20,
     fontSize: 18,
     lineHeight: 22,
     ...typography.Inter[600],

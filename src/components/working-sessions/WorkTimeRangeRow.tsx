@@ -21,14 +21,18 @@ function TimeSelect({
 export function WorkTimeRangeRow({
   range,
   onDelete,
+  onPressStart,
+  onPressEnd,
 }: {
   range: WorkTimeRange;
   onDelete: () => void;
+  onPressStart: () => void;
+  onPressEnd: () => void;
 }) {
   return (
     <View style={styles.row}>
-      <TimeSelect value={range.start} onPress={() => console.log('select time start', range.id)} />
-      <TimeSelect value={range.end} onPress={() => console.log('select time end', range.id)} />
+      <TimeSelect value={range.start} onPress={onPressStart} />
+      <TimeSelect value={range.end} onPress={onPressEnd} />
       <Pressable style={styles.deleteButton} onPress={onDelete}>
         <Ionicons name="trash-outline" size={24} color="#B0B0B0" />
       </Pressable>
@@ -45,8 +49,8 @@ const styles = StyleSheet.create({
   },
   timeSelect: {
     flex: 1,
-    height: 46,
-    borderRadius: 23,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
     borderColor: '#C8C8C8',
     backgroundColor: colors.white,

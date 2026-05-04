@@ -33,21 +33,24 @@ function EventTextBlock({
   expanded: boolean;
   onToggle: () => void;
 }) {
+  const canExpand = text.trim().length > 170;
   const previewText = useMemo(() => {
-    if (expanded || text.length <= 170) {
+    if (expanded || !canExpand) {
       return text;
     }
 
     return `${text.slice(0, 170).trim()}...`;
-  }, [expanded, text]);
+  }, [canExpand, expanded, text]);
 
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>{title}</Text>
       <Text style={styles.sectionText}>{previewText}</Text>
-      <Pressable onPress={onToggle}>
-        <Text style={styles.readMoreText}>{expanded ? 'Свернуть' : 'Читать ещё'}</Text>
-      </Pressable>
+      {canExpand ? (
+        <Pressable onPress={onToggle}>
+          <Text style={styles.readMoreText}>{expanded ? 'Свернуть' : 'Читать ещё'}</Text>
+        </Pressable>
+      ) : null}
     </View>
   );
 }
@@ -319,4 +322,3 @@ const styles = StyleSheet.create({
     color: '#F50057',
   },
 });
-

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { RatingStarIcon } from '../../components/icons/RatingStarIcon';
@@ -125,6 +125,7 @@ export function InstituteDetailsScreen({
 }: InstituteDetailsScreenProps) {
   const insets = useSafeAreaInsets();
   const [activeInfoTab, setActiveInfoTab] = useState<InfoTabKey>('programs');
+  const [directionsExpanded, setDirectionsExpanded] = useState(false);
 
   useEffect(() => {
     if (!setBottomTabsVisible) {
@@ -181,16 +182,18 @@ export function InstituteDetailsScreen({
           <View style={styles.section}>
             <SectionTitle>Направления в обучении</SectionTitle>
             <View style={styles.directionList}>
-              {institute.directions.map((item) => (
+              {(directionsExpanded ? institute.directions : institute.directions.slice(0, 3)).map((item) => (
                 <View key={item} style={styles.directionRow}>
                   <Text style={styles.directionBullet}>•</Text>
                   <Text style={styles.directionText}>{item}</Text>
                 </View>
               ))}
             </View>
-            <Pressable onPress={() => console.log('read more directions', institute.id)}>
-              <Text style={styles.link}>Читать ещё</Text>
-            </Pressable>
+            {institute.directions.length > 3 ? (
+              <Pressable onPress={() => setDirectionsExpanded((value) => !value)}>
+                <Text style={styles.link}>{directionsExpanded ? 'Свернуть' : 'Читать ещё'}</Text>
+              </Pressable>
+            ) : null}
           </View>
 
           <View style={[styles.section, styles.reviewsSection]}>
@@ -342,7 +345,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   statCard: {
-    width: 181,
+    width: '48.5%',
     height: 96,
     borderRadius: 12,
     alignItems: 'center',

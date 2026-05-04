@@ -78,9 +78,9 @@ const styles = StyleSheet.create({
   },
   description: {
     marginHorizontal: 16,
-    marginTop: 28,
-    fontSize: 20,
-    lineHeight: 27,
+    marginTop: 20,
+    fontSize: 16,
+    lineHeight: 20,
     color: colors.primaryDark,
     ...typography.Inter[400],
   },
@@ -94,15 +94,15 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   button: {
-    height: 52,
-    borderRadius: 26,
+    height: 41,
+    borderRadius: 360,
     backgroundColor: colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonText: {
     color: colors.white,
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
   },
 });

@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { WorkDaySchedule } from '../../data/workingSessionsData';
 import { WorkTimeRangeRow } from './WorkTimeRangeRow';
+import { AppSwitch } from '../shared/AppSwitch';
 
 export function WorkDayScheduleItem({
   item,
@@ -10,12 +11,16 @@ export function WorkDayScheduleItem({
   onToggleExpanded,
   onDeleteRange,
   onAddRange,
+  onPressStart,
+  onPressEnd,
 }: {
   item: WorkDaySchedule;
   onToggleEnabled: () => void;
   onToggleExpanded: () => void;
   onDeleteRange: (rangeId: string) => void;
   onAddRange: () => void;
+  onPressStart: (rangeId: string) => void;
+  onPressEnd: (rangeId: string) => void;
 }) {
   const summary = item.ranges.map((range) => `${range.start} — ${range.end}`).join('     ');
 
@@ -23,12 +28,7 @@ export function WorkDayScheduleItem({
     <View style={styles.card}>
       <View style={styles.headerRow}>
         <Pressable style={styles.dayInfo} onPress={onToggleExpanded}>
-          <Switch
-            value={item.enabled}
-            onValueChange={onToggleEnabled}
-            trackColor={{ false: '#B0B0B0', true: '#B7DCE2' }}
-            thumbColor={item.enabled ? colors.primary : colors.white}
-          />
+          <AppSwitch value={item.enabled} onValueChange={onToggleEnabled} />
           <Text style={styles.dayTitle}>{item.title}</Text>
         </Pressable>
         <Pressable onPress={onToggleExpanded}>
@@ -47,6 +47,8 @@ export function WorkDayScheduleItem({
               key={range.id}
               range={range}
               onDelete={() => onDeleteRange(range.id)}
+              onPressStart={() => onPressStart(range.id)}
+              onPressEnd={() => onPressEnd(range.id)}
             />
           ))}
           <Pressable onPress={onAddRange}>
@@ -77,8 +79,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   dayTitle: {
-    fontSize: 18,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[500],
     color: colors.primaryDark,
     marginLeft: 10,
   },
@@ -93,8 +95,8 @@ const styles = StyleSheet.create({
   },
   addTime: {
     marginTop: 14,
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primary,
   },
 });

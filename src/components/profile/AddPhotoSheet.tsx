@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, typography } from '../../constants/theme';
@@ -14,16 +15,26 @@ export function AddPhotoSheet({ visible, onClose, onPickPhoto, onTakePhoto }: Ad
 
   return (
     <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
-      <Pressable style={styles.overlay} onPress={onClose}>
-        <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
-          <Pressable style={styles.option} onPress={onPickPhoto}>
-            <Text style={styles.optionText}>Выбрать фото</Text>
-          </Pressable>
-          <Pressable style={styles.option} onPress={onTakePhoto}>
-            <Text style={styles.optionText}>Сделать фото</Text>
-          </Pressable>
+      <View style={styles.overlay}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+        <View style={[styles.sheet, { paddingBottom: 18 + insets.bottom }]}>
+          <View style={styles.header}>
+            <Text style={styles.title}>Выбрать фото</Text>
+            <Pressable style={styles.closeButton} onPress={onClose} hitSlop={10}>
+              <Ionicons name="close" size={24} color={colors.primaryDark} />
+            </Pressable>
+          </View>
+
+          <View style={styles.actionsRow}>
+            <Pressable style={styles.actionButton} onPress={onPickPhoto}>
+              <Text style={styles.actionText}>Выбрать фото</Text>
+            </Pressable>
+            <Pressable style={styles.actionButton} onPress={onTakePhoto}>
+              <Text style={styles.actionText}>Сделать фото</Text>
+            </Pressable>
+          </View>
         </View>
-      </Pressable>
+      </View>
     </Modal>
   );
 }
@@ -31,25 +42,48 @@ export function AddPhotoSheet({ visible, onClose, onPickPhoto, onTakePhoto }: Ad
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.35)',
     justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.35)',
   },
   sheet: {
     backgroundColor: colors.white,
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 15,
   },
-  option: {
-    height: 52,
-    justifyContent: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+  header: {
+    marginBottom: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  optionText: {
-    fontSize: 16,
-    ...typography.Inter[700],
+  title: {
+    fontSize: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
+  },
+  closeButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  actionsRow: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  actionButton: {
+    flex: 1,
+    height: 43,
+    borderRadius: 360,
+    borderWidth: 1,
+    borderColor: '#05728F',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.white,
+  },
+  actionText: {
+    fontSize: 14,
+    ...typography.Inter[600],
+    color: '#05728F',
   },
 });

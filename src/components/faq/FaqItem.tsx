@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { type StyleProp, type ViewStyle } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 export type FaqItemProps = {
@@ -7,16 +8,17 @@ export type FaqItemProps = {
   answer: string;
   isOpen: boolean;
   onPress: () => void;
+  containerStyle?: StyleProp<ViewStyle>;
 };
 
-export function FaqItem({ title, answer, isOpen, onPress }: FaqItemProps) {
+export function FaqItem({ title, answer, isOpen, onPress, containerStyle }: FaqItemProps) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <Pressable style={styles.header} onPress={onPress}>
         <Text style={styles.title}>{title}</Text>
         <Ionicons
           name={isOpen ? 'chevron-up' : 'chevron-down'}
-          size={22}
+          size={16}
           color={colors.primaryDark}
         />
       </Pressable>
@@ -33,7 +35,7 @@ export function FaqItem({ title, answer, isOpen, onPress }: FaqItemProps) {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 16,
-    marginBottom: 8,
+    marginBottom: 5,
     borderRadius: 12,
     backgroundColor: colors.cardLight,
     overflow: 'hidden',
@@ -49,9 +51,9 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     paddingRight: 12,
-    fontSize: 17,
+    fontSize: 14,
     lineHeight: 22,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   answerContainer: {
@@ -59,8 +61,8 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
   },
   answer: {
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: 14,
+    lineHeight: 18,
     color: colors.text,
   },
 });

@@ -1,14 +1,12 @@
-import { Image, ImageStyle, Pressable, StyleProp, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleProp, StyleSheet, Text, TextStyle, ViewStyle } from 'react-native';
 import { colors, typography } from '../../constants/theme';
-
-const favoriteIcon = require('../../../assets/video-journal-favorite.svg');
 
 type FavoriteButtonProps = {
   isFavorite: boolean;
   onPress: () => void;
   buttonStyle?: StyleProp<ViewStyle>;
   activeButtonStyle?: StyleProp<ViewStyle>;
-  iconStyle?: StyleProp<ImageStyle>;
   textStyle?: StyleProp<TextStyle>;
   activeLabel?: string;
   inactiveLabel?: string;
@@ -19,7 +17,6 @@ export function FavoriteButton({
   onPress,
   buttonStyle,
   activeButtonStyle,
-  iconStyle,
   textStyle,
   activeLabel = 'В избранном',
   inactiveLabel = 'Добавить в избранное',
@@ -29,7 +26,12 @@ export function FavoriteButton({
       style={[styles.button, buttonStyle, isFavorite ? styles.activeButton : null, isFavorite ? activeButtonStyle : null]}
       onPress={onPress}
     >
-      <Image source={favoriteIcon} style={[styles.icon, iconStyle]} resizeMode="contain" />
+      <Ionicons
+        name={isFavorite ? 'heart' : 'heart-outline'}
+        size={20}
+        color={isFavorite ? colors.pink : colors.primary}
+        style={styles.icon}
+      />
       <Text style={[styles.text, textStyle]}>{isFavorite ? activeLabel : inactiveLabel}</Text>
     </Pressable>
   );
@@ -53,8 +55,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#EAF8FA',
   },
   icon: {
-    width: 20,
-    height: 19,
     marginRight: 10,
   },
   text: {

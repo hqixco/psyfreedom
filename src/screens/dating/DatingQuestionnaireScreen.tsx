@@ -17,7 +17,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   initialDatingForm,
@@ -27,6 +26,8 @@ import {
   relationshipAspectTags,
 } from './datingData';
 import { datingColors, datingCommonStyles } from './datingStyles';
+
+const attachIcon = require('../../../assets/attachment-paperclip.svg');
 
 const { width: screenWidth } = Dimensions.get('window');
 const fieldGap = 8;
@@ -191,10 +192,10 @@ type MockFileUploadProps = {
 };
 
 function MockFileUpload({ title, fileName, onPress }: MockFileUploadProps) {
-  return (
-    <Pressable style={styles.uploadBox} onPress={onPress}>
-      <Ionicons name="attach" size={20} color={datingColors.dark} style={styles.uploadIcon} />
-      <View style={styles.uploadContent}>
+    return (
+      <Pressable style={styles.uploadBox} onPress={onPress}>
+        <Image source={attachIcon} style={styles.uploadIcon} />
+        <View style={styles.uploadContent}>
         <Text style={styles.uploadTitle}>{title}</Text>
         <Text style={styles.uploadDescription}>
           Размер документа не должен превышать 25 Мб.{'\n'}Формат: .jpeg, .jpg, .png
@@ -954,23 +955,25 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     borderRadius: 9,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#B7DCE2',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: datingColors.white,
   },
   radioOuterActive: {
+    backgroundColor: datingColors.pink,
     borderColor: datingColors.pink,
   },
   radioInner: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: datingColors.pink,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: datingColors.white,
   },
   radioText: {
-    marginLeft: 8,
-    fontSize: 14,
+    marginLeft: 12,
+    fontSize: 16,
     color: datingColors.dark,
   },
   twoColumnRow: {
@@ -981,10 +984,10 @@ const styles = StyleSheet.create({
     width: halfFieldWidth,
   },
   selectField: {
-    height: 38,
-    borderRadius: 19,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
-    borderColor: datingColors.border,
+    borderColor: '#A9A9A9',
     paddingHorizontal: 14,
     flexDirection: 'row',
     alignItems: 'center',
@@ -994,6 +997,7 @@ const styles = StyleSheet.create({
   selectText: {
     flex: 1,
     fontSize: 14,
+    fontWeight: '400',
     color: datingColors.dark,
     marginRight: 8,
   },
@@ -1027,6 +1031,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   uploadIcon: {
+    width: 20,
+    height: 20,
     marginRight: 10,
   },
   uploadContent: {

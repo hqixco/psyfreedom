@@ -11,6 +11,7 @@ import { CourseProductForm } from '../../components/working-products/forms/Cours
 import { PromoCodeProductForm } from '../../components/working-products/forms/PromoCodeProductForm';
 import { TestProductForm } from '../../components/working-products/forms/TestProductForm';
 import { colors } from '../../constants/theme';
+import { pickImageFileName } from '../../utils/pickImageFile';
 import {
   createProductInitialValues,
   ProductTopicId,
@@ -74,8 +75,13 @@ export function CreateProductScreen({
     }));
   };
 
-  const attachMockFile = () => {
-    setValues((prev) => ({ ...prev, attachedFileName: 'product-file.jpg' }));
+  const attachMockFile = async () => {
+    const fileName = await pickImageFileName();
+    if (!fileName) {
+      return;
+    }
+
+    setValues((prev) => ({ ...prev, attachedFileName: fileName }));
   };
 
   return (
@@ -87,7 +93,7 @@ export function CreateProductScreen({
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 110 + insets.bottom }}
           >
-            <CreateProductHeader onBack={onBack} />
+            <CreateProductHeader onBack={onBack} title={mode === 'edit' ? 'Редактирование товара' : 'Создание товара'} />
 
             <ProductFormInput
               label="Название товара"

@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255, 154, 79, 1)',
     borderRadius: 12,
+    overflow: 'hidden',
   },
   imageWrap: {
     borderRadius: 10,
@@ -67,8 +68,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cardLight,
   },
   featuredImageWrap: {
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    borderTopLeftRadius: 11,
+    borderTopRightRadius: 11,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },

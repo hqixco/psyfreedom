@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ProfileAuthPrompt } from '../../components/profile/ProfileAuthPrompt';
 import { ProfileBanner } from '../../components/profile/ProfileBanner';
@@ -34,6 +34,7 @@ type ProfileScreenProps = {
   onOpenEditProfile?: () => void;
   onOpenAboutApp?: () => void;
   onOpenFaq?: () => void;
+  onOpenFeedback?: () => void;
   onOpenBecomePartner?: () => void;
   onOpenPayment?: () => void;
   onOpenEditWorkingProfile?: () => void;
@@ -66,6 +67,7 @@ export function ProfileScreen({
   onOpenEditProfile = () => undefined,
   onOpenAboutApp = () => undefined,
   onOpenFaq = () => undefined,
+  onOpenFeedback = () => undefined,
   onOpenBecomePartner = () => undefined,
   onOpenPayment = () => undefined,
   onOpenEditWorkingProfile = () => undefined,
@@ -82,6 +84,8 @@ export function ProfileScreen({
           workPushEnabled={workPushEnabled}
           onToggleWorkPush={onToggleWorkPush}
           onSelectMainProfile={() => onChangeProfileType('main')}
+          selectedProfileType={selectedProfileType}
+          onChangeProfileType={onChangeProfileType}
           onOpenSessions={onOpenSessions}
           onOpenWorkingSessions={onOpenWorkingSessions}
           onOpenCooperation={onOpenCooperation}
@@ -91,6 +95,7 @@ export function ProfileScreen({
           onOpenOfficeRent={onOpenOfficeRent}
           onOpenAboutApp={onOpenAboutApp}
           onOpenFaq={onOpenFaq}
+          onOpenFeedback={onOpenFeedback}
           onOpenPayment={onOpenPayment}
           onEditWorkingProfile={onOpenEditWorkingProfile}
           onDeleteWorkingProfile={onDeleteWorkingProfile}
@@ -99,21 +104,22 @@ export function ProfileScreen({
     }
 
     return (
-      <AuthorizedProfileScreen
-        selectedProfileType={selectedProfileType}
-        pushEnabled={pushEnabled}
+        <AuthorizedProfileScreen
+          selectedProfileType={selectedProfileType}
+          pushEnabled={pushEnabled}
         onChangeProfileType={onChangeProfileType}
         onTogglePush={onTogglePush}
         onOpenSessions={onOpenSessions}
         onOpenPurchases={onOpenPurchases}
         onOpenReviews={onOpenReviews}
-        onOpenEmergency={onOpenEmergency}
-        onOpenEditProfile={onOpenEditProfile}
-        onOpenAboutApp={onOpenAboutApp}
-        onOpenFaq={onOpenFaq}
-        onOpenBecomePartner={onOpenBecomePartner}
-        onLogout={onLogout}
-        onDeleteProfile={onDeleteProfile}
+          onOpenEmergency={onOpenEmergency}
+          onOpenEditProfile={onOpenEditProfile}
+          onOpenAboutApp={onOpenAboutApp}
+          onOpenFaq={onOpenFaq}
+          onOpenFeedback={onOpenFeedback}
+          onOpenBecomePartner={onOpenBecomePartner}
+          onLogout={onLogout}
+          onDeleteProfile={onDeleteProfile}
       />
     );
   }
@@ -124,9 +130,14 @@ export function ProfileScreen({
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 + insets.bottom }}
       >
-        <View style={styles.topSection}>
+        <ImageBackground
+          source={require('../../../assets/profile-header-bg.jpg')}
+          resizeMode="cover"
+          style={styles.topSection}
+          imageStyle={styles.topSectionImage}
+        >
           <ProfileAuthPrompt onLogin={onOpenLogin} onRegister={onOpenRegister} />
-        </View>
+        </ImageBackground>
 
         <View style={styles.content}>
           <ProfileQuickLinks />
@@ -136,7 +147,11 @@ export function ProfileScreen({
           <View style={styles.secondBannerSpacing}>
             <ProfileBanner {...profileBanners[1]} />
           </View>
-          <ProfileMenuList onOpenFaq={onOpenFaq} />
+          <ProfileMenuList
+            onOpenAboutApp={onOpenAboutApp}
+            onOpenFaq={onOpenFaq}
+            onOpenFeedback={onOpenFeedback}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -149,23 +164,26 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   topSection: {
-    backgroundColor: colors.blueLight,
     paddingHorizontal: 16,
     paddingTop: 56,
     paddingBottom: 52,
+  },
+  topSectionImage: {
+    width: '100%',
+    height: '100%',
   },
   content: {
     marginTop: -28,
     backgroundColor: colors.white,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
-    paddingTop: 24,
+    paddingTop: 17,
     paddingHorizontal: 16,
   },
   bannerSpacing: {
     marginTop: 20,
   },
   secondBannerSpacing: {
-    marginTop: 12,
+    marginTop: 10,
   },
 });

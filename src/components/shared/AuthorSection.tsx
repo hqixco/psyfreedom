@@ -2,7 +2,7 @@ import { Image, ImageSourcePropType, Pressable, StyleSheet, Text, View } from 'r
 import { colors, typography } from '../../constants/theme';
 import { RatingStarIcon } from '../icons/RatingStarIcon';
 
-const instituteAuthorAvatar = require('../../../assets/institute-author-avatar.svg');
+const instituteAuthorAvatar = require('../../../assets/institute-author-avatar.png');
 const defaultAuthorAvatar = require('../../../assets/avatar-person-default.png');
 
 export type AuthorCardData = {
@@ -28,7 +28,7 @@ export function AuthorSection({ author, title = 'Автор', onPress }: AuthorS
   const card = (
     <>
       <Image
-        source={author.kind === 'institute' ? instituteAuthorAvatar : author.image ?? defaultAuthorAvatar}
+        source={author.kind === 'institute' ? author.image ?? instituteAuthorAvatar : author.image ?? defaultAuthorAvatar}
         style={styles.avatar}
       />
       <View style={styles.content}>
@@ -81,8 +81,9 @@ const styles = StyleSheet.create({
   avatar: {
     width: 80,
     height: 80,
-    borderRadius: 40,
     marginRight: 12,
+    borderRadius: 40,
+    overflow: 'hidden',
     backgroundColor: colors.cardLight,
   },
   content: {

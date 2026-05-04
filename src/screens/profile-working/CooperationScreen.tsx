@@ -84,15 +84,15 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   introTitle: {
-    fontSize: 26,
-    lineHeight: 32,
-    ...typography.Inter[700],
+    fontSize: 20,
+    lineHeight: 28,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   introDescription: {
     marginTop: 8,
-    fontSize: 16,
-    lineHeight: 21,
+    fontSize: 14,
+    lineHeight: 18,
     color: colors.primaryDark,
   },
   storiesSection: {

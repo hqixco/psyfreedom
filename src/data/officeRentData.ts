@@ -13,7 +13,7 @@ export type OfficeRentItem = {
 export const officeRentItems: OfficeRentItem[] = [
   {
     id: '1',
-    title: 'Кабинет CMPi',
+    title: 'Кабинет CMi',
     area: '12 м²',
     price: 'от 100 000 ₽',
     address: 'г. Москва, ул. Ленина, 99',
@@ -22,7 +22,7 @@ export const officeRentItems: OfficeRentItem[] = [
   },
   {
     id: '2',
-    title: 'Кабинет CMPi',
+    title: 'Кабинет CMi',
     area: '12 м²',
     price: 'от 100 000 ₽',
     address: 'г. Москва, ул. Ленина, 99',
@@ -30,4 +30,3 @@ export const officeRentItems: OfficeRentItem[] = [
     description: 'Кабинет для проведения индивидуальных консультаций и встреч с клиентами.',
   },
 ];
-

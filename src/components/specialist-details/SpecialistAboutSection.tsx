@@ -8,7 +8,7 @@ type SpecialistAboutSectionProps = {
 
 export function SpecialistAboutSection({ text }: SpecialistAboutSectionProps) {
   const [expanded, setExpanded] = useState(false);
-  const shouldCollapse = text.length > 220;
+  const shouldCollapse = text.trim().length > 220;
   const visibleText = shouldCollapse && !expanded ? `${text.slice(0, 260)}...` : text;
 
   return (

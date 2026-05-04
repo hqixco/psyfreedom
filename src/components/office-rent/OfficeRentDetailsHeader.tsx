@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
@@ -25,17 +24,17 @@ export function OfficeRentDetailsHeader({
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    paddingHorizontal: 16,
+    paddingHorizontal: 25,
     flexDirection: 'row',
     alignItems: 'center',
   },
   backButton: {
-    marginRight: 12,
+    marginRight: 20,
   },
   title: {
     flex: 1,
-    fontSize: 24,
-    lineHeight: 30,
+    fontSize: 18,
+    lineHeight: 56,
     ...typography.Inter[700],
     color: colors.primaryDark,
   },

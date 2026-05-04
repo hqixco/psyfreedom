@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
-    marginRight: 12,
+    marginRight: 20,
   },
   iconButton: {
     width: 28,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    marginLeft: 6,
+    marginLeft: 20,
     fontSize: 18,
     lineHeight: 22,
     ...typography.Inter[600],

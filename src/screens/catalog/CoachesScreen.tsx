@@ -2,6 +2,7 @@ import { useWindowDimensions } from 'react-native';
 import { CoachCategoriesSection } from '../../components/services/CoachCategoriesSection';
 import { coachesFilterConfig, type SelectedFilters } from '../../data/filterData';
 import { coachCategories, coaches } from '../../data/servicesData';
+import { sortSpecialistsByOption } from '../../utils/catalogSort';
 import { SpecialistsCategoryScreen } from './SpecialistsCategoryScreen';
 
 type CoachesScreenProps = {
@@ -45,11 +46,12 @@ export function CoachesScreen({
 }: CoachesScreenProps) {
   const { width } = useWindowDimensions();
   const coachCardWidth = Math.min(181, width - 32);
+  const visibleCoaches = sortSpecialistsByOption(coaches, selectedSort);
 
   return (
     <SpecialistsCategoryScreen
       title="Коучи"
-      specialists={coaches}
+      specialists={visibleCoaches}
       filterConfig={coachesFilterConfig}
       selectedSort={selectedSort}
       selectedFilters={selectedFilters}

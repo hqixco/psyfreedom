@@ -13,7 +13,6 @@ type FavoriteCardProps = {
 
 export function FavoriteCard({ item, width, onPress, isHeartMuted = false, onToggleHeart }: FavoriteCardProps) {
   const isDeleted = item.status === 'deletedByAuthor';
-  const isViewed = item.status === 'viewed';
   const textMuted = isDeleted;
   const rating = item.rating ?? '0.0';
 
@@ -29,9 +28,9 @@ export function FavoriteCard({ item, width, onPress, isHeartMuted = false, onTog
           </View>
 
           {isDeleted ? <View style={styles.deletedOverlay} /> : null}
-          {isDeleted || isViewed ? (
+          {isDeleted ? (
             <View style={styles.statusBadge}>
-              <Text style={styles.statusText}>{isDeleted ? 'Удалено автором' : 'Просмотрено'}</Text>
+              <Text style={styles.statusText}>Удалено автором</Text>
             </View>
           ) : null}
         </View>

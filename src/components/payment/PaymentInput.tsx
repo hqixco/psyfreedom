@@ -1,11 +1,11 @@
-import { StyleSheet, Text, TextInput, TextInputProps, View, TextStyle } from 'react-native';
+import { StyleProp, StyleSheet, Text, TextInput, TextInputProps, View, TextStyle, ViewStyle } from 'react-native';
 import { colors } from '../../constants/theme';
 
 type PaymentInputProps = TextInputProps & {
   label: string;
-  containerStyle?: TextInputProps['style'];
-  labelStyle?: TextStyle;
-  inputStyle?: TextStyle;
+  containerStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
+  inputStyle?: StyleProp<TextStyle>;
 };
 
 export function PaymentInput({
@@ -29,5 +29,22 @@ export function PaymentInput({
 }
 
 const styles = StyleSheet.create({
-  input: {},
+  label: {
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '400',
+    color: colors.primaryDark,
+    marginBottom: 8,
+  },
+  input: {
+    height: 41,
+    borderRadius: 360,
+    borderWidth: 1,
+    borderColor: '#A9A9A9',
+    paddingHorizontal: 14,
+    fontSize: 14,
+    fontWeight: '400',
+    color: colors.primaryDark,
+    backgroundColor: colors.white,
+  },
 });

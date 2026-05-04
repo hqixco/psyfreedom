@@ -47,12 +47,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
   },
   subtitle: {
     color: 'rgba(255,255,255,0.9)',
-    fontSize: 13,
+    fontSize: 12,
     marginTop: 4,
   },
 });

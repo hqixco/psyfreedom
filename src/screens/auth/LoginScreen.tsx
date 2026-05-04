@@ -40,14 +40,23 @@ export function LoginScreen({
             onChangeText={onChangePhone}
             keyboardType="phone-pad"
             placeholder="+7 (987)654-32-10"
+            containerStyle={styles.field}
           />
           <AuthButton
             title="Получить СМС с кодом"
             onPress={onSubmit}
             disabled={isDisabled}
             style={styles.button}
+            textStyle={styles.buttonText}
           />
-          <ConsentCheckbox checked={consent} onToggle={onToggleConsent} />
+          <ConsentCheckbox
+            checked={consent}
+            onToggle={onToggleConsent}
+            containerStyle={styles.consentContainer}
+            boxStyle={styles.consentBox}
+            textStyle={styles.consentText}
+            linkStyle={styles.consentLink}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -72,10 +81,35 @@ const styles = StyleSheet.create({
     lineHeight: 36,
     ...typography.Inter[600],
     color: colors.primaryDark,
-    marginBottom: 34,
+    marginBottom: 14,
     marginTop: 20,
   },
+  field: {
+    marginBottom: 0,
+  },
   button: {
-    marginTop: 28,
+    height: 41,
+    marginTop: 18,
+  },
+  buttonText: {
+    fontSize: 14,
+    ...typography.Inter[600],
+  },
+  consentContainer: {
+    marginTop: 10,
+  },
+  consentBox: {
+    width: 18,
+    height: 18,
+    borderRadius: 5,
+  },
+  consentText: {
+    fontSize: 13,
+    lineHeight: 16,
+    color: colors.muted,
+  },
+  consentLink: {
+    color: colors.primary,
+    ...typography.Inter[400],
   },
 });

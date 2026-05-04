@@ -42,17 +42,27 @@ export function SmsCodeScreen({ phone, onBack, onSubmit }: SmsCodeScreenProps) {
           <Text style={styles.title}>Код из СМС</Text>
           <Text style={styles.subtitle}>Отправлен на номер {phone}</Text>
 
-          <SmsCodeInput value={code} onChange={setCode} />
+          <SmsCodeInput
+            value={code}
+            onChange={setCode}
+            containerStyle={styles.codeContainer}
+            cellStyle={styles.codeCell}
+            activeCellStyle={styles.codeCellActive}
+            digitStyle={styles.codeDigit}
+          />
 
           <AuthButton
             title="Далее"
             onPress={onSubmit}
             disabled={code.length < 4}
             style={styles.button}
+            textStyle={styles.buttonText}
           />
 
           <Text style={styles.timer}>
-            {secondsLeft > 0 ? `Отправить код повторно через ${timerLabel}` : 'Отправить код повторно'}
+            {secondsLeft > 0
+              ? `Отправить код повторно через ${timerLabel}`
+              : 'Отправить код повторно'}
           </Text>
 
           <Pressable onPress={() => console.log('sms help')}>
@@ -85,16 +95,35 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   subtitle: {
-    marginTop: 12,
-    fontSize: 15,
+    marginTop: 9,
+    fontSize: 12,
     ...typography.Inter[400],
-    lineHeight: 20,
+    lineHeight: 16,
     color: colors.primaryDark,
   },
+  codeContainer: {
+    marginTop: 28,
+  },
+  codeCell: {
+    width: 86,
+    height: 86,
+    borderRadius: 12,
+    borderColor: '#A9A9A9',
+  },
+  codeCellActive: {
+    borderColor: colors.primary,
+  },
+  codeDigit: {
+    fontSize: 28,
+    fontWeight: '400',
+  },
   button: {
-    marginTop: 32,
+    height: 41,
+    marginTop: 14,
+  },
+  buttonText: {
     fontSize: 14,
-    ...typography.Inter[600],
+    fontWeight: '600',
   },
   timer: {
     marginTop: 24,

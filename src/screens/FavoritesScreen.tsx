@@ -6,14 +6,20 @@ import { FavoritesChips } from '../components/favorites/FavoritesChips';
 import { FavoritesGrid } from '../components/favorites/FavoritesGrid';
 import { FavoritesHeader } from '../components/favorites/FavoritesHeader';
 import { colors } from '../constants/theme';
-import { FavoriteCategory, FavoriteItem, favoriteChips, mockFavorites } from '../data/favoritesData';
+import { productDetailsMap } from '../data/productDetailsData';
+import {
+  FavoriteCategory,
+  FavoriteItem,
+  favoriteChips,
+  dismissedFavoriteIds,
+  mockFavorites,
+} from '../data/favoritesData';
 
 type FavoriteChipId = (typeof favoriteChips)[number]['id'];
-const dismissedFavoriteIds = new Set<string>();
 
 type FavoritesScreenProps = {
   onOpenCatalog: () => void;
-  onOpenProductDetails?: (productId: string) => void;
+  onOpenProductDetails?: (productId: string, isPurchased?: boolean, isFavorite?: boolean) => void;
   onOpenSpecialistDetails?: (specialistId: string) => void;
   onOpenArticleDetails?: (articleId: string) => void;
 };
@@ -39,6 +45,19 @@ export function FavoritesScreen({
 
     return favorites.filter((item) => item.category === activeCategory);
   }, [activeCategory, favorites]);
+
+  const visibleFavorites = useMemo(
+    () =>
+      filteredFavorites.map((item) => {
+        if (item.category !== 'products' || !item.productId) {
+          return item;
+        }
+
+        const detailsRating = productDetailsMap[item.productId]?.rating;
+        return detailsRating ? { ...item, rating: detailsRating } : item;
+      }),
+    [filteredFavorites],
+  );
 
   const handleToggleHeart = (id: string) => {
     setMutedHeartIds((prev) => {
@@ -72,7 +91,7 @@ export function FavoritesScreen({
 
     switch (item.category as FavoriteCategory) {
       case 'products':
-        onOpenProductDetails?.('product-1');
+        onOpenProductDetails?.(item.productId ?? 'product-1', false, true);
         break;
       case 'services':
         onOpenSpecialistDetails?.('specialist-1');
@@ -104,7 +123,7 @@ export function FavoritesScreen({
             <>
               <FavoritesChips activeCategory={activeCategory} onSelect={handleSelectCategory} />
               <FavoritesGrid
-                items={filteredFavorites}
+                items={visibleFavorites}
                 onPressItem={handlePressItem}
                 onToggleHeart={handleToggleHeart}
                 heartMutedMap={mutedHeartIds}

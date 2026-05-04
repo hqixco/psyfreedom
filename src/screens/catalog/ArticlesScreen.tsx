@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { UniversalFilterSheet } from '../../components/filters/UniversalFilterSheet';
 import { ArticleCard } from '../../components/journal/ArticleCard';
@@ -46,8 +46,9 @@ export function ArticlesScreen({
   onPressBanner,
   onPressArticle,
 }: ArticlesScreenProps) {
+  const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const cardWidth = 180;
+  const cardWidth = (width - 16 * 2 - 10) / 2;
   const featuredArticles = articles.slice(0, 5);
 
   return (

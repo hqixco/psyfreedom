@@ -15,7 +15,7 @@ type SpecialistCardProps = {
 
 export function SpecialistCard({ item, width, imageHeight, onPress, variant = 'default' }: SpecialistCardProps) {
   const isTop10 = variant === 'top10';
-  const imageWidth = width - 2;
+  const imageWidth = isTop10 ? '100%' : width - 2;
   const [liked, setLiked] = useState(false);
 
   return (
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255, 154, 79, 1)',
     borderRadius: 12,
+    overflow: 'hidden',
   },
   imageWrap: {
     height: 185,
@@ -64,8 +65,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.cardLight,
   },
   top10ImageWrap: {
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    borderTopLeftRadius: 11,
+    borderTopRightRadius: 11,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },

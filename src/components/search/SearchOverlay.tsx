@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { typography } from '../../constants/theme';
 import {
+  Keyboard,
   Modal,
   Pressable,
   ScrollView,
@@ -9,7 +10,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SvgXml } from 'react-native-svg';
 import {
   searchHistoryMock,
@@ -95,6 +96,11 @@ export function SearchOverlay({
   const [query, setQuery] = useState(initialQuery);
   const [history, setHistory] = useState(searchHistoryMock);
 
+  const handleClose = () => {
+    Keyboard.dismiss();
+    onClose();
+  };
+
   useEffect(() => {
     if (visible) {
       setQuery(initialQuery);
@@ -121,7 +127,7 @@ export function SearchOverlay({
 
   const handleOpenResult = (item: SearchResultItem) => {
     addToHistory(item);
-    onClose();
+    handleClose();
 
     if (item.type === 'video') {
       if (onOpenVideo) {
@@ -142,7 +148,7 @@ export function SearchOverlay({
   };
 
   const handleOpenSpecialists = () => {
-    onClose();
+    handleClose();
 
     if (onOpenSpecialists) {
       onOpenSpecialists(mapQueryToTopicId(query));
@@ -152,9 +158,22 @@ export function SearchOverlay({
     console.log('show specialists for query', query);
   };
 
+  if (!visible) {
+    return null;
+  }
+
   return (
-    <Modal visible={visible} animationType="fade" transparent={false} onRequestClose={onClose}>
-      <SafeAreaView style={styles.safeArea}>
+    <Modal
+      visible={visible}
+      animationType="fade"
+      transparent={false}
+      presentationStyle="fullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={handleClose}
+    >
+      <View style={styles.safeArea}>
+        <View style={{ height: insets.top, backgroundColor: '#FFFFFF' }} />
         <View style={styles.container}>
           <View style={styles.headerRow}>
             <View style={styles.searchContainer}>
@@ -171,7 +190,7 @@ export function SearchOverlay({
               </View>
             </View>
 
-            <Pressable style={styles.closeButton} onPress={onClose}>
+            <Pressable style={styles.closeButton} onPress={handleClose}>
               <SvgXml xml={closeIconXml} width={24} height={24} />
             </Pressable>
           </View>
@@ -179,7 +198,7 @@ export function SearchOverlay({
           <ScrollView
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{ paddingBottom: 100 + insets.bottom }}
+            contentContainerStyle={{ paddingBottom: 24 + insets.bottom }}
           >
             {!normalizedQuery ? (
               <>
@@ -234,7 +253,8 @@ export function SearchOverlay({
             )}
           </ScrollView>
         </View>
-      </SafeAreaView>
+        <View style={{ height: insets.bottom, backgroundColor: '#FFFFFF' }} />
+      </View>
     </Modal>
   );
 }
@@ -301,6 +321,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#F0F0F0',
     paddingHorizontal: 16,
+    paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -314,6 +335,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: '#FFF6EA',
     paddingHorizontal: 16,
+    paddingVertical: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -341,7 +363,8 @@ const styles = StyleSheet.create({
   },
   specialistsTitle: {
     fontSize: 14,
-    lineHeight: 21,
+    lineHeight: 18,
+    marginBottom: 2,
     ...typography.Inter[600],
     color: '#031D23',
   },

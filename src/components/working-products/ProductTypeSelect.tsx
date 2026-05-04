@@ -46,24 +46,26 @@ export function ProductTypeSelect({
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 14,
-    lineHeight: 18,
+    fontSize: 12,
+    lineHeight: 17,
+    fontWeight: '400',
     color: colors.primaryDark,
     marginBottom: 8,
   },
   select: {
-    height: 44,
-    borderRadius: 22,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
-    borderColor: '#C8C8C8',
-    paddingHorizontal: 16,
+    borderColor: '#A9A9A9',
+    paddingHorizontal: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 12,
   },
   valueText: {
-    fontSize: 15,
+    fontSize: 14,
+    fontWeight: '400',
     color: colors.primaryDark,
   },
   placeholderText: {
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     borderWidth: 1,
-    borderColor: '#C8C8C8',
+    borderColor: '#A9A9A9',
     borderRadius: 16,
     overflow: 'hidden',
     marginBottom: 16,
@@ -82,7 +84,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   optionText: {
-    fontSize: 15,
+    fontSize: 14,
+    fontWeight: '400',
     color: colors.primaryDark,
   },
 });

@@ -15,7 +15,12 @@ type HumorScreenProps = {
 export function HumorScreen({ onBack, onOpenPost }: HumorScreenProps) {
   const insets = useSafeAreaInsets();
   const [activeType, setActiveType] = useState<HumorFilterType>('all');
-  const [likedMap, setLikedMap] = useState<Record<string, boolean>>({});
+  const [likedMap, setLikedMap] = useState<Record<string, boolean>>(
+    () => Object.fromEntries(humorPosts.map((post) => [post.id, Boolean(post.isLiked)])),
+  );
+  const [likesMap, setLikesMap] = useState<Record<string, number>>(
+    () => Object.fromEntries(humorPosts.map((post) => [post.id, post.likes + (post.isLiked ? 1 : 0)])),
+  );
 
   const visiblePosts = useMemo(() => {
     if (activeType === 'all') {
@@ -26,7 +31,14 @@ export function HumorScreen({ onBack, onOpenPost }: HumorScreenProps) {
   }, [activeType]);
 
   const toggleLike = (id: string) => {
-    setLikedMap((current) => ({ ...current, [id]: !current[id] }));
+    setLikedMap((current) => {
+      const nextLiked = !current[id];
+      setLikesMap((likesCurrent) => ({
+        ...likesCurrent,
+        [id]: Math.max(0, likesCurrent[id] + (nextLiked ? 1 : -1)),
+      }));
+      return { ...current, [id]: nextLiked };
+    });
   };
 
   return (
@@ -42,6 +54,7 @@ export function HumorScreen({ onBack, onOpenPost }: HumorScreenProps) {
             key={post.id}
             post={post}
             isLiked={likedMap[post.id] ?? Boolean(post.isLiked)}
+            likes={likesMap[post.id] ?? post.likes}
             onToggleLike={() => toggleLike(post.id)}
             onPress={() => onOpenPost(post)}
           />
@@ -60,4 +73,3 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
 });
-

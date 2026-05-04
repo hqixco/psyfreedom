@@ -11,6 +11,8 @@ export function WorkingStatsCard() {
         <WorkingProfileMenuItem
           key={item.id}
           title={item.title}
+          itemStyle={styles.item}
+          textStyle={styles.itemText}
           onPress={() => console.log('working stats', item.id)}
         />
       ))}
@@ -20,16 +22,26 @@ export function WorkingStatsCard() {
 
 const styles = StyleSheet.create({
   card: {
-    marginTop: 18,
+    marginTop: 0,
     backgroundColor: colors.cardLight,
     borderRadius: 16,
     padding: 18,
   },
   title: {
-    fontSize: 28,
-    lineHeight: 34,
-    ...typography.Inter[700],
+    fontSize: 20,
+    lineHeight: 24,
+    ...typography.Inter[600],
     color: colors.primaryDark,
     marginBottom: 16,
+  },
+  item: {
+    height: 48,
+    borderRadius: 12,
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 14,
+    marginBottom: 4,
+  },
+  itemText: {
+    fontSize: 14,
   },
 });

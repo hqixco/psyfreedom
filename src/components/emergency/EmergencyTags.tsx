@@ -15,13 +15,14 @@ export function EmergencyTags({ tags }: { tags: string[] }) {
 
 const styles = StyleSheet.create({
   container: {
+    width: 220,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 16,
+    marginTop: 9,
   },
   tag: {
-    height: 26,
-    borderRadius: 13,
+    height: 18,
+    borderRadius: 360,
     backgroundColor: '#EAF8FA',
     paddingHorizontal: 12,
     alignItems: 'center',
@@ -30,8 +31,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   tagText: {
-    fontSize: 13,
+    fontSize: 12,
+    lineHeight: 18,
     color: colors.primaryDark,
-    ...typography.Inter[500],
+    ...typography.Inter[400],
   },
 });

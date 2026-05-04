@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../../constants/theme';
 import { SpecialistApplicationForm } from '../../../data/specialistQuestionnaireData';
+import { pickImageFileName } from '../../../utils/pickImageFile';
 import { QuestionnaireFileUpload } from '../QuestionnaireFileUpload';
 import { QuestionnaireInput } from '../QuestionnaireInput';
 import { QuestionnaireRadio } from '../QuestionnaireRadio';
@@ -19,13 +20,24 @@ export function AdditionalInfoStep({
       <Text style={styles.sectionTitle}>Ваш статус</Text>
       <View style={styles.radioGroup}>
         <QuestionnaireRadio label="ИП" checked={value.status === 'ip'} onPress={() => onChange({ ...value, status: 'ip' })} />
-        <QuestionnaireRadio label="Самозанятый" checked={value.status === 'selfEmployed'} onPress={() => onChange({ ...value, status: 'selfEmployed' })} />
+        <QuestionnaireRadio
+          label="Самозанятый"
+          checked={value.status === 'selfEmployed'}
+          onPress={() => onChange({ ...value, status: 'selfEmployed' })}
+        />
       </View>
 
       <QuestionnaireFileUpload
         title="Прикрепить документ подтверждающий регистрацию"
         file={value.registrationDocument}
-        onPress={() => onChange({ ...value, registrationDocument: { name: 'document.jpg' } })}
+        onPress={async () => {
+          const fileName = await pickImageFileName();
+          if (!fileName) {
+            return;
+          }
+
+          onChange({ ...value, registrationDocument: { name: fileName } });
+        }}
       />
       <QuestionnaireInput
         label="Количество часов личной терапии"
@@ -36,7 +48,14 @@ export function AdditionalInfoStep({
       <QuestionnaireFileUpload
         title="Прикрепить документ от Вашего психолога/психотерапевта"
         file={value.therapyDocument}
-        onPress={() => onChange({ ...value, therapyDocument: { name: 'document.jpg' } })}
+        onPress={async () => {
+          const fileName = await pickImageFileName();
+          if (!fileName) {
+            return;
+          }
+
+          onChange({ ...value, therapyDocument: { name: fileName } });
+        }}
       />
       <QuestionnaireInput
         label="Количество часов супервизии за последний завершенный календарный год"
@@ -47,7 +66,14 @@ export function AdditionalInfoStep({
       <QuestionnaireFileUpload
         title="Прикрепить документ от Вашего психолога/психотерапевта"
         file={value.supervisionDocument}
-        onPress={() => onChange({ ...value, supervisionDocument: { name: 'document.jpg' } })}
+        onPress={async () => {
+          const fileName = await pickImageFileName();
+          if (!fileName) {
+            return;
+          }
+
+          onChange({ ...value, supervisionDocument: { name: fileName } });
+        }}
       />
     </View>
   );

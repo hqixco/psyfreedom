@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, typography } from '../../constants/theme';
 import { StarsRating } from './StarsRating';
@@ -7,7 +7,6 @@ import { StarsRating } from './StarsRating';
 export function EditReviewSheet({
   visible,
   title,
-  objectTitle,
   rating,
   text,
   submitLabel,
@@ -29,11 +28,23 @@ export function EditReviewSheet({
 }) {
   const insets = useSafeAreaInsets();
 
+  if (!visible) {
+    return null;
+  }
+
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      transparent
+      animationType="slide"
+      visible={visible}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={onClose}
+    >
       <View style={styles.overlay}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
-        <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
+        <View style={[styles.sheet, { paddingBottom: 18 + insets.bottom }]}>
           <View style={styles.header}>
             <Text style={styles.title}>{title}</Text>
             <Pressable onPress={onClose}>
@@ -41,30 +52,33 @@ export function EditReviewSheet({
             </Pressable>
           </View>
 
-          {objectTitle ? <Text style={styles.objectTitle}>{objectTitle}</Text> : null}
-          <Text style={styles.label}>Поставьте оценку</Text>
-          <View style={styles.starsRow}>
-            <StarsRating rating={rating} onChange={onChangeRating} />
+          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
+            <Text style={styles.label}>Поставьте оценку</Text>
+            <View style={styles.starsRow}>
+              <StarsRating rating={rating} onChange={onChangeRating} size={24} gap={6} />
+            </View>
+
+            <TextInput
+              value={text}
+              onChangeText={onChangeText}
+              placeholder="Напишите свой отзыв"
+              placeholderTextColor="#B0B0B0"
+              style={styles.input}
+              multiline
+              textAlignVertical="top"
+              maxLength={3000}
+            />
+
+            <Text style={styles.hint}>
+              Отзыв может содержать не более 3000 знаков включая пробелы.
+            </Text>
+          </ScrollView>
+
+          <View style={styles.footer}>
+            <Pressable style={styles.submitButton} onPress={onSubmit}>
+              <Text style={styles.submitButtonText}>{submitLabel}</Text>
+            </Pressable>
           </View>
-
-          <TextInput
-            value={text}
-            onChangeText={onChangeText}
-            placeholder="Напишите свой отзыв"
-            placeholderTextColor="#B0B0B0"
-            style={styles.input}
-            multiline
-            textAlignVertical="top"
-            maxLength={3000}
-          />
-
-          <Text style={styles.hint}>
-            Отзыв может содержать не более 3000 знаков включая пробелы.
-          </Text>
-
-          <Pressable style={styles.submitButton} onPress={onSubmit}>
-            <Text style={styles.submitButtonText}>{submitLabel}</Text>
-          </Pressable>
         </View>
       </View>
     </Modal>
@@ -97,23 +111,19 @@ const styles = StyleSheet.create({
     ...typography.Inter[600],
     color: colors.primaryDark,
   },
-  objectTitle: {
-    marginTop: 7,
-    fontSize: 17,
-    lineHeight: 22,
-    ...typography.Inter[700],
-    color: colors.primaryDark,
+  content: {
+    paddingTop: 13,
+    paddingBottom: 12,
   },
   label: {
-    marginTop: 17,
-    fontSize: 16,
-    color: colors.primaryDark,
+    fontSize: 12,
+    color: colors.muted,
   },
   starsRow: {
-    marginTop: 9,
+    marginTop: 3,
   },
   input: {
-    marginTop: 29,
+    marginTop: 24,
     minHeight: 150,
     borderWidth: 1,
     borderColor: '#C8C8C8',
@@ -124,13 +134,16 @@ const styles = StyleSheet.create({
     color: colors.primaryDark,
   },
   hint: {
-    marginTop: 10,
-    fontSize: 13,
-    lineHeight: 17,
+    marginTop: 5,
+    fontSize: 11,
+    lineHeight: 14,
     color: '#B0B0B0',
   },
+  footer: {
+    paddingTop: 14,
+    backgroundColor: colors.white,
+  },
   submitButton: {
-    marginTop: 23,
     height: 41,
     borderRadius: 26,
     backgroundColor: colors.primary,

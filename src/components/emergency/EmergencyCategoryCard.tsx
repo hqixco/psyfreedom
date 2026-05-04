@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { EmergencyCategory } from '../../data/emergencyHelpData';
 
@@ -19,13 +19,27 @@ export function EmergencyCategoryCard({
 
   return (
     <Pressable style={[styles.card, backgroundStyle]} onPress={onPress}>
-      <Text style={styles.title}>{category.title}</Text>
       {category.backgroundImage ? (
-        <Image source={category.backgroundImage} style={styles.backgroundImage} />
+        <ImageBackground
+          source={category.backgroundImage}
+          resizeMode="cover"
+          style={styles.background}
+          imageStyle={styles.backgroundImage}
+          pointerEvents="none"
+        >
+          <View style={styles.content}>
+            <Text style={styles.title}>{category.title}</Text>
+          </View>
+        </ImageBackground>
       ) : (
-        <View style={styles.decorCircle}>
-          <Ionicons name="medical-outline" size={48} color={colors.primaryDark} style={styles.decorIcon} />
-        </View>
+        <>
+          <View style={styles.content}>
+            <Text style={styles.title}>{category.title}</Text>
+          </View>
+          <View style={styles.decorCircle}>
+            <Ionicons name="medical-outline" size={48} color={colors.primaryDark} style={styles.decorIcon} />
+          </View>
+        </>
       )}
     </Pressable>
   );
@@ -33,12 +47,19 @@ export function EmergencyCategoryCard({
 
 const styles = StyleSheet.create({
   card: {
-    height: 92,
+    height: 80,
     borderRadius: 12,
     overflow: 'hidden',
-    paddingHorizontal: 20,
-    justifyContent: 'center',
     marginBottom: 10,
+    position: 'relative',
+  },
+  background: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   blueCard: {
     backgroundColor: '#D9F7FF',
@@ -51,19 +72,15 @@ const styles = StyleSheet.create({
   },
   title: {
     maxWidth: 300,
-    fontSize: 21,
-    lineHeight: 25,
-    ...typography.Inter[700],
+    fontSize: 16,
+    lineHeight: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   backgroundImage: {
-    position: 'absolute',
-    right: -10,
-    bottom: -10,
-    width: 150,
-    height: 100,
     opacity: 0.25,
-    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
   },
   decorCircle: {
     position: 'absolute',

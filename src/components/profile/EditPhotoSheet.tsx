@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   option: {
-    height: 52,
+    height: 41,
     justifyContent: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#F0F0F0',
   },
   optionText: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
 });

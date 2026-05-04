@@ -10,7 +10,7 @@ export type AppRoute =
   | { name: 'journal' }
   | { name: 'messenger' }
   | { name: 'chat'; chatId: string }
-  | { name: 'product-details'; productId: string }
+  | { name: 'product-details'; productId: string; isPurchased?: boolean; isFavorite?: boolean }
   | { name: 'institute-details'; instituteId: string }
   | { name: 'specialist-details'; specialistId: string }
   | { name: 'article-details'; articleId: string }
@@ -23,6 +23,7 @@ export type AppRoute =
   | { name: 'edit-profile' }
   | { name: 'about-app' }
   | { name: 'faq' }
+  | { name: 'feedback' }
   | { name: 'become-partner' }
   | { name: 'emergency-help' }
   | { name: 'my-sessions' }
@@ -59,7 +60,7 @@ export type ReturnRoute =
   | { name: 'journal' }
   | { name: 'home' }
   | { name: 'like' }
-  | { name: 'product-details'; productId: string }
+  | { name: 'product-details'; productId: string; isPurchased?: boolean; isFavorite?: boolean }
   | { name: 'specialist-details'; specialistId: string };
 
 export function useAppNavigationState({
@@ -77,6 +78,12 @@ export function useAppNavigationState({
   const [datingFavoritesReturnRoute, setDatingFavoritesReturnRoute] = useState<AppRoute>({
     name: 'dating-approved-home',
   });
+  const [detailHistory, setDetailHistory] = useState<AppRoute[]>([]);
+
+  const openDetailRoute = (nextRoute: AppRoute) => {
+    setDetailHistory((prev) => [...prev, route]);
+    setRoute(nextRoute);
+  };
 
   const openDatingSection = () => {
     if (datingQuestionnaireStatus === 'approved') {
@@ -87,19 +94,50 @@ export function useAppNavigationState({
     setRoute({ name: 'dating-club' });
   };
 
-  const openProductDetails = (productId: string) => {
+  const openProductDetails = (productId: string, isPurchased = false, isFavorite = false) => {
     setProductReturnRoute(route);
-    setRoute({ name: 'product-details', productId });
+    openDetailRoute({ name: 'product-details', productId, isPurchased, isFavorite });
   };
 
   const openInstituteDetails = (instituteId: string) => {
     setInstituteReturnRoute(route);
-    setRoute({ name: 'institute-details', instituteId });
+    openDetailRoute({ name: 'institute-details', instituteId });
   };
 
   const openSpecialistDetails = (specialistId: string) => {
     setSpecialistReturnRoute(route);
-    setRoute({ name: 'specialist-details', specialistId });
+    openDetailRoute({ name: 'specialist-details', specialistId });
+  };
+
+  const goBackFromDetail = () => {
+    if (route.name === 'payment') {
+      setRoute(paymentReturnRoute);
+      return;
+    }
+
+    if (detailHistory.length > 0) {
+      const previousRoute = detailHistory[detailHistory.length - 1];
+      setDetailHistory((prev) => prev.slice(0, -1));
+      setRoute(previousRoute);
+      return;
+    }
+
+    switch (route.name) {
+      case 'product-details':
+        setRoute(productReturnRoute);
+        return;
+      case 'institute-details':
+        setRoute(instituteReturnRoute);
+        return;
+      case 'specialist-details':
+        setRoute(specialistReturnRoute);
+        return;
+      case 'article-details':
+        setRoute(articleReturnRoute);
+        return;
+      default:
+        setRoute({ name: 'catalog' });
+    }
   };
 
   const isDatingRoute =
@@ -143,11 +181,13 @@ export function useAppNavigationState({
       case 'edit-profile':
       case 'about-app':
       case 'faq':
+      case 'feedback':
       case 'become-partner':
       case 'emergency-help':
       case 'my-sessions':
       case 'my-purchases':
       case 'my-reviews':
+        return 'user';
       case 'dating-club':
       case 'dating-approved-home':
       case 'dating-books':
@@ -238,6 +278,7 @@ export function useAppNavigationState({
     openProductDetails,
     openInstituteDetails,
     openSpecialistDetails,
+    goBackFromDetail,
     isDatingRoute,
     activeTab,
     openTab,

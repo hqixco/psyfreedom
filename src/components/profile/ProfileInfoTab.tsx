@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { profileInfoMenu, profilePartnerBanner } from '../../data/authorizedProfileData';
 import { profileBanners } from '../../data/profileData';
@@ -7,24 +8,42 @@ import { ProfileMenuItem } from './ProfileMenuItem';
 type ProfileInfoTabProps = {
   onOpenAboutApp: () => void;
   onOpenFaq: () => void;
+  onOpenFeedback: () => void;
   onOpenBecomePartner: () => void;
 };
 
-export function ProfileInfoTab({ onOpenAboutApp, onOpenFaq, onOpenBecomePartner }: ProfileInfoTabProps) {
+export function ProfileInfoTab({
+  onOpenAboutApp,
+  onOpenFaq,
+  onOpenFeedback,
+  onOpenBecomePartner,
+}: ProfileInfoTabProps) {
   return (
     <View>
       {profileInfoMenu.map((item) => (
-        <ProfileMenuItem
-          key={item.id}
-          title={item.title}
-          onPress={
-            item.id === 'about'
-              ? onOpenAboutApp
-              : item.id === 'faq'
-                ? onOpenFaq
-                : () => console.log('profile info', item.id)
-          }
-        />
+        <Fragment key={item.id}>
+          <ProfileMenuItem
+            title={item.title}
+            onPress={() => {
+              if (item.id === 'about') {
+                onOpenAboutApp();
+                return;
+              }
+
+              if (item.id === 'faq') {
+                onOpenFaq();
+                return;
+              }
+
+              if (item.id === 'feedback') {
+                onOpenFeedback();
+                return;
+              }
+
+              console.log('profile info', item.id);
+            }}
+          />
+        </Fragment>
       ))}
 
       <View style={styles.bannerSpacing}>

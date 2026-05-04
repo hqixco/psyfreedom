@@ -1,10 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../constants/theme';
-
-const likeIcon = require('../../../assets/humor-like-icon.svg');
-const commentIcon = require('../../../assets/humor-comment-icon.svg');
-const viewsIcon = require('../../../assets/humor-views-icon.svg');
 
 type HumorPostActionsProps = {
   likes: number;
@@ -25,17 +21,18 @@ export function HumorPostActions({
     <View style={styles.container}>
       <View style={styles.left}>
         <Pressable style={styles.actionRow} onPress={onToggleLike}>
-          <Image source={likeIcon} style={styles.likeIcon} resizeMode="contain" />
+          <Ionicons name={isLiked ? 'heart' : 'heart-outline'} size={16} color={colors.primary} />
           <Text style={styles.actionText}>Нравится</Text>
+          <Text style={styles.countText}>{likes}</Text>
         </Pressable>
         <View style={[styles.actionRow, styles.commentsRow]}>
-          <Image source={commentIcon} style={styles.commentIcon} resizeMode="contain" />
-          <Text style={styles.actionText}>{commentsCount}</Text>
+          <Ionicons name="chatbubble-outline" size={14} color={colors.primary} />
+          <Text style={styles.countText}>{commentsCount}</Text>
         </View>
       </View>
       <View style={styles.actionRow}>
-        <Image source={viewsIcon} style={styles.viewsIcon} resizeMode="contain" />
-        <Text style={styles.actionText}>{views}</Text>
+        <Ionicons name="eye-outline" size={15} color={colors.primary} />
+        <Text style={styles.countText}>{views}</Text>
       </View>
     </View>
   );
@@ -56,22 +53,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  likeIcon: {
-    width: 17,
-    height: 16,
-  },
-  commentIcon: {
-    width: 12,
-    height: 12,
-  },
-  viewsIcon: {
-    width: 16,
-    height: 16,
-  },
   commentsRow: {
     marginLeft: 20,
   },
   actionText: {
+    marginLeft: 6,
+    fontSize: 12,
+    color: colors.primary,
+  },
+  countText: {
     marginLeft: 6,
     fontSize: 12,
     color: colors.primary,

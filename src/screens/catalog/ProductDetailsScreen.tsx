@@ -17,6 +17,7 @@ import { TestQuestionView } from '../../components/test/TestQuestionView';
 import { TestResultView } from '../../components/test/TestResultView';
 import { ShareIcon } from '../../components/icons/ShareIcon';
 import { colors } from '../../constants/theme';
+import { setFavoriteProductVisibility } from '../../data/favoritesData';
 import { getProductDetailsById } from '../../data/productDetailsData';
 import { specialists } from '../../data/servicesData';
 import { testQuestions, testResult } from '../../data/testData';
@@ -31,11 +32,13 @@ export function ProductDetailsScreen({
   onOpenPaymentScreen,
   onOpenProductDetails,
   onOpenSpecialistDetails,
+  isPurchased = false,
+  isFavorite = false,
   product,
   setBottomTabsVisible,
 }: ProductScreenProps) {
   const insets = useSafeAreaInsets();
-  const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState(Boolean(isFavorite));
   const [testView, setTestView] = useState<TestView>('details');
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const details = getProductDetailsById(product.id);
@@ -49,6 +52,10 @@ export function ProductDetailsScreen({
   const stickyBottomOffset = 0;
   const stickyBottomPadding = 10 + insets.bottom;
   const contentBottomPadding = 120 + insets.bottom;
+  const hasDownloadFile = Boolean(isPurchased && details.downloadFileType && details.downloadFileSize);
+  const downloadNote = hasDownloadFile
+    ? `Вам доступен ${details.downloadFileType?.toLowerCase()} файл, размер ${details.downloadFileSize}`
+    : details.actionNote;
   const linkedSpecialist = specialists.find((item) => item.id === '1');
   const linkedAuthor =
     (details.variant === 'courseCompact' || details.variant === 'courseFull') && !details.author?.preserveAuthor
@@ -83,11 +90,36 @@ export function ProductDetailsScreen({
     };
   }, [setBottomTabsVisible]);
 
+  useEffect(() => {
+    setFavorite(Boolean(isFavorite));
+  }, [isFavorite]);
+
   const handleHeaderRightPress = () => {
     console.log('share product', details.id);
   };
-  const stickyLabel = isBuyAction ? 'Купить' : details.actionLabel ?? `Купить ${details.price}`;
-  const stickyPriceLabel = isBuyAction ? details.actionPrice ?? details.price : undefined;
+  const handleToggleFavorite = () => {
+    setFavorite((value) => {
+      const next = !value;
+      setFavoriteProductVisibility(details.id, next);
+      return next;
+    });
+  };
+  const stickyLabel = hasDownloadFile ? 'Скачать файл' : isBuyAction ? 'Купить' : details.actionLabel ?? `Купить ${details.price}`;
+  const stickyPriceLabel = hasDownloadFile
+    ? undefined
+    : isBuyAction
+      ? details.actionPrice ?? details.price
+      : undefined;
+  const paymentKind =
+    details.variant === 'book'
+      ? 'book'
+      : details.variant === 'courseCompact' || details.variant === 'courseFull'
+        ? 'course'
+        : details.variant === 'testPaid'
+          ? 'test'
+          : details.variant === 'promoCode'
+            ? 'promo'
+            : undefined;
 
   if (isTest && testView === 'question') {
     return (
@@ -215,11 +247,16 @@ export function ProductDetailsScreen({
           bottomPadding={stickyBottomPadding}
           label={stickyLabel}
           priceLabel={stickyPriceLabel}
-          note={details.actionNote}
+          note={downloadNote}
           showFavorite
           favorite={favorite}
-          onToggleFavorite={() => setFavorite((value) => !value)}
+          onToggleFavorite={handleToggleFavorite}
           onPress={() => {
+            if (hasDownloadFile) {
+              console.log('download product file', details.id);
+              return;
+            }
+
             if (details.variant === 'testFree') {
               setTestView('question');
               return;
@@ -231,7 +268,7 @@ export function ProductDetailsScreen({
             }
 
             onOpenPaymentScreen?.({
-              title: details.title,
+              kind: paymentKind,
               price: details.actionPrice ?? details.price,
             });
           }}

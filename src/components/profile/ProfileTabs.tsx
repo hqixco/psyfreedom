@@ -40,12 +40,13 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     gap: 8,
-    marginBottom: 18,
+    marginBottom: 15,
+    alignSelf: 'flex-start',
   },
   tab: {
-    flex: 1,
-    height: 44,
-    borderRadius: 22,
+    height: 43,
+    borderRadius: 360,
+    paddingHorizontal: 22,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -58,8 +59,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   tabText: {
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[600],
   },
   tabTextActive: {
     color: colors.white,

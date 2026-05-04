@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../constants/theme';
+import { colors, typography } from '../../constants/theme';
 import { WorkingReviewReply as WorkingReply } from '../../data/workingReviewsData';
 
 export function WorkingReviewReply({
@@ -13,11 +13,12 @@ export function WorkingReviewReply({
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Text style={styles.date}>{reply.date}</Text>
+        <Text style={styles.author}>Ответ специалиста</Text>
         <Pressable style={styles.menuButton} onPress={onOpenActions}>
-          <Ionicons name="ellipsis-horizontal" size={22} color={colors.primaryDark} />
+          <Ionicons name="ellipsis-horizontal" size={12} color={colors.primaryDark} />
         </Pressable>
       </View>
+      <Text style={styles.date}>{reply.date}</Text>
       <Text style={styles.text}>{reply.text}</Text>
     </View>
   );
@@ -25,14 +26,24 @@ export function WorkingReviewReply({
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 16,
+    marginTop: 18,
+    padding: 14,
+    borderRadius: 12,
+    backgroundColor: colors.cardLight,
   },
   headerRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
   },
+  author: {
+    fontSize: 14,
+    lineHeight: 18,
+    ...typography.Inter[600],
+    color: colors.primaryDark,
+  },
   date: {
+    marginTop: 4,
     fontSize: 14,
     color: colors.muted,
   },
@@ -44,8 +55,8 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 8,
-    fontSize: 15,
-    lineHeight: 22,
+    fontSize: 14,
+    lineHeight: 21,
     color: colors.text,
   },
 });

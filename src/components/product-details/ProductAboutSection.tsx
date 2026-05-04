@@ -19,7 +19,7 @@ export function ProductAboutSection({
     return null;
   }
 
-  const shouldCollapse = text.length > 220;
+  const shouldCollapse = text.trim().length > 220;
   const visibleText = shouldCollapse && !expanded ? `${text.slice(0, compact ? 190 : 260)}...` : text;
 
   return (

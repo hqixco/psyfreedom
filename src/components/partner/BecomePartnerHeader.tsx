@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
@@ -9,7 +8,9 @@ export function BecomePartnerHeader({ onBack }: { onBack: () => void }) {
       <Pressable onPress={onBack} style={styles.backButton}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
-      <Text style={styles.title}>Как стать партнером</Text>
+      <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+        Как стать партнером
+      </Text>
     </View>
   );
 }
@@ -17,17 +18,18 @@ export function BecomePartnerHeader({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingHorizontal: 25,
   },
   backButton: {
-    marginRight: 12,
+    marginRight: 20,
   },
   title: {
-    fontSize: 24,
-    lineHeight: 30,
-    ...typography.Inter[700],
+    flexShrink: 1,
+    fontSize: 18,
+    lineHeight: 56,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
 });

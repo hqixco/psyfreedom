@@ -5,11 +5,10 @@ import { VideoCard } from './VideoCard';
 type VideoGridProps = {
   items: VideoJournalItem[];
   onPressItem: (item: VideoJournalItem) => void;
+  cardWidth: number;
 };
 
-export function VideoGrid({ items, onPressItem }: VideoGridProps) {
-  const cardWidth = 180;
-
+export function VideoGrid({ items, onPressItem, cardWidth }: VideoGridProps) {
   return (
     <View style={styles.grid}>
       {items.map((item) => (
@@ -34,4 +33,3 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
-

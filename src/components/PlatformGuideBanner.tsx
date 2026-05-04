@@ -5,10 +5,10 @@ import { theme, typography } from '../constants/theme';
 export function PlatformGuideBanner() {
   return (
     <ImageBackground
-      source={require('../../assets/platform-guide-banner-bg.jpg')}
+      source={require('../../assets/Group 1171275382.jpg')}
       style={styles.container}
       imageStyle={styles.backgroundImage}
-      resizeMode="stretch"
+      resizeMode="cover"
     >
       <Text style={styles.title}>Как пользоваться платформой</Text>
       <Text style={styles.subtitle}>Возможности платформы и ее функции</Text>

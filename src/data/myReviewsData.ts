@@ -3,6 +3,7 @@ import { ImageSourcePropType } from 'react-native';
 export type WrittenReview = {
   id: string;
   targetTitle: string;
+  avatar?: ImageSourcePropType;
   rating: number;
   date: string;
   text: string;
@@ -21,11 +22,13 @@ export type PendingReview = {
 };
 
 const purchaseImage = require('../../assets/images/product-course-devichnik.png');
+const reviewAvatar = require('../../assets/review-avatar-default.png');
 
 export const writtenReviewsMock: WrittenReview[] = [
   {
     id: '1',
     targetTitle: 'Имя Фамилия специалиста или\nтовар',
+    avatar: reviewAvatar,
     rating: 5,
     date: '30 октября 2023',
     text: 'Вы разберётесь в себе, своих желаниях и ценностях вместе с профессиональными психологами. Научитесь рефлексировать, отстаивать личные границы, замечать эмоции и совершать осознанный выбор.',
@@ -38,6 +41,7 @@ export const writtenReviewsMock: WrittenReview[] = [
   {
     id: '2',
     targetTitle: 'Имя Фамилия специалиста или\nтовар',
+    avatar: reviewAvatar,
     rating: 5,
     date: '30 октября 2023',
     text: 'Вы разберётесь в себе, своих желаниях и ценностях вместе с профессиональными психологами. Научитесь рефлексировать, отстаивать личные границы, замечать эмоции и совершать осознанный выбор.',
@@ -45,6 +49,7 @@ export const writtenReviewsMock: WrittenReview[] = [
   {
     id: '3',
     targetTitle: 'Онлайн консультация с\nМарией Лапиной',
+    avatar: reviewAvatar,
     rating: 4,
     date: '22 сентября 2023',
     text: 'Хороший опыт консультации. Понравилась структура сессии, ощущение спокойствия и очень понятные рекомендации после встречи.',
@@ -100,4 +105,3 @@ export const pendingReviewsMock: PendingReview[] = [
     type: 'product',
   },
 ];
-

@@ -6,10 +6,12 @@ import { MyPurchasesHeader } from '../../components/profile-purchases/MyPurchase
 import { PurchaseActionsSheet } from '../../components/profile-purchases/PurchaseActionsSheet';
 import { PurchaseCard } from '../../components/profile-purchases/PurchaseCard';
 import { PurchaseChips } from '../../components/profile-purchases/PurchaseChips';
+import { LeaveReviewSheet } from '../../components/profile-reviews/LeaveReviewSheet';
 import { colors } from '../../constants/theme';
-import { purchaseChips, PurchaseItem, purchasesMock } from '../../data/myPurchasesData';
+import { purchaseChipBase, PurchaseItem, purchasesMock } from '../../data/myPurchasesData';
+import { PendingReview } from '../../data/myReviewsData';
 
-type PurchaseChipId = (typeof purchaseChips)[number]['id'];
+type PurchaseChipId = (typeof purchaseChipBase)[number]['id'];
 
 export function MyPurchasesScreen({
   onBack,
@@ -24,7 +26,26 @@ export function MyPurchasesScreen({
   const [activeCategory, setActiveCategory] = useState<PurchaseChipId>('all');
   const [selectedPurchase, setSelectedPurchase] = useState<PurchaseItem | null>(null);
   const [isActionsOpen, setIsActionsOpen] = useState(false);
+  const [isLeaveOpen, setIsLeaveOpen] = useState(false);
+  const [draftRating, setDraftRating] = useState(5);
+  const [draftText, setDraftText] = useState('');
+  const [selectedReviewPurchase, setSelectedReviewPurchase] = useState<PendingReview | null>(null);
   const hasPurchases = purchasesMock.length > 0;
+  const purchaseChips = useMemo(
+    () =>
+      purchaseChipBase.map((chip) => {
+        const count =
+          chip.id === 'all'
+            ? purchasesMock.length
+            : purchasesMock.filter((item) => item.category === chip.id).length;
+
+        return {
+          id: chip.id,
+          title: `${chip.title} (${count})`,
+        };
+      }),
+    []
+  );
 
   const filteredPurchases = useMemo(() => {
     if (activeCategory === 'all') {
@@ -33,13 +54,22 @@ export function MyPurchasesScreen({
     return purchasesMock.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
 
+  const closeLeaveSheet = () => {
+    setIsLeaveOpen(false);
+    setSelectedReviewPurchase(null);
+  };
+
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 + insets.bottom }}>
         <MyPurchasesHeader onBack={onBack} />
         {hasPurchases ? (
           <>
-            <PurchaseChips activeCategory={activeCategory} onSelectCategory={setActiveCategory} />
+            <PurchaseChips
+              chips={purchaseChips}
+              activeCategory={activeCategory}
+              onSelectCategory={setActiveCategory}
+            />
             {filteredPurchases.map((item) => (
               <PurchaseCard
                 key={item.id}
@@ -65,8 +95,42 @@ export function MyPurchasesScreen({
           setIsActionsOpen(false);
         }}
         onReview={() => {
-          console.log('review purchase', selectedPurchase?.id);
+          if (!selectedPurchase) {
+            setIsActionsOpen(false);
+            return;
+          }
+
+          const reviewTarget: PendingReview = {
+            id: selectedPurchase.id,
+            targetTitle: selectedPurchase.title,
+            image: selectedPurchase.image,
+            type:
+              selectedPurchase.type === 'Курс'
+                ? 'product'
+                : selectedPurchase.type === 'Книга'
+                  ? 'product'
+                  : 'session',
+          };
+
+          setSelectedReviewPurchase(reviewTarget);
+          setDraftRating(5);
+          setDraftText('');
+          setIsLeaveOpen(true);
           setIsActionsOpen(false);
+        }}
+      />
+
+      <LeaveReviewSheet
+        visible={isLeaveOpen}
+        item={selectedReviewPurchase}
+        rating={draftRating}
+        text={draftText}
+        onChangeRating={setDraftRating}
+        onChangeText={setDraftText}
+        onClose={closeLeaveSheet}
+        onSubmit={() => {
+          console.log('leave purchase review', selectedReviewPurchase?.id, draftRating, draftText);
+          closeLeaveSheet();
         }}
       />
     </SafeAreaView>

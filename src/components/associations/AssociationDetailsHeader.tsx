@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { colors } from '../../constants/theme';
@@ -13,10 +12,10 @@ export function AssociationDetailsHeader({
 }) {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onBack}>
+      <Pressable style={styles.iconButton} onPress={onBack}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
-      <Pressable onPress={onShare}>
+      <Pressable style={styles.iconButton} onPress={onShare}>
         <ShareIcon size={22} color={colors.primaryDark} />
       </Pressable>
     </View>
@@ -26,9 +25,15 @@ export function AssociationDetailsHeader({
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    paddingHorizontal: 16,
+    paddingHorizontal: 25,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  iconButton: {
+    width: 32,
+    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

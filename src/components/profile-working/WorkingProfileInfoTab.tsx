@@ -5,9 +5,11 @@ import { WorkingProfileMenuItem } from './WorkingProfileMenuItem';
 export function WorkingProfileInfoTab({
   onOpenAboutApp,
   onOpenFaq,
+  onOpenFeedback,
 }: {
   onOpenAboutApp: () => void;
   onOpenFaq: () => void;
+  onOpenFeedback: () => void;
 }) {
   return (
     <View>
@@ -18,6 +20,8 @@ export function WorkingProfileInfoTab({
           onPress = onOpenAboutApp;
         } else if (item.id === 'faq') {
           onPress = onOpenFaq;
+        } else if (item.id === 'feedback') {
+          onPress = onOpenFeedback;
         }
 
         return <WorkingProfileMenuItem key={item.id} title={item.title} onPress={onPress} />;

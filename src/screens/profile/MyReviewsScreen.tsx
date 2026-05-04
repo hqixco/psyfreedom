@@ -36,9 +36,9 @@ export function MyReviewsScreen({ onBack }: { onBack: () => void }) {
     setIsEditOpen(true);
   };
 
-  const openLeaveSheet = (item: PendingReview) => {
+  const openLeaveSheet = (item: PendingReview, rating = 5) => {
     setSelectedPendingReview(item);
-    setDraftRating(5);
+    setDraftRating(rating);
     setDraftText('');
     setIsLeaveOpen(true);
   };
@@ -158,6 +158,7 @@ export function MyReviewsScreen({ onBack }: { onBack: () => void }) {
           const newReview: WrittenReview = {
             id: `written-${Date.now()}`,
             targetTitle: selectedPendingReview.targetTitle,
+            avatar: require('../../../assets/review-avatar-default.png'),
             rating: draftRating,
             date: '29 апреля 2026',
             text: draftText || 'Отзыв добавлен.',

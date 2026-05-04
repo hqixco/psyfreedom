@@ -30,7 +30,7 @@ export function AssociationReviewsSection({ association }: { association: Associ
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 34,
+    marginTop: 28,
   },
   header: {
     marginHorizontal: 16,
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    ...typography.Inter[700],
+    lineHeight: 30,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   ratingRow: {
@@ -51,14 +52,15 @@ const styles = StyleSheet.create({
   ratingText: {
     marginLeft: 6,
     fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   button: {
     marginHorizontal: 16,
     marginTop: 18,
     marginBottom: 24,
-    height: 46,
-    borderRadius: 23,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
     borderColor: colors.primary,
     backgroundColor: colors.white,
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.primary,
-    fontSize: 15,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
   },
 });

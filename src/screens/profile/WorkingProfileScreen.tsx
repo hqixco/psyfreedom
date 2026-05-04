@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { DeleteProfileSheet } from '../../components/profile/DeleteProfileSheet';
 import { ProfileTabKey } from '../../components/profile/ProfileTabs';
@@ -14,6 +14,8 @@ export function WorkingProfileScreen({
   workPushEnabled,
   onToggleWorkPush,
   onSelectMainProfile,
+  selectedProfileType,
+  onChangeProfileType,
   onOpenSessions,
   onOpenWorkingSessions,
   onOpenCooperation,
@@ -23,6 +25,7 @@ export function WorkingProfileScreen({
   onOpenOfficeRent,
   onOpenAboutApp,
   onOpenFaq,
+  onOpenFeedback,
   onOpenPayment,
   onEditWorkingProfile,
   onDeleteWorkingProfile,
@@ -30,6 +33,8 @@ export function WorkingProfileScreen({
   workPushEnabled: boolean;
   onToggleWorkPush: (value: boolean) => void;
   onSelectMainProfile: () => void;
+  selectedProfileType: 'main' | 'work';
+  onChangeProfileType: (type: 'main' | 'work') => void;
   onOpenSessions: () => void;
   onOpenWorkingSessions: () => void;
   onOpenCooperation: () => void;
@@ -39,6 +44,7 @@ export function WorkingProfileScreen({
   onOpenOfficeRent: () => void;
   onOpenAboutApp: () => void;
   onOpenFaq: () => void;
+  onOpenFeedback: () => void;
   onOpenPayment: () => void;
   onEditWorkingProfile: () => void;
   onDeleteWorkingProfile: () => void;
@@ -50,9 +56,16 @@ export function WorkingProfileScreen({
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 + insets.bottom }}>
-        <View style={styles.topSection}>
-          <WorkingProfileHeader onSelectMain={onSelectMainProfile} />
-        </View>
+        <ImageBackground
+          source={require('../../../assets/profile-header-bg.jpg')}
+          resizeMode="cover"
+          style={styles.topSection}
+        >
+          <WorkingProfileHeader
+            selectedProfileType={selectedProfileType}
+            onSelectProfileType={onChangeProfileType}
+          />
+        </ImageBackground>
 
         <View style={styles.content}>
           <WorkingProfileTabs activeTab={activeTab} onChangeTab={setActiveTab} />
@@ -79,7 +92,11 @@ export function WorkingProfileScreen({
             />
           ) : null}
           {activeTab === 'info' ? (
-            <WorkingProfileInfoTab onOpenAboutApp={onOpenAboutApp} onOpenFaq={onOpenFaq} />
+            <WorkingProfileInfoTab
+              onOpenAboutApp={onOpenAboutApp}
+              onOpenFaq={onOpenFaq}
+              onOpenFeedback={onOpenFeedback}
+            />
           ) : null}
         </View>
       </ScrollView>
@@ -103,10 +120,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   topSection: {
-    backgroundColor: colors.blueLight,
     paddingTop: 24,
     paddingHorizontal: 20,
-    paddingBottom: 58,
+    paddingBottom: 56,
   },
   content: {
     marginTop: -28,

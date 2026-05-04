@@ -11,16 +11,21 @@ export function OfficeRentCard({
 }) {
   return (
     <View style={styles.card}>
-      <Image source={item.image} style={styles.image} />
       <View style={styles.content}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.meta}>
-          {item.area} {item.price}
+        <Text style={styles.title} numberOfLines={2}>
+          {item.title}
         </Text>
+        <View style={styles.metaRow}>
+          <Text style={styles.meta}>{item.area}</Text>
+          <Text style={styles.meta}>{item.price}</Text>
+        </View>
         <Text style={styles.address}>Адрес {item.address}</Text>
-        <Pressable style={styles.button} onPress={() => onOpenDetails(item.id)}>
-          <Text style={styles.buttonText}>Подробнее</Text>
+        <Pressable style={styles.linkButton} onPress={() => onOpenDetails(item.id)}>
+          <Text style={styles.linkText}>Подробнее</Text>
         </Pressable>
+      </View>
+      <View style={styles.side}>
+        <Image source={item.image} style={styles.image} />
       </View>
     </View>
   );
@@ -28,56 +33,65 @@ export function OfficeRentCard({
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 14,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+    borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#F0F0F0',
+    borderColor: '#EEEFEF',
     backgroundColor: colors.white,
-    overflow: 'hidden',
     marginHorizontal: 16,
     marginTop: 14,
-  },
-  image: {
-    width: '100%',
-    height: 180,
-    resizeMode: 'cover',
-    backgroundColor: colors.cardLight,
+    padding: 14,
   },
   content: {
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    flex: 1,
+    justifyContent: 'flex-start',
   },
   title: {
-    fontSize: 20,
-    lineHeight: 25,
-    ...typography.Inter[700],
+    fontSize: 14,
+    lineHeight: 18,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
+  metaRow: {
+    marginTop: 4,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    gap: 20,
+  },
   meta: {
-    marginTop: 6,
-    fontSize: 18,
-    lineHeight: 23,
-    ...typography.Inter[700],
+    fontSize: 12,
+    lineHeight: 18,
+    ...typography.Inter[400],
     color: colors.primary,
   },
   address: {
-    marginTop: 8,
-    fontSize: 15,
-    lineHeight: 20,
+    marginTop: 5,
+    fontSize: 14,
+    lineHeight: 18,
     color: colors.text,
   },
-  button: {
-    marginTop: 14,
-    height: 42,
-    borderRadius: 21,
-    borderWidth: 1,
-    borderColor: colors.primary,
-    backgroundColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
+  side: {
+    width: 85,
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
   },
-  buttonText: {
+  image: {
+    width: 85,
+    height: 85,
+    borderRadius: 10,
+    resizeMode: 'cover',
+    backgroundColor: colors.cardLight,
+  },
+  linkButton: {
+    marginTop: 7,
+    alignSelf: 'flex-start',
+  },
+  linkText: {
     color: colors.primary,
-    fontSize: 15,
-    ...typography.Inter[700],
+    fontSize: 12,
+    ...typography.Inter[400],
+    textDecorationLine: 'underline',
   },
 });

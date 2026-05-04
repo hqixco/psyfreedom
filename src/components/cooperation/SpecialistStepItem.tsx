@@ -19,7 +19,7 @@ export function SpecialistStepItem({
         <Text style={styles.title}>{title}</Text>
         <Ionicons
           name={isOpen ? 'chevron-up' : 'chevron-down'}
-          size={22}
+          size={17}
           color={colors.primaryDark}
         />
       </Pressable>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   header: {
-    minHeight: 44,
+    minHeight: 48,
     paddingHorizontal: 16,
     paddingVertical: 12,
     flexDirection: 'row',
@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontSize: 15,
-    lineHeight: 19,
-    ...typography.Inter[700],
+    fontSize: 14,
+    lineHeight: 18,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   content: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    lineHeight: 19,
+    lineHeight: 18,
     color: colors.primaryDark,
   },
 });

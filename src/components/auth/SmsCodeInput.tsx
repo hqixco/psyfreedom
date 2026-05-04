@@ -1,17 +1,29 @@
 import { useRef } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 type SmsCodeInputProps = {
   value: string;
   onChange: (value: string) => void;
+  containerStyle?: StyleProp<ViewStyle>;
+  cellStyle?: StyleProp<ViewStyle>;
+  activeCellStyle?: StyleProp<ViewStyle>;
+  digitStyle?: StyleProp<TextStyle>;
 };
 
-export function SmsCodeInput({ value, onChange }: SmsCodeInputProps) {
+export function SmsCodeInput({
+  value,
+  onChange,
+  containerStyle,
+  cellStyle,
+  activeCellStyle,
+  digitStyle,
+}: SmsCodeInputProps) {
   const inputRef = useRef<TextInput>(null);
 
   return (
-    <Pressable style={styles.container} onPress={() => inputRef.current?.focus()}>
+    <Pressable style={[styles.container, containerStyle]} onPress={() => inputRef.current?.focus()}>
       <TextInput
         ref={inputRef}
         value={value}
@@ -26,8 +38,11 @@ export function SmsCodeInput({ value, onChange }: SmsCodeInputProps) {
         const isActive = index === value.length && value.length < 4;
 
         return (
-          <View key={index} style={[styles.cell, isActive ? styles.cellActive : null]}>
-            <Text style={styles.digit}>{digit}</Text>
+          <View
+            key={index}
+            style={[styles.cell, cellStyle, isActive ? [styles.cellActive, activeCellStyle] : null]}
+          >
+            <Text style={[styles.digit, digitStyle]}>{digit}</Text>
           </View>
         );
       })}
@@ -37,7 +52,6 @@ export function SmsCodeInput({ value, onChange }: SmsCodeInputProps) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 34,
     flexDirection: 'row',
     gap: 10,
     position: 'relative',
@@ -50,10 +64,10 @@ const styles = StyleSheet.create({
   },
   cell: {
     flex: 1,
-    height: 86,
-    borderRadius: 12,
+    height: 41,
+    borderRadius: 360,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: '#A9A9A9',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -61,8 +75,8 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   digit: {
-    fontSize: 24,
-    ...typography.Inter[700],
+    fontSize: 14,
+    fontWeight: '400',
     color: colors.primaryDark,
   },
 });

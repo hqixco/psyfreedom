@@ -40,7 +40,6 @@ export function VideoJournalDetailsScreen({ item, onBack }: VideoJournalDetailsS
           onPress={() => setIsFavorite((value) => !value)}
           buttonStyle={styles.favoriteButton}
           activeButtonStyle={styles.favoriteButtonActive}
-          iconStyle={styles.favoriteIcon}
           textStyle={styles.favoriteText}
         />
       </ScrollView>
@@ -105,9 +104,6 @@ const styles = StyleSheet.create({
   },
   favoriteButtonActive: {
     backgroundColor: '#EAF8FA',
-  },
-  favoriteIcon: {
-    marginRight: 10,
   },
   favoriteText: {
     fontSize: 14,

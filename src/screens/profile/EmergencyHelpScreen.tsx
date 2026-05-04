@@ -46,8 +46,9 @@ export function EmergencyHelpScreen({ onBack }: { onBack: () => void }) {
       <View style={styles.container}>
         <EmergencyHelpHeader onBack={onBack} />
         <ScrollView
+          style={styles.scroll}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 110 + insets.bottom }}
+          contentContainerStyle={{ paddingBottom: 24 + insets.bottom }}
         >
           <View style={styles.categories}>
             {emergencyCategories.map((category) => (
@@ -69,13 +70,13 @@ export function EmergencyHelpScreen({ onBack }: { onBack: () => void }) {
               onPressWebsite={() => handleWebsitePress(mainContact.website)}
             />
           </View>
-        </ScrollView>
 
-        <View style={[styles.bottomBar, { paddingBottom: 10 + insets.bottom }]}>
-          <Pressable style={styles.emergencyButton} onPress={() => handlePhonePress(mainContact.phoneRaw)}>
-            <Text style={styles.emergencyButtonText}>Получить экстренную помощь</Text>
-          </Pressable>
-        </View>
+          <View style={styles.buttonSpacing}>
+            <Pressable style={styles.emergencyButton} onPress={() => handlePhonePress(mainContact.phoneRaw)}>
+              <Text style={styles.emergencyButtonText}>Получить экстренную помощь</Text>
+            </Pressable>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -90,40 +91,39 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  scroll: {
+    flex: 1,
+  },
   categories: {
     marginHorizontal: 16,
     marginTop: 16,
   },
   sectionTitle: {
     marginHorizontal: 16,
-    marginTop: 28,
-    fontSize: 25,
+    marginTop: 18,
+    fontSize: 20,
     lineHeight: 31,
-    ...typography.Inter[700],
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   description: {
     marginHorizontal: 16,
-    marginTop: 18,
-    fontSize: 17,
-    lineHeight: 23,
+    marginTop: 13,
+    fontSize: 14,
+    lineHeight: 18,
     color: colors.text,
   },
   contactCardSpacing: {
     marginHorizontal: 16,
     marginTop: 28,
   },
-  bottomBar: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: colors.white,
-    paddingHorizontal: 16,
-    paddingTop: 10,
+  buttonSpacing: {
+    marginTop: 40,
+    marginBottom: 60,
+    marginHorizontal: 16,
   },
   emergencyButton: {
-    height: 52,
+    height: 41,
     borderRadius: 26,
     backgroundColor: colors.primary,
     alignItems: 'center',
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
   emergencyButtonText: {
     color: colors.white,
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
   },
 });

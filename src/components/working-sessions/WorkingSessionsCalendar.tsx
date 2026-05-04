@@ -1,3 +1,5 @@
+import { Ionicons } from '@expo/vector-icons';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
@@ -29,15 +31,11 @@ export function WorkingSessionsCalendar({
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Pressable onPress={() => console.log('prev month')}>
-          <Text style={styles.chevron}>{'<'}</Text>
-        </Pressable>
-        <Text style={styles.month}>
+        <BackChevronIcon color={colors.primaryDark} />
+        <Text style={styles.monthTitle} numberOfLines={1}>
           {monthTitle}, <Text style={styles.year}>{year}</Text>
         </Text>
-        <Pressable onPress={() => console.log('next month')}>
-          <Text style={styles.chevron}>{'>'}</Text>
-        </Pressable>
+        <Ionicons name="chevron-forward" size={22} color={colors.primaryDark} />
       </View>
 
       <View style={styles.weekRow}>
@@ -48,42 +46,48 @@ export function WorkingSessionsCalendar({
         ))}
       </View>
 
-      {calendarDays.map((row, rowIndex) => (
-        <View key={rowIndex} style={styles.daysRow}>
-          {row.map((day, dayIndex) => {
-            const dateKey = day ? `2024-10-${day.padStart(2, '0')}` : '';
-            const isSelected = day === selectedDay;
-            const isMarked = markedDates.includes(dateKey);
+      <View style={styles.grid}>
+        {calendarDays.map((row, rowIndex) => (
+          <View key={rowIndex} style={styles.daysRow}>
+            {row.map((day, dayIndex) => {
+              const dateKey = day ? `2024-10-${day.padStart(2, '0')}` : '';
+              const isSelected = day === selectedDay;
+              const isMarked = markedDates.includes(dateKey);
 
-            return (
-              <Pressable
-                key={`${rowIndex}-${dayIndex}`}
-                style={[
-                  styles.dayCell,
-                  isSelected ? styles.daySelected : null,
-                  !isSelected && isMarked ? styles.dayMarked : null,
-                ]}
-                onPress={() => {
-                  if (day) {
-                    onSelectDate(dateKey);
-                  }
-                }}
-                disabled={!day}
-              >
-                <Text
-                  style={[
-                    styles.dayText,
-                    !day ? styles.dayTextInactive : null,
-                    isSelected || isMarked ? styles.dayTextHighlighted : null,
-                  ]}
+              return (
+                <Pressable
+                  key={`${rowIndex}-${dayIndex}`}
+                  style={styles.dayCell}
+                  onPress={() => {
+                    if (day) {
+                      onSelectDate(dateKey);
+                    }
+                  }}
+                  disabled={!day}
                 >
-                  {day}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
-      ))}
+                  {isSelected || isMarked ? (
+                    <View
+                      style={[
+                        styles.dayIndicator,
+                        isSelected ? styles.selectedDay : styles.markedDay,
+                      ]}
+                    />
+                  ) : null}
+                  <Text
+                    style={[
+                      styles.dayText,
+                      !day ? styles.mutedDayText : null,
+                      isSelected || isMarked ? styles.invertedDayText : null,
+                    ]}
+                  >
+                    {day}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        ))}
+      </View>
     </View>
   );
 }
@@ -104,28 +108,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 22,
   },
-  chevron: {
-    fontSize: 22,
+  monthTitle: {
+    flex: 1,
+    marginHorizontal: 12,
+    fontSize: 18,
+    lineHeight: 22,
+    ...typography.Inter[600],
     color: colors.primaryDark,
-    ...typography.Inter[700],
-  },
-  month: {
-    fontSize: 20,
-    ...typography.Inter[700],
-    color: colors.primaryDark,
+    textAlign: 'center',
   },
   year: {
     color: colors.primary,
   },
   weekRow: {
     flexDirection: 'row',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   weekDay: {
     flex: 1,
+    fontSize: 14,
+    color: '#93A0C8',
     textAlign: 'center',
-    fontSize: 15,
-    color: colors.muted,
+  },
+  grid: {
+    flexDirection: 'column',
   },
   daysRow: {
     flexDirection: 'row',
@@ -135,23 +141,32 @@ const styles = StyleSheet.create({
     height: 38,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 6,
-    marginVertical: 2,
+    borderRadius: 8,
+    position: 'relative',
   },
-  daySelected: {
+  dayIndicator: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    borderRadius: 4,
+    top: 9.5,
+    left: '50%',
+    marginLeft: -10,
+  },
+  selectedDay: {
     backgroundColor: colors.primary,
   },
-  dayMarked: {
+  markedDay: {
     backgroundColor: '#B7DCE2',
   },
   dayText: {
     fontSize: 16,
     color: colors.primaryDark,
   },
-  dayTextInactive: {
+  mutedDayText: {
     color: '#D5D5D5',
   },
-  dayTextHighlighted: {
+  invertedDayText: {
     color: colors.white,
   },
 });

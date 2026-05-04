@@ -53,13 +53,17 @@ export function SessionsCalendar({ selectedDate, markedDates, onSelectDate }: Se
     <View style={styles.card}>
       <View style={styles.header}>
         <BackChevronIcon color={colors.primaryDark} />
-        <Text style={styles.monthTitle}>Октябрь, <Text style={styles.year}>2024</Text></Text>
+        <Text style={styles.monthTitle} numberOfLines={1}>
+          Октябрь, <Text style={styles.year}>2024</Text>
+        </Text>
         <Ionicons name="chevron-forward" size={22} color={colors.primaryDark} />
       </View>
 
       <View style={styles.weekRow}>
         {weekDays.map((item) => (
-          <Text key={item} style={styles.weekDay}>{item}</Text>
+          <Text key={item} style={styles.weekDay}>
+            {item}
+          </Text>
         ))}
       </View>
 
@@ -71,9 +75,17 @@ export function SessionsCalendar({ selectedDate, markedDates, onSelectDate }: Se
           return (
             <Pressable
               key={item.date}
-              style={[styles.dayCell, isSelected ? styles.selectedDay : null, !isSelected && isMarked ? styles.markedDay : null]}
+              style={styles.dayCell}
               onPress={() => onSelectDate(item.date)}
             >
+              {isSelected || isMarked ? (
+                <View
+                  style={[
+                    styles.dayIndicator,
+                    isSelected ? styles.selectedDay : styles.markedDay,
+                  ]}
+                />
+              ) : null}
               <Text
                 style={[
                   styles.dayText,
@@ -95,6 +107,7 @@ const styles = StyleSheet.create({
   card: {
     marginHorizontal: 16,
     marginTop: 14,
+    marginBottom: 5,
     borderRadius: 14,
     borderWidth: 1,
     borderColor: '#D7EDF1',
@@ -108,9 +121,13 @@ const styles = StyleSheet.create({
     marginBottom: 22,
   },
   monthTitle: {
-    fontSize: 20,
-    ...typography.Inter[700],
+    flex: 1,
+    marginHorizontal: 12,
+    fontSize: 18,
+    lineHeight: 22,
+    ...typography.Inter[600],
     color: colors.primaryDark,
+    textAlign: 'center',
   },
   year: {
     color: colors.primary,
@@ -121,8 +138,8 @@ const styles = StyleSheet.create({
   },
   weekDay: {
     flex: 1,
-    fontSize: 15,
-    color: colors.muted,
+    fontSize: 14,
+    color: '#93A0C8',
     textAlign: 'center',
   },
   grid: {
@@ -135,6 +152,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
+    position: 'relative',
+  },
+  dayIndicator: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    borderRadius: 4,
+    top: 9.5,
+    left: 14,
   },
   selectedDay: {
     backgroundColor: colors.primary,

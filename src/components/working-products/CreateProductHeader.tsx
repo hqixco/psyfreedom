@@ -1,15 +1,22 @@
-import { Ionicons } from '@expo/vector-icons';
-import { BackChevronIcon } from '../icons/BackChevronIcon';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
+import { BackChevronIcon } from '../icons/BackChevronIcon';
 
-export function CreateProductHeader({ onBack }: { onBack: () => void }) {
+export function CreateProductHeader({
+  onBack,
+  title = 'Создание товара',
+}: {
+  onBack: () => void;
+  title?: string;
+}) {
   return (
     <View style={styles.container}>
       <Pressable style={styles.backButton} onPress={onBack}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
-      <Text style={styles.title}>Создание товара</Text>
+      <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+        {title}
+      </Text>
     </View>
   );
 }
@@ -21,12 +28,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backButton: {
-    marginRight: 12,
+    marginRight: 20,
   },
   title: {
-    fontSize: 26,
-    lineHeight: 32,
-    ...typography.Inter[700],
+    flexShrink: 1,
+    fontSize: 18,
+    lineHeight: 56,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
 });

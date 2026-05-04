@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backButton: {
-    marginRight: 12,
+    marginRight: 20,
   },
   headerTitle: {
     fontSize: 26,

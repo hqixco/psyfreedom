@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AuthorizedProfileHeader } from '../../components/profile/AuthorizedProfileHeader';
 import { DeleteProfileSheet } from '../../components/profile/DeleteProfileSheet';
@@ -21,6 +21,7 @@ type AuthorizedProfileScreenProps = {
   onOpenEditProfile: () => void;
   onOpenAboutApp: () => void;
   onOpenFaq: () => void;
+  onOpenFeedback: () => void;
   onOpenBecomePartner: () => void;
   onLogout: () => void;
   onDeleteProfile: () => void;
@@ -38,6 +39,7 @@ export function AuthorizedProfileScreen({
   onOpenEditProfile,
   onOpenAboutApp,
   onOpenFaq,
+  onOpenFeedback,
   onOpenBecomePartner,
   onLogout,
   onDeleteProfile,
@@ -52,12 +54,16 @@ export function AuthorizedProfileScreen({
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 + insets.bottom }}
       >
-        <View style={styles.topSection}>
+        <ImageBackground
+          source={require('../../../assets/profile-header-bg.jpg')}
+          resizeMode="cover"
+          style={styles.topSection}
+        >
           <AuthorizedProfileHeader
             selectedProfileType={selectedProfileType}
             onSelectProfileType={onChangeProfileType}
           />
-        </View>
+        </ImageBackground>
 
         <View style={styles.content}>
           <ProfileTabs activeTab={activeTab} onChangeTab={setActiveTab} />
@@ -83,6 +89,7 @@ export function AuthorizedProfileScreen({
             <ProfileInfoTab
               onOpenAboutApp={onOpenAboutApp}
               onOpenFaq={onOpenFaq}
+              onOpenFeedback={onOpenFeedback}
               onOpenBecomePartner={onOpenBecomePartner}
             />
           ) : null}
@@ -108,7 +115,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   topSection: {
-    backgroundColor: colors.blueLight,
     paddingTop: 24,
     paddingHorizontal: 20,
     paddingBottom: 56,

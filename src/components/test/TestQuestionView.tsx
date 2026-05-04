@@ -89,12 +89,14 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     borderRadius: 9,
-    marginRight: 8,
+    marginRight: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
   radioOuterActive: {
     backgroundColor: colors.primary,
+    borderWidth: 1,
+    borderColor: colors.primary,
   },
   radioOuterInactive: {
     backgroundColor: colors.white,
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   optionText: {
-    fontSize: 14,
+    fontSize: 16,
     color: colors.primaryDark,
   },
   input: {
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     height: 118,
     borderWidth: 1,
     borderColor: '#A9A9A9',
-    borderRadius: 10,
+    borderRadius: 12,
     paddingHorizontal: 14,
     paddingTop: 12,
     fontSize: 14,

@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { VideoGrid } from '../../components/video-journal/VideoGrid';
 import { VideoJournalHeader } from '../../components/video-journal/VideoJournalHeader';
@@ -12,7 +12,9 @@ type VideoJournalScreenProps = {
 };
 
 export function VideoJournalScreen({ onBack, onSearch, onOpenVideo }: VideoJournalScreenProps) {
+  const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  const cardWidth = (width - 16 * 2 - 10) / 2;
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
@@ -21,7 +23,7 @@ export function VideoJournalScreen({ onBack, onSearch, onOpenVideo }: VideoJourn
         contentContainerStyle={[styles.content, { paddingBottom: 100 + insets.bottom }]}
       >
         <VideoJournalHeader onBack={onBack} onSearch={onSearch} />
-        <VideoGrid items={videoJournalItems} onPressItem={onOpenVideo} />
+        <VideoGrid items={videoJournalItems} onPressItem={onOpenVideo} cardWidth={cardWidth} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -36,4 +38,3 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
 });
-

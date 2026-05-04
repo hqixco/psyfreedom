@@ -1,25 +1,9 @@
-import { Image, StyleSheet } from 'react-native';
-
-const ratingStarIcon = require('../../../assets/Vector (6).svg');
+import { Ionicons } from '@expo/vector-icons';
 
 type RatingStarIconProps = {
-  width?: number;
+  size?: number;
 };
 
-export function RatingStarIcon({ width = 16.5 }: RatingStarIconProps) {
-  const height = (16 / 17) * width;
-
-  return (
-    <Image
-      source={ratingStarIcon}
-      style={[styles.icon, { width, height }]}
-      resizeMode="contain"
-    />
-  );
+export function RatingStarIcon({ size = 16.5 }: RatingStarIconProps) {
+  return <Ionicons name="star" size={size} color="#FFC93C" />;
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    flexShrink: 0,
-  },
-});

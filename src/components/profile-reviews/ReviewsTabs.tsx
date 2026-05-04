@@ -43,9 +43,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   tab: {
-    flex: 1,
-    height: 48,
+    height: 43,
     borderRadius: 24,
+    paddingHorizontal: 23,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   tabText: {
-    fontSize: 17,
-    ...typography.Inter[700],
+    fontSize: 16,
+    ...typography.Inter[600],
   },
   tabTextActive: {
     color: colors.white,

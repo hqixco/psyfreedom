@@ -40,11 +40,12 @@ export function SessionDetailsSheet({
               <View style={styles.specialistContent}>
                 <Text style={styles.name}>{session.specialistName}</Text>
                 <Text style={styles.role}>{session.specialistRole}</Text>
-                <View style={styles.ratingRow}>
-                  <Ionicons name="star" size={16} color="#FFC93C" />
-                  <Text style={styles.ratingText}>
-                    {session.rating} {session.reviewsCount} отзывов
-                  </Text>
+                <View style={styles.ratingBlock}>
+                  <View style={styles.ratingLine}>
+                    <Ionicons name="star" size={16} color="#FFC93C" />
+                    <Text style={styles.ratingText}>{session.rating}</Text>
+                  </View>
+                  <Text style={styles.reviewsText}>{session.reviewsCount} отзывов</Text>
                 </View>
               </View>
             </View>
@@ -95,12 +96,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 24,
-    ...typography.Inter[700],
+    fontSize: 20,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   card: {
-    marginTop: 20,
+    marginTop: 16,
     backgroundColor: colors.cardLight,
     borderRadius: 14,
     padding: 16,
@@ -110,33 +111,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatar: {
-    width: 76,
-    height: 76,
-    borderRadius: 38,
+    width: 80,
+    height: 80,
+    borderRadius: 360,
     marginRight: 14,
   },
   specialistContent: {
     flex: 1,
   },
   name: {
-    fontSize: 18,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
     color: colors.primaryDark,
   },
   role: {
-    fontSize: 15,
+    fontSize: 14,
     color: colors.muted,
     marginTop: 2,
   },
-  ratingRow: {
+  ratingBlock: {
+    marginTop: 4,
+  },
+  ratingLine: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 4,
   },
   ratingText: {
     marginLeft: 6,
     fontSize: 14,
+    fontWeight: '600',
     color: colors.primaryDark,
+  },
+  reviewsText: {
+    marginTop: 2,
+    fontSize: 14,
+    color: colors.muted,
   },
   infoCard: {
     marginTop: 16,
@@ -151,18 +160,19 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   infoText: {
-    fontSize: 16,
+    fontSize: 14,
+    ...typography.Inter[500],
     color: colors.primaryDark,
   },
   price: {
-    fontSize: 16,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[500],
     color: colors.primaryDark,
   },
   status: {
     fontSize: 14,
     color: '#70BFA0',
-    ...typography.Inter[600],
+    ...typography.Inter[500],
   },
   buttonsRow: {
     marginTop: 22,
@@ -171,7 +181,7 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     flex: 1,
-    height: 48,
+    height: 41,
     borderRadius: 24,
     borderWidth: 1,
     borderColor: colors.primary,
@@ -181,12 +191,12 @@ const styles = StyleSheet.create({
   },
   cancelButtonText: {
     color: colors.primary,
-    fontSize: 15,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
   },
   chatButton: {
     flex: 1,
-    height: 48,
+    height: 41,
     borderRadius: 24,
     backgroundColor: colors.primary,
     alignItems: 'center',
@@ -194,7 +204,7 @@ const styles = StyleSheet.create({
   },
   chatButtonText: {
     color: colors.white,
-    fontSize: 15,
-    ...typography.Inter[700],
+    fontSize: 14,
+    ...typography.Inter[600],
   },
 });
