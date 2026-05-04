@@ -9,7 +9,7 @@ type AnnouncementsHeaderProps = {
 export function AnnouncementsHeader({ onBack }: AnnouncementsHeaderProps) {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.backButton} onPress={onBack}>
+      <Pressable style={styles.backButton} onPress={onBack} hitSlop={12}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={styles.title}>Анонсы</Text>
@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   backButton: {
-    width: 28,
-    height: 28,
-    marginRight: 6,
+    width: 44,
+    height: 44,
+    marginRight: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -39,4 +39,3 @@ const styles = StyleSheet.create({
     color: '#033542',
   },
 });
-

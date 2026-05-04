@@ -6,7 +6,7 @@ export function CooperationHeader({ onBack }: { onBack: () => void }) {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Pressable style={styles.back} onPress={onBack}>
+        <Pressable style={styles.back} onPress={onBack} hitSlop={12}>
           <BackChevronIcon color={colors.primaryDark} />
         </Pressable>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
@@ -20,7 +20,7 @@ export function CooperationHeader({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    paddingHorizontal: 25,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -31,7 +31,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   back: {
-    marginRight: 20,
+    width: 44,
+    height: 44,
+    marginRight: 12,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   title: {
     flexShrink: 1,

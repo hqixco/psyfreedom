@@ -6,15 +6,23 @@ import { colors, typography } from '../../constants/theme';
 type AddPhotoSheetProps = {
   visible: boolean;
   onClose: () => void;
-  onPickPhoto: () => void;
-  onTakePhoto: () => void;
+  onPickPhoto: () => void | Promise<void>;
+  onTakePhoto: () => void | Promise<void>;
 };
 
 export function AddPhotoSheet({ visible, onClose, onPickPhoto, onTakePhoto }: AddPhotoSheetProps) {
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      transparent
+      animationType="slide"
+      visible={visible}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={onClose}
+    >
       <View style={styles.overlay}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
         <View style={[styles.sheet, { paddingBottom: 18 + insets.bottom }]}>

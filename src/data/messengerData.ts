@@ -47,7 +47,7 @@ export const chatPreviews: ChatPreview[] = [
       id: 'support',
       name: 'Поддержка',
       role: 'Чат-бот',
-      avatar: require('../../assets/support-avatar.svg'),
+      avatar: require('../../assets/support-avatar.png'),
     },
     lastMessage: 'Здравствуйте! Я рада, что вы обратились в поддержку.',
     time: '10:09',

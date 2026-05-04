@@ -1,4 +1,4 @@
-import { Image, ImageSourcePropType, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, ImageSourcePropType, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { colors, typography } from '../../constants/theme';
 
@@ -24,17 +24,25 @@ export function ProfileBanner({
   const isMint = variant === 'mint';
 
   return (
-    <View style={[styles.container, isMint ? styles.containerMint : styles.containerBlue, height ? { minHeight: height } : null]}>
-      <Text style={[styles.title, isMint ? styles.titleMint : styles.titleBlue]}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+    <View
+      style={[
+        styles.container,
+        isMint ? styles.containerMint : styles.containerBlue,
+        image ? styles.containerWithImage : null,
+        height ? { minHeight: height } : null,
+      ]}
+    >
+      {image ? <ImageBackground source={image} resizeMode="cover" style={styles.backgroundImage} /> : null}
 
-      <Pressable style={styles.button} onPress={onPress ?? (() => console.log('profile banner'))}>
-        <Text style={styles.buttonText}>{buttonText}</Text>
-        <ArrowIcon />
-      </Pressable>
+      <View style={styles.content}>
+        <Text style={[styles.title, isMint ? styles.titleMint : styles.titleBlue]}>{title}</Text>
+        <Text style={styles.description}>{description}</Text>
 
-      {image ? <Image source={image} style={styles.image} /> : null}
-      {!image ? <View style={[styles.decor, isMint ? styles.decorMint : styles.decorBlue]} /> : null}
+        <Pressable style={styles.button} onPress={onPress ?? (() => console.log('profile banner'))}>
+          <Text style={styles.buttonText}>{buttonText}</Text>
+          <ArrowIcon />
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -52,9 +60,10 @@ function ArrowIcon() {
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     borderRadius: 14,
     overflow: 'hidden',
-    padding: 20,
+    position: 'relative',
   },
   containerMint: {
     minHeight: 170,
@@ -64,6 +73,18 @@ const styles = StyleSheet.create({
     minHeight: 190,
     backgroundColor: colors.blueLight,
   },
+  containerWithImage: {
+    backgroundColor: colors.cardLight,
+  },
+  backgroundImage: {
+    ...StyleSheet.absoluteFillObject,
+    resizeMode: 'cover',
+  },
+  content: {
+    flex: 1,
+    padding: 20,
+    position: 'relative',
+  },
   title: {
     color: colors.primaryDark,
     ...typography.Inter[700],
@@ -71,19 +92,19 @@ const styles = StyleSheet.create({
   titleMint: {
     fontSize: 20,
     lineHeight: 28,
-    width: 230,
+    width: 240,
   },
   titleBlue: {
     fontSize: 20,
     lineHeight: 26,
-    paddingRight: 30,
+    width: 320,
   },
   description: {
     marginTop: 12,
     fontSize: 14,
     lineHeight: 18,
     color: colors.primaryDark,
-    width: 220,
+    width: 250,
   },
   button: {
     marginTop: 22,
@@ -101,28 +122,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     ...typography.Inter[500],
     color: '#008CA3',
-  },
-  image: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    width: 180,
-    height: 170,
-    resizeMode: 'contain',
-  },
-  decor: {
-    position: 'absolute',
-    right: -20,
-    bottom: -10,
-    width: 160,
-    height: 160,
-    borderRadius: 80,
-    opacity: 0.25,
-  },
-  decorMint: {
-    backgroundColor: '#B9F6D4',
-  },
-  decorBlue: {
-    backgroundColor: '#B8EDF7',
   },
 });

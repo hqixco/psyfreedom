@@ -12,10 +12,23 @@ type DeleteMessageSheetProps = {
 export function DeleteMessageSheet({ visible, onClose, onDelete }: DeleteMessageSheetProps) {
   const insets = useSafeAreaInsets();
 
+  if (!visible) {
+    return null;
+  }
+
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
-      <Pressable style={styles.overlay} onPress={onClose}>
-        <Pressable style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]} onPress={() => undefined}>
+    <Modal
+      transparent
+      animationType="slide"
+      visible={visible}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={onClose}
+    >
+      <View style={styles.overlay}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+        <View style={[styles.sheet, { paddingBottom: 12 + insets.bottom }]}>
           <View style={styles.header}>
             <Text style={styles.title}>Удалить сообщение?</Text>
             <Pressable onPress={onClose}>
@@ -31,8 +44,8 @@ export function DeleteMessageSheet({ visible, onClose, onDelete }: DeleteMessage
               <Text style={styles.deleteText}>Удалить</Text>
             </Pressable>
           </View>
-        </Pressable>
-      </Pressable>
+        </View>
+      </View>
     </Modal>
   );
 }
@@ -49,6 +62,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
     paddingTop: 20,
+    maxHeight: '88%',
   },
   header: {
     flexDirection: 'row',

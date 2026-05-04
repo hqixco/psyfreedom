@@ -26,13 +26,21 @@ export function BecomePartnerSheet({
   const isDisabled = !form.name.trim() || !form.phone.trim() || !form.email.trim();
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      visible={visible}
+      transparent
+      animationType="fade"
+      onRequestClose={onClose}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+    >
       <View style={styles.overlay}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
         <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
           <View style={styles.header}>
             <Text style={styles.title}>Стать партнером</Text>
-            <Pressable onPress={onClose}>
+            <Pressable onPress={onClose} hitSlop={12}>
               <Ionicons name="close" size={24} color={colors.primaryDark} />
             </Pressable>
           </View>
@@ -92,6 +100,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
     paddingTop: 22,
+    overflow: 'hidden',
   },
   header: {
     flexDirection: 'row',

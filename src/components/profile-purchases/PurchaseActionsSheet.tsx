@@ -17,10 +17,19 @@ export function PurchaseActionsSheet({
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
-      <Pressable style={styles.overlay} onPress={onClose}>
-        <Pressable style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]} onPress={() => undefined}>
-          <Pressable style={styles.closeButton} onPress={onClose}>
+    <Modal
+      visible={visible}
+      transparent
+      animationType="fade"
+      onRequestClose={onClose}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+    >
+      <View style={styles.overlay}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+        <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
+          <Pressable style={styles.closeButton} onPress={onClose} hitSlop={12}>
             <Ionicons name="close" size={24} color={colors.primaryDark} />
           </Pressable>
           <View style={styles.buttonsRow}>
@@ -31,8 +40,8 @@ export function PurchaseActionsSheet({
               <Text style={styles.buttonText}>Оставить отзыв</Text>
             </Pressable>
           </View>
-        </Pressable>
-      </Pressable>
+        </View>
+      </View>
     </Modal>
   );
 }
@@ -49,6 +58,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
     paddingTop: 20,
+    overflow: 'hidden',
   },
   closeButton: {
     position: 'absolute',

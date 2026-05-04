@@ -34,7 +34,7 @@ export function BecomePartnerScreen({ onBack }: { onBack: () => void }) {
           contentContainerStyle={{ paddingBottom: 110 + insets.bottom }}
         >
           <View style={styles.bannerSpacing}>
-            <PartnerHeroBanner title={partnerPageData.bannerTitle} image={partnerPageData.bannerImage as number} />
+            <PartnerHeroBanner title={partnerPageData.bannerTitle} image={partnerPageData.bannerImage} />
           </View>
 
           <Text style={styles.description}>{partnerPageData.description}</Text>

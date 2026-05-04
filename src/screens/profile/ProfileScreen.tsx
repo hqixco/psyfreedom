@@ -1,4 +1,5 @@
 import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
+import { ImageSourcePropType } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ProfileAuthPrompt } from '../../components/profile/ProfileAuthPrompt';
 import { ProfileBanner } from '../../components/profile/ProfileBanner';
@@ -16,6 +17,7 @@ type ProfileScreenProps = {
   onOpenLogin: () => void;
   onOpenRegister: () => void;
   selectedProfileType?: 'main' | 'work';
+  mainProfilePhoto?: ImageSourcePropType | null;
   pushEnabled?: boolean;
   workPushEnabled?: boolean;
   onChangeProfileType?: (type: 'main' | 'work') => void;
@@ -49,6 +51,7 @@ export function ProfileScreen({
   onOpenLogin,
   onOpenRegister,
   selectedProfileType = 'main',
+  mainProfilePhoto = null,
   pushEnabled = true,
   workPushEnabled = true,
   onChangeProfileType = () => undefined,
@@ -107,6 +110,7 @@ export function ProfileScreen({
         <AuthorizedProfileScreen
           selectedProfileType={selectedProfileType}
           pushEnabled={pushEnabled}
+          mainProfilePhoto={mainProfilePhoto}
         onChangeProfileType={onChangeProfileType}
         onTogglePush={onTogglePush}
         onOpenSessions={onOpenSessions}
@@ -134,7 +138,6 @@ export function ProfileScreen({
           source={require('../../../assets/profile-header-bg.jpg')}
           resizeMode="cover"
           style={styles.topSection}
-          imageStyle={styles.topSectionImage}
         >
           <ProfileAuthPrompt onLogin={onOpenLogin} onRegister={onOpenRegister} />
         </ImageBackground>
@@ -164,21 +167,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   topSection: {
-    paddingHorizontal: 16,
-    paddingTop: 56,
-    paddingBottom: 52,
-  },
-  topSectionImage: {
-    width: '100%',
-    height: '100%',
+    height: 315,
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: 56,
   },
   content: {
     marginTop: -28,
     backgroundColor: colors.white,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
-    paddingTop: 17,
-    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   bannerSpacing: {
     marginTop: 20,

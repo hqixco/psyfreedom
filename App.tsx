@@ -29,6 +29,7 @@ import { InstituteDetailsScreen } from './src/screens/catalog/InstituteDetailsSc
 import { ProductsScreen } from './src/screens/catalog/ProductsScreen';
 import { ServicesScreen } from './src/screens/catalog/ServicesScreen';
 import { SpecialistDetailsScreen } from './src/screens/catalog/SpecialistDetailsScreen';
+import { VideoJournalDetailsScreen } from './src/screens/catalog/VideoJournalDetailsScreen';
 import { ChatScreen } from './src/screens/messenger/ChatScreen';
 import { MessengerScreen } from './src/screens/messenger/MessengerScreen';
 import { PaymentScreen } from './src/screens/payment/PaymentScreen';
@@ -79,6 +80,7 @@ import {
 import { associationsMock } from './src/data/associationsData';
 import { institutesMock } from './src/data/institutesData';
 import { officeRentItems } from './src/data/officeRentData';
+import { videoJournalItems } from './src/data/videoJournalData';
 import { useAppNavigationState } from './src/hooks/app/useAppNavigationState';
 import { useAuthState } from './src/hooks/app/useAuthState';
 import { useProfileState } from './src/hooks/app/useProfileState';
@@ -137,6 +139,7 @@ function AppShell() {
     openProductDetails,
     openInstituteDetails,
     openSpecialistDetails,
+    openVideoDetails,
     activeTab,
     openTab,
   } = useAppNavigationState({ datingQuestionnaireStatus });
@@ -279,6 +282,10 @@ function AppShell() {
       ?? catalogSpecialists[0]
       ?? serviceSpecialists[0]
     : catalogSpecialists[0] ?? serviceSpecialists[0];
+  const selectedVideo =
+    route.name === 'video-details'
+      ? videoJournalItems.find((item) => item.id === route.videoId) ?? videoJournalItems[0]
+      : videoJournalItems[0];
   const selectedArticle = route.name === 'article-details'
     ? [...articles, ...videos].find((item) => item.id === route.articleId) ?? articles[0]
     : articles[0];
@@ -300,6 +307,10 @@ function AppShell() {
       showBottomTabs={false}
       bottomTabsHeight={bottomTabsHeight}
       onOpenDating={openDatingSection}
+      onOpenArticleDetails={(articleId) => {
+        setArticleReturnRoute({ name: 'home' });
+        setRoute({ name: 'article-details', articleId });
+      }}
       onOpenArticleFromSearch={(articleId) => {
         setArticleReturnRoute({ name: 'home' });
         setRoute({ name: 'article-details', articleId });
@@ -382,6 +393,14 @@ function AppShell() {
         />
       );
       break;
+    case 'video-details':
+      content = (
+        <VideoJournalDetailsScreen
+          item={selectedVideo}
+          onBack={goBackFromDetail}
+        />
+      );
+      break;
     case 'article-details':
       content = (
         <ArticleDetailsScreen
@@ -406,6 +425,7 @@ function AppShell() {
           onOpenCatalog={() => setRoute({ name: 'catalog' })}
           onOpenProductDetails={openProductDetails}
           onOpenSpecialistDetails={openSpecialistDetails}
+          onOpenVideoDetails={openVideoDetails}
           onOpenArticleDetails={(articleId) => {
             setArticleReturnRoute({ name: 'like' });
             setRoute({ name: 'article-details', articleId });
@@ -415,14 +435,15 @@ function AppShell() {
       break;
     case 'profile':
       content = (
-        <ProfileScreen
-          isAuthorized={isAuthorized}
-          specialistApplicationStatus={specialistApplicationStatus}
-          onOpenLogin={() => setRoute({ name: 'login' })}
-          onOpenRegister={() => setRoute({ name: 'register' })}
-          selectedProfileType={selectedProfileType}
-          pushEnabled={pushEnabled}
-          workPushEnabled={workPushEnabled}
+          <ProfileScreen
+            isAuthorized={isAuthorized}
+            specialistApplicationStatus={specialistApplicationStatus}
+            onOpenLogin={() => setRoute({ name: 'login' })}
+            onOpenRegister={() => setRoute({ name: 'register' })}
+            selectedProfileType={selectedProfileType}
+            mainProfilePhoto={userProfile.photo}
+            pushEnabled={pushEnabled}
+            workPushEnabled={workPushEnabled}
           onChangeProfileType={handleProfileTypeChange}
           onTogglePush={setPushEnabled}
           onToggleWorkPush={setWorkPushEnabled}
@@ -793,6 +814,7 @@ function AppShell() {
     'institute-details',
     'specialist-details',
     'article-details',
+    'video-details',
     'payment',
     'login',
     'sms-code',

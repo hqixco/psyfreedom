@@ -2,7 +2,7 @@ import { Image, Linking, Pressable, StyleSheet, Text, View } from 'react-native'
 import { colors, typography } from '../../constants/theme';
 import { Association } from '../../data/associationsData';
 
-const associationCover = require('../../../assets/association-cover-4.svg');
+const associationCover = require('../../../assets/association-cover-4.png');
 
 export function AssociationInfoSection({ association }: { association: Association }) {
   return (

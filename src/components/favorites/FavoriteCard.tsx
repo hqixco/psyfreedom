@@ -49,7 +49,7 @@ export function FavoriteCard({ item, width, onPress, isHeartMuted = false, onTog
       </Pressable>
 
       <Pressable style={styles.heartButton} onPress={() => onToggleHeart(item.id)} hitSlop={10}>
-        <Ionicons name="heart" size={26} color={isHeartMuted ? colors.white : '#FF2F72'} />
+        <Ionicons name="heart" size={22} color={isHeartMuted ? colors.white : '#FF2F72'} />
       </Pressable>
     </View>
   );
@@ -76,14 +76,16 @@ const styles = StyleSheet.create({
   },
   heartButton: {
     position: 'absolute',
-    top: 11,
-    right: 11,
+    top: 10,
+    right: 10,
     zIndex: 3,
     elevation: 3,
-    width: 20,
-    height: 19,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 0,
   },
   ratingBadge: {
     position: 'absolute',

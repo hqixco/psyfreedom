@@ -6,6 +6,7 @@ import { AddPhotoSheet } from '../../components/profile/AddPhotoSheet';
 import { EditableProfile, EditProfileForm } from '../../components/profile/EditProfileForm';
 import { EditPhotoSheet } from '../../components/profile/EditPhotoSheet';
 import { colors, typography } from '../../constants/theme';
+import { pickImageSource, takePhotoSource } from '../../utils/pickImageFile';
 
 type EditProfileScreenProps = {
   profile: EditableProfile;
@@ -13,9 +14,6 @@ type EditProfileScreenProps = {
   onSave: (profile: EditableProfile) => void;
   setBottomTabsVisible?: (visible: boolean) => void;
 };
-
-const mockPhoto = require('../../../assets/images/avatar-maria.png');
-const mockReplacementPhoto = require('../../../assets/images/specialist-photo-1.png');
 
 export function EditProfileScreen({ profile, onBack, onSave, setBottomTabsVisible }: EditProfileScreenProps) {
   const insets = useSafeAreaInsets();
@@ -80,12 +78,18 @@ export function EditProfileScreen({ profile, onBack, onSave, setBottomTabsVisibl
       <AddPhotoSheet
         visible={isAddPhotoOpen}
         onClose={() => setIsAddPhotoOpen(false)}
-        onPickPhoto={() => {
-          setForm((prev) => ({ ...prev, photo: mockPhoto }));
+        onPickPhoto={async () => {
+          const nextPhoto = await pickImageSource();
+          if (nextPhoto) {
+            setForm((prev) => ({ ...prev, photo: nextPhoto }));
+          }
           setIsAddPhotoOpen(false);
         }}
-        onTakePhoto={() => {
-          setForm((prev) => ({ ...prev, photo: mockPhoto }));
+        onTakePhoto={async () => {
+          const nextPhoto = await takePhotoSource();
+          if (nextPhoto) {
+            setForm((prev) => ({ ...prev, photo: nextPhoto }));
+          }
           setIsAddPhotoOpen(false);
         }}
       />
@@ -97,8 +101,11 @@ export function EditProfileScreen({ profile, onBack, onSave, setBottomTabsVisibl
           setForm((prev) => ({ ...prev, photo: null }));
           setIsEditPhotoOpen(false);
         }}
-        onReplacePhoto={() => {
-          setForm((prev) => ({ ...prev, photo: mockReplacementPhoto }));
+        onReplacePhoto={async () => {
+          const nextPhoto = await pickImageSource();
+          if (nextPhoto) {
+            setForm((prev) => ({ ...prev, photo: nextPhoto }));
+          }
           setIsEditPhotoOpen(false);
         }}
       />

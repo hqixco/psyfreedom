@@ -13,7 +13,9 @@ export function WorkingBonusCard({
     <View style={styles.card}>
       <View style={styles.headerRow}>
         <View style={styles.pill} />
-        <Text style={styles.amount}>{workingProfileMock.bonuses.amount} бонусов</Text>
+        <Text style={styles.amount} numberOfLines={1} ellipsizeMode="tail">
+          {workingProfileMock.bonuses.amount} бонусов
+        </Text>
       </View>
 
       <Text style={styles.description}>{workingProfileMock.bonuses.description}</Text>
@@ -44,13 +46,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   pill: {
-    width: 52,
-    height: 24,
-    borderRadius: 12,
+    width: 34,
+    height: 34,
+    borderRadius: 360,
     backgroundColor: '#65C6D6',
     marginRight: 14,
+    flexShrink: 0,
+    overflow: 'hidden',
   },
   amount: {
+    flexShrink: 1,
     fontSize: 28,
     lineHeight: 34,
     ...typography.Inter[700],

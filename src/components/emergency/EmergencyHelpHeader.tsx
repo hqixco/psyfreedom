@@ -5,7 +5,7 @@ import { colors, typography } from '../../constants/theme';
 export function EmergencyHelpHeader({ onBack }: { onBack: () => void }) {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onBack} style={styles.backButton}>
+      <Pressable onPress={onBack} style={styles.backButton} hitSlop={12}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
@@ -20,10 +20,14 @@ const styles = StyleSheet.create({
     height: 56,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 25,
+    paddingHorizontal: 16,
   },
   backButton: {
-    marginRight: 20,
+    width: 44,
+    height: 44,
+    marginRight: 12,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   title: {
     flexShrink: 1,

@@ -1,8 +1,7 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { AttachedFile } from '../../data/specialistQuestionnaireData';
-
-const attachIcon = require('../../../assets/attachment-paperclip.svg');
 
 export function QuestionnaireFileUpload({
   title,
@@ -12,10 +11,12 @@ export function QuestionnaireFileUpload({
   title: string;
   file: AttachedFile | null;
   onPress: () => void;
-}) {
+  }) {
   return (
     <Pressable style={styles.container} onPress={onPress}>
-      <Image source={attachIcon} style={styles.icon} />
+      <View style={styles.iconWrap}>
+        <Ionicons name="attach-outline" size={20} color={colors.primaryDark} />
+      </View>
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>
@@ -37,11 +38,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginBottom: 10,
   },
-  icon: {
+  iconWrap: {
     width: 20,
     height: 20,
     marginRight: 10,
     marginTop: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   content: {
     flex: 1,

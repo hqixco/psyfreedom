@@ -25,7 +25,7 @@ export function AssociationDetailsHeader({
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    paddingHorizontal: 25,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   iconButton: {
     width: 32,
     height: 32,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
 });

@@ -14,6 +14,7 @@ export type AppRoute =
   | { name: 'institute-details'; instituteId: string }
   | { name: 'specialist-details'; specialistId: string }
   | { name: 'article-details'; articleId: string }
+  | { name: 'video-details'; videoId: string }
   | { name: 'payment' }
   | { name: 'like' }
   | { name: 'profile' }
@@ -61,7 +62,8 @@ export type ReturnRoute =
   | { name: 'home' }
   | { name: 'like' }
   | { name: 'product-details'; productId: string; isPurchased?: boolean; isFavorite?: boolean }
-  | { name: 'specialist-details'; specialistId: string };
+  | { name: 'specialist-details'; specialistId: string }
+  | { name: 'video-details'; videoId: string };
 
 export function useAppNavigationState({
   datingQuestionnaireStatus,
@@ -109,6 +111,10 @@ export function useAppNavigationState({
     openDetailRoute({ name: 'specialist-details', specialistId });
   };
 
+  const openVideoDetails = (videoId: string) => {
+    openDetailRoute({ name: 'video-details', videoId });
+  };
+
   const goBackFromDetail = () => {
     if (route.name === 'payment') {
       setRoute(paymentReturnRoute);
@@ -134,6 +140,9 @@ export function useAppNavigationState({
         return;
       case 'article-details':
         setRoute(articleReturnRoute);
+        return;
+      case 'video-details':
+        setRoute({ name: 'journal' });
         return;
       default:
         setRoute({ name: 'catalog' });
@@ -166,6 +175,7 @@ export function useAppNavigationState({
       case 'institute-details':
       case 'specialist-details':
       case 'article-details':
+      case 'video-details':
         return 'catalog';
       case 'messenger':
       case 'chat':
@@ -278,6 +288,7 @@ export function useAppNavigationState({
     openProductDetails,
     openInstituteDetails,
     openSpecialistDetails,
+    openVideoDetails,
     goBackFromDetail,
     isDatingRoute,
     activeTab,

@@ -29,7 +29,7 @@ export function ChatHeader({
 }: ChatHeaderProps) {
   return (
     <View style={[styles.container, containerStyle]}>
-      <Pressable style={[styles.backButton, backButtonStyle]} onPress={onBack}>
+      <Pressable style={[styles.backButton, backButtonStyle]} onPress={onBack} hitSlop={12}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={[styles.title, titleStyle]} numberOfLines={1}>
@@ -59,7 +59,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     width: 44,
+    height: 44,
     alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   title: {
     flex: 1,

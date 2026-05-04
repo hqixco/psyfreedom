@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 14,
     overflow: 'hidden',
-    padding: 20,
     position: 'relative',
   },
   containerMint: {
@@ -87,18 +86,19 @@ const styles = StyleSheet.create({
     position: 'relative',
     zIndex: 1,
     flex: 1,
+    padding: 20,
   },
   title: {
     color: colors.primaryDark,
     ...typography.Inter[700],
   },
   titleMint: {
-    width: 190,
+    width: 200,
     fontSize: 20,
     lineHeight: 24,
   },
   titleBlue: {
-    width: 310,
+    width: 320,
     fontSize: 20,
     lineHeight: 24,
   },
@@ -107,12 +107,12 @@ const styles = StyleSheet.create({
     color: colors.primaryDark,
   },
   descriptionMint: {
-    width: 160,
+    width: 190,
     fontSize: 12,
     lineHeight: 16,
   },
   descriptionBlue: {
-    width: 290,
+    width: 320,
     fontSize: 13,
     lineHeight: 16,
   },

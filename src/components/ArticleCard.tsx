@@ -7,13 +7,14 @@ import { ArticleItem } from '../data/mockData';
 
 type ArticleCardProps = {
   item: ArticleItem;
+  onPress?: () => void;
 };
 
-export function ArticleCard({ item }: ArticleCardProps) {
+export function ArticleCard({ item, onPress }: ArticleCardProps) {
   const [liked, setLiked] = useState(false);
 
   return (
-    <View style={styles.card}>
+    <Pressable style={styles.card} onPress={onPress} android_ripple={{ color: 'rgba(0,0,0,0.04)' }}>
       <View style={styles.imageWrap}>
         <Image source={typeof item.image === 'string' ? { uri: item.image } : item.image} style={styles.image} />
         <View style={styles.viewsRow}>
@@ -32,7 +33,7 @@ export function ArticleCard({ item }: ArticleCardProps) {
 
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.topic}>{item.topic}</Text>
-    </View>
+    </Pressable>
   );
 }
 

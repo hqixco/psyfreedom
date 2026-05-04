@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { WorkScheduleSettingsSheet } from '../../components/working-sessions/WorkScheduleSettingsSheet';
+import { WorkingSessionDetailsSheet } from '../../components/working-sessions/WorkingSessionDetailsSheet';
 import { WorkingSessionList } from '../../components/working-sessions/WorkingSessionList';
 import { WorkingSessionsCalendar } from '../../components/working-sessions/WorkingSessionsCalendar';
 import { WorkingSessionsHeader } from '../../components/working-sessions/WorkingSessionsHeader';
@@ -23,6 +24,7 @@ export function WorkingSessionsCalendarScreen({
   const [selectedDate, setSelectedDate] = useState(workingCalendarMock.selectedDate);
   const [schedule, setSchedule] = useState<WorkDaySchedule[]>(workingScheduleMock);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [selectedSession, setSelectedSession] = useState<WorkingSessionItem | null>(null);
 
   const visibleSessions = useMemo<WorkingSessionItem[]>(() => {
     const filtered = workingSessionsMock.filter(
@@ -48,7 +50,7 @@ export function WorkingSessionsCalendarScreen({
           />
           <WorkingSessionList
             sessions={visibleSessions}
-            onOpenSession={(item) => console.log('open working session', item.id)}
+            onOpenSession={(item) => setSelectedSession(item)}
           />
         </ScrollView>
 
@@ -60,6 +62,16 @@ export function WorkingSessionsCalendarScreen({
           onSave={() => {
             console.log('work schedule saved', schedule);
             setIsSettingsOpen(false);
+          }}
+        />
+
+        <WorkingSessionDetailsSheet
+          visible={Boolean(selectedSession)}
+          session={selectedSession}
+          onClose={() => setSelectedSession(null)}
+          onOpenChat={() => {
+            console.log('open working session chat', selectedSession?.id);
+            setSelectedSession(null);
           }}
         />
       </View>

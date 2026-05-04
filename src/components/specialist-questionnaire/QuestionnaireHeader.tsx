@@ -14,7 +14,7 @@ export function QuestionnaireHeader({
 }) {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onBack}>
+      <Pressable onPress={onBack} style={styles.backButton} hitSlop={12}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={styles.counter}>
@@ -30,6 +30,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   counter: {
     fontSize: 15,

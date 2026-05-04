@@ -1,4 +1,5 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
@@ -22,7 +23,7 @@ export function ConsentCheckbox({
   return (
     <Pressable style={[styles.container, containerStyle]} onPress={onToggle}>
       <View style={[styles.box, checked ? styles.boxChecked : null, boxStyle]}>
-        {checked ? <Image source={require('../../../assets/auth-checkbox-check.svg')} style={styles.checkIcon} /> : null}
+        {checked ? <Ionicons name="checkmark" size={12} color={colors.white} /> : null}
       </View>
       <Text style={[styles.text, textStyle]}>
         Я принимаю <Text style={[styles.link, linkStyle]}>Политику конфиденциальности</Text>{'\n'}
@@ -52,11 +53,6 @@ const styles = StyleSheet.create({
   boxChecked: {
     backgroundColor: colors.primary,
     borderColor: colors.primary,
-  },
-  checkIcon: {
-    width: 10,
-    height: 10,
-    resizeMode: 'contain',
   },
   text: {
     flex: 1,

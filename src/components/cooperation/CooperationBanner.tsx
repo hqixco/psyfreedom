@@ -1,4 +1,4 @@
-import { Image, ImageBackground, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageBackground, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { CooperationBannerItem } from '../../data/cooperationData';
 
@@ -9,6 +9,10 @@ export function CooperationBanner({
   item: CooperationBannerItem;
   onPress: () => void;
 }) {
+  const { width } = useWindowDimensions();
+  const isMobile = width < 480;
+  const imageBannerHeight =
+    item.id === 'earn' ? 140 : 120;
   const backgroundColor =
     item.variant === 'blue'
       ? colors.blueLight
@@ -18,8 +22,19 @@ export function CooperationBanner({
 
   if ((item.id === 'officeRent' || item.id === 'productReview' || item.id === 'earn') && item.image) {
     return (
-      <Pressable style={styles.imageBanner} onPress={onPress}>
-        <ImageBackground source={item.image} resizeMode="cover" style={styles.background} imageStyle={styles.imageBg}>
+      <Pressable
+        style={[
+          styles.imageBanner,
+          { height: isMobile ? imageBannerHeight : 150 },
+        ]}
+        onPress={onPress}
+      >
+        <ImageBackground
+          source={item.image}
+          resizeMode="cover"
+          style={styles.background}
+          imageStyle={styles.imageBg}
+        >
           <View style={styles.content}>
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.description}>{item.description}</Text>
@@ -30,7 +45,7 @@ export function CooperationBanner({
   }
 
   return (
-    <Pressable style={[styles.banner, { backgroundColor }]} onPress={onPress}>
+    <Pressable style={[styles.banner, { backgroundColor }, isMobile ? styles.bannerMobile : null]} onPress={onPress}>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.description}>{item.description}</Text>
       {item.image ? <Image source={item.image} style={styles.image} /> : null}
@@ -46,23 +61,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     marginBottom: 8,
+    position: 'relative',
+  },
+  bannerMobile: {
+    height: 160,
+    paddingVertical: 18,
   },
   imageBanner: {
-    paddingBottom: 27,
+    height: 150,
     borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 8,
+    position: 'relative',
   },
   background: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
   },
   imageBg: {
     borderRadius: 12,
   },
   content: {
-    flex: 1,
     paddingHorizontal: 23,
     justifyContent: 'center',
+    paddingTop: 18,
+    paddingBottom: 18,
   },
   title: {
     fontSize: 16,
@@ -70,7 +92,7 @@ const styles = StyleSheet.create({
     ...typography.Inter[600],
     color: colors.primaryDark,
     maxWidth: 210,
-    paddingTop: 18,
+    paddingTop: 0,
   },
   description: {
     marginTop: 15,

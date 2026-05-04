@@ -6,7 +6,7 @@ type EditPhotoSheetProps = {
   visible: boolean;
   onClose: () => void;
   onDeletePhoto: () => void;
-  onReplacePhoto: () => void;
+  onReplacePhoto: () => void | Promise<void>;
 };
 
 export function EditPhotoSheet({
@@ -18,7 +18,15 @@ export function EditPhotoSheet({
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      transparent
+      animationType="slide"
+      visible={visible}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={onClose}
+    >
       <Pressable style={styles.overlay} onPress={onClose}>
         <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
           <Pressable style={styles.option} onPress={onDeletePhoto}>

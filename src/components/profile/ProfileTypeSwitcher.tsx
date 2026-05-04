@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageSourcePropType, Pressable, StyleSheet, Text, View } from 'react-native';
 import { type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 type ProfileTypeSwitcherProps = {
   selectedProfileType: 'main' | 'work';
   onSelectProfileType: (type: 'main' | 'work') => void;
+  mainProfilePhoto?: ImageSourcePropType | null;
   rowStyle?: StyleProp<ViewStyle>;
   profileCardStyle?: StyleProp<ViewStyle>;
   circleStyle?: StyleProp<ViewStyle>;
@@ -17,6 +18,7 @@ type ProfileTypeSwitcherProps = {
 export function ProfileTypeSwitcher({
   selectedProfileType,
   onSelectProfileType,
+  mainProfilePhoto,
   rowStyle,
   profileCardStyle,
   circleStyle,
@@ -34,11 +36,15 @@ export function ProfileTypeSwitcher({
             selectedProfileType === 'main' ? styles.circleActive : styles.circleInactive,
           ]}
         >
-          <Ionicons
-            name="person"
-            size={48}
-            color={selectedProfileType === 'main' ? colors.white : colors.primary}
-          />
+          {mainProfilePhoto ? (
+            <Image source={mainProfilePhoto} style={styles.photo} />
+          ) : (
+            <Ionicons
+              name="person"
+              size={48}
+              color={selectedProfileType === 'main' ? colors.white : colors.primary}
+            />
+          )}
           {selectedProfileType === 'main' ? <View style={styles.mainOverlay} /> : null}
         </View>
         <Text style={[styles.label, mainLabelStyle]}>Основной</Text>
@@ -84,6 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 360,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   circleActive: {
     backgroundColor: colors.primary,
@@ -95,6 +102,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderRadius: 54,
     backgroundColor: 'rgba(7, 132, 154, 0.18)',
+  },
+  photo: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   label: {
     marginTop: 3,

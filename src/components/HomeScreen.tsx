@@ -50,6 +50,7 @@ type HomeScreenProps = {
   showBottomTabs?: boolean;
   bottomTabsHeight?: number;
   onOpenDating?: () => void;
+  onOpenArticleDetails?: (articleId: string) => void;
   onOpenArticleFromSearch?: (articleId: string) => void;
   onOpenJournal?: () => void;
   onOpenProducts?: () => void;
@@ -63,6 +64,7 @@ export function HomeScreen({
   showBottomTabs = true,
   bottomTabsHeight: bottomTabsHeightProp,
   onOpenDating,
+  onOpenArticleDetails,
   onOpenArticleFromSearch,
   onOpenJournal,
   onOpenProducts,
@@ -138,7 +140,7 @@ export function HomeScreen({
     }
 
     if (item === 'dating') {
-      return <DatingBanner onPress={onOpenDating} />;
+      return <DatingBanner />;
     }
 
     if (item === 'products') {
@@ -157,7 +159,7 @@ export function HomeScreen({
       return <CategoryGrid />;
     }
 
-    return <ArticlesSection onOpenJournal={onOpenJournal} />;
+    return <ArticlesSection onOpenJournal={onOpenJournal} onOpenArticle={onOpenArticleDetails} />;
   };
 
   return (

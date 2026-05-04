@@ -18,12 +18,16 @@ export function AssociationsHeader({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    paddingHorizontal: 25,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
   },
   backButton: {
-    marginRight: 20,
+    width: 44,
+    height: 44,
+    marginRight: 12,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   title: {
     flexShrink: 1,

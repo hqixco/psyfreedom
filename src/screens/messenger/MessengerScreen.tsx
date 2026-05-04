@@ -9,9 +9,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { SearchOverlay } from '../../components/search/SearchOverlay';
 import { SvgXml } from 'react-native-svg';
 import { messengerChats, MessengerChatItem } from './messengerData';
 
@@ -109,7 +107,6 @@ function ChatListItem({
 export function MessengerScreen({ onOpenChat }: MessengerScreenProps) {
   const insets = useSafeAreaInsets();
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchVisible, setSearchVisible] = useState(false);
 
   const filteredChats = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -134,7 +131,7 @@ export function MessengerScreen({ onOpenChat }: MessengerScreenProps) {
       >
         <Text style={styles.title}>Мессенджер</Text>
 
-        <SearchBar value={searchQuery} onChangeText={setSearchQuery} onFocus={() => setSearchVisible(true)} />
+        <SearchBar value={searchQuery} onChangeText={setSearchQuery} onFocus={() => null} />
 
         <View style={styles.chatList}>
           {supportChat ? (
@@ -148,8 +145,6 @@ export function MessengerScreen({ onOpenChat }: MessengerScreenProps) {
           {!filteredChats.length ? <Text style={styles.emptyText}>Ничего не найдено</Text> : null}
         </View>
       </ScrollView>
-
-      <SearchOverlay visible={searchVisible} onClose={() => setSearchVisible(false)} />
     </SafeAreaView>
   );
 }

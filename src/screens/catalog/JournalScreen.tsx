@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native'
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleCard } from '../../components/journal/ArticleCard';
 import { JournalCategoryGrid } from '../../components/journal/JournalCategoryGrid';
+import { JournalContactSheet } from '../../components/journal/JournalContactSheet';
 import { JournalHeader } from '../../components/journal/JournalHeader';
 import { JournalHelpBanner } from '../../components/journal/JournalHelpBanner';
 import { JournalSectionHeader } from '../../components/journal/JournalSectionHeader';
@@ -51,6 +52,7 @@ export function JournalScreen({
   const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(defaultProductFilters);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
+  const [contactSheetVisible, setContactSheetVisible] = useState(false);
   const cardWidth = Math.min(180, width * 0.46);
   const categoryWidth = (width - 16 * 2 - 8 * 2) / 3;
 
@@ -83,7 +85,7 @@ export function JournalScreen({
           onResetFilters={() => setSelectedFilters(defaultProductFilters)}
           onChangeFilters={setSelectedFilters}
           onPressTopic={(id) => console.log('open article topic', id)}
-          onPressBanner={() => console.log('write to us')}
+          onPressBanner={() => setContactSheetVisible(true)}
           onPressArticle={handleOpenArticle}
         />
         <SearchOverlay
@@ -176,7 +178,7 @@ export function JournalScreen({
         >
           <JournalHeader title="Журнал" onBack={onBack} onSearch={() => setSearchVisible(true)} />
 
-          <JournalHelpBanner onPress={() => console.log('write to us')} />
+          <JournalHelpBanner onPress={() => setContactSheetVisible(true)} />
 
           <JournalCategoryGrid
             categories={journalCategories}
@@ -265,6 +267,10 @@ export function JournalScreen({
         onClose={() => setSearchVisible(false)}
         onOpenArticle={() => onOpenArticleDetails('article-1')}
         onOpenSpecialists={(topicId) => onOpenServices(undefined, topicId)}
+      />
+      <JournalContactSheet
+        visible={contactSheetVisible}
+        onClose={() => setContactSheetVisible(false)}
       />
     </>
   );

@@ -23,13 +23,21 @@ export function ReplyToReviewSheet({
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      transparent
+      animationType="fade"
+      visible={visible}
+      onRequestClose={onClose}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+    >
       <View style={styles.overlay}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
         <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
           <View style={styles.header}>
             <Text style={styles.title}>{title}</Text>
-            <Pressable onPress={onClose}>
+            <Pressable onPress={onClose} hitSlop={12}>
               <Ionicons name="close" size={24} color={colors.primaryDark} />
             </Pressable>
           </View>
@@ -71,6 +79,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 22,
     maxHeight: '86%',
+    overflow: 'hidden',
   },
   header: {
     flexDirection: 'row',

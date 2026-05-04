@@ -1,3 +1,4 @@
+import { ImageSourcePropType } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
@@ -6,17 +7,20 @@ import { ProfileTypeSwitcher } from './ProfileTypeSwitcher';
 type AuthorizedProfileHeaderProps = {
   selectedProfileType: 'main' | 'work';
   onSelectProfileType: (type: 'main' | 'work') => void;
+  mainProfilePhoto?: ImageSourcePropType | null;
 };
 
 export function AuthorizedProfileHeader({
   selectedProfileType,
   onSelectProfileType,
+  mainProfilePhoto,
 }: AuthorizedProfileHeaderProps) {
   return (
     <View style={styles.container}>
       <ProfileTypeSwitcher
         selectedProfileType={selectedProfileType}
         onSelectProfileType={onSelectProfileType}
+        mainProfilePhoto={mainProfilePhoto}
         rowStyle={styles.row}
         profileCardStyle={styles.profileCard}
         circleStyle={styles.circle}

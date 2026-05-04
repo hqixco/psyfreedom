@@ -8,6 +8,9 @@ export type FavoriteItem = {
   id: string;
   category: FavoriteCategory;
   productId?: string;
+  articleId?: string;
+  specialistId?: string;
+  videoId?: string;
   title: string;
   type: string;
   price?: string;
@@ -24,8 +27,8 @@ export const favoriteChips = [
   { id: 'video', title: 'Видеоурок' },
 ] as const;
 
-const favoriteImage = require('../../assets/images/product-course-devichnik.png');
-const favoriteBookImage = require('../../assets/product-placeholder-square.png');
+const courseCoverImage = require('../../assets/course-cover.jpg');
+const specialistImage = require('../../assets/specialist-photo-default.jpg');
 
 export const mockFavorites: FavoriteItem[] = [
   {
@@ -36,7 +39,7 @@ export const mockFavorites: FavoriteItem[] = [
     type: 'Курс',
     price: '6 000 ₽',
     rating: '5.0',
-    image: favoriteImage,
+    image: courseCoverImage,
     status: 'default',
   },
   {
@@ -47,7 +50,7 @@ export const mockFavorites: FavoriteItem[] = [
     type: 'Книга',
     price: '10 000 ₽',
     rating: '5.0',
-    image: favoriteBookImage,
+    image: courseCoverImage,
     status: 'deletedByAuthor',
   },
   {
@@ -58,35 +61,38 @@ export const mockFavorites: FavoriteItem[] = [
     type: 'Тест',
     price: 'Бесплатно',
     rating: '5.0',
-    image: favoriteImage,
+    image: require('../../assets/фото (5).jpg'),
     status: 'default',
   },
   {
     id: 'favorite-4',
     category: 'services',
-    title: 'Имя Фамилия',
+    specialistId: '1',
+    title: 'Анна Смирнова',
     type: 'Психолог',
     price: 'От 1 200 ₽',
     rating: '5.0',
-    image: favoriteImage,
+    image: specialistImage,
     status: 'default',
   },
   {
     id: 'favorite-5',
     category: 'journal',
-    title: 'Как стать счастливым',
+    articleId: 'article-1',
+    title: 'Как стать счастливым и наладить свою жизнь',
     type: 'Статья',
     rating: '0.0',
-    image: favoriteImage,
+    image: require('../../assets/images/article-card-cover-default.png'),
     status: 'default',
   },
   {
     id: 'favorite-6',
     category: 'video',
-    title: 'Название',
+    videoId: 'video-journal-1',
+    title: 'Как стать счастливым и наладить свою жизнь',
     type: 'Видеоурок',
     rating: '0.0',
-    image: favoriteImage,
+    image: require('../../assets/images/video-card-cover-default.png'),
     status: 'default',
   },
 ];

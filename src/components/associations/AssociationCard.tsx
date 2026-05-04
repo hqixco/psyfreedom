@@ -2,10 +2,9 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 import { Association } from '../../data/associationsData';
 
-const defaultAssociationIcon = require('../../../assets/institute-author-avatar.svg');
-const firstAssociationIcon = require('../../../assets/association-card-icon-1.svg');
-const secondAssociationIcon = require('../../../assets/association-card-icon-2.svg');
-const thirdAssociationIcon = require('../../../assets/association-card-icon-3.svg');
+const firstAssociationIcon = require('../../../assets/association-card-icon-1.png');
+const secondAssociationIcon = require('../../../assets/association-card-icon-2.png');
+const thirdAssociationIcon = require('../../../assets/association-card-icon-3.png');
 
 export function AssociationCard({
   association,
@@ -66,6 +65,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 64,
     height: 64,
-    resizeMode: 'contain',
+    borderRadius: 32,
+    resizeMode: 'cover',
   },
 });

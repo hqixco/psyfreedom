@@ -5,7 +5,7 @@ import { AuthHeader } from '../../components/auth/AuthHeader';
 import { ProfileMenuItem } from '../../components/profile/ProfileMenuItem';
 import { colors, typography } from '../../constants/theme';
 
-const aboutLogo = require('../../../assets/лого (1).svg');
+const aboutLogo = require('../../../assets/лого.png');
 
 type AboutAppScreenProps = {
   onBack: () => void;

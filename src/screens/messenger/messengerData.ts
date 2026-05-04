@@ -22,7 +22,7 @@ export const messengerChats: MessengerChatItem[] = [
     lastMessage: 'Здравствуйте! Я рада, что вы...',
     time: '10:09',
     unreadCount: 5,
-    avatar: require('../../../assets/support-avatar.svg'),
+      avatar: require('../../../assets/support-avatar.png'),
   },
   {
     id: 'maria',

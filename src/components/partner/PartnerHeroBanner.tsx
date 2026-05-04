@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
 
 export function PartnerHeroBanner({
@@ -6,12 +6,13 @@ export function PartnerHeroBanner({
   image,
 }: {
   title: string;
-  image: number;
+  image: ImageSourcePropType;
 }) {
   return (
-    <ImageBackground source={image} style={styles.banner} imageStyle={styles.image}>
+    <View style={styles.banner}>
+      <Image source={image} resizeMode="cover" style={styles.image} />
       <Text style={styles.title}>{title}</Text>
-    </ImageBackground>
+    </View>
   );
 }
 
@@ -23,6 +24,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     justifyContent: 'center',
+    position: 'relative',
+    backgroundColor: colors.cardLight,
   },
   title: {
     fontSize: 16,
@@ -31,8 +34,6 @@ const styles = StyleSheet.create({
     color: colors.primaryDark,
   },
   image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+    ...StyleSheet.absoluteFillObject,
   },
 });

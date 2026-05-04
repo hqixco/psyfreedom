@@ -1,7 +1,6 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, typography } from '../../constants/theme';
-
-const attachIcon = require('../../../assets/attachment-paperclip.svg');
 
 export function ProductFileUpload({
   title,
@@ -16,7 +15,9 @@ export function ProductFileUpload({
 }) {
   return (
     <Pressable style={styles.container} onPress={onPress}>
-      <Image source={attachIcon} style={styles.icon} />
+      <View style={styles.iconWrap}>
+        <Ionicons name="attach-outline" size={20} color={colors.primaryDark} />
+      </View>
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
@@ -36,10 +37,12 @@ const styles = StyleSheet.create({
     marginTop: 14,
     marginBottom: 18,
   },
-  icon: {
+  iconWrap: {
     width: 20,
     height: 20,
     marginRight: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   content: {
     flex: 1,

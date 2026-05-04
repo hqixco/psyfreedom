@@ -8,7 +8,7 @@ export function useProfileState() {
     phone: userProfileMock.phone,
     email: userProfileMock.email,
     birthDate: userProfileMock.birthDate,
-    photo: userProfileMock.photo,
+    photo: null,
   });
   const [selectedProfileType, setSelectedProfileType] = useState<'main' | 'work'>(userProfileMock.selectedProfileType);
   const [pushEnabled, setPushEnabled] = useState(userProfileMock.pushEnabled);

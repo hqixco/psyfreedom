@@ -46,7 +46,7 @@ export const emergencyContacts: EmergencyContact[] = [
     phone: '+7 (495) 898-89-00',
     phoneRaw: '+74958988900',
     website: 'https://globalpsy.org',
-    logo: require('../../assets/emergency-mchs-logo.svg'),
+    logo: require('../../assets/Rectangle 39993 (9).png'),
   },
 ];
 

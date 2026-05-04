@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
+import { ImageSourcePropType } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AuthorizedProfileHeader } from '../../components/profile/AuthorizedProfileHeader';
 import { DeleteProfileSheet } from '../../components/profile/DeleteProfileSheet';
@@ -12,6 +13,7 @@ import { colors } from '../../constants/theme';
 type AuthorizedProfileScreenProps = {
   selectedProfileType: 'main' | 'work';
   pushEnabled: boolean;
+  mainProfilePhoto?: ImageSourcePropType | null;
   onChangeProfileType: (type: 'main' | 'work') => void;
   onTogglePush: (value: boolean) => void;
   onOpenSessions: () => void;
@@ -30,6 +32,7 @@ type AuthorizedProfileScreenProps = {
 export function AuthorizedProfileScreen({
   selectedProfileType,
   pushEnabled,
+  mainProfilePhoto,
   onChangeProfileType,
   onTogglePush,
   onOpenSessions,
@@ -62,6 +65,7 @@ export function AuthorizedProfileScreen({
           <AuthorizedProfileHeader
             selectedProfileType={selectedProfileType}
             onSelectProfileType={onChangeProfileType}
+            mainProfilePhoto={mainProfilePhoto}
           />
         </ImageBackground>
 

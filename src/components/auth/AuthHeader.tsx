@@ -10,7 +10,7 @@ type AuthHeaderProps = {
 export function AuthHeader({ onBack, title }: AuthHeaderProps) {
   return (
     <View style={styles.container}>
-      <Pressable onPress={onBack} style={styles.backButton}>
+      <Pressable onPress={onBack} style={styles.backButton} hitSlop={12}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       {title ? (
@@ -27,10 +27,14 @@ const styles = StyleSheet.create({
     height: 56,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 25,
+    paddingHorizontal: 16,
   },
   backButton: {
-    marginRight: 20,
+    width: 44,
+    height: 44,
+    marginRight: 12,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   title: {
     flexShrink: 1,

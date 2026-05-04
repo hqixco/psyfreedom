@@ -3,7 +3,7 @@ export const userProfileMock = {
   phone: '+7 (987)654-32-10',
   email: 'info@mail.ru',
   birthDate: '21.04.1986',
-  photo: require('../../assets/images/avatar-maria.png'),
+  photo: null,
   selectedProfileType: 'main' as const,
   pushEnabled: true,
 };

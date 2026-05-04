@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   KeyboardAvoidingView,
+  Keyboard,
   Platform,
   ScrollView,
   StyleSheet,
@@ -41,6 +42,8 @@ export function ChatScreen({ chatId, onBack, setBottomTabsVisible }: ChatScreenP
   const [editingMessageId, setEditingMessageId] = useState<string | null>(null);
   const [isDeleteSheetOpen, setIsDeleteSheetOpen] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+  const composerTopPadding = 12;
 
   const chat = useMemo<ChatPreview>(
     () => chatPreviews.find((item) => item.id === chatId) ?? chatPreviews[2],
@@ -64,6 +67,16 @@ export function ChatScreen({ chatId, onBack, setBottomTabsVisible }: ChatScreenP
   useEffect(() => {
     setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 0);
   }, [messages, selectedAttachment]);
+
+  useEffect(() => {
+    const showSub = Keyboard.addListener('keyboardDidShow', () => setIsKeyboardVisible(true));
+    const hideSub = Keyboard.addListener('keyboardDidHide', () => setIsKeyboardVisible(false));
+
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
 
   const selectedMessage = useMemo(() => {
     if (!selectedMessageId) {
@@ -171,7 +184,7 @@ export function ChatScreen({ chatId, onBack, setBottomTabsVisible }: ChatScreenP
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <ChatToast
           visible={isToastVisible}
@@ -240,7 +253,12 @@ export function ChatScreen({ chatId, onBack, setBottomTabsVisible }: ChatScreenP
             />
           ) : null}
 
-          <View style={[styles.inputArea, { paddingBottom: 10 + insets.bottom }]}>
+          <View
+            style={[
+              styles.inputArea,
+              { paddingBottom: isKeyboardVisible ? composerTopPadding : 10 + insets.bottom },
+            ]}
+          >
             <ChatInput
               value={inputText}
               onChangeText={setInputText}
@@ -370,6 +388,7 @@ const styles = StyleSheet.create({
     minWidth: 300,
     minHeight: 36,
     paddingHorizontal: 13,
+    paddingTop: 12,
     borderTopWidth: 1,
     borderTopColor: '#F0F0F0',
     backgroundColor: colors.white,

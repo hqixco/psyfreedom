@@ -77,13 +77,21 @@ export function WorkScheduleSettingsSheet({
   };
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      visible={visible}
+      transparent
+      animationType="fade"
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={onClose}
+    >
       <View style={styles.overlay}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
         <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
           <View style={styles.header}>
             <Text style={styles.title}>Вы можете установить дату и{'\n'}время работы на платформе</Text>
-            <Pressable onPress={onClose}>
+            <Pressable onPress={onClose} hitSlop={12}>
               <Ionicons name="close" size={24} color={colors.primaryDark} />
             </Pressable>
           </View>
@@ -126,13 +134,21 @@ export function WorkScheduleSettingsSheet({
         </View>
       </View>
 
-      <Modal transparent animationType="fade" visible={Boolean(activeTimeField)} onRequestClose={() => setActiveTimeField(null)}>
+      <Modal
+        visible={Boolean(activeTimeField)}
+        transparent
+        animationType="fade"
+        presentationStyle="overFullScreen"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() => setActiveTimeField(null)}
+      >
         <View style={styles.timeOverlay}>
           <Pressable style={StyleSheet.absoluteFill} onPress={() => setActiveTimeField(null)} />
           <View style={styles.timeSheet}>
             <View style={styles.timeHeader}>
               <Text style={styles.timeTitle}>Выберите время</Text>
-              <Pressable onPress={() => setActiveTimeField(null)}>
+              <Pressable onPress={() => setActiveTimeField(null)} hitSlop={12}>
                 <Ionicons name="close" size={24} color={colors.primaryDark} />
               </Pressable>
             </View>
@@ -162,6 +178,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
     paddingTop: 22,
+    overflow: 'hidden',
     maxHeight: '86%',
   },
   header: {
@@ -202,6 +219,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 22,
     paddingBottom: 20,
+    overflow: 'hidden',
     maxHeight: '55%',
   },
   timeHeader: {

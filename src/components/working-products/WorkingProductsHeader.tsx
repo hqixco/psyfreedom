@@ -5,7 +5,7 @@ import { BackChevronIcon } from '../icons/BackChevronIcon';
 export function WorkingProductsHeader({ onBack }: { onBack: () => void }) {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.backButton} onPress={onBack}>
+      <Pressable style={styles.backButton} onPress={onBack} hitSlop={12}>
         <BackChevronIcon color={colors.primaryDark} />
       </Pressable>
       <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
@@ -18,12 +18,16 @@ export function WorkingProductsHeader({ onBack }: { onBack: () => void }) {
 const styles = StyleSheet.create({
   container: {
     height: 56,
-    paddingHorizontal: 25,
+    paddingHorizontal: 16,
     flexDirection: 'row',
     alignItems: 'center',
   },
   backButton: {
-    marginRight: 20,
+    width: 44,
+    height: 44,
+    marginRight: 12,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
   },
   title: {
     flexShrink: 1,

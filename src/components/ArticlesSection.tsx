@@ -7,9 +7,10 @@ const articleSnapInterval = 190;
 
 type ArticlesSectionProps = {
   onOpenJournal?: () => void;
+  onOpenArticle?: (articleId: string) => void;
 };
 
-export function ArticlesSection({ onOpenJournal }: ArticlesSectionProps) {
+export function ArticlesSection({ onOpenJournal, onOpenArticle }: ArticlesSectionProps) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -29,7 +30,7 @@ export function ArticlesSection({ onOpenJournal }: ArticlesSectionProps) {
       >
         {articles.map((article, index) => (
           <View key={article.id} style={index === articles.length - 1 ? styles.lastCard : undefined}>
-            <ArticleCard item={article} />
+            <ArticleCard item={article} onPress={() => onOpenArticle?.(article.id)} />
           </View>
         ))}
       </ScrollView>

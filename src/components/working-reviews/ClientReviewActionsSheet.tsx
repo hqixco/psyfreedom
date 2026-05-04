@@ -17,11 +17,19 @@ export function ClientReviewActionsSheet({
   const insets = useSafeAreaInsets();
 
   return (
-    <Modal transparent animationType="slide" visible={visible} onRequestClose={onClose}>
+    <Modal
+      transparent
+      animationType="fade"
+      visible={visible}
+      onRequestClose={onClose}
+      presentationStyle="overFullScreen"
+      statusBarTranslucent
+      navigationBarTranslucent
+    >
       <View style={styles.overlay}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
         <View style={[styles.sheet, { paddingBottom: 20 + insets.bottom }]}>
-          <Pressable style={styles.closeButton} onPress={onClose}>
+          <Pressable style={styles.closeButton} onPress={onClose} hitSlop={12}>
             <Ionicons name="close" size={24} color={colors.primaryDark} />
           </Pressable>
 
@@ -51,6 +59,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
     paddingTop: 20,
+    overflow: 'hidden',
   },
   closeButton: {
     position: 'absolute',
